@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bbt08jhhrbiom"]
+
+[ext_resource type="PackedScene" uid="uid://c8b7r642fn2vm" path="res://scenes/nested/Willow/Willow.tscn" id="1_uvblx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6wcjf"]
+size = Vector2(1163, 20)
+
+[node name="ScreenTest" type="Node2D" unique_id=1805475824]
+
+[node name="Floor" type="StaticBody2D" parent="." unique_id=703340070]
+position = Vector2(4, 629)
+
+[node name="Shape" type="CollisionShape2D" parent="Floor" unique_id=2018656344]
+position = Vector2(571.5, 0)
+shape = SubResource("RectangleShape2D_6wcjf")
+
+[node name="Willow" parent="." unique_id=1438157277 instance=ExtResource("1_uvblx")]
+position = Vector2(535, 258)
