@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://bbt08jhhrbiom"]
+
+[ext_resource type="Texture2D" uid="uid://bkh1vwc63yiky" path="res://sprites/willow_mg_idle_animation_1.png" id="1_xe0dt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q4pai"]
+atlas = ExtResource("1_xe0dt")
+region = Rect2(0, 0, 200, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wb0v4"]
+atlas = ExtResource("1_xe0dt")
+region = Rect2(200, 0, 200, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m71og"]
+atlas = ExtResource("1_xe0dt")
+region = Rect2(400, 0, 200, 300)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0dxmq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q4pai")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wb0v4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m71og")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wb0v4")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="ScreenTest" type="Node2D" unique_id=1805475824]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1167669585]
+texture_filter = 1
+position = Vector2(418, 261)
+sprite_frames = SubResource("SpriteFrames_0dxmq")
+autoplay = "default"
+frame_progress = 0.43717846
