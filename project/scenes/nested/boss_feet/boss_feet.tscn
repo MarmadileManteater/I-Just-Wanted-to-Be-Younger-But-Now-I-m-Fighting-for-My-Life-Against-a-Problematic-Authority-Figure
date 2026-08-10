@@ -1,3 +1,67 @@
 [gd_scene format=3 uid="uid://cffis6tr16e14"]
 
-[node name="BossFeet" type="StaticBody2D" unique_id=1254997194]
+[ext_resource type="Texture2D" uid="uid://58o86k6o2ake" path="res://sprites/boss_feet.png" id="1_g241w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_80035"]
+atlas = ExtResource("1_g241w")
+region = Rect2(0, 0, 400, 600)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0dxmq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_80035")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0dxmq"]
+size = Vector2(239, 436)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6wcjf"]
+size = Vector2(231, 151)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pnc5j"]
+atlas = ExtResource("1_g241w")
+region = Rect2(400, 0, 400, 600)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6wcjf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pnc5j")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_0dxmq"]
+points = PackedVector2Array(58, 139, 99, 164, 127, 187, 141, 203, 155, 221, 174, 260, 168, 272, 138, 278, 97, 282, 60, 285)
+
+[node name="BossFeet" type="Node2D" unique_id=2040409262]
+
+[node name="Leftie" type="AnimatedSprite2D" parent="." unique_id=1017404551]
+position = Vector2(-202, 0)
+sprite_frames = SubResource("SpriteFrames_0dxmq")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=2033481173]
+
+[node name="Rightie" type="StaticBody2D" parent="." unique_id=152912082]
+position = Vector2(203, 0)
+
+[node name="Shape" type="CollisionShape2D" parent="Rightie" unique_id=273302024]
+position = Vector2(-61.5, -82)
+shape = SubResource("RectangleShape2D_0dxmq")
+
+[node name="Shape2" type="CollisionShape2D" parent="Rightie" unique_id=219411036]
+position = Vector2(-56.5, 211.5)
+shape = SubResource("RectangleShape2D_6wcjf")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Rightie" unique_id=1470092633]
+sprite_frames = SubResource("SpriteFrames_6wcjf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rightie" unique_id=1450476105]
+shape = SubResource("ConvexPolygonShape2D_0dxmq")
