@@ -4,13 +4,7 @@ extends CharacterBody2D
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
-var sprite: AnimatedSprite2D
-
-func set_animation(name: String) -> void:
-	var frame = sprite.frame
-	var progress = sprite.frame_progress
-	sprite.animation = name
-	sprite.set_frame_and_progress(frame, progress)
+var sprite: AnimatedSpriteExtension
 
 func _enter_tree() -> void:
 	sprite = find_child("Sprite")
@@ -29,13 +23,15 @@ func _physics_process(delta: float) -> void:
 	var direction := Input.get_axis("ui_left", "ui_right")
 	if direction:
 		velocity.x = direction * SPEED
-		sprite.animation = "walk"
 		sprite.flip_h = direction > 0
+		if is_on_floor():
+			sprite.change_animation("walk")
 	else:
-		sprite.animation = "default"
 		velocity.x = move_toward(velocity.x, 0, SPEED)
+		if is_on_floor():
+			sprite.change_animation("default")
 
 	if not is_on_floor():
-		set_animation("jump")
+		sprite.change_animation("jump")
 
 	move_and_slide()

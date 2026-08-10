@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bbt08jhhrbiom"]
 
-[ext_resource type="PackedScene" uid="uid://c8b7r642fn2vm" path="res://scenes/nested/Willow/Willow.tscn" id="1_uvblx"]
+[ext_resource type="PackedScene" uid="uid://c8b7r642fn2vm" path="res://scenes/nested/willow/willow.tscn" id="1_uvblx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6wcjf"]
 size = Vector2(1163, 20)
