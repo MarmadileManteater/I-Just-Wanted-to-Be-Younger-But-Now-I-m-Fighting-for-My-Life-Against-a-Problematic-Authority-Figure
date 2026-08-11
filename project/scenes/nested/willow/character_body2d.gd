@@ -6,7 +6,7 @@ const JUMP_VELOCITY = -400.0
 
 var sprite: AnimatedSpriteExtension
 
-func _enter_tree() -> void:
+func _ready() -> void:
 	sprite = find_child("Sprite")
 
 func _physics_process(delta: float) -> void:

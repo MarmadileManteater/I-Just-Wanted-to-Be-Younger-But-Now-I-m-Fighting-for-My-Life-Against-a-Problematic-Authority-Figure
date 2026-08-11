@@ -1,6 +1,46 @@
 [gd_scene format=3 uid="uid://cffis6tr16e14"]
 
+[ext_resource type="Script" uid="uid://b5xbhyhg3xv0l" path="res://scenes/nested/boss_feet/boss_feet.gd" id="1_80035"]
 [ext_resource type="Texture2D" uid="uid://58o86k6o2ake" path="res://sprites/boss_feet.png" id="1_g241w"]
+[ext_resource type="Script" uid="uid://sewjo03vd0qj" path="res://scripts/animated_static_body.gd" id="2_pnc5j"]
+
+[sub_resource type="Animation" id="Animation_80035"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Leftie:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-202, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_g241w"]
+resource_name = "Stomp"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Leftie:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.2666667, 2.04, 2.1166668, 2.1766667, 2.2533333, 2.3066666, 2.3833332, 2.4466667, 2.5233335, 2.5833335, 2.66, 2.7133334, 2.79, 2.9466667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-202, 0), Vector2(-202, -161), Vector2(-205, -161), Vector2(-196, -161), Vector2(-205, -161), Vector2(-196, -161), Vector2(-205, -161), Vector2(-196, -161), Vector2(-205, -161), Vector2(-196, -161), Vector2(-205, -161), Vector2(-196, -161), Vector2(-205, -161), Vector2(-196, -161), Vector2(-202, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pnc5j"]
+_data = {
+&"RESET": SubResource("Animation_80035"),
+&"Stomp": SubResource("Animation_g241w")
+}
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_80035"]
 atlas = ExtResource("1_g241w")
@@ -17,11 +57,11 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0dxmq"]
-size = Vector2(239, 436)
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_fcxea"]
+points = PackedVector2Array(-144, -210.5, 94, -208.5, 103, -73.5, 115, 210.5, -117, 204.5, -135, -27.5)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6wcjf"]
-size = Vector2(231, 151)
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_iys1s"]
+points = PackedVector2Array(149, 271, 73, 283, 30, 282, -74, 276, -148, 271, -172, 261, -173, 245, -138, 188, -114, 154, -69, 119, -52, 115, 40, 118, 116, 120, 148, 120, 152, 146, 154, 237)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pnc5j"]
 atlas = ExtResource("1_g241w")
@@ -38,30 +78,55 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0dxmq"]
+size = Vector2(239, 436)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6wcjf"]
+size = Vector2(231, 151)
+
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_0dxmq"]
 points = PackedVector2Array(58, 139, 99, 164, 127, 187, 141, 203, 155, 221, 174, 260, 168, 272, 138, 278, 97, 282, 60, 285)
 
 [node name="BossFeet" type="Node2D" unique_id=2040409262]
+script = ExtResource("1_80035")
 
-[node name="Leftie" type="AnimatedSprite2D" parent="." unique_id=1017404551]
+[node name="Leftie" type="StaticBody2D" parent="." unique_id=2033481173]
 position = Vector2(-202, 0)
+script = ExtResource("2_pnc5j")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Leftie" unique_id=80852113]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_pnc5j")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Leftie" unique_id=1017404551]
 sprite_frames = SubResource("SpriteFrames_0dxmq")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=2033481173]
+[node name="Leg" type="CollisionShape2D" parent="Leftie" unique_id=1081379605]
+visible = false
+position = Vector2(48, -90.5)
+shape = SubResource("ConvexPolygonShape2D_fcxea")
+
+[node name="Foot" type="CollisionShape2D" parent="Leftie" unique_id=962888905]
+visible = false
+position = Vector2(0, 1)
+shape = SubResource("ConvexPolygonShape2D_iys1s")
 
 [node name="Rightie" type="StaticBody2D" parent="." unique_id=152912082]
 position = Vector2(203, 0)
 
-[node name="Shape" type="CollisionShape2D" parent="Rightie" unique_id=273302024]
-position = Vector2(-61.5, -82)
-shape = SubResource("RectangleShape2D_0dxmq")
-
-[node name="Shape2" type="CollisionShape2D" parent="Rightie" unique_id=219411036]
-position = Vector2(-56.5, 211.5)
-shape = SubResource("RectangleShape2D_6wcjf")
-
 [node name="Sprite" type="AnimatedSprite2D" parent="Rightie" unique_id=1470092633]
 sprite_frames = SubResource("SpriteFrames_6wcjf")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Rightie" unique_id=1450476105]
+[node name="Leg" type="CollisionShape2D" parent="Rightie" unique_id=273302024]
+visible = false
+position = Vector2(-61.5, -82)
+shape = SubResource("RectangleShape2D_0dxmq")
+
+[node name="Ball" type="CollisionShape2D" parent="Rightie" unique_id=219411036]
+visible = false
+position = Vector2(-56.5, 211.5)
+shape = SubResource("RectangleShape2D_6wcjf")
+
+[node name="Toes" type="CollisionShape2D" parent="Rightie" unique_id=1450476105]
+visible = false
 shape = SubResource("ConvexPolygonShape2D_0dxmq")
