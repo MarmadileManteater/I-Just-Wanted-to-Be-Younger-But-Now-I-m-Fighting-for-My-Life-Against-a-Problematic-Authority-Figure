@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c8b7r642fn2vm"]
 
 [ext_resource type="Texture2D" uid="uid://bkh1vwc63yiky" path="res://sprites/willow_mg_idle_animation_1.png" id="1_6t4lk"]
-[ext_resource type="Script" uid="uid://b8e46dnrms1cn" path="res://scenes/nested/willow/character_body2d.gd" id="1_nwiua"]
+[ext_resource type="Script" uid="uid://b8e46dnrms1cn" path="res://scenes/nested/willow/willow.gd" id="1_nwiua"]
 [ext_resource type="Texture2D" uid="uid://bh17uswntqtwb" path="res://sprites/willow_mg_walk_animation_1.png" id="2_cf4f7"]
 [ext_resource type="Texture2D" uid="uid://dewhu0dbsgn6p" path="res://sprites/willow_mg_jump_animation_1.png" id="3_30s3t"]
 [ext_resource type="Script" uid="uid://dkkdd3f8mas32" path="res://scripts/animated_sprite2d.gd" id="5_bxhn5"]

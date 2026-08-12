@@ -22,3 +22,4 @@ position = Vector2(535, 258)
 
 [node name="BossFeet" parent="." unique_id=2040409262 instance=ExtResource("2_ydvjp")]
 position = Vector2(956, 299)
+character_name = null
