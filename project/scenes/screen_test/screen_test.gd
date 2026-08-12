@@ -13,7 +13,11 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 func _on_crush():
-	remove_child(willow)
+	# TODO do this right
+	willow.shape.disabled = true
+	willow.gravity_enabled = false
+	willow.velocity = Vector2(0, 0)
+	willow.play("crushed")
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

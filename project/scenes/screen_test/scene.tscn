@@ -23,3 +23,7 @@ position = Vector2(535, 258)
 [node name="BossFeet" parent="." unique_id=2040409262 instance=ExtResource("2_ydvjp")]
 position = Vector2(956, 299)
 character_name = null
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=2000684887]
+position = Vector2(1, 589)
+polygon = PackedVector2Array(-1, -5, 1202, -4, 1199, 83, -6, 83)

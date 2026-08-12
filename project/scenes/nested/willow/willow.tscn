@@ -2,9 +2,22 @@
 
 [ext_resource type="Texture2D" uid="uid://bkh1vwc63yiky" path="res://sprites/willow_mg_idle_animation_1.png" id="1_6t4lk"]
 [ext_resource type="Script" uid="uid://b8e46dnrms1cn" path="res://scenes/nested/willow/willow.gd" id="1_nwiua"]
+[ext_resource type="Texture2D" uid="uid://b3fwln755erg1" path="res://sprites/willow_mg_crush_animation_1.png" id="2_1gub3"]
 [ext_resource type="Texture2D" uid="uid://bh17uswntqtwb" path="res://sprites/willow_mg_walk_animation_1.png" id="2_cf4f7"]
 [ext_resource type="Texture2D" uid="uid://dewhu0dbsgn6p" path="res://sprites/willow_mg_jump_animation_1.png" id="3_30s3t"]
 [ext_resource type="Script" uid="uid://dkkdd3f8mas32" path="res://scripts/animated_sprite2d.gd" id="5_bxhn5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fce71"]
+atlas = ExtResource("2_1gub3")
+region = Rect2(0, 0, 200, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6js4h"]
+atlas = ExtResource("2_1gub3")
+region = Rect2(200, 0, 200, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_65i1c"]
+atlas = ExtResource("2_1gub3")
+region = Rect2(400, 0, 200, 300)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q4pai"]
 atlas = ExtResource("1_6t4lk")
@@ -44,6 +57,20 @@ region = Rect2(400, 0, 200, 300)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_kds0v"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fce71")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6js4h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_65i1c")
+}],
+"loop": 0,
+"name": &"crushed",
+"speed": 25.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_q4pai")
@@ -105,8 +132,10 @@ script = ExtResource("1_nwiua")
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=187946079]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_kds0v")
+animation = &"crushed"
 autoplay = "default"
-frame_progress = 0.7602535
+frame = 2
+frame_progress = 1.0
 script = ExtResource("5_bxhn5")
 
 [node name="Shape" type="CollisionShape2D" parent="." unique_id=802599809]
