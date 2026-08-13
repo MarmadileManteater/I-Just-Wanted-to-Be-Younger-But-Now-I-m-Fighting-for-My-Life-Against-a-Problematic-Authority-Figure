@@ -132,7 +132,6 @@ size = Vector2(51, 274)
 script = ExtResource("1_nwiua")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=187946079]
-texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_kds0v")
 autoplay = "default"
 script = ExtResource("5_bxhn5")

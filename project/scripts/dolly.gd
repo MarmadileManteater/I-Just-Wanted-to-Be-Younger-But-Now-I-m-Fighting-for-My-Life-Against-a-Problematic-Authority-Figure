@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+class_name Dolly
+
 @export var threshold = 100
 
 var locked_node: Node2D

@@ -78,7 +78,6 @@ _data = {
 [node name="StaticBody" type="StaticBody2D" parent="." unique_id=159471291]
 
 [node name="Sprite" type="AnimatedSprite2D" parent="StaticBody" unique_id=371091467]
-texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_0dxmq")
 autoplay = "default"
 frame_progress = 0.36153927
