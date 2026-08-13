@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b3fwln755erg1" path="res://sprites/willow_mg_crush_animation_1.png" id="2_1gub3"]
 [ext_resource type="Texture2D" uid="uid://bh17uswntqtwb" path="res://sprites/willow_mg_walk_animation_1.png" id="2_cf4f7"]
 [ext_resource type="Texture2D" uid="uid://dewhu0dbsgn6p" path="res://sprites/willow_mg_jump_animation_1.png" id="3_30s3t"]
+[ext_resource type="Texture2D" uid="uid://dklqx8dc7uc87" path="res://sprites/willow_mg_disintegrate_animation_1.png" id="4_fce71"]
 [ext_resource type="Script" uid="uid://dkkdd3f8mas32" path="res://scripts/animated_sprite2d.gd" id="5_bxhn5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fce71"]
@@ -29,6 +30,18 @@ region = Rect2(200, 0, 200, 300)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m71og"]
 atlas = ExtResource("1_6t4lk")
+region = Rect2(400, 0, 200, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_acr3p"]
+atlas = ExtResource("4_fce71")
+region = Rect2(0, 0, 200, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gfl7v"]
+atlas = ExtResource("4_fce71")
+region = Rect2(200, 0, 200, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bfglh"]
+atlas = ExtResource("4_fce71")
 region = Rect2(400, 0, 200, 300)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bxhn5"]
@@ -90,6 +103,20 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_acr3p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gfl7v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bfglh")
+}],
+"loop": 0,
+"name": &"disintegrate",
+"speed": 25.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_bxhn5")
 }, {
 "duration": 1.0,
@@ -128,11 +155,72 @@ size = Vector2(51, 274)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0dxmq"]
 
+[sub_resource type="Animation" id="Animation_fce71"]
+resource_name = "Flash"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.03333334, 0.13333334, 0.26666668, 0.3990571, 0.4, 0.5323904, 0.66572374, 0.6677555),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, true, false, true, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:invulnerable")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_6js4h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:invulnerable")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_65i1c"]
+_data = {
+&"Flash": SubResource("Animation_fce71"),
+&"RESET": SubResource("Animation_6js4h")
+}
+
 [node name="Willow" type="CharacterBody2D" unique_id=1438157277]
 script = ExtResource("1_nwiua")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=187946079]
 sprite_frames = SubResource("SpriteFrames_kds0v")
+animation = &"disintegrate"
 autoplay = "default"
 script = ExtResource("5_bxhn5")
 
@@ -142,3 +230,6 @@ shape = SubResource("RectangleShape2D_eg7ul")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2029675936]
 shape = SubResource("RectangleShape2D_0dxmq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1812485073]
+libraries/ = SubResource("AnimationLibrary_65i1c")

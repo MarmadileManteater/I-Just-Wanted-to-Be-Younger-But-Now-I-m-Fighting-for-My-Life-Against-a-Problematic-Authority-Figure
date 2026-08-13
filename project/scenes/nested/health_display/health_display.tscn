@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://eihccgfb2yif"]
+
+[ext_resource type="Script" uid="uid://7t6ipoq3hr1x" path="res://scenes/nested/health_display/health_display.gd" id="1_k3p77"]
+[ext_resource type="Texture2D" uid="uid://5tp13jyxfim" path="res://sprites/heart_empty.png" id="1_kfopn"]
+[ext_resource type="Texture2D" uid="uid://rs4xy7lqbobq" path="res://sprites/heart_full.png" id="2_k3p77"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ht7ta"]
+atlas = ExtResource("1_kfopn")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1c7c0"]
+atlas = ExtResource("2_k3p77")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0dxmq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ht7ta")
+}],
+"loop": 1,
+"name": &"empty",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1c7c0")
+}],
+"loop": 1,
+"name": &"full",
+"speed": 5.0
+}]
+
+[node name="HealthDisplay" type="Node2D" unique_id=336033771]
+position = Vector2(150, 50)
+script = ExtResource("1_k3p77")
+
+[node name="Heart1" type="AnimatedSprite2D" parent="." unique_id=929188165]
+position = Vector2(-100, 0)
+sprite_frames = SubResource("SpriteFrames_0dxmq")
+animation = &"full"
+
+[node name="Heart2" type="AnimatedSprite2D" parent="." unique_id=456771399]
+sprite_frames = SubResource("SpriteFrames_0dxmq")
+animation = &"full"
+
+[node name="Heart3" type="AnimatedSprite2D" parent="." unique_id=963332461]
+position = Vector2(100, 0)
+sprite_frames = SubResource("SpriteFrames_0dxmq")
+animation = &"full"

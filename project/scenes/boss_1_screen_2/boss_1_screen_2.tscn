@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c8b7r642fn2vm" path="res://scenes/nested/willow/willow.tscn" id="5_bxlmp"]
 [ext_resource type="PackedScene" uid="uid://cffis6tr16e14" path="res://scenes/nested/boss_feet/boss_feet.tscn" id="6_osdak"]
 [ext_resource type="PackedScene" uid="uid://be0maisut5gpu" path="res://scenes/nested/dolly/dolly.tscn" id="7_mi7i8"]
+[ext_resource type="PackedScene" uid="uid://eihccgfb2yif" path="res://scenes/nested/health_display/health_display.tscn" id="8_nheft"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6wcjf"]
 size = Vector2(3058, 18)
@@ -14,7 +15,10 @@ size = Vector2(3058, 18)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u4npt"]
 size = Vector2(44, 585)
 
-[node name="ScreenTest" type="Node2D" unique_id=1805475824]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mi7i8"]
+size = Vector2(20, 587)
+
+[node name="Boss1Scene2" type="Node2D" unique_id=1805475824]
 script = ExtResource("1_mi7i8")
 
 [node name="Building1" type="Sprite2D" parent="." unique_id=285545498]
@@ -43,6 +47,9 @@ position = Vector2(956, 299)
 [node name="Dolly" parent="." unique_id=1452481412 instance=ExtResource("7_mi7i8")]
 position = Vector2(575, 324)
 
+[node name="HealthDisplay" parent="Dolly" unique_id=336033771 instance=ExtResource("8_nheft")]
+position = Vector2(-427, -274)
+
 [node name="Floor" type="StaticBody2D" parent="." unique_id=703340070]
 position = Vector2(4, 629)
 
@@ -70,3 +77,10 @@ collision_mask = 2
 [node name="Shape" type="CollisionShape2D" parent="RightCameraBoundary" unique_id=1706587209]
 position = Vector2(1195, 297)
 shape = SubResource("RectangleShape2D_u4npt")
+
+[node name="LeftBoundary" type="StaticBody2D" parent="." unique_id=536863821]
+position = Vector2(39, 348)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftBoundary" unique_id=203155996]
+position = Vector2(0, -58.5)
+shape = SubResource("RectangleShape2D_mi7i8")

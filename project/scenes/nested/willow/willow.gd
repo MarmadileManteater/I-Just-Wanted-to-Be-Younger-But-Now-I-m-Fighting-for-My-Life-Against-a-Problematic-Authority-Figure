@@ -8,18 +8,26 @@ const JUMP_VELOCITY = -600.0
 
 enum DIRECTION { LEFT, RIGHT }
 @export var starting_direction: DIRECTION
+@export var invulnerable: bool = false
 
 var is_running: bool = false
 var is_dying: bool = false
 var gravity_enabled: bool = true
 var sprite: AnimatedSpriteExtension
 var shape: CollisionShape2D
+var animation_player: AnimationPlayer
 
 func change_animation(name: String) -> void:
 	sprite.change_animation(name)
 	
 func play(name: String) -> void:
 	sprite.play(name)
+	
+func bounce() -> void:
+	velocity.y = JUMP_VELOCITY
+
+func flash() -> void:
+	animation_player.play("Flash")
 	
 func die(method: String) -> void:
 	is_dying = true
@@ -32,6 +40,7 @@ func die(method: String) -> void:
 func _ready() -> void:
 	sprite = find_child("Sprite")
 	shape = find_child("Shape")
+	animation_player = find_child("AnimationPlayer")
 	sprite.flip_h = starting_direction == DIRECTION.RIGHT
 
 func _input(event: InputEvent) -> void:
