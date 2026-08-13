@@ -4,7 +4,7 @@ var scene: Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	scene = preload("res://scenes/boss_1_scene_1/boss_1_scene_1.tscn").instantiate()
+	scene = preload("res://scenes/boss_1_screen_1/boss_1_screen_1.tscn").instantiate()
 	add_child(scene)
 	scene.connect("next_screen", _next_screen)
 	pass # Replace with function body.

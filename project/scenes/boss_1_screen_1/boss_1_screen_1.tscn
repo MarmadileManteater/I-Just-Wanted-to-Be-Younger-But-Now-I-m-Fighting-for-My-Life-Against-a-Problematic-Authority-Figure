@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://cil8du3un1rwe"]
 
-[ext_resource type="PackedScene" uid="uid://c8b7r642fn2vm" path="res://scenes/nested/willow/willow.tscn" id="1_0evvt"]
-[ext_resource type="Script" uid="uid://cw2lrm26x7vwu" path="res://scenes/boss_1_scene_1/boss_1_scene_1.gd" id="1_mc3rn"]
-[ext_resource type="Texture2D" uid="uid://bnq1vi8iaxwab" path="res://sprites/loitering_sign.png" id="1_oc5r7"]
-[ext_resource type="Texture2D" uid="uid://qbg6ho2etulw" path="res://sprites/building_2.png" id="2_844l2"]
-[ext_resource type="Texture2D" uid="uid://dylu5gtjlmylg" path="res://sprites/anti-human-benchastructure.png" id="3_f0cvc"]
-[ext_resource type="Texture2D" uid="uid://bxd030atqe6jm" path="res://sprites/trees.png" id="3_v0kef"]
-[ext_resource type="Script" uid="uid://bkn7otogc622h" path="res://scripts/spikes.gd" id="4_gwlkl"]
-[ext_resource type="PackedScene" uid="uid://eihccgfb2yif" path="res://scenes/nested/health_display/health_display.tscn" id="4_vnauw"]
+[ext_resource type="Script" uid="uid://cw2lrm26x7vwu" path="res://scenes/boss_1_screen_1/boss_1_screen_1.gd" id="1_80wie"]
+[ext_resource type="Texture2D" uid="uid://qbg6ho2etulw" path="res://sprites/building_2.png" id="2_2uk0u"]
+[ext_resource type="Texture2D" uid="uid://bxd030atqe6jm" path="res://sprites/trees.png" id="3_sw02p"]
+[ext_resource type="Texture2D" uid="uid://bnq1vi8iaxwab" path="res://sprites/loitering_sign.png" id="4_8ta8j"]
+[ext_resource type="Texture2D" uid="uid://dylu5gtjlmylg" path="res://sprites/anti-human-benchastructure.png" id="5_2riyb"]
+[ext_resource type="Script" uid="uid://bkn7otogc622h" path="res://scripts/spikes.gd" id="6_lj2n1"]
+[ext_resource type="PackedScene" uid="uid://c8b7r642fn2vm" path="res://scenes/nested/willow/willow.tscn" id="7_17xyv"]
+[ext_resource type="PackedScene" uid="uid://eihccgfb2yif" path="res://scenes/nested/health_display/health_display.tscn" id="8_iqmjp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0dxmq"]
 size = Vector2(354, 67)
@@ -34,25 +34,25 @@ size = Vector2(20, 587)
 size = Vector2(81, 603)
 
 [node name="Boss1Scene1" type="Node2D" unique_id=184033968]
-script = ExtResource("1_mc3rn")
+script = ExtResource("1_80wie")
 
 [node name="Building2" type="Sprite2D" parent="." unique_id=1252269711]
 position = Vector2(1114, 39)
-texture = ExtResource("2_844l2")
+texture = ExtResource("2_2uk0u")
 
 [node name="Tree1" type="Sprite2D" parent="." unique_id=1181969581]
 position = Vector2(139, 337)
-texture = ExtResource("3_v0kef")
+texture = ExtResource("3_sw02p")
 
 [node name="Sign" type="Sprite2D" parent="." unique_id=147843714]
 position = Vector2(522, 315)
-texture = ExtResource("1_oc5r7")
+texture = ExtResource("4_8ta8j")
 
 [node name="Bench" type="StaticBody2D" parent="." unique_id=649485486]
 position = Vector2(523, 464)
 
 [node name="Sprite" type="Sprite2D" parent="Bench" unique_id=1932994012]
-texture = ExtResource("3_f0cvc")
+texture = ExtResource("5_2riyb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bench" unique_id=644954466]
 position = Vector2(1, 84.5)
@@ -71,7 +71,7 @@ position = Vector2(-147, 34)
 shape = SubResource("RectangleShape2D_u4npt")
 
 [node name="Spikes" type="Area2D" parent="Bench" unique_id=46371194]
-script = ExtResource("4_gwlkl")
+script = ExtResource("6_lj2n1")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Bench/Spikes" unique_id=535082091]
 position = Vector2(-6, 6.75)
@@ -85,7 +85,7 @@ shape = SubResource("RectangleShape2D_vnauw")
 position = Vector2(136, 3.75)
 shape = SubResource("RectangleShape2D_mc3rn")
 
-[node name="Willow" parent="." unique_id=1438157277 instance=ExtResource("1_0evvt")]
+[node name="Willow" parent="." unique_id=1438157277 instance=ExtResource("7_17xyv")]
 position = Vector2(87, 434)
 starting_direction = 1
 
@@ -100,7 +100,7 @@ polygon = PackedVector2Array(-1, -5, 1730.8972, -5, 2189, -5, 2189, 44, 2189, 86
 position = Vector2(1153, -32)
 shape = SubResource("RectangleShape2D_0evvt")
 
-[node name="HealthDisplay" parent="." unique_id=336033771 instance=ExtResource("4_vnauw")]
+[node name="HealthDisplay" parent="." unique_id=336033771 instance=ExtResource("8_iqmjp")]
 
 [node name="LeftBoundary" type="StaticBody2D" parent="." unique_id=462512415]
 position = Vector2(39, 348)
