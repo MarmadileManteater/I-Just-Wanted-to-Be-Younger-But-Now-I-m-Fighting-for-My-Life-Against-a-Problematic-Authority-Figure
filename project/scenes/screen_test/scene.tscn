@@ -41,7 +41,6 @@ position = Vector2(250, 466)
 
 [node name="BossFeet" parent="." unique_id=2040409262 instance=ExtResource("2_ydvjp")]
 position = Vector2(956, 299)
-character_name = null
 
 [node name="Dolly" type="CharacterBody2D" parent="." unique_id=136428717]
 position = Vector2(575, 324)
@@ -63,22 +62,22 @@ collision_mask = 2
 position = Vector2(-23, 291.5)
 shape = SubResource("RectangleShape2D_u4npt")
 
+[node name="Floor" type="StaticBody2D" parent="." unique_id=703340070]
+position = Vector2(4, 629)
+
+[node name="Rectangle" type="Polygon2D" parent="Floor" unique_id=2000684887]
+position = Vector2(-3, -40)
+polygon = PackedVector2Array(-1, -5, 1730.8972, -5, 2189, -5, 2189, 44, 2189, 86, -1, 86)
+
+[node name="Shape" type="CollisionShape2D" parent="Floor" unique_id=2018656344]
+position = Vector2(1122.5, -32)
+shape = SubResource("RectangleShape2D_6wcjf")
+
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=746217546]
-position = Vector2(224, -3)
+position = Vector2(592, -3)
 collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1706587209]
 position = Vector2(1195, 297)
 shape = SubResource("RectangleShape2D_u4npt")
-
-[node name="Floor" type="StaticBody2D" parent="StaticBody2D" unique_id=703340070]
-position = Vector2(-220, 632)
-
-[node name="Rectangle" type="Polygon2D" parent="StaticBody2D/Floor" unique_id=2000684887]
-position = Vector2(-3, -40)
-polygon = PackedVector2Array(-1, -5, 1730.8972, -5, 2189, -5, 2189, 44, 2189, 86, -1, 86)
-
-[node name="Shape" type="CollisionShape2D" parent="StaticBody2D/Floor" unique_id=2018656344]
-position = Vector2(1122.5, -32)
-shape = SubResource("RectangleShape2D_6wcjf")

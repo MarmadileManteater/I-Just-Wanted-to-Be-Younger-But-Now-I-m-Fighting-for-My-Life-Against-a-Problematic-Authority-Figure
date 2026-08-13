@@ -3,7 +3,7 @@ extends AnimatedStaticBody2D
 class_name CrushingFoot
 signal crush
 
-const crush_point = 2.8226
+@export var crush_point = 2.8226
 
 var character_name: String
 var collision_area: Area2D

@@ -5,7 +5,7 @@ class_name BossFeet
 @export var character_name: String = "Willow"
 
 var leftie: CrushingFoot
-var rightie: StaticBody2D
+var rightie: CrushingFoot
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	leftie = find_child("Leftie")

@@ -66,6 +66,43 @@ points = PackedVector2Array(149, 271, 73, 283, 30, 282, -74, 276, -148, 271, -17
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u4npt"]
 size = Vector2(312, 303)
 
+[sub_resource type="Animation" id="Animation_ie0hq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(336, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_pnc5j"]
+resource_name = "Stomp"
+length = 7.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3.62, 4.59, 4.866667, 6.0333333, 6.29),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(336, 0), Vector2(336, 0), Vector2(336, -297), Vector2(336, 0), Vector2(336, -297), Vector2(336, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ie0hq"]
+_data = {
+&"RESET": SubResource("Animation_ie0hq"),
+&"Stomp": SubResource("Animation_pnc5j")
+}
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_pnc5j"]
 atlas = ExtResource("1_g241w")
 region = Rect2(400, 0, 400, 600)
@@ -123,6 +160,10 @@ shape = SubResource("RectangleShape2D_u4npt")
 
 [node name="Rightie" type="StaticBody2D" parent="." unique_id=152912082]
 position = Vector2(336, 0)
+script = ExtResource("2_pnc5j")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Rightie" unique_id=1877202532]
+libraries/ = SubResource("AnimationLibrary_ie0hq")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="Rightie" unique_id=1470092633]
 position = Vector2(-11, 0)
@@ -141,3 +182,10 @@ shape = SubResource("RectangleShape2D_6wcjf")
 [node name="Toes" type="CollisionShape2D" parent="Rightie" unique_id=1450476105]
 visible = false
 shape = SubResource("ConvexPolygonShape2D_0dxmq")
+
+[node name="CollisionArea" type="Area2D" parent="Rightie" unique_id=492682775]
+position = Vector2(1.8321533, 395)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rightie/CollisionArea" unique_id=1131155177]
+position = Vector2(-9, 39.5)
+shape = SubResource("RectangleShape2D_u4npt")
