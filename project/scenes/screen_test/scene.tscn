@@ -2,28 +2,72 @@
 
 [ext_resource type="Script" uid="uid://2n7xpa7pyyu1" path="res://scenes/screen_test/screen_test.gd" id="1_l65rp"]
 [ext_resource type="PackedScene" uid="uid://c8b7r642fn2vm" path="res://scenes/nested/willow/willow.tscn" id="1_uvblx"]
+[ext_resource type="Texture2D" uid="uid://bxd030atqe6jm" path="res://sprites/trees.png" id="2_20d8o"]
+[ext_resource type="Texture2D" uid="uid://crk72eg2wcps5" path="res://sprites/building_1.png" id="2_gdge4"]
 [ext_resource type="PackedScene" uid="uid://cffis6tr16e14" path="res://scenes/nested/boss_feet/boss_feet.tscn" id="2_ydvjp"]
+[ext_resource type="PackedScene" uid="uid://b8jda6xfmftnb" path="res://scenes/nested/cloud/cloud.tscn" id="4_q2air"]
+[ext_resource type="Texture2D" uid="uid://qbg6ho2etulw" path="res://sprites/building_2.png" id="4_rflas"]
+[ext_resource type="Script" uid="uid://cy5mfm81aggdc" path="res://scripts/dolly.gd" id="8_23eow"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6wcjf"]
-size = Vector2(1163, 20)
+size = Vector2(2403, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0dxmq"]
+size = Vector2(151, 582)
 
 [node name="ScreenTest" type="Node2D" unique_id=1805475824]
 script = ExtResource("1_l65rp")
 
+[node name="Building1" type="Sprite2D" parent="." unique_id=285545498]
+position = Vector2(361, -122)
+texture = ExtResource("2_gdge4")
+
+[node name="Building2" type="Sprite2D" parent="." unique_id=11115532]
+position = Vector2(1133, 57)
+texture = ExtResource("4_rflas")
+
+[node name="Tree1" type="Sprite2D" parent="." unique_id=452000355]
+position = Vector2(640, 337)
+texture = ExtResource("2_20d8o")
+
 [node name="Floor" type="StaticBody2D" parent="." unique_id=703340070]
 position = Vector2(4, 629)
 
+[node name="Rectangle" type="Polygon2D" parent="Floor" unique_id=2000684887]
+position = Vector2(-3, -40)
+polygon = PackedVector2Array(-1, -5, 1730.8972, -5, 2189, -5, 2189, 44, 2189, 86, -1, 86)
+
 [node name="Shape" type="CollisionShape2D" parent="Floor" unique_id=2018656344]
-position = Vector2(573, -31)
+position = Vector2(1122.5, -32)
 shape = SubResource("RectangleShape2D_6wcjf")
 
 [node name="Willow" parent="." unique_id=1438157277 instance=ExtResource("1_uvblx")]
-position = Vector2(535, 258)
+position = Vector2(97, 262)
+
+[node name="Cloud" parent="." unique_id=1976230223 instance=ExtResource("4_q2air")]
+position = Vector2(250, 466)
 
 [node name="BossFeet" parent="." unique_id=2040409262 instance=ExtResource("2_ydvjp")]
 position = Vector2(956, 299)
 character_name = null
 
-[node name="Polygon2D" type="Polygon2D" parent="." unique_id=2000684887]
-position = Vector2(1, 589)
-polygon = PackedVector2Array(-1, -5, 1202, -4, 1199, 83, -6, 83)
+[node name="Dolly" type="Camera2D" parent="." unique_id=438681715]
+position = Vector2(575, 324)
+script = ExtResource("8_23eow")
+
+[node name="Area2D2" type="Area2D" parent="." unique_id=640149420]
+position = Vector2(281, 467)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2" unique_id=300465342]
+position = Vector2(-0.5, -174)
+shape = SubResource("RectangleShape2D_0dxmq")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=329106444]
+position = Vector2(450, 470)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1354717030]
+position = Vector2(-0.5, -174)
+shape = SubResource("RectangleShape2D_0dxmq")
+
+[connection signal="body_entered" from="Area2D2" to="." method="_on_area_2d_2_body_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_willow_exit_right"]

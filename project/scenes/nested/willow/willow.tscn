@@ -124,7 +124,9 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eg7ul"]
-size = Vector2(163, 277)
+size = Vector2(51, 274)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0dxmq"]
 
 [node name="Willow" type="CharacterBody2D" unique_id=1438157277]
 script = ExtResource("1_nwiua")
@@ -132,12 +134,12 @@ script = ExtResource("1_nwiua")
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=187946079]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_kds0v")
-animation = &"crushed"
 autoplay = "default"
-frame = 2
-frame_progress = 1.0
 script = ExtResource("5_bxhn5")
 
 [node name="Shape" type="CollisionShape2D" parent="." unique_id=802599809]
-position = Vector2(-11.5, -1.5)
+position = Vector2(1.5, -2)
 shape = SubResource("RectangleShape2D_eg7ul")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2029675936]
+shape = SubResource("RectangleShape2D_0dxmq")
