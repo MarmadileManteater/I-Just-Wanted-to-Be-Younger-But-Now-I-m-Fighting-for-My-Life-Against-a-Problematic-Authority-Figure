@@ -14,9 +14,3 @@ func _ready() -> void:
 	rightie = find_child("Rightie")
 	rightie.character_name = character_name
 	animation_player = find_child("AnimationPlayer")
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
