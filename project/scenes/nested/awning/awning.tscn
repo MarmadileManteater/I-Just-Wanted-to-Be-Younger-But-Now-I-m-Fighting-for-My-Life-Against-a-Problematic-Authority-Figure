@@ -1,0 +1,107 @@
+[gd_scene format=3 uid="uid://ccefv3p8wirpa"]
+
+[ext_resource type="Script" uid="uid://whl2578sdbuh" path="res://scenes/nested/awning/awning.gd" id="1_vknxt"]
+[ext_resource type="Texture2D" uid="uid://c5856yu2hdyqc" path="res://sprites/awning.png" id="2_jikt2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_65jaf"]
+size = Vector2(164, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vknxt"]
+atlas = ExtResource("2_jikt2")
+region = Rect2(0, 218, 200, 109)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5nqyh"]
+atlas = ExtResource("2_jikt2")
+region = Rect2(0, 218, 200, 109)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_16an1"]
+atlas = ExtResource("2_jikt2")
+region = Rect2(0, 109, 200, 109)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iu0xd"]
+atlas = ExtResource("2_jikt2")
+region = Rect2(0, 0, 200, 109)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jikt2"]
+atlas = ExtResource("2_jikt2")
+region = Rect2(0, 218, 200, 109)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_65jaf"]
+atlas = ExtResource("2_jikt2")
+region = Rect2(0, 327, 200, 109)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dnwcc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vknxt")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5nqyh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_16an1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iu0xd")
+}],
+"loop": 0,
+"name": &"fall",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iu0xd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_16an1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5nqyh")
+}],
+"loop": 0,
+"name": &"restore",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jikt2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_65jaf")
+}],
+"loop": 1,
+"name": &"shaking",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0dxmq"]
+size = Vector2(164, 35.5)
+
+[node name="Awning" type="Node2D" unique_id=2073388634]
+script = ExtResource("1_vknxt")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1690627793]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1922419973]
+position = Vector2(-4, 0)
+shape = SubResource("RectangleShape2D_65jaf")
+one_way_collision = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StaticBody2D/CollisionShape2D" unique_id=745211176]
+position = Vector2(0, 23)
+sprite_frames = SubResource("SpriteFrames_dnwcc")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=557436182]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1234615811]
+position = Vector2(-4, -29)
+shape = SubResource("RectangleShape2D_0dxmq")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

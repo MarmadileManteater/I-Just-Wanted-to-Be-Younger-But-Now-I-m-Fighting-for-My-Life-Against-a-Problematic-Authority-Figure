@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://b28ihucgit5x1"]
+
+[ext_resource type="Script" uid="uid://bv1xofyd0khv1" path="res://scenes/boss_1_screen_3/boss_1_screen_3.gd" id="1_kxorn"]
+[ext_resource type="PackedScene" uid="uid://c8b7r642fn2vm" path="res://scenes/nested/willow/willow.tscn" id="2_mchix"]
+[ext_resource type="Texture2D" uid="uid://dmb38ayso1jkf" path="res://sprites/dumpster_1.png" id="3_6xt62"]
+[ext_resource type="PackedScene" uid="uid://be0maisut5gpu" path="res://scenes/nested/dolly/dolly.tscn" id="3_crohq"]
+[ext_resource type="PackedScene" uid="uid://eihccgfb2yif" path="res://scenes/nested/health_display/health_display.tscn" id="4_6xt62"]
+[ext_resource type="PackedScene" uid="uid://ccefv3p8wirpa" path="res://scenes/nested/awning/awning.tscn" id="6_6xt62"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0dxmq"]
+size = Vector2(349, 259)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u4npt"]
+radius = 57.0
+height = 218.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fwkab"]
+size = Vector2(3058, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mchix"]
+
+[node name="Boss1Screen3" type="Node2D" unique_id=956790219]
+script = ExtResource("1_kxorn")
+
+[node name="Dumpster" type="StaticBody2D" parent="." unique_id=137507833]
+position = Vector2(899, 404)
+
+[node name="Dumpster" type="Sprite2D" parent="Dumpster" unique_id=2084241838]
+texture = ExtResource("3_6xt62")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dumpster" unique_id=1121703715]
+position = Vector2(51, 49)
+shape = SubResource("RectangleShape2D_0dxmq")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Dumpster" unique_id=182832596]
+position = Vector2(-121, 116)
+rotation = 1.43117
+shape = SubResource("CapsuleShape2D_u4npt")
+
+[node name="Awning" parent="." unique_id=2073388634 instance=ExtResource("6_6xt62")]
+position = Vector2(473, 199)
+
+[node name="Awning2" parent="." unique_id=429371361 instance=ExtResource("6_6xt62")]
+position = Vector2(129, 50)
+
+[node name="Awning3" parent="." unique_id=1571682451 instance=ExtResource("6_6xt62")]
+position = Vector2(469, -52)
+
+[node name="Willow" parent="." unique_id=1438157277 instance=ExtResource("2_mchix")]
+position = Vector2(274, 234)
+
+[node name="Floor" type="StaticBody2D" parent="." unique_id=398515640]
+position = Vector2(4, 629)
+
+[node name="VisibleRectangle" type="Polygon2D" parent="Floor" unique_id=1913479545]
+position = Vector2(-3, -40)
+polygon = PackedVector2Array(-1, -5, 1730.8972, -5, 2189, -5, 2189, 44, 2189, 86, -1, 86)
+
+[node name="Shape" type="CollisionShape2D" parent="Floor" unique_id=385791384]
+position = Vector2(1153, -32)
+shape = SubResource("RectangleShape2D_fwkab")
+
+[node name="BottomCameraBoundary" type="StaticBody2D" parent="." unique_id=1863506443]
+position = Vector2(461, 656)
+collision_layer = 2
+collision_mask = 2
+
+[node name="Shape" type="CollisionShape2D" parent="BottomCameraBoundary" unique_id=1608341288]
+shape = SubResource("RectangleShape2D_mchix")
+
+[node name="Dolly" parent="." unique_id=1452481412 instance=ExtResource("3_crohq")]
+visible = false
+position = Vector2(575, 324)
+locked_offset = 100.0
+
+[node name="HealthDisplay" parent="Dolly" unique_id=336033771 instance=ExtResource("4_6xt62")]
+position = Vector2(-427, -274)

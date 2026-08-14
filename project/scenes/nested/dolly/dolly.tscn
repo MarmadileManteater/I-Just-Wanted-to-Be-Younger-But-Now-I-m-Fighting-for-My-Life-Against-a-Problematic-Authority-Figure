@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bpnjbusgt2v03" path="res://scenes/nested/dolly/dolly.gd" id="1_flos5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fcxea"]
-size = Vector2(1148, 28)
+size = Vector2(1148, 648)
 
 [node name="Dolly" type="CharacterBody2D" unique_id=1452481412]
 collision_layer = 2
@@ -13,5 +13,5 @@ script = ExtResource("1_flos5")
 [node name="Dolly" type="Camera2D" parent="." unique_id=695931943]
 
 [node name="Shape" type="CollisionShape2D" parent="." unique_id=2003357925]
-position = Vector2(2, 4)
+position = Vector2(2, 0)
 shape = SubResource("RectangleShape2D_fcxea")
