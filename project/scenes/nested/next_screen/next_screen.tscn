@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cc6b7s5bx5li2"]
+
+[ext_resource type="Script" uid="uid://ba8fkqjg11kdt" path="res://scenes/nested/next_screen/next_screen.gd" id="1_gkxb5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fcxea"]
+size = Vector2(81, 603)
+
+[node name="NextScreen" type="Area2D" unique_id=1275666114]
+script = ExtResource("1_gkxb5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1009786459]
+position = Vector2(-30.5, -147.5)
+shape = SubResource("RectangleShape2D_fcxea")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

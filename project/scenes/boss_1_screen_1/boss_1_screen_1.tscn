@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://bkn7otogc622h" path="res://scripts/spikes.gd" id="6_lj2n1"]
 [ext_resource type="PackedScene" uid="uid://c8b7r642fn2vm" path="res://scenes/nested/willow/willow.tscn" id="7_17xyv"]
 [ext_resource type="PackedScene" uid="uid://eihccgfb2yif" path="res://scenes/nested/health_display/health_display.tscn" id="8_iqmjp"]
+[ext_resource type="PackedScene" uid="uid://cc6b7s5bx5li2" path="res://scenes/nested/next_screen/next_screen.tscn" id="9_7kmdm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0dxmq"]
 size = Vector2(354, 67)
@@ -30,11 +31,10 @@ size = Vector2(3058, 18)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6wcjf"]
 size = Vector2(20, 587)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fcxea"]
-size = Vector2(81, 603)
-
-[node name="Boss1Scene1" type="Node2D" unique_id=184033968]
+[node name="Boss1Scene1" type="Node2D" unique_id=907328611]
 script = ExtResource("1_80wie")
+next_scene_name = "boss_1_screen_2"
+metadata/_custom_type_script = "uid://ca8s831sikpya"
 
 [node name="Building2" type="Sprite2D" parent="." unique_id=1252269711]
 position = Vector2(1114, 39)
@@ -109,12 +109,9 @@ position = Vector2(39, 348)
 position = Vector2(0, -58.5)
 shape = SubResource("RectangleShape2D_6wcjf")
 
-[node name="Area2D" type="Area2D" parent="." unique_id=805914570]
+[node name="NextScreen" parent="." unique_id=1275666114 instance=ExtResource("9_7kmdm")]
 position = Vector2(1306, 432)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2132106500]
-position = Vector2(-30.5, -147.5)
-shape = SubResource("RectangleShape2D_fcxea")
+health = 3
+character_name = "Willow"
 
 [connection signal="damage" from="Bench/Spikes" to="." method="_on_spikes_damage"]
-[connection signal="body_entered" from="Area2D" to="." method="_next_screen"]

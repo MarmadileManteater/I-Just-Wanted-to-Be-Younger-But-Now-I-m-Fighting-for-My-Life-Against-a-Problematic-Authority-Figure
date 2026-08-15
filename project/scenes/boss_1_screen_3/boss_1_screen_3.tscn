@@ -40,17 +40,20 @@ shape = SubResource("CapsuleShape2D_u4npt")
 [node name="Awning" parent="." unique_id=2073388634 instance=ExtResource("6_6xt62")]
 position = Vector2(473, 199)
 seconds_to_fallthrough = 1.0
+fallthrough_inevitable = true
 
 [node name="Awning2" parent="." unique_id=429371361 instance=ExtResource("6_6xt62")]
 position = Vector2(129, 50)
 seconds_to_fallthrough = 1.0
+fallthrough_inevitable = true
 
 [node name="Awning3" parent="." unique_id=1571682451 instance=ExtResource("6_6xt62")]
 position = Vector2(469, -52)
 seconds_to_fallthrough = 0.25
 
 [node name="Willow" parent="." unique_id=1438157277 instance=ExtResource("2_mchix")]
-position = Vector2(274, 234)
+position = Vector2(57, 453)
+starting_direction = 1
 
 [node name="Floor" type="StaticBody2D" parent="." unique_id=398515640]
 position = Vector2(4, 629)
