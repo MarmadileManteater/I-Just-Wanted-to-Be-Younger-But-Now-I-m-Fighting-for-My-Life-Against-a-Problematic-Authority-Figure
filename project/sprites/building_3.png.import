@@ -2,12 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dv43an1v6twio"
-valid=false
+uid="uid://cekyllahod40u"
+path="res://.godot/imported/building_3.png-0816baaafb29e65956cb70760931fedc.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://sprites/size-test.png"
+source_file="res://sprites/building_3.png"
+dest_files=["res://.godot/imported/building_3.png-0816baaafb29e65956cb70760931fedc.ctex"]
 
 [params]
 

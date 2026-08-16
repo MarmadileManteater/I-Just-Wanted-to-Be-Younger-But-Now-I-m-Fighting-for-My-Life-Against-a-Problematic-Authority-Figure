@@ -2,12 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dv43an1v6twio"
-valid=false
+uid="uid://c77v287doy5qg"
+path="res://.godot/imported/window-1.png-424027a3dc0b613562b2a8a3f13b2335.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://sprites/size-test.png"
+source_file="res://sprites/window-1.png"
+dest_files=["res://.godot/imported/window-1.png-424027a3dc0b613562b2a8a3f13b2335.ctex"]
 
 [params]
 

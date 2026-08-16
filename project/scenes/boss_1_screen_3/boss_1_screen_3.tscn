@@ -1,11 +1,17 @@
 [gd_scene format=3 uid="uid://b28ihucgit5x1"]
 
 [ext_resource type="Script" uid="uid://bv1xofyd0khv1" path="res://scenes/boss_1_screen_3/boss_1_screen_3.gd" id="1_kxorn"]
+[ext_resource type="Texture2D" uid="uid://cekyllahod40u" path="res://sprites/building_3.png" id="2_5nqyh"]
+[ext_resource type="Texture2D" uid="uid://cpnbf5depa8bi" path="res://sprites/building-4.png" id="2_iu0xd"]
 [ext_resource type="PackedScene" uid="uid://c8b7r642fn2vm" path="res://scenes/nested/willow/willow.tscn" id="2_mchix"]
 [ext_resource type="Texture2D" uid="uid://dmb38ayso1jkf" path="res://sprites/dumpster_1.png" id="3_6xt62"]
+[ext_resource type="Texture2D" uid="uid://xgy32qthpajl" path="res://sprites/building_topper_3.png" id="3_16an1"]
 [ext_resource type="PackedScene" uid="uid://be0maisut5gpu" path="res://scenes/nested/dolly/dolly.tscn" id="3_crohq"]
 [ext_resource type="PackedScene" uid="uid://eihccgfb2yif" path="res://scenes/nested/health_display/health_display.tscn" id="4_6xt62"]
 [ext_resource type="PackedScene" uid="uid://ccefv3p8wirpa" path="res://scenes/nested/awning/awning.tscn" id="6_6xt62"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6wcjf"]
+size = Vector2(746.2799, 70.94411)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0dxmq"]
 size = Vector2(349, 259)
@@ -17,10 +23,31 @@ height = 218.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fwkab"]
 size = Vector2(3058, 18)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iu0xd"]
+size = Vector2(59, 20)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mchix"]
 
 [node name="Boss1Screen3" type="Node2D" unique_id=956790219]
 script = ExtResource("1_kxorn")
+dolly_axis = 1
+dolly_offset = 100
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=716458830]
+position = Vector2(278, -567)
+texture = ExtResource("2_iu0xd")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=598760243]
+position = Vector2(1149, 324)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=1058526402]
+texture = ExtResource("2_5nqyh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1625202009]
+position = Vector2(8.078613, -510.47156)
+rotation = -0.017453292
+shape = SubResource("RectangleShape2D_6wcjf")
+one_way_collision = true
 
 [node name="Dumpster" type="StaticBody2D" parent="." unique_id=137507833]
 position = Vector2(899, 404)
@@ -37,23 +64,61 @@ position = Vector2(-121, 116)
 rotation = 1.43117
 shape = SubResource("CapsuleShape2D_u4npt")
 
-[node name="Awning" parent="." unique_id=2073388634 instance=ExtResource("6_6xt62")]
+[node name="Awning12" parent="." unique_id=2073388634 instance=ExtResource("6_6xt62")]
+position = Vector2(488, -1503)
+seconds_to_fallthrough = 0.25
+
+[node name="Awning13" parent="." unique_id=1752135219 instance=ExtResource("6_6xt62")]
+position = Vector2(225, -1611)
+seconds_to_fallthrough = 1.0
+
+[node name="Awning9" parent="." unique_id=1370932185 instance=ExtResource("6_6xt62")]
+position = Vector2(298, -1141)
+seconds_to_fallthrough = 1.0
+
+[node name="Awning11" parent="." unique_id=1254916321 instance=ExtResource("6_6xt62")]
+position = Vector2(94, -980)
+seconds_to_fallthrough = 1.0
+
+[node name="Awning10" parent="." unique_id=1867236339 instance=ExtResource("6_6xt62")]
+position = Vector2(298, -836)
+seconds_to_fallthrough = 0.5
+
+[node name="Awning" parent="." unique_id=1980164177 instance=ExtResource("6_6xt62")]
 position = Vector2(473, 199)
 seconds_to_fallthrough = 1.0
-fallthrough_inevitable = true
 
 [node name="Awning2" parent="." unique_id=429371361 instance=ExtResource("6_6xt62")]
 position = Vector2(129, 50)
 seconds_to_fallthrough = 1.0
-fallthrough_inevitable = true
 
 [node name="Awning3" parent="." unique_id=1571682451 instance=ExtResource("6_6xt62")]
 position = Vector2(469, -52)
 seconds_to_fallthrough = 0.25
 
+[node name="Awning4" parent="." unique_id=1991286529 instance=ExtResource("6_6xt62")]
+position = Vector2(298, -333)
+seconds_to_fallthrough = 1.0
+
+[node name="Awning7" parent="." unique_id=2103523078 instance=ExtResource("6_6xt62")]
+position = Vector2(98, -488)
+seconds_to_fallthrough = 1.0
+
+[node name="Awning8" parent="." unique_id=1776797754 instance=ExtResource("6_6xt62")]
+position = Vector2(98, -1325)
+seconds_to_fallthrough = 0.4
+
+[node name="Awning6" parent="." unique_id=1530009218 instance=ExtResource("6_6xt62")]
+position = Vector2(484, -648)
+seconds_to_fallthrough = 0.25
+
 [node name="Willow" parent="." unique_id=1438157277 instance=ExtResource("2_mchix")]
 position = Vector2(57, 453)
 starting_direction = 1
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=285265554]
+position = Vector2(1149, -197)
+texture = ExtResource("3_16an1")
 
 [node name="Floor" type="StaticBody2D" parent="." unique_id=398515640]
 position = Vector2(4, 629)
@@ -66,6 +131,16 @@ polygon = PackedVector2Array(-1, -5, 1730.8972, -5, 2189, -5, 2189, 44, 2189, 86
 position = Vector2(1153, -32)
 shape = SubResource("RectangleShape2D_fwkab")
 
+[node name="BottomCameraBoundaryPart2" type="StaticBody2D" parent="." unique_id=437514952]
+position = Vector2(678, -76)
+collision_layer = 2
+collision_mask = 2
+
+[node name="Shape" type="CollisionShape2D" parent="BottomCameraBoundaryPart2" unique_id=17220038]
+position = Vector2(19.5, 0)
+shape = SubResource("RectangleShape2D_iu0xd")
+one_way_collision = true
+
 [node name="BottomCameraBoundary" type="StaticBody2D" parent="." unique_id=1863506443]
 position = Vector2(461, 656)
 collision_layer = 2
@@ -74,10 +149,17 @@ collision_mask = 2
 [node name="Shape" type="CollisionShape2D" parent="BottomCameraBoundary" unique_id=1608341288]
 shape = SubResource("RectangleShape2D_mchix")
 
+[node name="TopCameraBoundary" type="StaticBody2D" parent="." unique_id=1692084621]
+position = Vector2(649, -1775)
+collision_layer = 2
+collision_mask = 2
+
+[node name="Shape" type="CollisionShape2D" parent="TopCameraBoundary" unique_id=347713864]
+shape = SubResource("RectangleShape2D_mchix")
+
 [node name="Dolly" parent="." unique_id=1452481412 instance=ExtResource("3_crohq")]
 visible = false
 position = Vector2(575, 324)
-locked_offset = 100.0
 
 [node name="HealthDisplay" parent="Dolly" unique_id=336033771 instance=ExtResource("4_6xt62")]
 position = Vector2(-427, -274)

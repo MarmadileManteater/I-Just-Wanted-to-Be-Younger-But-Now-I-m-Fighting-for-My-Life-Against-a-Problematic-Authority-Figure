@@ -1,16 +1,11 @@
-extends Node2D
+extends DefaultScene
 
-var willow: Willow
-var dolly: Dolly
-var hearts: HealthDisplay
+var bottom_camera_boundary_part_2: CollisionShape2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	willow = find_child("Willow")
-	dolly = find_child("Dolly")
-	hearts = dolly.find_child("HealthDisplay")
-	dolly.lock(willow, Dolly.Axis.Y)
-	pass # Replace with function body.
+	super()
+	bottom_camera_boundary_part_2 = find_child("BottomCameraBoundaryPart2").find_child("Shape")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -21,7 +21,8 @@ func _ready() -> void:
 		printerr(character_name + " not found!")
 	dolly = find_child("Dolly", true, false)
 	if dolly != null:
-		dolly.lock(willow)
+		dolly.lock(willow, dolly_axis)
+	dolly.locked_offset = dolly_offset
 	hearts = find_child("HealthDisplay", true, false)
 	if hearts == null:
 		printerr("Health display not found!")
