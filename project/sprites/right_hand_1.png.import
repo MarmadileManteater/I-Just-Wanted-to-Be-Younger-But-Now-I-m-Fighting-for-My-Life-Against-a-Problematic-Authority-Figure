@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dkphm3ybi6364"
-path="res://.godot/imported/size-test.png-fc153105101465408536100803258843.ctex"
+uid="uid://1rgpmet7wp4f"
+path="res://.godot/imported/right_hand_1.png-5a4870a05896638a0203ac0633d80173.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/size-test.png"
-dest_files=["res://.godot/imported/size-test.png-fc153105101465408536100803258843.ctex"]
+source_file="res://sprites/right_hand_1.png"
+dest_files=["res://.godot/imported/right_hand_1.png-5a4870a05896638a0203ac0633d80173.ctex"]
 
 [params]
 

@@ -5,11 +5,18 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fcxea"]
 size = Vector2(81, 603)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0dxmq"]
+size = Vector2(1837, 48)
+
 [node name="NextScreen" type="Area2D" unique_id=1275666114]
 script = ExtResource("1_gkxb5")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1009786459]
+[node name="Tall" type="CollisionShape2D" parent="." unique_id=1009786459]
 position = Vector2(-30.5, -147.5)
 shape = SubResource("RectangleShape2D_fcxea")
+
+[node name="Wide" type="CollisionShape2D" parent="." unique_id=291374183]
+position = Vector2(-14.5, -133)
+shape = SubResource("RectangleShape2D_0dxmq")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

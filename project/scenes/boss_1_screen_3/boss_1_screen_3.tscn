@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://be0maisut5gpu" path="res://scenes/nested/dolly/dolly.tscn" id="3_crohq"]
 [ext_resource type="PackedScene" uid="uid://eihccgfb2yif" path="res://scenes/nested/health_display/health_display.tscn" id="4_6xt62"]
 [ext_resource type="PackedScene" uid="uid://ccefv3p8wirpa" path="res://scenes/nested/awning/awning.tscn" id="6_6xt62"]
+[ext_resource type="PackedScene" uid="uid://cc6b7s5bx5li2" path="res://scenes/nested/next_screen/next_screen.tscn" id="10_78dhj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6wcjf"]
 size = Vector2(746.2799, 70.94411)
@@ -41,6 +42,7 @@ size = Vector2(53, 587)
 script = ExtResource("1_kxorn")
 dolly_axis = 1
 dolly_offset = 100
+next_scene_name = "boss_1"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=716458830]
 position = Vector2(278, -567)
@@ -209,6 +211,10 @@ position = Vector2(586, 29)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dolly/RightWall" unique_id=1208643033]
 position = Vector2(16.5, -60.5)
 shape = SubResource("RectangleShape2D_iys1s")
+
+[node name="NextScreen" parent="." unique_id=1275666114 instance=ExtResource("10_78dhj")]
+position = Vector2(749, -1973)
+direction = 0
 
 [connection signal="body_entered" from="Dolly/DeathZone" to="." method="_on_death_zone_body_entered"]
 [connection signal="body_entered" from="Dolly/PhysicsOffPoint" to="." method="_on_physics_off_point_body_entered"]

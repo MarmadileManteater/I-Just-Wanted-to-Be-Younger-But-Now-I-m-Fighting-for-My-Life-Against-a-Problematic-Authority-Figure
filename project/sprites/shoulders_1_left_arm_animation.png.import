@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dkphm3ybi6364"
-path="res://.godot/imported/size-test.png-fc153105101465408536100803258843.ctex"
+uid="uid://dypr1xjnwufud"
+path="res://.godot/imported/shoulders_1_left_arm_animation.png-cc3b4de3ff239ea4c6a5d116f76fdcfc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/size-test.png"
-dest_files=["res://.godot/imported/size-test.png-fc153105101465408536100803258843.ctex"]
+source_file="res://sprites/shoulders_1_left_arm_animation.png"
+dest_files=["res://.godot/imported/shoulders_1_left_arm_animation.png-cc3b4de3ff239ea4c6a5d116f76fdcfc.ctex"]
 
 [params]
 

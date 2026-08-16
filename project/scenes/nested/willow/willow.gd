@@ -23,8 +23,8 @@ func change_animation(name: String) -> void:
 func play(name: String) -> void:
 	sprite.play(name)
 	
-func bounce() -> void:
-	velocity.y = JUMP_VELOCITY
+func bounce(multiplier: float = 1) -> void:
+	velocity.y = JUMP_VELOCITY * multiplier
 
 func flash() -> void:
 	animation_player.play("Flash")

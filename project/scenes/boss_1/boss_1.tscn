@@ -1,0 +1,100 @@
+[gd_scene format=3 uid="uid://2qhqvq6u3vw6"]
+
+[ext_resource type="Script" uid="uid://badrsoy56kcd8" path="res://scenes/boss_1/boss_1.gd" id="1_nepas"]
+[ext_resource type="Texture2D" uid="uid://2snou2ybvw0h" path="res://sprites/head_1.png" id="2_1yh4r"]
+[ext_resource type="Texture2D" uid="uid://dypr1xjnwufud" path="res://sprites/shoulders_1_left_arm_animation.png" id="2_rcy0q"]
+[ext_resource type="PackedScene" uid="uid://be0maisut5gpu" path="res://scenes/nested/dolly/dolly.tscn" id="4_arhcc"]
+[ext_resource type="PackedScene" uid="uid://eihccgfb2yif" path="res://scenes/nested/health_display/health_display.tscn" id="5_arhcc"]
+[ext_resource type="PackedScene" uid="uid://c8b7r642fn2vm" path="res://scenes/nested/willow/willow.tscn" id="5_etmko"]
+[ext_resource type="Texture2D" uid="uid://cekyllahod40u" path="res://sprites/building_3.png" id="7_jr0hl"]
+[ext_resource type="Texture2D" uid="uid://xgy32qthpajl" path="res://sprites/building_topper_3.png" id="8_5ksyy"]
+[ext_resource type="Texture2D" uid="uid://1rgpmet7wp4f" path="res://sprites/right_hand_1.png" id="9_5ksyy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wmei1"]
+atlas = ExtResource("2_rcy0q")
+region = Rect2(0, 0, 800, 322)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_arhcc"]
+atlas = ExtResource("2_rcy0q")
+region = Rect2(0, 322, 800, 322)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_etmko"]
+atlas = ExtResource("2_rcy0q")
+region = Rect2(0, 644, 800, 322)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2hnpg"]
+atlas = ExtResource("2_rcy0q")
+region = Rect2(0, 966, 800, 322)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0dxmq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wmei1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_arhcc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_etmko")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2hnpg")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 7.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0dxmq"]
+size = Vector2(748, 93.06253)
+
+[node name="Boss1" type="Node2D" unique_id=337002591]
+script = ExtResource("1_nepas")
+
+[node name="Shoulders" type="AnimatedSprite2D" parent="." unique_id=237130465]
+position = Vector2(522, 410)
+sprite_frames = SubResource("SpriteFrames_0dxmq")
+autoplay = "default"
+frame = 3
+frame_progress = 1.0
+
+[node name="Head" type="Sprite2D" parent="." unique_id=1128169409]
+position = Vector2(539, 141)
+texture = ExtResource("2_1yh4r")
+
+[node name="Dolly" parent="." unique_id=1452481412 instance=ExtResource("4_arhcc")]
+position = Vector2(681, 322)
+
+[node name="HealthDisplay" parent="Dolly" unique_id=336033771 instance=ExtResource("5_arhcc")]
+visible = false
+position = Vector2(-427, -274)
+
+[node name="Willow" parent="." unique_id=1438157277 instance=ExtResource("5_etmko")]
+position = Vector2(1116, 793)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=182521807]
+position = Vector2(-33, 1159)
+
+[node name="Sprite2D2" type="Sprite2D" parent="StaticBody2D" unique_id=1372900572]
+texture = ExtResource("7_jr0hl")
+
+[node name="Sprite2D3" type="Sprite2D" parent="StaticBody2D" unique_id=1498667165]
+position = Vector2(0, -523)
+texture = ExtResource("8_5ksyy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=318488508]
+position = Vector2(8.977646, -523.53107)
+rotation = -0.017453292
+shape = SubResource("RectangleShape2D_0dxmq")
+
+[node name="RightHand" type="Sprite2D" parent="." unique_id=1637545783]
+position = Vector2(1062, 381)
+rotation = 3.1415927
+scale = Vector2(1, -1)
+texture = ExtResource("9_5ksyy")
+
+[node name="LeftHand" type="Sprite2D" parent="." unique_id=1126435705]
+position = Vector2(32.000008, 342.99997)
+rotation = 0.3403392
+texture = ExtResource("9_5ksyy")
