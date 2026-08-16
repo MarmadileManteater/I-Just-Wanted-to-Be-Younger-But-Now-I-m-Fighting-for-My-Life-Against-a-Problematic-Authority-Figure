@@ -28,6 +28,15 @@ size = Vector2(59, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mchix"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u4npt"]
+size = Vector2(1154, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fcxea"]
+size = Vector2(1146, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iys1s"]
+size = Vector2(53, 587)
+
 [node name="Boss1Screen3" type="Node2D" unique_id=956790219]
 script = ExtResource("1_kxorn")
 dolly_axis = 1
@@ -141,6 +150,16 @@ position = Vector2(19.5, 0)
 shape = SubResource("RectangleShape2D_iu0xd")
 one_way_collision = true
 
+[node name="BottomCameraBoundaryPart3" type="StaticBody2D" parent="." unique_id=1331331729]
+position = Vector2(678, -902)
+collision_layer = 2
+collision_mask = 2
+
+[node name="Shape" type="CollisionShape2D" parent="BottomCameraBoundaryPart3" unique_id=1589116329]
+position = Vector2(19.5, 0)
+shape = SubResource("RectangleShape2D_iu0xd")
+one_way_collision = true
+
 [node name="BottomCameraBoundary" type="StaticBody2D" parent="." unique_id=1863506443]
 position = Vector2(461, 656)
 collision_layer = 2
@@ -158,8 +177,38 @@ collision_mask = 2
 shape = SubResource("RectangleShape2D_mchix")
 
 [node name="Dolly" parent="." unique_id=1452481412 instance=ExtResource("3_crohq")]
-visible = false
 position = Vector2(575, 324)
 
 [node name="HealthDisplay" parent="Dolly" unique_id=336033771 instance=ExtResource("4_6xt62")]
 position = Vector2(-427, -274)
+
+[node name="DeathZone" type="Area2D" parent="Dolly" unique_id=1398254659]
+position = Vector2(-58, 389)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dolly/DeathZone" unique_id=353501134]
+position = Vector2(53, 225)
+shape = SubResource("RectangleShape2D_u4npt")
+
+[node name="PhysicsOffPoint" type="Area2D" parent="Dolly" unique_id=1628799565]
+position = Vector2(0, 304)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dolly/PhysicsOffPoint" unique_id=201348795]
+position = Vector2(-2, 0)
+shape = SubResource("RectangleShape2D_fcxea")
+
+[node name="LeftWall" type="StaticBody2D" parent="Dolly" unique_id=1219227037]
+position = Vector2(-618, 29)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dolly/LeftWall" unique_id=1957684490]
+position = Vector2(16.5, -60.5)
+shape = SubResource("RectangleShape2D_iys1s")
+
+[node name="RightWall" type="StaticBody2D" parent="Dolly" unique_id=1557159046]
+position = Vector2(586, 29)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dolly/RightWall" unique_id=1208643033]
+position = Vector2(16.5, -60.5)
+shape = SubResource("RectangleShape2D_iys1s")
+
+[connection signal="body_entered" from="Dolly/DeathZone" to="." method="_on_death_zone_body_entered"]
+[connection signal="body_entered" from="Dolly/PhysicsOffPoint" to="." method="_on_physics_off_point_body_entered"]

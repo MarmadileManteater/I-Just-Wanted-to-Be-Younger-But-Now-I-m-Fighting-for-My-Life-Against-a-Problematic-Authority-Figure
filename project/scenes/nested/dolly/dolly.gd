@@ -10,6 +10,9 @@ enum Axis { X = 0, Y = 1 }
 var locked_node: Node2D
 var locked_axis: Axis
 
+func unlock() -> void:
+	locked_node = null
+
 func lock(node: Node2D, axis: Axis = Axis.X):
 	locked_node = node
 	locked_axis = axis

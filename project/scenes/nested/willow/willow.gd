@@ -29,13 +29,17 @@ func bounce() -> void:
 func flash() -> void:
 	animation_player.play("Flash")
 	
-func die(method: String) -> void:
+func die(method: String = "") -> void:
 	is_dying = true
 	shape.disabled = true
 	gravity_enabled = false
 	velocity = Vector2(0, 0)
-	play(method)
-	sprite.connect("animation_finished", hide)
+	if method != "":
+		play(method)
+		sprite.connect("animation_finished", hide)
+	else:
+		hide()
+	
 
 func _ready() -> void:
 	sprite = find_child("Sprite")
