@@ -114,7 +114,7 @@ length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Shoulders:animation")
+tracks/0/path = NodePath("BossTop/Inner/Shoulders:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -126,7 +126,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Shoulders:frame")
+tracks/1/path = NodePath("BossTop/Inner/Shoulders:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -138,7 +138,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("LeftHand:position")
+tracks/2/path = NodePath("BossBottom/Inner/LeftHand:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -150,19 +150,19 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("LeftHand:rotation")
+tracks/3/path = NodePath("BossBottom/Inner/LeftHand:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0.2, 0.20783632, 0.3, 0.30833337, 0.4964698, 0.5007421, 0.7650855, 0.76666665),
 "transitions": PackedFloat32Array(1e-05, 1e-05, 1e-05, 1e-05, 1e-05, 1e-05, 1e-05, 1e-05),
 "update": 0,
-"values": [0.0, -1.6057029118347832, -1.6057029118347832, -0.4363323129985824, -0.4363323129985824, -0.05235987755982989, -0.05235987755982989, 0.9948376736367679]
+"values": [0.0, -1.6057029118347832, -1.6057029118347832, -0.4363323129985824, -0.4363323129985824, -0.05235987755982989, -0.05235987755982989, 0.994837673636768]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("LeftHand:visible")
+tracks/4/path = NodePath("BossBottom/Inner/LeftHand:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -178,7 +178,7 @@ length = 5.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("LeftHand:visible")
+tracks/0/path = NodePath("BossBottom/Inner/LeftHand:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -190,7 +190,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("LeftHand:position")
+tracks/1/path = NodePath("BossBottom/Inner/LeftHand:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -202,7 +202,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("LeftHand:rotation")
+tracks/2/path = NodePath("BossBottom/Inner/LeftHand:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -214,7 +214,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Shoulders:animation")
+tracks/3/path = NodePath("BossTop/Inner/Shoulders:animation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -226,7 +226,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Shoulders:frame")
+tracks/4/path = NodePath("BossTop/Inner/Shoulders:frame")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -241,7 +241,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Shoulders:animation")
+tracks/0/path = NodePath("BossTop/Inner/Shoulders:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -253,7 +253,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Shoulders:frame")
+tracks/1/path = NodePath("BossTop/Inner/Shoulders:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -265,7 +265,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("LeftHand:position")
+tracks/2/path = NodePath("BossBottom/Inner/LeftHand:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -277,7 +277,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("LeftHand:rotation")
+tracks/3/path = NodePath("BossBottom/Inner/LeftHand:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -289,7 +289,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("LeftHand:visible")
+tracks/4/path = NodePath("BossBottom/Inner/LeftHand:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -306,50 +306,121 @@ _data = {
 &"RESET": SubResource("Animation_l2vqj")
 }
 
+[sub_resource type="Animation" id="Animation_4475d"]
+resource_name = "Bob"
+length = 0.39999999999999997
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BossTop/Inner:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.008333325, 0.20833333, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 25), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BossBottom/Inner:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.008333325, 0.20833333, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 25), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_c8b3l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BossTop/Inner:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BossBottom/Inner:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c8b3l"]
+_data = {
+&"Bob": SubResource("Animation_4475d"),
+&"RESET": SubResource("Animation_c8b3l")
+}
+
 [node name="Boss1" type="Node2D" unique_id=337002591]
 script = ExtResource("1_nepas")
 
-[node name="Shoulders" type="AnimatedSprite2D" parent="." unique_id=237130465]
+[node name="BossTop" type="Node2D" parent="." unique_id=944834287]
+
+[node name="Inner" type="Node2D" parent="BossTop" unique_id=551231782]
+
+[node name="Shoulders" type="AnimatedSprite2D" parent="BossTop/Inner" unique_id=237130465]
 position = Vector2(522, 410)
 sprite_frames = SubResource("SpriteFrames_0dxmq")
 
-[node name="Head" type="Sprite2D" parent="." unique_id=1128169409]
+[node name="Head" type="Sprite2D" parent="BossTop/Inner" unique_id=1128169409]
 position = Vector2(539, 141)
 texture = ExtResource("2_1yh4r")
 
 [node name="Dolly" parent="." unique_id=1452481412 instance=ExtResource("4_arhcc")]
+visible = false
 position = Vector2(467, 316)
 
 [node name="HealthDisplay" parent="Dolly" unique_id=336033771 instance=ExtResource("5_arhcc")]
 position = Vector2(-427, -274)
 
 [node name="Willow" parent="." unique_id=1438157277 instance=ExtResource("5_etmko")]
-position = Vector2(-191, 321)
+position = Vector2(-348, 344)
 
-[node name="RightHand" type="Sprite2D" parent="." unique_id=1637545783]
+[node name="BossBottom" type="Node2D" parent="." unique_id=1123362090]
+
+[node name="Inner" type="Node2D" parent="BossBottom" unique_id=1489758419]
+
+[node name="RightHand" type="Sprite2D" parent="BossBottom/Inner" unique_id=1637545783]
 position = Vector2(1048, 346)
 rotation = -3.1415925
 scale = Vector2(1, -1)
 texture = ExtResource("9_5ksyy")
 
-[node name="LeftHand" type="StaticBody2D" parent="." unique_id=732049993]
+[node name="LeftHand" type="StaticBody2D" parent="BossBottom/Inner" unique_id=732049993]
 visible = false
 position = Vector2(50, 731)
 
-[node name="Sprite" type="Sprite2D" parent="LeftHand" unique_id=1126435705]
+[node name="Sprite" type="Sprite2D" parent="BossBottom/Inner/LeftHand" unique_id=1126435705]
 rotation = 0.23561946
 texture = ExtResource("9_5ksyy")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftHand" unique_id=1551791951]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BossBottom/Inner/LeftHand" unique_id=1551791951]
 position = Vector2(-10, 4)
 rotation = 0.23561946
 shape = SubResource("CapsuleShape2D_0dxmq")
 
-[node name="Area2D" type="Area2D" parent="LeftHand" unique_id=666071609]
+[node name="Area2D" type="Area2D" parent="BossBottom/Inner/LeftHand" unique_id=666071609]
 position = Vector2(-10, 127)
 rotation = 0.23561946
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftHand/Area2D" unique_id=1954688783]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BossBottom/Inner/LeftHand/Area2D" unique_id=1954688783]
 rotation = -0.19198626
 scale = Vector2(0.99999994, 0.99999994)
 shape = SubResource("RectangleShape2D_6wcjf")
@@ -372,3 +443,7 @@ shape = SubResource("RectangleShape2D_0dxmq")
 [node name="SlamAnimationPlayer" type="AnimationPlayer" parent="." unique_id=641176461]
 libraries/ = SubResource("AnimationLibrary_fp75s")
 autoplay = &"LeftArmRaise"
+
+[node name="BobbingAnimationPlayer" type="AnimationPlayer" parent="." unique_id=1353357662]
+libraries/ = SubResource("AnimationLibrary_c8b3l")
+speed_scale = 0.5
