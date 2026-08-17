@@ -1,9 +1,14 @@
 extends DefaultScene
 
 @export var player_threshold: int = 10
-
+@export var boss_speed: int = 1
 var boss_top: Node2D
 var boss_bottom: Node2D
+var boss_middle: Node2D
+var boss_right: Node2D
+
+var left_hand_limit: Node2D
+var right_hand_limit: Node2D
 
 var slam_animation_player: AnimationPlayer
 var bob_animation_player: AnimationPlayer
@@ -13,34 +18,42 @@ func _ready() -> void:
 	super()
 	boss_top = find_child("BossTop")
 	boss_bottom = find_child("BossBottom")
+	boss_middle = boss_top.find_child("Middle")
+	boss_right = boss_top.find_child("Right")
+	
+	left_hand_limit = find_child("LeftHandLimit")
+	right_hand_limit = find_child("RightHandLimit")
 	
 	slam_animation_player = find_child("SlamAnimationPlayer")
 	bob_animation_player = find_child("BobbingAnimationPlayer")
 	
 	willow.bounce(1.5)
-	var timer = Timer.new()
-	add_child(timer)
-	timer.start(5)
-	timer.connect("timeout", func ():
-		find_child("SlamAnimationPlayer").play("LeftArmSlam")
-	)
 
+func move_boss_towards(point: Node2D):
+	if willow.global_position.x + player_threshold < point.global_position.x:
+		if bob_animation_player.current_animation != "Bob":
+			bob_animation_player.play("Bob")
+		boss_top.position.x -= 1
+		boss_bottom.position.x -= 1
+	elif willow.global_position.x - player_threshold > point.global_position.x:
+		if bob_animation_player.current_animation != "Bob":
+			bob_animation_player.play("Bob")
+		boss_top.position.x += 1
+		boss_bottom.position.x += 1
+	else:
+		bob_animation_player.pause()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	# left arm logic
-	if willow.global_position.x + player_threshold < boss_top.global_position.x:
-		if bob_animation_player.current_animation != "Bob":
-			bob_animation_player.play("Bob")
-		boss_top.position.x -= 2
-		boss_bottom.position.x -= 2
-	elif willow.global_position.x - player_threshold > boss_top.global_position.x:
-		if bob_animation_player.current_animation != "Bob":
-			bob_animation_player.play("Bob")
-		boss_top.position.x += 2
-		boss_bottom.position.x += 2
+	if willow.global_position.x < left_hand_limit.global_position.x:
+		move_boss_towards(boss_top)
+	elif willow.global_position.x > left_hand_limit.global_position.x and willow.global_position.x < right_hand_limit.global_position.x:
+		move_boss_towards(boss_middle)
+	elif willow.global_position.x > right_hand_limit.global_position.x:
+		move_boss_towards(boss_right)
 	else:
 		bob_animation_player.pause()
+		slam_animation_player.play("ArmsDown")
 
 func _on_crushed() -> void:
 	hearts.health = 0

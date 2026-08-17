@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://badrsoy56kcd8" path="res://scenes/boss_1/boss_1.gd" id="1_nepas"]
 [ext_resource type="Texture2D" uid="uid://2snou2ybvw0h" path="res://sprites/head_1.png" id="2_1yh4r"]
-[ext_resource type="Texture2D" uid="uid://dypr1xjnwufud" path="res://sprites/shoulders_1_left_arm_animation.png" id="2_rcy0q"]
+[ext_resource type="Texture2D" uid="uid://bt0y77ihi58si" path="res://sprites/shoulders_1_left_arm_animation.png" id="2_rcy0q"]
 [ext_resource type="PackedScene" uid="uid://be0maisut5gpu" path="res://scenes/nested/dolly/dolly.tscn" id="4_arhcc"]
 [ext_resource type="PackedScene" uid="uid://eihccgfb2yif" path="res://scenes/nested/health_display/health_display.tscn" id="5_arhcc"]
 [ext_resource type="PackedScene" uid="uid://c8b7r642fn2vm" path="res://scenes/nested/willow/willow.tscn" id="5_etmko"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://xgy32qthpajl" path="res://sprites/building_topper_3.png" id="8_5ksyy"]
 [ext_resource type="Script" uid="uid://bpsuqi2evmbe" path="res://scenes/boss_1/hand.gd" id="8_l2vqj"]
 [ext_resource type="Texture2D" uid="uid://1rgpmet7wp4f" path="res://sprites/right_hand_1.png" id="9_5ksyy"]
+[ext_resource type="Texture2D" uid="uid://5q2vli88qe0p" path="res://sprites/platform_1.png" id="9_fp75s"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5ksyy"]
 atlas = ExtResource("2_rcy0q")
@@ -99,6 +100,19 @@ animations = [{
 "speed": 7.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0dxmq"]
+size = Vector2(748, 93.06253)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6wcjf"]
+radius = 92.19891
+height = 218.79565
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fcxea"]
+size = Vector2(157.98944, 350.88568)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fp75s"]
+size = Vector2(102.91751, 473.87155)
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0dxmq"]
 radius = 97.0
 height = 214.0
@@ -109,8 +123,71 @@ size = Vector2(154.5098, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6wcjf"]
 size = Vector2(102.91751, 473.87155)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0dxmq"]
-size = Vector2(748, 93.06253)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4475d"]
+size = Vector2(294.32678, 93.06253)
+
+[sub_resource type="Animation" id="Animation_ywren"]
+resource_name = "ArmsDown"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BossTop/Inner/Shoulders:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BossTop/Inner/Shoulders:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.033333335),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BossBottom/Inner/LeftHand:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(50, 4000)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BossBottom/Inner/LeftHand:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BossBottom/Inner/LeftHand:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_5ksyy"]
 resource_name = "LeftArmRaise"
@@ -326,12 +403,90 @@ tracks/5/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("BossBottom/Inner/RightHand:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1001, 757)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("BossBottom/Inner/RightHand:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_0mk2c"]
+resource_name = "RightArmRaise"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BossBottom/Inner/RightHand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5566666, 0.56666666),
+"transitions": PackedFloat32Array(1, 1e-05, 1e-05),
+"update": 0,
+"values": [Vector2(1001, 757), Vector2(1001, 757), Vector2(822, 649)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BossBottom/Inner/RightHand:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5566666, 0.56666666),
+"transitions": PackedFloat32Array(1, 1e-05, 1e-05),
+"update": 0,
+"values": [0.0, 0.0, 1.3962634]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BossTop/Inner/Shoulders:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"right_raise"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BossTop/Inner/Shoulders:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.56),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fp75s"]
 _data = {
+&"ArmsDown": SubResource("Animation_ywren"),
 &"LeftArmRaise": SubResource("Animation_5ksyy"),
 &"LeftArmSlam": SubResource("Animation_fp75s"),
-&"RESET": SubResource("Animation_l2vqj")
+&"RESET": SubResource("Animation_l2vqj"),
+&"RightArmRaise": SubResource("Animation_0mk2c")
 }
 
 [sub_resource type="Animation" id="Animation_4475d"]
@@ -411,24 +566,69 @@ sprite_frames = SubResource("SpriteFrames_0dxmq")
 position = Vector2(539, 141)
 texture = ExtResource("2_1yh4r")
 
+[node name="Middle" type="Node2D" parent="BossTop" unique_id=660426016]
+position = Vector2(533, 0)
+
+[node name="Right" type="Node2D" parent="BossTop" unique_id=1410392732]
+position = Vector2(1050, 0)
+
 [node name="Dolly" parent="." unique_id=1452481412 instance=ExtResource("4_arhcc")]
-position = Vector2(-110, 316)
+position = Vector2(1378, 303)
 
 [node name="HealthDisplay" parent="Dolly" unique_id=336033771 instance=ExtResource("5_arhcc")]
 position = Vector2(-427, -274)
 
+[node name="Platform3" type="StaticBody2D" parent="." unique_id=1594309159]
+position = Vector2(1450, 1145)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Platform3" unique_id=1564428678]
+texture = ExtResource("7_jr0hl")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Platform3" unique_id=1854182298]
+position = Vector2(0, -523)
+texture = ExtResource("8_5ksyy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform3" unique_id=1136898321]
+position = Vector2(8.977646, -523.53107)
+rotation = -0.017453292
+shape = SubResource("RectangleShape2D_0dxmq")
+one_way_collision = true
+
 [node name="Willow" parent="." unique_id=1438157277 instance=ExtResource("5_etmko")]
-position = Vector2(-348, 344)
+position = Vector2(1487, 735)
 
 [node name="BossBottom" type="Node2D" parent="." unique_id=1123362090]
 
 [node name="Inner" type="Node2D" parent="BossBottom" unique_id=1489758419]
 
-[node name="RightHand" type="Sprite2D" parent="BossBottom/Inner" unique_id=1637545783]
-position = Vector2(1048, 346)
+[node name="RightHand" type="StaticBody2D" parent="BossBottom/Inner" unique_id=1485110053]
+position = Vector2(1001, 757)
+script = ExtResource("8_l2vqj")
+
+[node name="Sprite" type="Sprite2D" parent="BossBottom/Inner/RightHand" unique_id=1637545783]
 rotation = -3.1415925
 scale = Vector2(1, -1)
 texture = ExtResource("9_5ksyy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BossBottom/Inner/RightHand" unique_id=1548701122]
+position = Vector2(14, 4)
+rotation = -0.33161256
+shape = SubResource("CapsuleShape2D_6wcjf")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="BossBottom/Inner/RightHand" unique_id=281879821]
+position = Vector2(-6.0718994, -164.66057)
+rotation = -0.15533431
+shape = SubResource("RectangleShape2D_fcxea")
+
+[node name="CrushArea" type="Area2D" parent="BossBottom/Inner/RightHand" unique_id=970410906]
+position = Vector2(-10, 127)
+rotation = 0.23561946
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BossBottom/Inner/RightHand/CrushArea" unique_id=189763706]
+position = Vector2(-69.07301, 72.117355)
+rotation = -1.98793
+scale = Vector2(1.0000002, 1.0000002)
+shape = SubResource("RectangleShape2D_fp75s")
 
 [node name="LeftHand" type="StaticBody2D" parent="BossBottom/Inner" unique_id=732049993]
 visible = false
@@ -460,28 +660,47 @@ rotation = -1.2217305
 scale = Vector2(1.0000002, 1.0000002)
 shape = SubResource("RectangleShape2D_6wcjf")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=182521807]
+[node name="Platform2" type="StaticBody2D" parent="." unique_id=1165662848]
+position = Vector2(607, 1176)
+
+[node name="Sprite2D3" type="Sprite2D" parent="Platform2" unique_id=1872874727]
+position = Vector2(0, -523)
+texture = ExtResource("9_fp75s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform2" unique_id=2040730902]
+position = Vector2(1.510437, -523.4007)
+shape = SubResource("RectangleShape2D_4475d")
+one_way_collision = true
+
+[node name="Platform" type="StaticBody2D" parent="." unique_id=182521807]
 position = Vector2(-201, 1176)
 
-[node name="Sprite2D2" type="Sprite2D" parent="StaticBody2D" unique_id=1372900572]
+[node name="Sprite2D2" type="Sprite2D" parent="Platform" unique_id=1372900572]
 texture = ExtResource("7_jr0hl")
 
-[node name="Sprite2D3" type="Sprite2D" parent="StaticBody2D" unique_id=1498667165]
+[node name="Sprite2D3" type="Sprite2D" parent="Platform" unique_id=1498667165]
 position = Vector2(0, -523)
 texture = ExtResource("8_5ksyy")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=318488508]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform" unique_id=318488508]
 position = Vector2(8.977646, -523.53107)
 rotation = -0.017453292
 shape = SubResource("RectangleShape2D_0dxmq")
+one_way_collision = true
 
 [node name="SlamAnimationPlayer" type="AnimationPlayer" parent="." unique_id=641176461]
 libraries/ = SubResource("AnimationLibrary_fp75s")
-autoplay = &"LeftArmRaise"
+autoplay = &"ArmsDown"
 
 [node name="BobbingAnimationPlayer" type="AnimationPlayer" parent="." unique_id=1353357662]
 libraries/ = SubResource("AnimationLibrary_c8b3l")
 speed_scale = 0.5
 
-[connection signal="crushed" from="BossBottom/Inner/LeftHand" to="." method="_on_crushed"]
+[node name="LeftHandLimit" type="Node2D" parent="." unique_id=499497881]
+position = Vector2(234, 405)
+
+[node name="RightHandLimit" type="Node2D" parent="." unique_id=1261325365]
+position = Vector2(1060, 375)
+
 [connection signal="crushed" from="BossBottom/Inner/LeftHand" to="." method="_crushed"]
+[connection signal="crushed" from="BossBottom/Inner/LeftHand" to="." method="_on_crushed"]

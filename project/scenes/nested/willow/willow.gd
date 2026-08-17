@@ -39,7 +39,6 @@ func die(method: String = "") -> void:
 		sprite.connect("animation_finished", hide)
 	else:
 		hide()
-	
 
 func _ready() -> void:
 	sprite = find_child("Sprite")
