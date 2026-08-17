@@ -10,44 +10,301 @@
 [ext_resource type="Texture2D" uid="uid://xgy32qthpajl" path="res://sprites/building_topper_3.png" id="8_5ksyy"]
 [ext_resource type="Texture2D" uid="uid://1rgpmet7wp4f" path="res://sprites/right_hand_1.png" id="9_5ksyy"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wmei1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ksyy"]
 atlas = ExtResource("2_rcy0q")
 region = Rect2(0, 0, 800, 322)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_arhcc"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ywren"]
+atlas = ExtResource("2_rcy0q")
+region = Rect2(0, 0, 800, 322)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0mk2c"]
 atlas = ExtResource("2_rcy0q")
 region = Rect2(0, 322, 800, 322)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_etmko"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_74ww5"]
 atlas = ExtResource("2_rcy0q")
 region = Rect2(0, 644, 800, 322)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2hnpg"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_rl3h1"]
 atlas = ExtResource("2_rcy0q")
 region = Rect2(0, 966, 800, 322)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tdco0"]
+atlas = ExtResource("2_rcy0q")
+region = Rect2(0, 1288, 800, 322)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l2vqj"]
+atlas = ExtResource("2_rcy0q")
+region = Rect2(0, 0, 800, 322)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fp75s"]
+atlas = ExtResource("2_rcy0q")
+region = Rect2(800, 322, 800, 322)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4475d"]
+atlas = ExtResource("2_rcy0q")
+region = Rect2(800, 644, 800, 322)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c8b3l"]
+atlas = ExtResource("2_rcy0q")
+region = Rect2(800, 966, 800, 322)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0dxmq"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wmei1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_arhcc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_etmko")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2hnpg")
+"texture": SubResource("AtlasTexture_5ksyy")
 }],
 "loop": 0,
 "name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ywren")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0mk2c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_74ww5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rl3h1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tdco0")
+}],
+"loop": 0,
+"name": &"left_raise",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l2vqj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fp75s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4475d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c8b3l")
+}],
+"loop": 0,
+"name": &"right_raise",
 "speed": 7.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0dxmq"]
+radius = 97.0
+height = 214.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6wcjf"]
+size = Vector2(197.5, 39)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0dxmq"]
 size = Vector2(748, 93.06253)
+
+[sub_resource type="Animation" id="Animation_5ksyy"]
+resource_name = "LeftArmRaise"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shoulders:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"left_raise"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shoulders:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.20000002, 0.3, 0.5, 0.76666665),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LeftHand:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.20783632, 0.3, 0.30913317, 0.4972696, 0.5007421, 0.7650855, 0.7667971),
+"transitions": PackedFloat32Array(1, 1e-05, 1e-05, 1e-05, 1e-05, 1e-05, 1e-05, 1e-05, 1e-05),
+"update": 0,
+"values": [Vector2(50, 731), Vector2(50, 731), Vector2(221, 629), Vector2(221, 629), Vector2(96, 465), Vector2(96, 465), Vector2(91, 379), Vector2(91, 379), Vector2(199, 207)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LeftHand:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.2, 0.20783632, 0.3, 0.30833337, 0.4964698, 0.5007421, 0.7650855, 0.76666665),
+"transitions": PackedFloat32Array(1e-05, 1e-05, 1e-05, 1e-05, 1e-05, 1e-05, 1e-05, 1e-05),
+"update": 0,
+"values": [0.0, -1.6057029118347832, -1.6057029118347832, -0.4363323129985824, -0.4363323129985824, -0.05235987755982989, -0.05235987755982989, 0.9948376736367679]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("LeftHand:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_fp75s"]
+resource_name = "LeftArmSlam"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LeftHand:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LeftHand:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.016300889, 0.033333335, 0.099999994, 0.19207068, 0.26666668, 0.33750933, 0.404176, 0.4962467, 0.5708427, 0.6359413, 0.702608, 0.7946787, 0.8692747, 1.0053602, 1.0056951, 1.0665064, 1.06664),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1e-05, 1e-05, 1e-05, 1e-05),
+"update": 0,
+"values": [Vector2(199, 207), Vector2(199, 207), Vector2(196, 208), Vector2(199, 207), Vector2(196, 208), Vector2(199, 207), Vector2(196, 208), Vector2(199, 207), Vector2(196, 208), Vector2(199, 207), Vector2(196, 208), Vector2(199, 207), Vector2(196, 208), Vector2(199, 207), Vector2(199, 207), Vector2(91, 378), Vector2(91, 378), Vector2(91, 475)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LeftHand:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.0053602, 1.0056951, 1.0665064, 1.06664),
+"transitions": PackedFloat32Array(1, 1e-05, 1e-05, 1e-05, 1e-05),
+"update": 0,
+"values": [0.9948377, 0.9948377, -0.05235988, -0.05235988, -0.4537856]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Shoulders:animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"left_raise"]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Shoulders:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1.0056238, 1.0666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [4, 3, 2]
+}
+
+[sub_resource type="Animation" id="Animation_l2vqj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shoulders:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shoulders:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LeftHand:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(50, 731)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LeftHand:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("LeftHand:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fp75s"]
+_data = {
+&"LeftArmRaise": SubResource("Animation_5ksyy"),
+&"LeftArmSlam": SubResource("Animation_fp75s"),
+&"RESET": SubResource("Animation_l2vqj")
+}
 
 [node name="Boss1" type="Node2D" unique_id=337002591]
 script = ExtResource("1_nepas")
@@ -55,23 +312,47 @@ script = ExtResource("1_nepas")
 [node name="Shoulders" type="AnimatedSprite2D" parent="." unique_id=237130465]
 position = Vector2(522, 410)
 sprite_frames = SubResource("SpriteFrames_0dxmq")
-autoplay = "default"
-frame = 3
-frame_progress = 1.0
 
 [node name="Head" type="Sprite2D" parent="." unique_id=1128169409]
 position = Vector2(539, 141)
 texture = ExtResource("2_1yh4r")
 
 [node name="Dolly" parent="." unique_id=1452481412 instance=ExtResource("4_arhcc")]
-position = Vector2(681, 322)
+position = Vector2(467, 316)
 
 [node name="HealthDisplay" parent="Dolly" unique_id=336033771 instance=ExtResource("5_arhcc")]
-visible = false
 position = Vector2(-427, -274)
 
 [node name="Willow" parent="." unique_id=1438157277 instance=ExtResource("5_etmko")]
-position = Vector2(1116, 793)
+position = Vector2(-191, 321)
+
+[node name="RightHand" type="Sprite2D" parent="." unique_id=1637545783]
+position = Vector2(1048, 346)
+rotation = -3.1415925
+scale = Vector2(1, -1)
+texture = ExtResource("9_5ksyy")
+
+[node name="LeftHand" type="StaticBody2D" parent="." unique_id=732049993]
+visible = false
+position = Vector2(50, 731)
+
+[node name="Sprite" type="Sprite2D" parent="LeftHand" unique_id=1126435705]
+rotation = 0.23561946
+texture = ExtResource("9_5ksyy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftHand" unique_id=1551791951]
+position = Vector2(-10, 4)
+rotation = 0.23561946
+shape = SubResource("CapsuleShape2D_0dxmq")
+
+[node name="Area2D" type="Area2D" parent="LeftHand" unique_id=666071609]
+position = Vector2(-10, 127)
+rotation = 0.23561946
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftHand/Area2D" unique_id=1954688783]
+rotation = -0.19198626
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("RectangleShape2D_6wcjf")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=182521807]
 position = Vector2(-33, 1159)
@@ -88,13 +369,6 @@ position = Vector2(8.977646, -523.53107)
 rotation = -0.017453292
 shape = SubResource("RectangleShape2D_0dxmq")
 
-[node name="RightHand" type="Sprite2D" parent="." unique_id=1637545783]
-position = Vector2(1062, 381)
-rotation = 3.1415927
-scale = Vector2(1, -1)
-texture = ExtResource("9_5ksyy")
-
-[node name="LeftHand" type="Sprite2D" parent="." unique_id=1126435705]
-position = Vector2(32.000008, 342.99997)
-rotation = 0.3403392
-texture = ExtResource("9_5ksyy")
+[node name="SlamAnimationPlayer" type="AnimationPlayer" parent="." unique_id=641176461]
+libraries/ = SubResource("AnimationLibrary_fp75s")
+autoplay = &"LeftArmRaise"
