@@ -1,5 +1,7 @@
 extends DefaultScene
 
+@export var player_threshold: int = 10
+
 var boss_top: Node2D
 var boss_bottom: Node2D
 
@@ -26,15 +28,20 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if willow.global_position.x < boss_top.global_position.x:
+	# left arm logic
+	if willow.global_position.x + player_threshold < boss_top.global_position.x:
 		if bob_animation_player.current_animation != "Bob":
 			bob_animation_player.play("Bob")
 		boss_top.position.x -= 2
 		boss_bottom.position.x -= 2
-	elif willow.global_position.x > boss_top.global_position.x:
+	elif willow.global_position.x - player_threshold > boss_top.global_position.x:
 		if bob_animation_player.current_animation != "Bob":
 			bob_animation_player.play("Bob")
 		boss_top.position.x += 2
 		boss_bottom.position.x += 2
 	else:
 		bob_animation_player.pause()
+
+func _on_crushed() -> void:
+	hearts.health = 0
+	willow.die("crushed")

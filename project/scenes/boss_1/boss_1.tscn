@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c8b7r642fn2vm" path="res://scenes/nested/willow/willow.tscn" id="5_etmko"]
 [ext_resource type="Texture2D" uid="uid://cekyllahod40u" path="res://sprites/building_3.png" id="7_jr0hl"]
 [ext_resource type="Texture2D" uid="uid://xgy32qthpajl" path="res://sprites/building_topper_3.png" id="8_5ksyy"]
+[ext_resource type="Script" uid="uid://bpsuqi2evmbe" path="res://scenes/boss_1/hand.gd" id="8_l2vqj"]
 [ext_resource type="Texture2D" uid="uid://1rgpmet7wp4f" path="res://sprites/right_hand_1.png" id="9_5ksyy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5ksyy"]
@@ -102,8 +103,11 @@ animations = [{
 radius = 97.0
 height = 214.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u4npt"]
+size = Vector2(154.5098, 20)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6wcjf"]
-size = Vector2(197.5, 39)
+size = Vector2(102.91751, 473.87155)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0dxmq"]
 size = Vector2(748, 93.06253)
@@ -235,6 +239,18 @@ tracks/4/keys = {
 "update": 1,
 "values": [4, 3, 2]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("BossBottom/Inner/LeftHand:about_to_crush")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.99786896, 1.0013834, 1.5666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
 
 [sub_resource type="Animation" id="Animation_l2vqj"]
 length = 0.001
@@ -298,6 +314,18 @@ tracks/4/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("BossBottom/Inner/LeftHand:about_to_crush")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fp75s"]
 _data = {
@@ -308,7 +336,7 @@ _data = {
 
 [sub_resource type="Animation" id="Animation_4475d"]
 resource_name = "Bob"
-length = 0.39999999999999997
+length = 0.4
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -384,8 +412,7 @@ position = Vector2(539, 141)
 texture = ExtResource("2_1yh4r")
 
 [node name="Dolly" parent="." unique_id=1452481412 instance=ExtResource("4_arhcc")]
-visible = false
-position = Vector2(467, 316)
+position = Vector2(-110, 316)
 
 [node name="HealthDisplay" parent="Dolly" unique_id=336033771 instance=ExtResource("5_arhcc")]
 position = Vector2(-427, -274)
@@ -406,6 +433,7 @@ texture = ExtResource("9_5ksyy")
 [node name="LeftHand" type="StaticBody2D" parent="BossBottom/Inner" unique_id=732049993]
 visible = false
 position = Vector2(50, 731)
+script = ExtResource("8_l2vqj")
 
 [node name="Sprite" type="Sprite2D" parent="BossBottom/Inner/LeftHand" unique_id=1126435705]
 rotation = 0.23561946
@@ -416,17 +444,24 @@ position = Vector2(-10, 4)
 rotation = 0.23561946
 shape = SubResource("CapsuleShape2D_0dxmq")
 
-[node name="Area2D" type="Area2D" parent="BossBottom/Inner/LeftHand" unique_id=666071609]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="BossBottom/Inner/LeftHand" unique_id=730380963]
+position = Vector2(54.272728, -134.6203)
+rotation = 0.5061455
+scale = Vector2(1, 19)
+shape = SubResource("RectangleShape2D_u4npt")
+
+[node name="CrushArea" type="Area2D" parent="BossBottom/Inner/LeftHand" unique_id=666071609]
 position = Vector2(-10, 127)
 rotation = 0.23561946
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BossBottom/Inner/LeftHand/Area2D" unique_id=1954688783]
-rotation = -0.19198626
-scale = Vector2(0.99999994, 0.99999994)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BossBottom/Inner/LeftHand/CrushArea" unique_id=1954688783]
+position = Vector2(75.31006, 89.92946)
+rotation = -1.2217305
+scale = Vector2(1.0000002, 1.0000002)
 shape = SubResource("RectangleShape2D_6wcjf")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=182521807]
-position = Vector2(-33, 1159)
+position = Vector2(-201, 1176)
 
 [node name="Sprite2D2" type="Sprite2D" parent="StaticBody2D" unique_id=1372900572]
 texture = ExtResource("7_jr0hl")
@@ -447,3 +482,6 @@ autoplay = &"LeftArmRaise"
 [node name="BobbingAnimationPlayer" type="AnimationPlayer" parent="." unique_id=1353357662]
 libraries/ = SubResource("AnimationLibrary_c8b3l")
 speed_scale = 0.5
+
+[connection signal="crushed" from="BossBottom/Inner/LeftHand" to="." method="_on_crushed"]
+[connection signal="crushed" from="BossBottom/Inner/LeftHand" to="." method="_crushed"]
