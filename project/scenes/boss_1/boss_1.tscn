@@ -50,7 +50,7 @@ region = Rect2(800, 644, 800, 322)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c8b3l"]
 atlas = ExtResource("2_rcy0q")
-region = Rect2(800, 966, 800, 322)
+region = Rect2(800, 1288, 800, 322)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0dxmq"]
 animations = [{
@@ -100,6 +100,10 @@ animations = [{
 "speed": 7.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u4npt"]
+radius = 141.0
+height = 292.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0dxmq"]
 size = Vector2(748, 93.06253)
 
@@ -111,7 +115,7 @@ height = 218.79565
 size = Vector2(157.98944, 350.88568)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fp75s"]
-size = Vector2(102.91751, 473.87155)
+size = Vector2(102.91751, 404.99915)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0dxmq"]
 radius = 97.0
@@ -188,6 +192,42 @@ tracks/4/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("BossBottom/Inner/RightHand:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1001, 1757)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("BossBottom/Inner/RightHand:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.7104226]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("BossBottom/Inner/RightHand:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_5ksyy"]
 resource_name = "LeftArmRaise"
@@ -255,7 +295,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id="Animation_fp75s"]
 resource_name = "LeftArmSlam"
-length = 5.0
+length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -427,6 +467,30 @@ tracks/7/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("BossBottom/Inner/RightHand:about_to_crush")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("BossBottom/Inner/RightHand:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_0mk2c"]
 resource_name = "RightArmRaise"
@@ -438,10 +502,10 @@ tracks/0/path = NodePath("BossBottom/Inner/RightHand:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5566666, 0.56666666),
-"transitions": PackedFloat32Array(1, 1e-05, 1e-05),
+"times": PackedFloat32Array(0, 0.15666662, 0.16666667, 0.2916797, 0.2922, 0.49965182, 0.50006586),
+"transitions": PackedFloat32Array(1, 1e-05, 1e-05, 1e-05, 3.0517498e-05, 3.0517498e-05, 1e-05),
 "update": 0,
-"values": [Vector2(1001, 757), Vector2(1001, 757), Vector2(822, 649)]
+"values": [Vector2(1001, 1757), Vector2(1001, 1757), Vector2(822, 649), Vector2(822, 649), Vector2(971, 469), Vector2(971, 469), Vector2(906, 258)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -450,10 +514,10 @@ tracks/1/path = NodePath("BossBottom/Inner/RightHand:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5566666, 0.56666666),
-"transitions": PackedFloat32Array(1, 1e-05, 1e-05),
+"times": PackedFloat32Array(0, 0.15666662, 0.16666667, 0.2916797, 0.2922, 0.49965182, 0.50006586),
+"transitions": PackedFloat32Array(1, 1e-05, 1e-05, 1e-05, 1e-05, 1e-05, 1e-05),
 "update": 0,
-"values": [0.0, 0.0, 1.3962634]
+"values": [1.710422666954443, 1.710422666954443, 1.3962634, 1.3962634, 0.2617994, 0.2617994, -0.7853981633974483]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -474,10 +538,98 @@ tracks/3/path = NodePath("BossTop/Inner/Shoulders:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.56),
+"times": PackedFloat32Array(0, 0.16000001, 0.2922076, 0.5000268),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BossBottom/Inner/RightHand:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_74ww5"]
+resource_name = "RightArmSlam"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BossBottom/Inner/RightHand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.075475514, 0.11189934, 0.14523268, 0.17856601, 0.2, 0.23333333, 0.26666668, 0.3, 0.33333334, 0.36666667, 0.3995696, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3.1593867e-05, 3.0517498e-05),
+"update": 0,
+"values": [Vector2(906, 258), Vector2(900, 259), Vector2(906, 258), Vector2(900, 259), Vector2(906, 258), Vector2(900, 259), Vector2(906, 258), Vector2(900, 259), Vector2(906, 258), Vector2(900, 259), Vector2(906, 258), Vector2(906, 258), Vector2(971, 469)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BossBottom/Inner/RightHand:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3995696, 0.4),
+"transitions": PackedFloat32Array(1, 3.1593867e-05, 1e-05),
+"update": 0,
+"values": [-0.7853982, -0.7853982, 0.2617994]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BossTop/Inner/Shoulders:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"right_raise"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BossTop/Inner/Shoulders:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4000076),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [0, 1]
+"values": [3, 2]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BossBottom/Inner/RightHand:about_to_crush")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.36116278, 0.37200445, 0.40859506),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, false, true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("BossBottom/Inner/RightHand:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fp75s"]
@@ -486,7 +638,8 @@ _data = {
 &"LeftArmRaise": SubResource("Animation_5ksyy"),
 &"LeftArmSlam": SubResource("Animation_fp75s"),
 &"RESET": SubResource("Animation_l2vqj"),
-&"RightArmRaise": SubResource("Animation_0mk2c")
+&"RightArmRaise": SubResource("Animation_0mk2c"),
+&"RightArmSlam": SubResource("Animation_74ww5")
 }
 
 [sub_resource type="Animation" id="Animation_4475d"]
@@ -555,6 +708,7 @@ _data = {
 script = ExtResource("1_nepas")
 
 [node name="BossTop" type="Node2D" parent="." unique_id=944834287]
+position = Vector2(0, -1)
 
 [node name="Inner" type="Node2D" parent="BossTop" unique_id=551231782]
 
@@ -565,6 +719,14 @@ sprite_frames = SubResource("SpriteFrames_0dxmq")
 [node name="Head" type="Sprite2D" parent="BossTop/Inner" unique_id=1128169409]
 position = Vector2(539, 141)
 texture = ExtResource("2_1yh4r")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="BossTop/Inner" unique_id=1239319873]
+position = Vector2(539, 132)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BossTop/Inner/StaticBody2D" unique_id=1845368267]
+position = Vector2(3, -14)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_u4npt")
 
 [node name="Middle" type="Node2D" parent="BossTop" unique_id=660426016]
 position = Vector2(533, 0)
@@ -595,15 +757,18 @@ shape = SubResource("RectangleShape2D_0dxmq")
 one_way_collision = true
 
 [node name="Willow" parent="." unique_id=1438157277 instance=ExtResource("5_etmko")]
-position = Vector2(1487, 735)
+position = Vector2(1663, 843)
 
 [node name="BossBottom" type="Node2D" parent="." unique_id=1123362090]
+position = Vector2(0, -1)
 
 [node name="Inner" type="Node2D" parent="BossBottom" unique_id=1489758419]
 
 [node name="RightHand" type="StaticBody2D" parent="BossBottom/Inner" unique_id=1485110053]
+visible = false
 position = Vector2(1001, 757)
 script = ExtResource("8_l2vqj")
+about_to_crush = true
 
 [node name="Sprite" type="Sprite2D" parent="BossBottom/Inner/RightHand" unique_id=1637545783]
 rotation = -3.1415925
@@ -625,8 +790,8 @@ position = Vector2(-10, 127)
 rotation = 0.23561946
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BossBottom/Inner/RightHand/CrushArea" unique_id=189763706]
-position = Vector2(-69.07301, 72.117355)
-rotation = -1.98793
+position = Vector2(-59.07135, 84.08765)
+rotation = 0.5410521
 scale = Vector2(1.0000002, 1.0000002)
 shape = SubResource("RectangleShape2D_fp75s")
 
@@ -702,5 +867,4 @@ position = Vector2(234, 405)
 [node name="RightHandLimit" type="Node2D" parent="." unique_id=1261325365]
 position = Vector2(1060, 375)
 
-[connection signal="crushed" from="BossBottom/Inner/LeftHand" to="." method="_crushed"]
 [connection signal="crushed" from="BossBottom/Inner/LeftHand" to="." method="_on_crushed"]

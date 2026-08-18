@@ -47,10 +47,13 @@ func move_boss_towards(point: Node2D):
 func _process(delta: float) -> void:
 	if willow.global_position.x < left_hand_limit.global_position.x:
 		move_boss_towards(boss_top)
+		dolly.locked_offset = 400
 	elif willow.global_position.x > left_hand_limit.global_position.x and willow.global_position.x < right_hand_limit.global_position.x:
 		move_boss_towards(boss_middle)
+		dolly.locked_offset = 0
 	elif willow.global_position.x > right_hand_limit.global_position.x:
 		move_boss_towards(boss_right)
+		dolly.locked_offset = -400
 	else:
 		bob_animation_player.pause()
 		slam_animation_player.play("ArmsDown")
