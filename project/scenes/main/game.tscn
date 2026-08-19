@@ -4,3 +4,4 @@
 
 [node name="Game" type="Node2D" unique_id=1279552812]
 script = ExtResource("1_ma5rq")
+start_scene = "boss_1"

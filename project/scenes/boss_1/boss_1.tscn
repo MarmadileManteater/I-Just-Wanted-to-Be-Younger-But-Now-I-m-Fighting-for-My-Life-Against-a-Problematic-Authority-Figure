@@ -160,16 +160,11 @@ Label/styles/normal = SubResource("StyleBoxFlat_74ww5")
 font_names = PackedStringArray("Monospace")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c8b3l"]
-size = Vector2(344, 44)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ywren"]
-size = Vector2(291.75, 44)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_74ww5"]
-size = Vector2(232.62381, 44)
+size = Vector2(384, 44)
 
 [sub_resource type="Animation" id="Animation_tdco0"]
 resource_name = "Bounce"
+length = 2.0
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -181,9 +176,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": ["let's talk 
-about improving
-your velocity"]
+"values": ["let's circle back"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -192,10 +185,10 @@ tracks/1/path = NodePath("Label:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 0.99842936),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.19999999, 0.3, 0.39999998, 0.49999997, 0.6, 0.7, 0.79999995, 0.9, 0.99999994, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-206, -78.97693), Vector2(-206, -93.977), Vector2(-206, -78.97693)]
+"values": [Vector2(-223, -24), Vector2(-151, -35), Vector2(-126, -62), Vector2(-112, -94), Vector2(-108, -133), Vector2(-122, -176), Vector2(-141, -201), Vector2(-170, -221), Vector2(-204, -231), Vector2(-254, -225), Vector2(-289, -204), Vector2(-309, -184), Vector2(-321, -159), Vector2(-327, -129), Vector2(-323, -96), Vector2(-315, -72), Vector2(-301, -51), Vector2(-287, -39), Vector2(-273, -28)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -204,34 +197,10 @@ tracks/2/path = NodePath("CollisionShape2D:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5, 0.99842936),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.19999999, 0.3, 0.39999998, 0.49999997, 0.6, 0.7, 0.79999995, 0.9, 0.99999994, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-35, 2), Vector2(-35, -13), Vector2(-35, 2)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("CollisionShape2D3:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.5, 0.9986807),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(-63, 55.02307), Vector2(-63, 40.023), Vector2(-63, 55.02307)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("CollisionShape2D2:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.4971771, 0.5, 0.9986807),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(-86.5625, -49.97693), Vector2(-90.63878, -64.8923), Vector2(-92.75, -64.977), Vector2(-86.5625, -49.97693)]
+"values": [Vector2(-35, 2), Vector2(37, -9), Vector2(62, -36), Vector2(76, -68), Vector2(80, -107), Vector2(66, -150), Vector2(47, -175), Vector2(18, -195), Vector2(-16, -205), Vector2(-66, -199), Vector2(-101, -178), Vector2(-121, -158), Vector2(-133, -133), Vector2(-139, -103), Vector2(-135, -70), Vector2(-127, -46), Vector2(-113, -25), Vector2(-99, -13), Vector2(-85, -2)]
 }
 
 [sub_resource type="Animation" id="Animation_u4d0x"]
@@ -273,34 +242,9 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(-35, 2)]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("CollisionShape2D3:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-63, 55.02307)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("CollisionShape2D2:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-92.75, -49.97693)]
-}
 
 [sub_resource type="Animation" id="Animation_m0mga"]
 resource_name = "Typewriter"
-length = 1.7
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -308,29 +252,34 @@ tracks/0/path = NodePath("Label:text")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": ["", "le", "let's ", "let's ta", "let's talk", "let's talk
-ab", "let's talk
-abou", "let's talk
-about", "let's talk
-about im", "let's talk
-about impro", "let's talk
-about improvi", "let's talk
-about improving", "let's talk
-about improving
-yo", "let's talk
-about improving
-your ", "let's talk
-about improving
-your ve", "let's talk
-about improving
-your velo", "let's talk
-about improving
-your veloci", "let's talk
-about improving
-your velocity"]
+"values": ["", "le", "let's", "let's ci", "let's circ", "let's circle", "let's circle ba", "let's circle back"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-223, -24)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-35, 2)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_v3oh7"]
@@ -1280,10 +1229,14 @@ position = Vector2(224, 223)
 script = ExtResource("5_ywren")
 
 [node name="Label" type="Label" parent="BossTop/Inner/Projectiles/Projectile3" unique_id=1131551234]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
 offset_left = -206.0
 offset_top = -78.97693
 offset_right = 171.0
-offset_bottom = 80.02307
+offset_bottom = -27.976929
+grow_vertical = 2
 theme = SubResource("Theme_0dxmq")
 theme_override_fonts/font = SubResource("SystemFont_1cv1e")
 theme_override_font_sizes/font_size = 37
@@ -1292,14 +1245,6 @@ metadata/_edit_use_anchors_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BossTop/Inner/Projectiles/Projectile3" unique_id=1870105300]
 position = Vector2(-35, 2)
 shape = SubResource("RectangleShape2D_c8b3l")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="BossTop/Inner/Projectiles/Projectile3" unique_id=1377094307]
-position = Vector2(-63, 55.02307)
-shape = SubResource("RectangleShape2D_ywren")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="BossTop/Inner/Projectiles/Projectile3" unique_id=1749509174]
-position = Vector2(-92.75, -49.97693)
-shape = SubResource("RectangleShape2D_74ww5")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="BossTop/Inner/Projectiles/Projectile3" unique_id=492978746]
 libraries/ = SubResource("AnimationLibrary_v3oh7")
@@ -1315,7 +1260,7 @@ anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = -206.0
 offset_top = -78.97693
-offset_right = -205.0
+offset_right = 105.0
 offset_bottom = -27.976929
 grow_vertical = 2
 theme = SubResource("Theme_0dxmq")
