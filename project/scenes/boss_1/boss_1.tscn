@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://2qhqvq6u3vw6"]
 
 [ext_resource type="Script" uid="uid://badrsoy56kcd8" path="res://scenes/boss_1/boss_1.gd" id="1_nepas"]
-[ext_resource type="Texture2D" uid="uid://2snou2ybvw0h" path="res://sprites/head_1.png" id="2_1yh4r"]
 [ext_resource type="Script" uid="uid://bw780oec06aj" path="res://scenes/boss_1/boss_top.gd" id="2_74ww5"]
 [ext_resource type="Texture2D" uid="uid://bt0y77ihi58si" path="res://sprites/shoulders_1_left_arm_animation.png" id="2_rcy0q"]
 [ext_resource type="PackedScene" uid="uid://be0maisut5gpu" path="res://scenes/nested/dolly/dolly.tscn" id="4_arhcc"]
@@ -9,6 +8,8 @@
 [ext_resource type="Script" uid="uid://cnk3myx7ogc3x" path="res://scenes/boss_1/projectiles.gd" id="5_0mk2c"]
 [ext_resource type="PackedScene" uid="uid://eihccgfb2yif" path="res://scenes/nested/health_display/health_display.tscn" id="5_arhcc"]
 [ext_resource type="PackedScene" uid="uid://c8b7r642fn2vm" path="res://scenes/nested/willow/willow.tscn" id="5_etmko"]
+[ext_resource type="Script" uid="uid://bj6hqovln81ld" path="res://scenes/boss_1/head.gd" id="5_rl3h1"]
+[ext_resource type="Texture2D" uid="uid://2lsq88bs8jqn" path="res://sprites/boss_1_eyes_closed.png" id="5_tdco0"]
 [ext_resource type="Script" uid="uid://ke61pj0l6ej2" path="res://scenes/boss_1/projectile.gd" id="5_ywren"]
 [ext_resource type="Texture2D" uid="uid://cekyllahod40u" path="res://sprites/building_3.png" id="7_jr0hl"]
 [ext_resource type="Texture2D" uid="uid://xgy32qthpajl" path="res://sprites/building_topper_3.png" id="8_5ksyy"]
@@ -104,6 +105,106 @@ animations = [{
 "name": &"right_raise",
 "speed": 7.0
 }]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_u4d0x"]
+load_path = "res://.godot/imported/head_1.png-06bee78f577512554de104c76b83cfb4.ctex"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u4npt"]
+radius = 139.0
+height = 323.8022
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6wcjf"]
+radius = 90.27181
+
+[sub_resource type="Animation" id="Animation_bj665"]
+resource_name = "Default"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ClosedEyes:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(539, 141)]
+}
+
+[sub_resource type="Animation" id="Animation_5da30"]
+resource_name = "Hurt"
+length = 0.19999999999999998
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ClosedEyes:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.10121903, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(539, 141), Vector2(539, 159), Vector2(539, 141)]
+}
+
+[sub_resource type="Animation" id="Animation_scamq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ClosedEyes:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(539, 141)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wp5cm"]
+_data = {
+&"Default": SubResource("Animation_bj665"),
+&"Hurt": SubResource("Animation_5da30"),
+&"RESET": SubResource("Animation_scamq")
+}
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nohon"]
 atlas = ExtResource("4_c8b3l")
@@ -1254,7 +1355,30 @@ sprite_frames = SubResource("SpriteFrames_0dxmq")
 
 [node name="Head" type="Sprite2D" parent="BossTop/Inner" unique_id=1128169409]
 position = Vector2(539, 141)
-texture = ExtResource("2_1yh4r")
+texture = SubResource("CompressedTexture2D_u4d0x")
+
+[node name="Area2D" type="Area2D" parent="BossTop/Inner/Head" unique_id=2116540043]
+script = ExtResource("5_rl3h1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BossTop/Inner/Head/Area2D" unique_id=1912868108]
+visible = false
+position = Vector2(0, -20)
+rotation = -0.2617994
+shape = SubResource("CapsuleShape2D_u4npt")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="BossTop/Inner/Head/Area2D" unique_id=208543220]
+visible = false
+position = Vector2(49, -77)
+shape = SubResource("CircleShape2D_6wcjf")
+
+[node name="ClosedEyes" type="Sprite2D" parent="BossTop/Inner/Head" unique_id=354470306]
+visible = false
+position = Vector2(9.999988, -43)
+scale = Vector2(0.6122568, 0.6587078)
+texture = ExtResource("5_tdco0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BossTop/Inner/Head" unique_id=1712452994]
+libraries/ = SubResource("AnimationLibrary_wp5cm")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="BossTop/Inner" unique_id=1239319873]
 position = Vector2(539, 132)
