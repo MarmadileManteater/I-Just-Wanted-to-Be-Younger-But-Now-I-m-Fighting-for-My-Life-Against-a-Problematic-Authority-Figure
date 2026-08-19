@@ -424,18 +424,12 @@ _data = {
 radius = 92.19891
 height = 218.79565
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fcxea"]
-size = Vector2(157.98944, 350.88568)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fp75s"]
 size = Vector2(117.48494, 404.99915)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0dxmq"]
 radius = 97.0
 height = 214.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_u4npt"]
-size = Vector2(154.5098, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6wcjf"]
 size = Vector2(102.91751, 473.87155)
@@ -1314,13 +1308,6 @@ rotation = -0.33161256
 shape = SubResource("CapsuleShape2D_6wcjf")
 one_way_collision = true
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="BossBottom/Inner/RightHand" unique_id=281879821]
-position = Vector2(-6.0718994, -164.66057)
-rotation = -0.15533431
-shape = SubResource("RectangleShape2D_fcxea")
-one_way_collision = true
-one_way_collision_direction = Vector2(-1, 0)
-
 [node name="CrushArea" type="Area2D" parent="BossBottom/Inner/RightHand" unique_id=970410906]
 position = Vector2(-10, 127)
 rotation = 0.23561946
@@ -1346,14 +1333,6 @@ position = Vector2(-10, 4)
 rotation = 0.23561946
 shape = SubResource("CapsuleShape2D_0dxmq")
 one_way_collision = true
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="BossBottom/Inner/LeftHand" unique_id=730380963]
-position = Vector2(54.272728, -134.6203)
-rotation = 0.5061455
-scale = Vector2(1, 19)
-shape = SubResource("RectangleShape2D_u4npt")
-one_way_collision = true
-one_way_collision_direction = Vector2(1, 0)
 
 [node name="CrushArea" type="Area2D" parent="BossBottom/Inner/LeftHand" unique_id=666071609]
 position = Vector2(-10, 127)

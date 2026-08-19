@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://dklqx8dc7uc87" path="res://sprites/willow_mg_disintegrate_animation_1.png" id="4_fce71"]
 [ext_resource type="Script" uid="uid://dkkdd3f8mas32" path="res://scripts/animated_sprite2d.gd" id="5_bxhn5"]
 [ext_resource type="Texture2D" uid="uid://crnr1aga3xnxv" path="res://sprites/wand.png" id="8_6js4h"]
+[ext_resource type="Texture2D" uid="uid://bn0g5xecjbyjf" path="res://sprites/lightning_bolt.png" id="9_65i1c"]
+[ext_resource type="Script" uid="uid://ckglf2s2dppa8" path="res://scenes/nested/willow/zap_projectile.gd" id="9_acr3p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fce71"]
 atlas = ExtResource("2_1gub3")
@@ -153,6 +155,7 @@ animations = [{
 
 [sub_resource type="Animation" id="Animation_65i1c"]
 length = 0.001
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -231,7 +234,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [-0.9948376736367679]
+"values": [-0.994837673636768]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bfglh"]
@@ -240,6 +243,9 @@ _data = {
 &"point": SubResource("Animation_acr3p"),
 &"point_up": SubResource("Animation_gfl7v")
 }
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_acr3p"]
+size = Vector2(28.987703, 80.01228)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eg7ul"]
 size = Vector2(51, 274)
@@ -314,7 +320,6 @@ autoplay = "default"
 script = ExtResource("5_bxhn5")
 
 [node name="Wand" type="Sprite2D" parent="Sprite" unique_id=1819063030]
-visible = false
 position = Vector2(-147, 1)
 rotation = -1.5707964
 texture = ExtResource("8_6js4h")
@@ -322,6 +327,24 @@ texture = ExtResource("8_6js4h")
 [node name="WandAnimationPlayer" type="AnimationPlayer" parent="Sprite/Wand" unique_id=1532676170]
 root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_bfglh")
+
+[node name="Projectile" type="Area2D" parent="Sprite/Wand" unique_id=956168497]
+visible = false
+position = Vector2(4.0594087, -83.71691)
+script = ExtResource("9_acr3p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/Wand/Projectile" unique_id=1825788758]
+position = Vector2(4.1593246, -1.0341644)
+rotation = 0.087266445
+shape = SubResource("RectangleShape2D_acr3p")
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite/Wand/Projectile" unique_id=1192330803]
+texture = ExtResource("9_65i1c")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Sprite/Wand/Projectile" unique_id=1321786515]
+position = Vector2(-0.059407473, 49.71692)
+rotation = 0.07679449
+rect = Rect2(-15.14398, -10, 28.952663, 20)
 
 [node name="Shape" type="CollisionShape2D" parent="." unique_id=802599809]
 position = Vector2(1.5, -2)
