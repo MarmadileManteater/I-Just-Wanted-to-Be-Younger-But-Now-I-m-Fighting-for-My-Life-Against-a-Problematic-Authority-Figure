@@ -55,6 +55,9 @@ func move(_animation_name) -> void:
 func collide(body: Node2D):
 	if body == selected_target:
 		if is_moving:
-			get_parent().remove_child(self)
-			emit_signal("damage")
-			self.queue_free()
+			call_deferred("emit_damage")
+
+func emit_damage():
+	get_parent().remove_child(self)
+	emit_signal("damage")
+	self.queue_free()	

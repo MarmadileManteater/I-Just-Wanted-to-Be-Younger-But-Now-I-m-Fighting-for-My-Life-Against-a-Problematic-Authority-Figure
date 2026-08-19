@@ -62,6 +62,11 @@ func fire():
 		parent.position.x += 100
 	parent.add_child(projectile)
 	get_parent().add_child(parent)
+	projectile.destroy.connect(
+		func ():
+			get_parent().remove_child(parent)
+			parent.queue_free()
+	)
 	projectile.fire()
 
 func _ready() -> void:
