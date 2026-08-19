@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dewhu0dbsgn6p" path="res://sprites/willow_mg_jump_animation_1.png" id="3_30s3t"]
 [ext_resource type="Texture2D" uid="uid://dklqx8dc7uc87" path="res://sprites/willow_mg_disintegrate_animation_1.png" id="4_fce71"]
 [ext_resource type="Script" uid="uid://dkkdd3f8mas32" path="res://scripts/animated_sprite2d.gd" id="5_bxhn5"]
+[ext_resource type="Texture2D" uid="uid://crnr1aga3xnxv" path="res://sprites/wand.png" id="8_6js4h"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fce71"]
 atlas = ExtResource("2_1gub3")
@@ -150,6 +151,96 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_65i1c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-147, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Wand:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.5707964]
+}
+
+[sub_resource type="Animation" id="Animation_acr3p"]
+resource_name = "point"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-147, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Wand:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.5707964]
+}
+
+[sub_resource type="Animation" id="Animation_gfl7v"]
+resource_name = "point_up"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-147, -30)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Wand:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.9948376736367679]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bfglh"]
+_data = {
+&"RESET": SubResource("Animation_65i1c"),
+&"point": SubResource("Animation_acr3p"),
+&"point_up": SubResource("Animation_gfl7v")
+}
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eg7ul"]
 size = Vector2(51, 274)
 
@@ -221,6 +312,16 @@ sprite_frames = SubResource("SpriteFrames_kds0v")
 animation = &"disintegrate"
 autoplay = "default"
 script = ExtResource("5_bxhn5")
+
+[node name="Wand" type="Sprite2D" parent="Sprite" unique_id=1819063030]
+visible = false
+position = Vector2(-147, 1)
+rotation = -1.5707964
+texture = ExtResource("8_6js4h")
+
+[node name="WandAnimationPlayer" type="AnimationPlayer" parent="Sprite/Wand" unique_id=1532676170]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_bfglh")
 
 [node name="Shape" type="CollisionShape2D" parent="." unique_id=802599809]
 position = Vector2(1.5, -2)

@@ -17,7 +17,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if about_to_crush:
 		if crushed_body != null:
-			emit_signal("crushed")
+			emit_signal("crushed", global_position)
 
 func _on_body_entered_crush_area(body: Node2D):
 	if body.name == character_name:

@@ -16,6 +16,7 @@ var gravity_enabled: bool = true
 var sprite: AnimatedSpriteExtension
 var shape: CollisionShape2D
 var animation_player: AnimationPlayer
+var wand_animation_player: AnimationPlayer
 
 func change_animation(name: String) -> void:
 	sprite.change_animation(name)
@@ -44,7 +45,11 @@ func _ready() -> void:
 	sprite = find_child("Sprite")
 	shape = find_child("Shape")
 	animation_player = find_child("AnimationPlayer")
-	sprite.flip_h = starting_direction == DIRECTION.RIGHT
+	wand_animation_player = find_child("WandAnimationPlayer", true)
+	if starting_direction == DIRECTION.RIGHT:
+		sprite.scale.x = -1
+	else:
+		sprite.scale.x = 1
 
 func _input(event: InputEvent) -> void:
 	if event.is_action("ui_shift"):
@@ -61,6 +66,11 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
+	if Input.is_action_just_pressed("ui_up"):
+		wand_animation_player.play("point_up")
+	if Input.is_action_just_released("ui_up"):
+		wand_animation_player.play("point")
+
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("ui_left", "ui_right")
@@ -68,7 +78,10 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direction * SPEED
 		if is_running:
 			velocity.x *= RUNNING_MULTIPLIER
-		sprite.flip_h = direction > 0
+		if direction > 0:
+			sprite.scale.x = -1
+		else:
+			sprite.scale.x = 1
 		if is_on_floor():
 			sprite.change_animation("walk")
 			if is_running:

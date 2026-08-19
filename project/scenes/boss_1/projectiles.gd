@@ -1,0 +1,31 @@
+extends Node2D
+
+class_name TextProjectiles
+
+signal damage
+signal projectile_moving
+
+var projectiles: Array
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	projectiles = find_children("Projectile*")
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+func fire(target: Node2D) -> void:
+	var projectile: TextProjectile = projectiles.pick_random()
+	var duplicate = projectile.duplicate()
+	duplicate.damage.connect(
+		func ():
+			emit_signal("damage")
+	)
+	duplicate.moving.connect(
+		func ():
+			emit_signal("projectile_moving")
+	)
+	get_parent().add_child(duplicate)
+	duplicate.visible = true
+	duplicate.fire(target)
