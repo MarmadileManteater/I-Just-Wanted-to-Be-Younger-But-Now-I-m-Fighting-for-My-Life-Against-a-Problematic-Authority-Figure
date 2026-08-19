@@ -146,17 +146,71 @@ animations = [{
 "speed": 7.0
 }]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_74ww5"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rl3h1"]
 bg_color = Color(0, 0, 0, 1)
 
-[sub_resource type="Theme" id="Theme_0dxmq"]
-Label/styles/normal = SubResource("StyleBoxFlat_74ww5")
+[sub_resource type="Theme" id="Theme_tdco0"]
+Label/styles/normal = SubResource("StyleBoxFlat_rl3h1")
 
 [sub_resource type="SystemFont" id="SystemFont_1cv1e"]
 font_names = PackedStringArray("Monospace")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c8b3l"]
 size = Vector2(384, 44)
+
+[sub_resource type="Animation" id="Animation_5e884"]
+resource_name = "Default"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:theme:Label/styles/normal:bg_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_v3oh7"]
+resource_name = "Flash"
+length = 0.060000000000000005
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:theme:Label/styles/normal:bg_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.03333333, 0.05710951),
+"transitions": PackedFloat32Array(1e-05, 1e-05, 59.713997),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_nt7mg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:theme:Label/styles/normal:bg_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5e884"]
+_data = {
+&"Default": SubResource("Animation_5e884"),
+&"Flash": SubResource("Animation_v3oh7"),
+&"RESET": SubResource("Animation_nt7mg")
+}
 
 [sub_resource type="Animation" id="Animation_tdco0"]
 resource_name = "Bounce"
@@ -284,6 +338,12 @@ _data = {
 &"RESET": SubResource("Animation_u4d0x"),
 &"Typewriter": SubResource("Animation_m0mga")
 }
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_74ww5"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_0dxmq"]
+Label/styles/normal = SubResource("StyleBoxFlat_74ww5")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0mk2c"]
 size = Vector2(315.5, 44)
@@ -1222,7 +1282,7 @@ offset_top = -78.97693
 offset_right = 171.0
 offset_bottom = -27.976929
 grow_vertical = 2
-theme = SubResource("Theme_0dxmq")
+theme = SubResource("Theme_tdco0")
 theme_override_fonts/font = SubResource("SystemFont_1cv1e")
 theme_override_font_sizes/font_size = 37
 metadata/_edit_use_anchors_ = true
@@ -1230,6 +1290,9 @@ metadata/_edit_use_anchors_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BossTop/Inner/Projectiles/Projectile3" unique_id=1870105300]
 position = Vector2(-35, 2)
 shape = SubResource("RectangleShape2D_c8b3l")
+
+[node name="FlashPlayer" type="AnimationPlayer" parent="BossTop/Inner/Projectiles/Projectile3" unique_id=239603072]
+libraries/ = SubResource("AnimationLibrary_5e884")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="BossTop/Inner/Projectiles/Projectile3" unique_id=492978746]
 libraries/ = SubResource("AnimationLibrary_v3oh7")
@@ -1256,6 +1319,9 @@ metadata/_edit_use_anchors_ = true
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="BossTop/Inner/Projectiles/Projectile4" unique_id=43161338]
 position = Vector2(-92.75, -49.97693)
 shape = SubResource("RectangleShape2D_0mk2c")
+
+[node name="FlashPlayer" type="AnimationPlayer" parent="BossTop/Inner/Projectiles/Projectile4" unique_id=1813805297]
+libraries/ = SubResource("AnimationLibrary_5e884")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="BossTop/Inner/Projectiles/Projectile4" unique_id=2085514161]
 libraries/ = SubResource("AnimationLibrary_nt7mg")

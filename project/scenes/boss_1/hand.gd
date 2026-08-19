@@ -26,3 +26,6 @@ func _on_body_entered_crush_area(body: Node2D):
 func _on_body_exited_crush_area(body: Node2D):
 	if body.name == character_name:
 		crushed_body = null
+
+func _on_zap_projectile_collide() -> bool:
+	return true

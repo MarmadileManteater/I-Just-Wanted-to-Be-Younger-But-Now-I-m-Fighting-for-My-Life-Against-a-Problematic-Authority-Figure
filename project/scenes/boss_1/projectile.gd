@@ -5,16 +5,20 @@ class_name TextProjectile
 signal damage
 signal moving
 
+@export var health: float = 10
+
 @export var speed: float = 1
 @export var timeout: float = 15
 
 var animation_player: AnimationPlayer
+var flash_player: AnimationPlayer
 
 var selected_target: Node2D = null
 var is_moving: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	flash_player = get_child(get_child_count() - 2)
 	animation_player = get_child(get_child_count() - 1)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -31,6 +35,7 @@ func _process(delta: float) -> void:
 				position.y += speed
 
 func fire(target: Node2D) -> void:
+	flash_player.play("Default")
 	selected_target = target
 	animation_player.play("Typewriter")
 	animation_player.animation_finished.connect(move)
@@ -60,4 +65,15 @@ func collide(body: Node2D):
 func emit_damage():
 	get_parent().remove_child(self)
 	emit_signal("damage")
-	self.queue_free()	
+	self.queue_free()
+
+func _on_zap_projectile_collide() -> bool:
+	if is_moving:
+		health -= 1
+		flash_player.play("Flash")
+		if health <= 0:
+			get_parent().remove_child(self)
+			self.queue_free()
+		return true
+	else:
+		return false

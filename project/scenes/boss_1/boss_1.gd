@@ -45,7 +45,8 @@ func move_boss_towards(point: Node2D, arm: String = ""):
 			bob_animation_player.pause()
 			if arm != "":
 				slam_animation_player.play_with_memory(arm + "ArmRaise")
-				slam_animation_player.animation_finished.connect(slam_hand)
+				if not slam_animation_player.animation_finished.is_connected(slam_hand):
+					slam_animation_player.animation_finished.connect(slam_hand)
 			else:
 				slam_animation_player.play_with_memory("ArmsDown")
 				boss_top.fire_projectile(willow)
