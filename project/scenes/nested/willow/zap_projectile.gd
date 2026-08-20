@@ -32,7 +32,7 @@ func destroy_self() -> void:
 	emit_signal("destroy")
 	
 func _on_body_entered(node: Node2D):
-	print(node)
-	if node.has_method("_on_zap_projectile_collide"):
-		if node._on_zap_projectile_collide():
-			destroy_self()
+	if is_active:
+		if node.has_method("_on_zap_projectile_collide"):
+			if node._on_zap_projectile_collide():
+				destroy_self()
