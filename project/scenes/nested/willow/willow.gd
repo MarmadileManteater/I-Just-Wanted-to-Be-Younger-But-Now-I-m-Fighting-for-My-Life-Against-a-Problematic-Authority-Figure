@@ -21,6 +21,12 @@ var wand_animation_player: AnimationPlayer
 var wand: Sprite2D
 var wand_projectile: ZapProjectile
 
+func run(lambda: Callable) -> void:
+	lambda.call()
+
+func run_deferred(lambda: Callable) -> void:
+	call_deferred("run", lambda)
+
 func activate_wand() -> void:
 	wand.show()
 
@@ -65,8 +71,11 @@ func fire():
 	get_parent().add_child(parent)
 	projectile.destroy.connect(
 		func ():
-			get_parent().remove_child(parent)
-			parent.queue_free()
+			run_deferred(
+				func():
+					get_parent().remove_child(parent)
+					parent.queue_free()
+			)
 	)
 	projectile.fire()
 
