@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cqgktmd3cbao4"
+path="res://.godot/imported/News Reel.ogg-9772dfdf96de5fd53cce73ea983ac4ec.oggvorbisstr"
+
+[deps]
+
+source_file="res://music/News Reel.ogg"
+dest_files=["res://.godot/imported/News Reel.ogg-9772dfdf96de5fd53cce73ea983ac4ec.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

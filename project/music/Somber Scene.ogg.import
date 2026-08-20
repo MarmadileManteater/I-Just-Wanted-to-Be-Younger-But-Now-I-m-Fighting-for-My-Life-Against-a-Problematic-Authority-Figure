@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dg6wqkydmdlsh"
+path="res://.godot/imported/Somber Scene.ogg-0ffbc2e0a05a554c647ee402b26ce8b0.oggvorbisstr"
+
+[deps]
+
+source_file="res://music/Somber Scene.ogg"
+dest_files=["res://.godot/imported/Somber Scene.ogg-0ffbc2e0a05a554c647ee402b26ce8b0.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
