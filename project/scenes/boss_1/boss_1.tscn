@@ -262,7 +262,7 @@ size = Vector2(384, 44)
 
 [sub_resource type="Animation" id="Animation_5e884"]
 resource_name = "Default"
-length = 0.1
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -844,6 +844,18 @@ tracks/10/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("BossBottom/Inner/LeftHand/CollisionShape2D:disabled")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 0.76666665),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="Animation" id="Animation_fp75s"]
 resource_name = "LeftArmSlam"
@@ -975,6 +987,18 @@ tracks/10/path = NodePath("BossBottom/Inner/RightHand:about_to_crush")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("BossBottom/Inner/LeftHand/CollisionShape2D:disabled")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -1127,6 +1151,30 @@ tracks/11/keys = {
 "update": 1,
 "values": [-5]
 }
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("BossBottom/Inner/LeftHand/CollisionShape2D:disabled")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("BossBottom/Inner/RightHand/CollisionShape2D:disabled")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_0mk2c"]
 resource_name = "RightArmRaise"
@@ -1227,6 +1275,18 @@ tracks/7/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("BossBottom/Inner/RightHand/CollisionShape2D:disabled")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="Animation" id="Animation_74ww5"]
 resource_name = "RightArmSlam"
@@ -1322,6 +1382,18 @@ tracks/7/path = NodePath("BossBottom/Inner/LeftHand:about_to_crush")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("BossBottom/Inner/RightHand/CollisionShape2D:disabled")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -1551,15 +1623,14 @@ texture = ExtResource("8_4475d")
 position = Vector2(14, 4)
 rotation = -0.33161256
 shape = SubResource("CapsuleShape2D_6wcjf")
-one_way_collision = true
 
 [node name="CrushArea" type="Area2D" parent="BossBottom/Inner/RightHand" unique_id=970410906]
 position = Vector2(-10, 127)
 rotation = 0.23561946
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BossBottom/Inner/RightHand/CrushArea" unique_id=189763706]
-position = Vector2(-61.91736, 77.382965)
-rotation = 1.1693707
+position = Vector2(-89.41402, 68.77186)
+rotation = 1.3089969
 scale = Vector2(1.0000004, 1.0000004)
 shape = SubResource("RectangleShape2D_fp75s")
 
@@ -1577,7 +1648,7 @@ texture = ExtResource("8_4475d")
 position = Vector2(-10, 4)
 rotation = 0.23561946
 shape = SubResource("CapsuleShape2D_0dxmq")
-one_way_collision = true
+disabled = true
 
 [node name="CrushArea" type="Area2D" parent="BossBottom/Inner/LeftHand" unique_id=666071609]
 position = Vector2(-10, 127)
@@ -1647,8 +1718,9 @@ position = Vector2(234, 405)
 [node name="RightHandLimit" type="Node2D" parent="." unique_id=1261325365]
 position = Vector2(1060, 375)
 
+[connection signal="damage_boss" from="BossTop/Inner/Head/Area2D" to="." method="_on_damage_boss"]
 [connection signal="damage" from="BossTop/Inner/Projectiles" to="." method="_on_projectiles_damage"]
-[connection signal="damage" from="BossTop/Inner/Projectiles" to="BossTop" method="_on_projectiles_damage"]
+[connection signal="projectile_destroyed" from="BossTop/Inner/Projectiles" to="BossTop" method="_on_projectile_destroyed"]
 [connection signal="projectile_moving" from="BossTop/Inner/Projectiles" to="BossTop" method="_on_projectile_moving"]
 [connection signal="crushed" from="BossBottom/Inner/RightHand" to="." method="_on_crushed"]
 [connection signal="crushed" from="BossBottom/Inner/LeftHand" to="." method="_on_crushed"]

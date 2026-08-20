@@ -330,6 +330,7 @@ libraries/ = SubResource("AnimationLibrary_bfglh")
 
 [node name="Projectile" type="Area2D" parent="Sprite/Wand" unique_id=956168497]
 visible = false
+z_index = -1
 position = Vector2(4.0594087, -83.71691)
 script = ExtResource("9_acr3p")
 

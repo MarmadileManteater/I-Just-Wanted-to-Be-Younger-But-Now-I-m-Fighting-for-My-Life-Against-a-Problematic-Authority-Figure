@@ -38,8 +38,7 @@ func hide_speech_bubble():
 	speech_start.play("default")
 	speech_start.animation_finished.disconnect(hide_speech_bubble)
 
-
-func _on_projectiles_damage() -> void:
+func _on_projectile_destroyed() -> void:
 	var timer = Timer.new()
 	timer.one_shot = true
 	add_child(timer)
@@ -50,4 +49,3 @@ func _on_projectiles_damage() -> void:
 			timer.queue_free()
 	)
 	timer.start(fire_timeout)
-	

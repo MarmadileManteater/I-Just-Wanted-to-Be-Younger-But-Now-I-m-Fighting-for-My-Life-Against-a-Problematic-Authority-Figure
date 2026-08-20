@@ -1,5 +1,7 @@
 extends DefaultScene
 
+@export var boss_health: int = 100
+
 @export var player_threshold: int = 10
 @export var boss_speed: int = 2
 var boss_top: Boss1Top
@@ -86,7 +88,6 @@ func _on_crushed(position: Vector2) -> void:
 	willow.position.y = position.y + 300 # magic number
 	willow.die("crushed")
 
-
 func _on_projectiles_damage() -> void:
 	if not willow.invulnerable:
 		hearts.health -= 1
@@ -94,3 +95,11 @@ func _on_projectiles_damage() -> void:
 			willow.die("disintegrate")
 		else:
 			willow.flash()
+
+func _on_damage_boss() -> void:
+	boss_health -= 1
+	print(boss_health)
+	if boss_health < 0:
+		# TODO proper death sequence
+		boss_top.hide()
+		boss_bottom.hide()

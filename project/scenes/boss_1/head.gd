@@ -1,5 +1,7 @@
 extends Area2D
 
+signal damage_boss
+
 var hurt_animation_player: AnimationPlayer
 
 # Called when the node enters the scene tree for the first time.
@@ -14,4 +16,5 @@ func _process(delta: float) -> void:
 
 func _on_zap_projectile_collide() -> bool:
 	hurt_animation_player.play("Hurt")
+	emit_signal("damage_boss")
 	return true
