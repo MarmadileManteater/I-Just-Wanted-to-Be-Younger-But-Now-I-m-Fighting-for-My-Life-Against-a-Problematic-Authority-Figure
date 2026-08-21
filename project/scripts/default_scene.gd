@@ -7,6 +7,7 @@ signal next_screen
 @export var character_name: String = "Willow"
 @export var dolly_axis: Dolly.Axis = Dolly.Axis.X
 @export var dolly_offset: int = 0
+@export var dolly_starts_locked: bool = true
 @export var next_scene_name: String
 
 var willow: Willow
@@ -21,7 +22,8 @@ func _ready() -> void:
 		printerr(character_name + " not found!")
 	dolly = find_child("Dolly", true, false)
 	if dolly != null:
-		dolly.lock(willow, dolly_axis)
+		if dolly_starts_locked:
+			dolly.lock(willow, dolly_axis)
 		dolly.locked_offset = dolly_offset
 	hearts = find_child("HealthDisplay", true, false)
 	if hearts == null:
@@ -31,6 +33,9 @@ func _ready() -> void:
 		next_screen_area.character_name = character_name
 		next_screen_area.scene = next_scene_name
 		next_screen_area.next_scene.connect(_on_next_screen)
+
+func lock_dolly():
+	dolly.lock(willow, dolly_axis)
 
 func _on_next_screen(info: SceneInfo) -> void:
 	info.health = hearts.health

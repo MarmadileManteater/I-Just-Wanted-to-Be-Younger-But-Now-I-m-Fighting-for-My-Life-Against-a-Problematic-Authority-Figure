@@ -320,6 +320,7 @@ autoplay = "default"
 script = ExtResource("5_bxhn5")
 
 [node name="Wand" type="Sprite2D" parent="Sprite" unique_id=1819063030]
+visible = false
 position = Vector2(-147, 1)
 rotation = -1.5707964
 texture = ExtResource("8_6js4h")

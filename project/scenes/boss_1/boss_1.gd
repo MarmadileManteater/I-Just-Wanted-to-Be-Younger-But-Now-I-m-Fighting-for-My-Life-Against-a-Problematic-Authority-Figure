@@ -7,17 +7,20 @@ extends DefaultScene
 @export var boss_speed: int = 2
 
 var stage_changing: bool = false
+var boss_started: bool = false
 
 var boss_top: Boss1Top
 var boss_bottom: Node2D
 var boss_middle: Node2D
 var boss_right: Node2D
+var wand_pickup: RigidBody2D
 
 var left_hand_limit: Node2D
 var right_hand_limit: Node2D
 
 var slam_animation_player: AnimationPlayerExtended
 var bob_animation_player: AnimationPlayer
+var drop_animation_player: AnimationPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -26,12 +29,14 @@ func _ready() -> void:
 	boss_bottom = find_child("BossBottom")
 	boss_middle = boss_top.find_child("Middle")
 	boss_right = boss_top.find_child("Right")
+	wand_pickup = find_child("WandPickup")
 	
 	left_hand_limit = find_child("LeftHandLimit")
 	right_hand_limit = find_child("RightHandLimit")
 	
 	slam_animation_player = find_child("SlamAnimationPlayer")
 	bob_animation_player = find_child("BobbingAnimationPlayer")
+	drop_animation_player = find_child("DropPlayer", true)
 	
 	willow.bounce(1.5)
 
@@ -92,6 +97,8 @@ func after_stage_change(name: String):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if not boss_started:
+		return
 	if stage_changing:
 		return
 	if boss_stage >= 3:
@@ -130,3 +137,21 @@ func _on_damage_boss() -> void:
 		# TODO proper death sequence
 		boss_top.hide()
 		boss_bottom.hide()
+
+func _on_death_zone_entered(body: Node2D) -> void:
+	if body == willow:
+		willow.die()
+		hearts.health = 0
+
+func _on_tip_window_done() -> void:
+	willow.controls_locked = false
+	drop_animation_player.play("Drop")
+
+
+func _on_pickup_window_entered(body: Node2D) -> void:
+	if body == willow and not boss_started:
+		lock_dolly()
+		willow.activate_wand() 
+		remove_child(wand_pickup)
+		boss_started = true
+		find_child("AudioStreamPlayer2D", true).play()

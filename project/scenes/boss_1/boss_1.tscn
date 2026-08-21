@@ -20,7 +20,9 @@
 [ext_resource type="Texture2D" uid="uid://bjvvuhf3tq2jg" path="res://sprites/bottom_mouth_1.png" id="8_v3oh7"]
 [ext_resource type="Texture2D" uid="uid://5q2vli88qe0p" path="res://sprites/platform_1.png" id="9_fp75s"]
 [ext_resource type="Script" uid="uid://cqmvyq8jn4svt" path="res://scripts/AnimationPlayerExtensions.gd" id="12_4475d"]
+[ext_resource type="PackedScene" uid="uid://k17lgk7i63ex" path="res://scenes/nested/tip_window/tip_window.tscn" id="15_nohon"]
 [ext_resource type="AudioStream" uid="uid://c4f3682mw0kk1" path="res://music/Boss 1.ogg" id="18_tdco0"]
+[ext_resource type="Texture2D" uid="uid://crnr1aga3xnxv" path="res://sprites/wand.png" id="23_avt3k"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5ksyy"]
 atlas = ExtResource("2_rcy0q")
@@ -835,6 +837,9 @@ _data = {
 &"RESET": SubResource("Animation_nohon"),
 &"Typewriter": SubResource("Animation_avt3k")
 }
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v3oh7"]
+size = Vector2(2803, 41)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6wcjf"]
 radius = 92.19891
@@ -1940,11 +1945,91 @@ _data = {
 &"RESET": SubResource("Animation_c8b3l")
 }
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_nt7mg"]
+bounce = 0.67
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0dxmq"]
+radius = 81.00617
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u4npt"]
+size = Vector2(12, 68)
+
+[sub_resource type="Animation" id="Animation_c2h2s"]
+resource_name = "Drop"
+length = 1.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:freeze")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_vryhj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:freeze")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PickupWindow:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tjq82"]
+_data = {
+&"Drop": SubResource("Animation_c2h2s"),
+&"RESET": SubResource("Animation_vryhj")
+}
+
+[sub_resource type="Animation" id="Animation_ure3t"]
+resource_name = "Hover"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PickupWindow:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -10), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4xipk"]
+_data = {
+&"Hover": SubResource("Animation_ure3t")
+}
+
 [node name="Boss1" type="Node2D" unique_id=337002591]
 script = ExtResource("1_nepas")
+dolly_starts_locked = false
 
 [node name="BossTop" type="Node2D" parent="." unique_id=944834287]
-position = Vector2(0, -1)
+position = Vector2(-51, -1)
 script = ExtResource("2_74ww5")
 
 [node name="Inner" type="Node2D" parent="BossTop" unique_id=551231782]
@@ -2092,11 +2177,23 @@ position = Vector2(-427, -274)
 stream = ExtResource("18_tdco0")
 parameters/looping = true
 
+[node name="DeathZone" type="Area2D" parent="Dolly" unique_id=1242287359]
+position = Vector2(-58, 389)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dolly/DeathZone" unique_id=1248036639]
+position = Vector2(-19.5, 235.5)
+shape = SubResource("RectangleShape2D_v3oh7")
+
+[node name="TipWindow" parent="Dolly" unique_id=1832516139 instance=ExtResource("15_nohon")]
+position = Vector2(-84, -175)
+text = PackedStringArray("Alright, hot shot.\\nDon\'t get too cocky \'cause the next part\\nis the hardest. ", "While your suffering IS enjoyable\\nto me, I figure it is only fair you actually\\nhave a chance here.", "Anywho~!\\nHere\'s something that should help.")
+
 [node name="Willow" parent="." unique_id=1438157277 instance=ExtResource("5_etmko")]
 position = Vector2(1579, 716)
+controls_locked = true
 
 [node name="BossBottom" type="Node2D" parent="." unique_id=1123362090]
-position = Vector2(0, -1)
+position = Vector2(-51, -1)
 
 [node name="Inner" type="Node2D" parent="BossBottom" unique_id=1489758419]
 
@@ -2228,9 +2325,39 @@ position = Vector2(234, 405)
 [node name="RightHandLimit" type="Node2D" parent="." unique_id=1261325365]
 position = Vector2(1060, 375)
 
+[node name="WandPickup" type="RigidBody2D" parent="." unique_id=506439582]
+position = Vector2(1329, -100)
+physics_material_override = SubResource("PhysicsMaterial_nt7mg")
+freeze = true
+
+[node name="PickupWindow" type="Area2D" parent="WandPickup" unique_id=1567072097]
+
+[node name="Wand" type="Sprite2D" parent="WandPickup/PickupWindow" unique_id=1075217164]
+texture = ExtResource("23_avt3k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WandPickup/PickupWindow" unique_id=1218856086]
+shape = SubResource("CircleShape2D_0dxmq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WandPickup" unique_id=1362364322]
+position = Vector2(2, 2)
+rotation = -0.017453292
+shape = SubResource("RectangleShape2D_u4npt")
+
+[node name="DropPlayer" type="AnimationPlayer" parent="WandPickup" unique_id=1495764748]
+libraries/ = SubResource("AnimationLibrary_tjq82")
+autoplay = &"RESET"
+
+[node name="HoverPlayer" type="AnimationPlayer" parent="WandPickup" unique_id=71537968]
+libraries/ = SubResource("AnimationLibrary_4xipk")
+autoplay = &"Hover"
+speed_scale = 0.7
+
 [connection signal="damage_boss" from="BossTop/Inner/Head/Area2D" to="." method="_on_damage_boss"]
 [connection signal="damage" from="BossTop/Inner/Projectiles" to="." method="_on_projectiles_damage"]
 [connection signal="projectile_destroyed" from="BossTop/Inner/Projectiles" to="BossTop" method="_on_projectile_destroyed"]
 [connection signal="projectile_moving" from="BossTop/Inner/Projectiles" to="BossTop" method="_on_projectile_moving"]
+[connection signal="body_entered" from="Dolly/DeathZone" to="." method="_on_death_zone_entered"]
+[connection signal="done" from="Dolly/TipWindow" to="." method="_on_tip_window_done"]
 [connection signal="crushed" from="BossBottom/Inner/RightHand" to="." method="_on_crushed"]
 [connection signal="crushed" from="BossBottom/Inner/LeftHand" to="." method="_on_crushed"]
+[connection signal="body_entered" from="WandPickup/PickupWindow" to="." method="_on_pickup_window_entered"]
