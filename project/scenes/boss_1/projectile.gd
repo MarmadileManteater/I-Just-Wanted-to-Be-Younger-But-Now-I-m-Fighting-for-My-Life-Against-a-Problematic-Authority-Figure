@@ -17,6 +17,12 @@ var flash_player: AnimationPlayer
 var selected_target: Node2D = null
 var is_moving: bool = false
 
+func run(lambda: Callable) -> void:
+	lambda.call()
+
+func run_deferred(lambda: Callable) -> void:
+	call_deferred("run", lambda)
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	flash_player = get_child(get_child_count() - 2)
@@ -82,7 +88,9 @@ func _on_zap_projectile_collide() -> bool:
 		
 func destroy_self() -> void:
 	var parent = get_parent()
-	
-	parent.get_parent().remove_child(parent)
-	parent.queue_free()
+	run_deferred(
+		func ():
+			parent.get_parent().remove_child(parent)
+			parent.queue_free()
+	)
 	emit_signal("destroy")

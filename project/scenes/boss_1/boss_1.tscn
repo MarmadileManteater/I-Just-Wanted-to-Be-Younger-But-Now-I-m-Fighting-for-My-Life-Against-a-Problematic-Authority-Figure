@@ -513,6 +513,7 @@ Label/styles/normal = SubResource("StyleBoxFlat_rl3h1")
 
 [sub_resource type="SystemFont" id="SystemFont_1cv1e"]
 font_names = PackedStringArray("Monospace")
+subpixel_positioning = 0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c8b3l"]
 size = Vector2(384, 44)
