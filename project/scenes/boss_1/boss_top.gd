@@ -7,6 +7,7 @@ class_name Boss1Top
 var projectiles: TextProjectiles
 var speech_start: AnimatedSprite2D
 var selected_target: Node2D
+var head_animation_player: AnimationPlayer
 
 var can_fire: bool = true
 
@@ -14,6 +15,7 @@ var can_fire: bool = true
 func _ready() -> void:
 	projectiles = find_child("Projectiles", true)
 	speech_start = find_child("SpeechStart", true)
+	head_animation_player = find_child("AnimationPlayer", true)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

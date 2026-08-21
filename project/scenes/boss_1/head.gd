@@ -15,6 +15,7 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_zap_projectile_collide() -> bool:
-	hurt_animation_player.play("Hurt")
-	emit_signal("damage_boss")
+	if hurt_animation_player.current_animation == "":
+		hurt_animation_player.play("Hurt")
+		emit_signal("damage_boss")
 	return true

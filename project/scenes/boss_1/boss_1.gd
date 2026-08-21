@@ -1,9 +1,13 @@
 extends DefaultScene
 
 @export var boss_health: int = 100
+@export var boss_stage: int = 1
 
 @export var player_threshold: int = 10
 @export var boss_speed: int = 2
+
+var stage_changing: bool = false
+
 var boss_top: Boss1Top
 var boss_bottom: Node2D
 var boss_middle: Node2D
@@ -32,7 +36,7 @@ func _ready() -> void:
 	willow.bounce(1.5)
 
 func move_boss_towards(point: Node2D, arm: String = ""):
-	if not slam_animation_player.last_animation.begins_with(arm) or arm == "":
+	if (not slam_animation_player.last_animation.begins_with(arm) or arm == "") or (boss_stage >= 2 and slam_animation_player.last_animation.ends_with("Slam")):
 		if willow.global_position.x + player_threshold < point.global_position.x:
 			if bob_animation_player.current_animation != "Bob":
 				bob_animation_player.play("Bob")
@@ -43,7 +47,7 @@ func move_boss_towards(point: Node2D, arm: String = ""):
 				bob_animation_player.play("Bob")
 			boss_top.position.x += boss_speed
 			boss_bottom.position.x += boss_speed
-		else:
+		elif not slam_animation_player.last_animation.begins_with(arm) or arm == "":
 			bob_animation_player.pause()
 			if arm != "":
 				slam_animation_player.play_with_memory(arm + "ArmRaise")
@@ -57,7 +61,10 @@ func move_boss_towards(point: Node2D, arm: String = ""):
 func slam_hand(animation_name: String):
 	slam_animation_player.play_with_memory(animation_name.replace("Raise", "Slam"))
 	slam_animation_player.animation_finished.disconnect(slam_hand)
-	timeout_to_reset_animation(2)
+	if boss_stage == 1:
+		timeout_to_reset_animation(2)
+	else:
+		timeout_to_reset_animation(5)
 
 func timeout_to_reset_animation(seconds: float = 1):
 	var timeout = Timer.new()
@@ -70,8 +77,25 @@ func timeout_to_reset_animation(seconds: float = 1):
 	add_child(timeout)
 	timeout.start(seconds)
 
+func stage_change(stage: int):
+	if not stage_changing and stage > boss_stage:
+		boss_stage = stage
+		stage_changing = true
+		slam_animation_player.pause()
+		boss_top.head_animation_player.animation_finished.connect(after_stage_change)
+		boss_top.head_animation_player.play("Stage Change")
+
+func after_stage_change(name: String):
+	stage_changing = false
+	slam_animation_player.play()
+	boss_top.head_animation_player.animation_finished.disconnect(after_stage_change)
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if stage_changing:
+		return
+	if boss_stage >= 3:
+		boss_speed = 4
 	if hearts.health > 0:
 		if willow.global_position.x < left_hand_limit.global_position.x:
 			move_boss_towards(boss_top, "Left")
@@ -98,7 +122,10 @@ func _on_projectiles_damage() -> void:
 
 func _on_damage_boss() -> void:
 	boss_health -= 1
-	print(boss_health)
+	if boss_health < 75:
+		stage_change(2)
+	if boss_health < 25:
+		stage_change(3)
 	if boss_health < 0:
 		# TODO proper death sequence
 		boss_top.hide()
