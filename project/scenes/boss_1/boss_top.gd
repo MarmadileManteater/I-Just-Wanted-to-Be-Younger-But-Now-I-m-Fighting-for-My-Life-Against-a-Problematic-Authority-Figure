@@ -8,6 +8,7 @@ var projectiles: TextProjectiles
 var speech_start: AnimatedSprite2D
 var selected_target: Node2D
 var head_animation_player: AnimationPlayer
+var mouth_animation_player: AnimationPlayer
 
 var can_fire: bool = true
 
@@ -16,6 +17,7 @@ func _ready() -> void:
 	projectiles = find_child("Projectiles", true)
 	speech_start = find_child("SpeechStart", true)
 	head_animation_player = find_child("AnimationPlayer", true)
+	mouth_animation_player = find_child("MouthAnimationPlayer", true)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -26,6 +28,7 @@ func fire_projectile(target: Node2D) -> void:
 		can_fire = false
 		selected_target = target
 		speech_start.play("speech")
+		mouth_animation_player.play("Talk")
 		speech_start.animation_finished.connect(speech_bubble_animation_finished)
 	
 func speech_bubble_animation_finished():

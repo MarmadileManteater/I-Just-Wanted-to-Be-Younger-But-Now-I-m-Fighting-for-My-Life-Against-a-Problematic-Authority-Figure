@@ -82,6 +82,7 @@ func _on_zap_projectile_collide() -> bool:
 		
 func destroy_self() -> void:
 	var parent = get_parent()
+	
 	parent.get_parent().remove_child(parent)
 	parent.queue_free()
 	emit_signal("destroy")

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://badrsoy56kcd8" path="res://scenes/boss_1/boss_1.gd" id="1_nepas"]
 [ext_resource type="Script" uid="uid://bw780oec06aj" path="res://scenes/boss_1/boss_top.gd" id="2_74ww5"]
-[ext_resource type="Texture2D" uid="uid://bt0y77ihi58si" path="res://sprites/shoulders_1_left_arm_animation.png" id="2_rcy0q"]
+[ext_resource type="Texture2D" uid="uid://c13g2vuyqnbau" path="res://sprites/shoulders_1_left_arm_animation.png" id="2_rcy0q"]
 [ext_resource type="PackedScene" uid="uid://be0maisut5gpu" path="res://scenes/nested/dolly/dolly.tscn" id="4_arhcc"]
 [ext_resource type="Texture2D" uid="uid://dqf86xi4r4ak2" path="res://sprites/speech_bubble_1.png" id="4_c8b3l"]
 [ext_resource type="Texture2D" uid="uid://cvbjrcdrfews8" path="res://sprites/boss_tie.png" id="4_m0mga"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://xgy32qthpajl" path="res://sprites/building_topper_3.png" id="8_5ksyy"]
 [ext_resource type="Texture2D" uid="uid://bkjkngjkbe6vs" path="res://sprites/right_hand.png" id="8_4475d"]
 [ext_resource type="Script" uid="uid://bpsuqi2evmbe" path="res://scenes/boss_1/hand.gd" id="8_l2vqj"]
+[ext_resource type="Texture2D" uid="uid://bjvvuhf3tq2jg" path="res://sprites/bottom_mouth_1.png" id="8_v3oh7"]
 [ext_resource type="Texture2D" uid="uid://5q2vli88qe0p" path="res://sprites/platform_1.png" id="9_fp75s"]
 [ext_resource type="Script" uid="uid://cqmvyq8jn4svt" path="res://scripts/AnimationPlayerExtensions.gd" id="12_4475d"]
 [ext_resource type="AudioStream" uid="uid://c4f3682mw0kk1" path="res://music/Boss 1.ogg" id="18_tdco0"]
@@ -273,6 +274,18 @@ tracks/7/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Mouth:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_wp5cm"]
 resource_name = "Stage Change"
@@ -373,12 +386,82 @@ tracks/7/keys = {
 "values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_abdhr"]
+resource_name = "new_animation"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mouth:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.54282445, 0.74282444, 0.90000004, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true, false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wp5cm"]
 _data = {
 &"Default": SubResource("Animation_bj665"),
 &"Hurt": SubResource("Animation_5da30"),
 &"RESET": SubResource("Animation_scamq"),
-&"Stage Change": SubResource("Animation_wp5cm")
+&"Stage Change": SubResource("Animation_wp5cm"),
+&"new_animation": SubResource("Animation_abdhr")
+}
+
+[sub_resource type="Animation" id="Animation_xfnj4"]
+resource_name = "Default"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mouth:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_7ty63"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mouth:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_firh2"]
+resource_name = "Talk"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mouth:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.54282445, 0.74282444, 0.90000004, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c2h2s"]
+_data = {
+&"Default": SubResource("Animation_xfnj4"),
+&"RESET": SubResource("Animation_7ty63"),
+&"Talk": SubResource("Animation_firh2")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nohon"]
@@ -1911,6 +1994,15 @@ visible = false
 position = Vector2(70, 67)
 scale = Vector2(-1, 1)
 texture = ExtResource("6_u4d0x")
+
+[node name="Mouth" type="Sprite2D" parent="BossTop/Inner/Head" unique_id=802248786]
+visible = false
+position = Vector2(9.000023, 76.000015)
+scale = Vector2(1.0168219, 1.0168217)
+texture = ExtResource("8_v3oh7")
+
+[node name="MouthAnimationPlayer" type="AnimationPlayer" parent="BossTop/Inner/Head" unique_id=590666178]
+libraries/ = SubResource("AnimationLibrary_c2h2s")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="BossTop/Inner" unique_id=1239319873]
 position = Vector2(539, 132)

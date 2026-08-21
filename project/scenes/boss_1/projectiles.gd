@@ -19,6 +19,7 @@ func _process(delta: float) -> void:
 func fire(target: Node2D) -> void:
 	var projectile: TextProjectile = projectiles.pick_random()
 	var duplicate = projectile.duplicate()
+	projectile.flash_player.play("Default")
 	duplicate.damage.connect(
 		func ():
 			emit_signal("damage")
