@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c13g2vuyqnbau"
-path="res://.godot/imported/shoulders_1_left_arm_animation.png-cc3b4de3ff239ea4c6a5d116f76fdcfc.ctex"
+uid="uid://cvbjrcdrfews8"
+path="res://.godot/imported/boss_tie.png-8ea3770a6d0ad018ca3bc0569b6c5880.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/shoulders_1_left_arm_animation.png"
-dest_files=["res://.godot/imported/shoulders_1_left_arm_animation.png-cc3b4de3ff239ea4c6a5d116f76fdcfc.ctex"]
+source_file="res://sprites/boss_tie.png"
+dest_files=["res://.godot/imported/boss_tie.png-8ea3770a6d0ad018ca3bc0569b6c5880.ctex"]
 
 [params]
 

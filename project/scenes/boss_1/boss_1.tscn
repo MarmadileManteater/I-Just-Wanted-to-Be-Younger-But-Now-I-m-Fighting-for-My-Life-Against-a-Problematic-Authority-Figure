@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bt0y77ihi58si" path="res://sprites/shoulders_1_left_arm_animation.png" id="2_rcy0q"]
 [ext_resource type="PackedScene" uid="uid://be0maisut5gpu" path="res://scenes/nested/dolly/dolly.tscn" id="4_arhcc"]
 [ext_resource type="Texture2D" uid="uid://dqf86xi4r4ak2" path="res://sprites/speech_bubble_1.png" id="4_c8b3l"]
+[ext_resource type="Texture2D" uid="uid://cvbjrcdrfews8" path="res://sprites/boss_tie.png" id="4_m0mga"]
 [ext_resource type="Script" uid="uid://cnk3myx7ogc3x" path="res://scenes/boss_1/projectiles.gd" id="5_0mk2c"]
 [ext_resource type="PackedScene" uid="uid://eihccgfb2yif" path="res://scenes/nested/health_display/health_display.tscn" id="5_arhcc"]
 [ext_resource type="PackedScene" uid="uid://c8b7r642fn2vm" path="res://scenes/nested/willow/willow.tscn" id="5_etmko"]
@@ -1868,6 +1869,10 @@ script = ExtResource("2_74ww5")
 z_index = -5
 position = Vector2(522, 410)
 sprite_frames = SubResource("SpriteFrames_0dxmq")
+
+[node name="Sprite2D" type="Sprite2D" parent="BossTop/Inner/Shoulders" unique_id=196629574]
+position = Vector2(17, 30)
+texture = ExtResource("4_m0mga")
 
 [node name="Head" type="Sprite2D" parent="BossTop/Inner" unique_id=1128169409]
 position = Vector2(539, 141)
