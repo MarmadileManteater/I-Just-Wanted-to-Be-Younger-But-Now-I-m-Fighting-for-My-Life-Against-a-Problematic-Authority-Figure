@@ -14,6 +14,7 @@ var boss_bottom: Node2D
 var boss_middle: Node2D
 var boss_right: Node2D
 var wand_pickup: RigidBody2D
+var wand_tip: DialogWindow
 
 var left_hand_limit: Node2D
 var right_hand_limit: Node2D
@@ -30,6 +31,8 @@ func _ready() -> void:
 	boss_middle = boss_top.find_child("Middle")
 	boss_right = boss_top.find_child("Right")
 	wand_pickup = find_child("WandPickup")
+	
+	wand_tip = dolly.find_child("TipWindow2")
 	
 	left_hand_limit = find_child("LeftHandLimit")
 	right_hand_limit = find_child("RightHandLimit")
@@ -150,8 +153,14 @@ func _on_tip_window_done() -> void:
 
 func _on_pickup_window_entered(body: Node2D) -> void:
 	if body == willow and not boss_started:
-		lock_dolly()
 		willow.activate_wand() 
 		remove_child(wand_pickup)
-		boss_started = true
-		emit_signal("play_music", "Boss1")
+		willow.controls_locked = true
+		wand_tip.start()
+		wand_tip.done.connect(
+			func ():
+				willow.controls_locked = false
+				lock_dolly()
+				boss_started = true
+				emit_signal("play_music", "Boss1")
+		)

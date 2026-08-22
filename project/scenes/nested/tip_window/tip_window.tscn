@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://cn068am18wjdy" path="res://scenes/nested/tip_window/tip_window.gd" id="1_kflep"]
 [ext_resource type="Texture2D" uid="uid://bn8hdr2cpi3x4" path="res://sprites/tip_bubble_grow.png" id="4_4vtr2"]
 [ext_resource type="Texture2D" uid="uid://cm5b65fv1vogr" path="res://sprites/arrow_down.png" id="4_7ohul"]
+[ext_resource type="Texture2D" uid="uid://dulr0iom8vt1m" path="res://sprites/tip_bubble_middle_grow.png" id="4_kqk3n"]
 
 [sub_resource type="Animation" id="Animation_ceikx"]
 length = 0.001
@@ -29,7 +30,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_kflep"]
@@ -100,6 +101,62 @@ tracks/1/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_84e0e"]
+resource_name = "BobbingMiddle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Arrow:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.48125893, 0.5, 0.97861946, 1),
+"transitions": PackedFloat32Array(1e-05, 1e-05, 1e-05, 1e-05, 1e-05),
+"update": 0,
+"values": [Vector2(420, 79), Vector2(420, 79), Vector2(420, 72), Vector2(420, 72), Vector2(420, 79)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Arrow:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_smcer"]
+resource_name = "BobbingRight"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Arrow:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.46666667, 0.5, 0.97861946, 1),
+"transitions": PackedFloat32Array(1e-05, 1e-05, 1e-05, 1e-05, 1e-05),
+"update": 0,
+"values": [Vector2(515, 79), Vector2(515, 79), Vector2(515, 72), Vector2(515, 72), Vector2(515, 79)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Arrow:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="Animation" id="Animation_4vtr2"]
 length = 0.001
 tracks/0/type = "value"
@@ -145,6 +202,8 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kqk3n"]
 _data = {
 &"Bobbing": SubResource("Animation_7ohul"),
+&"BobbingMiddle": SubResource("Animation_84e0e"),
+&"BobbingRight": SubResource("Animation_smcer"),
 &"RESET": SubResource("Animation_4vtr2"),
 &"Reset": SubResource("Animation_kqk3n")
 }
@@ -168,6 +227,18 @@ region = Rect2(0, 400, 800, 200)
 [sub_resource type="AtlasTexture" id="AtlasTexture_wllov"]
 atlas = ExtResource("4_4vtr2")
 region = Rect2(0, 600, 800, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ski2u"]
+atlas = ExtResource("4_kqk3n")
+region = Rect2(0, 0, 756, 203)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tr3m5"]
+atlas = ExtResource("4_kqk3n")
+region = Rect2(0, 203, 756, 203)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_obt3m"]
+atlas = ExtResource("4_kqk3n")
+region = Rect2(0, 406, 756, 203)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0dxmq"]
 animations = [{
@@ -195,6 +266,20 @@ animations = [{
 "loop": 0,
 "name": &"grow",
 "speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ski2u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tr3m5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_obt3m")
+}],
+"loop": 0,
+"name": &"grow_middle",
+"speed": 12.0
 }]
 
 [sub_resource type="SystemFont" id="SystemFont_u4npt"]
@@ -210,11 +295,12 @@ text = PackedStringArray("Alright, hot shot.\\nDon\'t get too cocky \'cause the 
 
 [node name="MascotHead" type="Sprite2D" parent="." unique_id=676532328]
 position = Vector2(480, 0)
+scale = Vector2(1e-05, 1e-05)
 texture = ExtResource("1_ceikx")
 
 [node name="HeadPlayer" type="AnimationPlayer" parent="." unique_id=674278458]
 libraries/ = SubResource("AnimationLibrary_qyl7x")
-autoplay = &"Scale"
+autoplay = &"RESET"
 
 [node name="ArrowPlayer" type="AnimationPlayer" parent="." unique_id=487543536]
 libraries/ = SubResource("AnimationLibrary_kqk3n")
@@ -223,9 +309,7 @@ libraries/ = SubResource("AnimationLibrary_kqk3n")
 visible = false
 position = Vector2(16, 24)
 sprite_frames = SubResource("SpriteFrames_0dxmq")
-animation = &"grow"
-frame = 3
-frame_progress = 1.0
+animation = &"grow_middle"
 
 [node name="Label" type="Label" parent="." unique_id=486877096]
 offset_left = -353.0
