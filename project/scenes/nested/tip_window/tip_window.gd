@@ -109,7 +109,6 @@ func _ready() -> void:
 		head.hide()
 		text_box.position.x += 80
 		label.position.x += 100
-		
 
 func _input(event: InputEvent) -> void:
 	if is_active:
