@@ -288,10 +288,20 @@ font_names = PackedStringArray("Sans-Serif")
 [sub_resource type="Theme" id="Theme_0dxmq"]
 default_font = SubResource("SystemFont_u4npt")
 
+[sub_resource type="SystemFont" id="SystemFont_4vtr2"]
+font_weight = 999
+
+[sub_resource type="SystemFont" id="SystemFont_avt3k"]
+font_names = PackedStringArray("Sans-Serif")
+font_italic = true
+font_weight = 775
+
+[sub_resource type="SystemFont" id="SystemFont_nohon"]
+font_italic = true
+
 [node name="TipWindow" type="Node2D" unique_id=1832516139]
 z_index = 10
 script = ExtResource("1_kflep")
-text = PackedStringArray("Alright, hot shot.\\nDon\'t get too cocky \'cause the next part\\nis the hardest, ", "and while your suffering IS enjoyable\\nto me, I figure it is only fair you actually\\nhave a chance here.", "tes", "")
 
 [node name="MascotHead" type="Sprite2D" parent="." unique_id=676532328]
 position = Vector2(480, 0)
@@ -311,13 +321,21 @@ position = Vector2(16, 24)
 sprite_frames = SubResource("SpriteFrames_0dxmq")
 animation = &"grow_middle"
 
-[node name="Label" type="Label" parent="." unique_id=486877096]
+[node name="Label" type="RichTextLabel" parent="." unique_id=548471440]
 offset_left = -353.0
 offset_top = -60.0
 offset_right = 347.0
 offset_bottom = 96.0
 theme = SubResource("Theme_0dxmq")
-theme_override_font_sizes/font_size = 36
+theme_override_fonts/bold_font = SubResource("SystemFont_4vtr2")
+theme_override_fonts/bold_italics_font = SubResource("SystemFont_avt3k")
+theme_override_fonts/italics_font = SubResource("SystemFont_nohon")
+theme_override_font_sizes/normal_font_size = 36
+theme_override_font_sizes/bold_font_size = 36
+theme_override_font_sizes/bold_italics_font_size = 36
+theme_override_font_sizes/italics_font_size = 36
+theme_override_font_sizes/mono_font_size = 36
+bbcode_enabled = true
 
 [node name="Arrow" type="Sprite2D" parent="." unique_id=795661012]
 visible = false

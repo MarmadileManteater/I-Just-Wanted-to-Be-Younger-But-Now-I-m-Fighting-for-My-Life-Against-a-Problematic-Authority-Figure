@@ -2186,7 +2186,7 @@ text = PackedStringArray("Alright, hot shot.\\nDon\'t get too cocky \'cause the 
 
 [node name="TipWindow2" parent="Dolly" unique_id=1154525434 instance=ExtResource("15_nohon")]
 position = Vector2(-84, -175)
-text = PackedStringArray("You have obtained a wand!\\nPress F to fire thunderbolts!")
+text = PackedStringArray("You have obtained [i][b]a wand![/b][/i]\\nPress [i][b]F[/b][/i] to fire thunderbolts!")
 direction = 2
 
 [node name="Willow" parent="." unique_id=1438157277 instance=ExtResource("5_etmko")]

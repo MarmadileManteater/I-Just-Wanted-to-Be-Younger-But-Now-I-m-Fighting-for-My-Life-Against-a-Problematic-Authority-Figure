@@ -69,10 +69,8 @@ func move_boss_towards(point: Node2D, arm: String = ""):
 func slam_hand(animation_name: String):
 	slam_animation_player.play_with_memory(animation_name.replace("Raise", "Slam"))
 	slam_animation_player.animation_finished.disconnect(slam_hand)
-	if boss_stage == 1:
-		timeout_to_reset_animation(2)
-	else:
-		timeout_to_reset_animation(5)
+	# note: can change this timeout based on stage to boost difficulty
+	timeout_to_reset_animation(2)
 
 func timeout_to_reset_animation(seconds: float = 1):
 	var timeout = Timer.new()

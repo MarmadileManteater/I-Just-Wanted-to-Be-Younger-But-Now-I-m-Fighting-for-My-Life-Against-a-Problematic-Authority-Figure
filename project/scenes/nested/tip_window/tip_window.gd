@@ -15,7 +15,7 @@ var head: Sprite2D
 var head_player: AnimationPlayer
 var arrow_player: AnimationPlayer
 var text_box: AnimatedSprite2D
-var label: Label
+var label: RichTextLabel
 var current_text: String = ""
 var is_done = false
 
@@ -59,13 +59,21 @@ func text_box_done_shrinking():
 func typewriter(text: String, on_finished: Callable = func (): pass):
 	label.text = ""
 	current_text = text.replace("\\n", "
-	")
+")
 	var timer = Timer.new()
 	add_child(timer)
 	timer.timeout.connect(
 		func():
-			label.text += current_text[0]
-			current_text = current_text.substr(1)
+			var string = ""
+			if current_text[0] == "[":
+				var index = 0
+				while not string.ends_with("]"):
+					string += current_text[index]
+					index += 1
+			else:
+				string = current_text[0]
+			label.text += string
+			current_text = current_text.substr(len(string))
 			if current_text == "":
 				timer.stop()
 				remove_child(timer)
