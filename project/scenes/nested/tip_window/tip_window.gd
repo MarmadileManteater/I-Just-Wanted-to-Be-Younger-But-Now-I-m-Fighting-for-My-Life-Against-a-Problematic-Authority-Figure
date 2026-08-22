@@ -17,9 +17,11 @@ var arrow_player: AnimationPlayer
 var text_box: AnimatedSprite2D
 var label: RichTextLabel
 var current_text: String = ""
+var is_active = false
 var is_done = false
 
 func start():
+	is_active = true
 	is_done = false
 	head_player.play("Scale")
 	head_player.animation_finished.connect(head_done_growing)
@@ -36,6 +38,7 @@ func head_done_growing(_name: String):
 	
 func head_done_shrinking(_name: String):
 	head_player.animation_finished.disconnect(head_done_shrinking)
+	is_active = false
 	emit_signal("done")
 	
 func text_box_done_growing():
@@ -65,12 +68,12 @@ func typewriter(text: String, on_finished: Callable = func (): pass):
 	timer.timeout.connect(
 		func():
 			var string = ""
-			if current_text[0] == "[":
+			if current_text.begins_with("["):
 				var index = 0
 				while not string.ends_with("]"):
 					string += current_text[index]
 					index += 1
-			else:
+			elif current_text.length() > 0:
 				string = current_text[0]
 			label.text += string
 			current_text = current_text.substr(len(string))
@@ -109,27 +112,28 @@ func _ready() -> void:
 		
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_accept") and current_text == "" and not is_done:
-		arrow_player.play("Reset")
-		text_index += 1
-		if len(text) > text_index:
-			typewriter(text[text_index],
-				func ():
-					if direction == Direction.Left:
-						arrow_player.play("Bobbing")
-					elif direction == Direction.Right:
-						arrow_player.play("BobbingRight")
-					else:
-						arrow_player.play("BobbingMiddle")
-			)
-		else:
-			label.text = ""
-			if direction == Direction.Neither:
-				text_box.play_backwards("grow_middle")
+	if is_active:
+		if event.is_action_pressed("ui_accept") and current_text == "" and not is_done:
+			arrow_player.play("Reset")
+			text_index += 1
+			if text.size() > text_index:
+				typewriter(text[text_index],
+					func ():
+						if direction == Direction.Left:
+							arrow_player.play("Bobbing")
+						elif direction == Direction.Right:
+							arrow_player.play("BobbingRight")
+						else:
+							arrow_player.play("BobbingMiddle")
+				)
 			else:
-				text_box.play_backwards("grow")
-			text_box.animation_finished.connect(text_box_done_shrinking)
-			is_done = true
+				label.text = ""
+				if direction == Direction.Neither:
+					text_box.play_backwards("grow_middle")
+				else:
+					text_box.play_backwards("grow")
+				text_box.animation_finished.connect(text_box_done_shrinking)
+				is_done = true
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

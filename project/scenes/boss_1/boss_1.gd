@@ -8,6 +8,8 @@ extends DefaultScene
 
 var stage_changing: bool = false
 var boss_started: bool = false
+var boss_dead: bool = false
+var boss_gone: bool = false
 
 var boss_top: Boss1Top
 var boss_bottom: Node2D
@@ -15,6 +17,7 @@ var boss_middle: Node2D
 var boss_right: Node2D
 var wand_pickup: RigidBody2D
 var wand_tip: DialogWindow
+var post_battle_dialog: DialogWindow
 
 var left_hand_limit: Node2D
 var right_hand_limit: Node2D
@@ -33,6 +36,7 @@ func _ready() -> void:
 	wand_pickup = find_child("WandPickup")
 	
 	wand_tip = dolly.find_child("TipWindow2")
+	post_battle_dialog = dolly.find_child("TipWindow3")
 	
 	left_hand_limit = find_child("LeftHandLimit")
 	right_hand_limit = find_child("RightHandLimit")
@@ -98,6 +102,12 @@ func after_stage_change(name: String):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if boss_gone:
+		return
+	if boss_dead:
+		boss_top.position.y += 2
+		boss_bottom.position.y += 2
+		return
 	if not boss_started:
 		return
 	if stage_changing:
@@ -135,9 +145,7 @@ func _on_damage_boss() -> void:
 	if boss_health < 25:
 		stage_change(3)
 	if boss_health < 0:
-		# TODO proper death sequence
-		boss_top.hide()
-		boss_bottom.hide()
+		boss_death()
 
 func _on_death_zone_entered(body: Node2D) -> void:
 	if body == willow:
@@ -147,7 +155,6 @@ func _on_death_zone_entered(body: Node2D) -> void:
 func _on_tip_window_done() -> void:
 	willow.controls_locked = false
 	drop_animation_player.play("Drop")
-
 
 func _on_pickup_window_entered(body: Node2D) -> void:
 	if body == willow and not boss_started:
@@ -162,3 +169,15 @@ func _on_pickup_window_entered(body: Node2D) -> void:
 				boss_started = true
 				emit_signal("play_music", "Boss1")
 		)
+		
+func boss_death() -> void:
+	boss_dead = true
+	bob_animation_player.play("Death")
+	slam_animation_player.pause()
+
+func _on_boss_death_area_area_entered(area: Area2D) -> void:
+	if area.name == "HeadArea":
+		boss_gone = true
+		willow.controls_locked = true
+		post_battle_dialog.start()
+		

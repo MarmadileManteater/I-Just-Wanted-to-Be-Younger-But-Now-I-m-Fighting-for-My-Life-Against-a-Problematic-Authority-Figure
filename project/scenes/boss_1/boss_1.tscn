@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://bkjkngjkbe6vs" path="res://sprites/right_hand.png" id="8_4475d"]
 [ext_resource type="Script" uid="uid://bpsuqi2evmbe" path="res://scenes/boss_1/hand.gd" id="8_l2vqj"]
 [ext_resource type="Texture2D" uid="uid://bjvvuhf3tq2jg" path="res://sprites/bottom_mouth_1.png" id="8_v3oh7"]
+[ext_resource type="Texture2D" uid="uid://dgci1bftb5314" path="res://sprites/death_face_1.png" id="9_avt3k"]
 [ext_resource type="Texture2D" uid="uid://5q2vli88qe0p" path="res://sprites/platform_1.png" id="9_fp75s"]
 [ext_resource type="Script" uid="uid://cqmvyq8jn4svt" path="res://scripts/AnimationPlayerExtensions.gd" id="12_4475d"]
 [ext_resource type="PackedScene" uid="uid://k17lgk7i63ex" path="res://scenes/nested/tip_window/tip_window.tscn" id="15_nohon"]
@@ -1910,6 +1911,33 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 25), Vector2(0, 0)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BossTop/Inner/Head/DeadEyes:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_tjq82"]
+resource_name = "Death"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BossTop/Inner/Head/DeadEyes:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_c8b3l"]
 length = 0.001
@@ -1937,10 +1965,23 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(0, 0)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BossTop/Inner/Head/DeadEyes:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_c8b3l"]
 _data = {
 &"Bob": SubResource("Animation_4475d"),
+&"Death": SubResource("Animation_tjq82"),
 &"RESET": SubResource("Animation_c8b3l")
 }
 
@@ -2023,6 +2064,9 @@ _data = {
 &"Hover": SubResource("Animation_ure3t")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fcxea"]
+size = Vector2(4538, 58)
+
 [node name="Boss1" type="Node2D" unique_id=337002591]
 script = ExtResource("1_nepas")
 dolly_starts_locked = false
@@ -2046,16 +2090,16 @@ texture = ExtResource("4_m0mga")
 position = Vector2(539, 141)
 texture = SubResource("CompressedTexture2D_u4d0x")
 
-[node name="Area2D" type="Area2D" parent="BossTop/Inner/Head" unique_id=2116540043]
+[node name="HeadArea" type="Area2D" parent="BossTop/Inner/Head" unique_id=2116540043]
 script = ExtResource("5_rl3h1")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BossTop/Inner/Head/Area2D" unique_id=1912868108]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BossTop/Inner/Head/HeadArea" unique_id=1912868108]
 visible = false
 position = Vector2(0, -20)
 rotation = -0.2617994
 shape = SubResource("CapsuleShape2D_u4npt")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="BossTop/Inner/Head/Area2D" unique_id=208543220]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="BossTop/Inner/Head/HeadArea" unique_id=208543220]
 visible = false
 position = Vector2(49, -77)
 shape = SubResource("CircleShape2D_6wcjf")
@@ -2088,6 +2132,10 @@ texture = ExtResource("8_v3oh7")
 
 [node name="MouthAnimationPlayer" type="AnimationPlayer" parent="BossTop/Inner/Head" unique_id=590666178]
 libraries/ = SubResource("AnimationLibrary_c2h2s")
+
+[node name="DeadEyes" type="Sprite2D" parent="BossTop/Inner/Head" unique_id=1988755846]
+visible = false
+texture = ExtResource("9_avt3k")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="BossTop/Inner" unique_id=1239319873]
 position = Vector2(539, 132)
@@ -2186,8 +2234,12 @@ text = PackedStringArray("Alright, hot shot.\\nDon\'t get too cocky \'cause the 
 
 [node name="TipWindow2" parent="Dolly" unique_id=1154525434 instance=ExtResource("15_nohon")]
 position = Vector2(-84, -175)
-text = PackedStringArray("You have obtained [i][b]a wand![/b][/i]\\nPress [i][b]F[/b][/i] to fire thunderbolts!")
+text = PackedStringArray("You have obtained [i][b]a wand![/b][/i]\\nPress [i][b]F[/b][/i] to shoot thunderbolts!\\nPress [i][b]UP[/b][/i] to aim!")
 direction = 2
+
+[node name="TipWindow3" parent="Dolly" unique_id=1434955997 instance=ExtResource("15_nohon")]
+position = Vector2(-84, -175)
+text = PackedStringArray("Congratulations!\\nIt looks like you will be [b]advancing to the next round!~[/b]")
 
 [node name="Willow" parent="." unique_id=1438157277 instance=ExtResource("5_etmko")]
 position = Vector2(1579, 716)
@@ -2353,7 +2405,14 @@ libraries/ = SubResource("AnimationLibrary_4xipk")
 autoplay = &"Hover"
 speed_scale = 0.7
 
-[connection signal="damage_boss" from="BossTop/Inner/Head/Area2D" to="." method="_on_damage_boss"]
+[node name="BossDeathArea" type="Area2D" parent="." unique_id=500878956]
+position = Vector2(537, 1176)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BossDeathArea" unique_id=1244181068]
+position = Vector2(551, 19)
+shape = SubResource("RectangleShape2D_fcxea")
+
+[connection signal="damage_boss" from="BossTop/Inner/Head/HeadArea" to="." method="_on_damage_boss"]
 [connection signal="damage" from="BossTop/Inner/Projectiles" to="." method="_on_projectiles_damage"]
 [connection signal="projectile_destroyed" from="BossTop/Inner/Projectiles" to="BossTop" method="_on_projectile_destroyed"]
 [connection signal="projectile_moving" from="BossTop/Inner/Projectiles" to="BossTop" method="_on_projectile_moving"]
@@ -2362,3 +2421,5 @@ speed_scale = 0.7
 [connection signal="crushed" from="BossBottom/Inner/RightHand" to="." method="_on_crushed"]
 [connection signal="crushed" from="BossBottom/Inner/LeftHand" to="." method="_on_crushed"]
 [connection signal="body_entered" from="WandPickup/PickupWindow" to="." method="_on_pickup_window_entered"]
+[connection signal="area_entered" from="BossDeathArea" to="." method="_on_boss_death_area_area_entered"]
+[connection signal="body_entered" from="BossDeathArea" to="." method="_on_boss_death_area_body_entered"]

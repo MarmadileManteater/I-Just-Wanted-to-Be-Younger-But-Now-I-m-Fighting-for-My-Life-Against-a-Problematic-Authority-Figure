@@ -190,6 +190,7 @@ start_scene = "boss_1"
 
 [node name="Jukebox" type="AudioStreamPlayer" parent="." unique_id=1118706098]
 stream = ExtResource("2_e3dby")
+volume_db = -80.0
 
 [node name="JukeboxControls" type="AnimationPlayer" parent="." unique_id=208874711]
 libraries/ = SubResource("AnimationLibrary_kjrfb")
