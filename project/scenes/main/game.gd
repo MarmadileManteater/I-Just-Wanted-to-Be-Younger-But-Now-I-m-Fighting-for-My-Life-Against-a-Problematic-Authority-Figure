@@ -1,13 +1,17 @@
 extends Node2D
 
 @export var start_scene: String = "boss_1_screen_1"
+
+var jukebox_controls: AnimationPlayer
 var scene: Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	jukebox_controls = find_child("JukeboxControls")
 	scene = load("res://scenes/" + start_scene + "/" + start_scene + ".tscn").instantiate()
-	add_child(scene)
 	scene.connect("next_screen", _next_screen)
+	scene.connect("play_music", _play_music)
+	add_child(scene)
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -22,6 +26,11 @@ func next_screen_deferred(info: SceneInfo) -> void:
 	scene.disconnect("next_screen", _next_screen)
 	remove_child(scene)
 	scene = next_scene
+	scene.connect("next_screen", _next_screen)
+	scene.connect("play_music", _play_music)
 	add_child(scene)
 	scene.hearts.health = info.health
-	scene.connect("next_screen", _next_screen)
+
+func _play_music(track_title: String) -> void:
+	if jukebox_controls.current_animation != track_title:
+		jukebox_controls.play(track_title)

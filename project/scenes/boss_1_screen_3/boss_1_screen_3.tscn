@@ -40,6 +40,7 @@ size = Vector2(53, 587)
 
 [node name="Boss1Screen3" type="Node2D" unique_id=956790219]
 script = ExtResource("1_kxorn")
+track_name = "Gameplay"
 dolly_axis = 1
 dolly_offset = 100
 next_scene_name = "boss_1"

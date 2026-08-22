@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/Somber Scene.ogg-0ffbc2e0a05a554c647ee402b26c
 [params]
 
 loop=false
-loop_offset=0
-bpm=0
+loop_offset=0.0
+bpm=0.0
 beat_count=0
 bar_beats=4

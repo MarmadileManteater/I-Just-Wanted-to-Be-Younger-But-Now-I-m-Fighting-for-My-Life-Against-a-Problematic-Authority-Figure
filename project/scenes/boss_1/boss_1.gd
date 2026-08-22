@@ -154,4 +154,4 @@ func _on_pickup_window_entered(body: Node2D) -> void:
 		willow.activate_wand() 
 		remove_child(wand_pickup)
 		boss_started = true
-		find_child("AudioStreamPlayer2D", true).play()
+		emit_signal("play_music", "Boss1")

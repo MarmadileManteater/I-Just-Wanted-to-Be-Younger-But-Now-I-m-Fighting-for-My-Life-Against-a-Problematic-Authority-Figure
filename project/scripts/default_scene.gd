@@ -3,8 +3,10 @@ extends Node2D
 class_name DefaultScene
 
 signal next_screen
+signal play_music
 
 @export var character_name: String = "Willow"
+@export var track_name: String = ""
 @export var dolly_axis: Dolly.Axis = Dolly.Axis.X
 @export var dolly_offset: int = 0
 @export var dolly_starts_locked: bool = true
@@ -33,6 +35,8 @@ func _ready() -> void:
 		next_screen_area.character_name = character_name
 		next_screen_area.scene = next_scene_name
 		next_screen_area.next_scene.connect(_on_next_screen)
+	if track_name != "":
+		emit_signal("play_music", track_name)
 
 func lock_dolly():
 	dolly.lock(willow, dolly_axis)

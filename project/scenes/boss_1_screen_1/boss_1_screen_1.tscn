@@ -33,6 +33,7 @@ size = Vector2(20, 587)
 
 [node name="Boss1Scene1" type="Node2D" unique_id=907328611]
 script = ExtResource("1_80wie")
+track_name = "Gameplay"
 next_scene_name = "boss_1_screen_2"
 metadata/_custom_type_script = "uid://ca8s831sikpya"
 
@@ -111,7 +112,5 @@ shape = SubResource("RectangleShape2D_6wcjf")
 
 [node name="NextScreen" parent="." unique_id=1275666114 instance=ExtResource("9_7kmdm")]
 position = Vector2(1306, 432)
-health = 3
-character_name = "Willow"
 
 [connection signal="damage" from="Bench/Spikes" to="." method="_on_spikes_damage"]

@@ -21,6 +21,7 @@ size = Vector2(20, 587)
 
 [node name="Boss1Scene2" type="Node2D" unique_id=1805475824]
 script = ExtResource("1_mi7i8")
+track_name = "Gameplay"
 next_scene_name = "boss_1_screen_3"
 
 [node name="Building1" type="Sprite2D" parent="." unique_id=285545498]

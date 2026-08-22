@@ -21,7 +21,6 @@
 [ext_resource type="Texture2D" uid="uid://5q2vli88qe0p" path="res://sprites/platform_1.png" id="9_fp75s"]
 [ext_resource type="Script" uid="uid://cqmvyq8jn4svt" path="res://scripts/AnimationPlayerExtensions.gd" id="12_4475d"]
 [ext_resource type="PackedScene" uid="uid://k17lgk7i63ex" path="res://scenes/nested/tip_window/tip_window.tscn" id="15_nohon"]
-[ext_resource type="AudioStream" uid="uid://c4f3682mw0kk1" path="res://music/Boss 1.ogg" id="18_tdco0"]
 [ext_resource type="Texture2D" uid="uid://crnr1aga3xnxv" path="res://sprites/wand.png" id="23_avt3k"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5ksyy"]
@@ -2172,10 +2171,6 @@ position = Vector2(1327, 301)
 
 [node name="HealthDisplay" parent="Dolly" unique_id=336033771 instance=ExtResource("5_arhcc")]
 position = Vector2(-427, -274)
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Dolly" unique_id=371136367]
-stream = ExtResource("18_tdco0")
-parameters/looping = true
 
 [node name="DeathZone" type="Area2D" parent="Dolly" unique_id=1242287359]
 position = Vector2(-58, 389)
