@@ -19,7 +19,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	space.texture_offset.y -= animate_space_speed
+	space.texture_offset.y -= animate_space_speed * delta
 
 func _bed_animation_body_entered(body: Node2D) -> void:
 	if body == willow:

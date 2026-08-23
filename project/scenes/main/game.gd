@@ -16,10 +16,6 @@ func _ready() -> void:
 	scene.connect("play_music", _play_music)
 	add_child(scene)
 	pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 	
 func _input(event: InputEvent) -> void:
 	var new_type = controller_type

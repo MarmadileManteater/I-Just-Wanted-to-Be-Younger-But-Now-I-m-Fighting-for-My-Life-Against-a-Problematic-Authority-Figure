@@ -63,9 +63,9 @@ func text_box_done_shrinking():
 	head_player.animation_finished.connect(head_done_shrinking)
 	head_player.play_backwards("Scale")
 
-func typewriter(text: String, on_finished: Callable = func (): pass):
+func typewriter(given_text: String, on_finished: Callable = func (): pass):
 	label.text = ""
-	current_text = text.replace("\\n", "
+	current_text = given_text.replace("\\n", "
 ")
 	var timer = Timer.new()
 	add_child(timer)
@@ -143,8 +143,4 @@ func _input(event: InputEvent) -> void:
 					text_box.play_backwards("grow")
 				text_box.animation_finished.connect(text_box_done_shrinking)
 				is_done = true
-	pass
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
 	pass

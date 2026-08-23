@@ -15,7 +15,7 @@ func _ready() -> void:
 	heart3 = find_child("Heart3")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if health >= 3:
 		heart3.animation = "full"
 	else:

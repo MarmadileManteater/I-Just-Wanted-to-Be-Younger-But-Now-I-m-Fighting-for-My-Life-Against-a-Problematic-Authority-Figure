@@ -37,14 +37,14 @@ func activate_wand() -> void:
 func disable_wand() -> void:
 	wand.hide()
 
-func change_animation(name: String) -> void:
+func change_animation(animation_name: String) -> void:
 	if is_transformed:
-		sprite.change_animation(name)
+		sprite.change_animation(animation_name)
 	else:
-		sprite.change_animation("old_" + name)
+		sprite.change_animation("old_" + animation_name)
 	
-func play(name: String) -> void:
-	sprite.play(name)
+func play(animation_name: String) -> void:
+	sprite.play(animation_name)
 	
 func bounce(multiplier: float = 1) -> void:
 	velocity.y = JUMP_VELOCITY * multiplier
@@ -141,7 +141,6 @@ func _physics_process(delta: float) -> void:
 	var direction := Input.get_axis("ui_left", "ui_right")
 	if direction and not controls_locked:
 		var running = is_running
-		var abs_direction = abs(direction)
 		velocity.x = direction * SPEED
 		if running or not is_transformed:
 			velocity.x *= RUNNING_MULTIPLIER
