@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://dewhu0dbsgn6p" path="res://sprites/willow_mg_jump_animation_1.png" id="3_30s3t"]
 [ext_resource type="Texture2D" uid="uid://dklqx8dc7uc87" path="res://sprites/willow_mg_disintegrate_animation_1.png" id="4_fce71"]
 [ext_resource type="Script" uid="uid://dkkdd3f8mas32" path="res://scripts/animated_sprite2d.gd" id="5_bxhn5"]
+[ext_resource type="Texture2D" uid="uid://dc4ss3l2ierkt" path="res://sprites/willow_old_idle_animation.png" id="6_bfglh"]
+[ext_resource type="Texture2D" uid="uid://bo1blt6l15tce" path="res://sprites/willow_old_jump_animation.png" id="7_pgkli"]
+[ext_resource type="Texture2D" uid="uid://gd3uja2542mo" path="res://sprites/willow_old_walk_animation.png" id="7_wdgmt"]
 [ext_resource type="Texture2D" uid="uid://crnr1aga3xnxv" path="res://sprites/wand.png" id="8_6js4h"]
 [ext_resource type="Texture2D" uid="uid://bn0g5xecjbyjf" path="res://sprites/lightning_bolt.png" id="9_65i1c"]
 [ext_resource type="Script" uid="uid://ckglf2s2dppa8" path="res://scenes/nested/willow/zap_projectile.gd" id="9_acr3p"]
@@ -57,6 +60,42 @@ region = Rect2(200, 0, 200, 300)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xua3v"]
 atlas = ExtResource("3_30s3t")
+region = Rect2(400, 0, 200, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pgkli"]
+atlas = ExtResource("6_bfglh")
+region = Rect2(0, 0, 200, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dw8b0"]
+atlas = ExtResource("6_bfglh")
+region = Rect2(200, 0, 200, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1sf2h"]
+atlas = ExtResource("6_bfglh")
+region = Rect2(400, 0, 200, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kgs5u"]
+atlas = ExtResource("7_pgkli")
+region = Rect2(0, 0, 200, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pnqgk"]
+atlas = ExtResource("7_pgkli")
+region = Rect2(200, 0, 200, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hafsq"]
+atlas = ExtResource("7_pgkli")
+region = Rect2(400, 0, 200, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5pelu"]
+atlas = ExtResource("7_wdgmt")
+region = Rect2(0, 0, 200, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bi586"]
+atlas = ExtResource("7_wdgmt")
+region = Rect2(200, 0, 200, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h58fq"]
+atlas = ExtResource("7_wdgmt")
 region = Rect2(400, 0, 200, 300)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q2air"]
@@ -134,6 +173,51 @@ animations = [{
 "loop": 1,
 "name": &"jump",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pgkli")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dw8b0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1sf2h")
+}],
+"loop": 1,
+"name": &"old_default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kgs5u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pnqgk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hafsq")
+}],
+"loop": 1,
+"name": &"old_jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5pelu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bi586")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h58fq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bi586")
+}],
+"loop": 1,
+"name": &"old_walk",
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -315,8 +399,9 @@ script = ExtResource("1_nwiua")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=187946079]
 sprite_frames = SubResource("SpriteFrames_kds0v")
-animation = &"disintegrate"
+animation = &"old_jump"
 autoplay = "default"
+frame_progress = 0.6001367
 script = ExtResource("5_bxhn5")
 
 [node name="Wand" type="Sprite2D" parent="Sprite" unique_id=1819063030]
@@ -349,6 +434,7 @@ rotation = 0.07679449
 rect = Rect2(-15.14398, -10, 28.952663, 20)
 
 [node name="Shape" type="CollisionShape2D" parent="." unique_id=802599809]
+visible = false
 position = Vector2(1.5, -2)
 shape = SubResource("RectangleShape2D_eg7ul")
 

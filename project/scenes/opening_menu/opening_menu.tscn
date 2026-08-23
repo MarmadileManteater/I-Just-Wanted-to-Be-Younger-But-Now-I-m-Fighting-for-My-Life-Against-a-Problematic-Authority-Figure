@@ -1,6 +1,19 @@
 [gd_scene format=3 uid="uid://t506fgqoiy1f"]
 
+[ext_resource type="Script" uid="uid://c6frrg6qslbrm" path="res://scenes/opening_menu/opening_menu.gd" id="1_cnw1s"]
 [ext_resource type="Texture2D" uid="uid://grbbwe68ju74" path="res://sprites/skyline.png" id="1_empih"]
+[ext_resource type="Texture2D" uid="uid://dm8oqdbqo071" path="res://sprites/room1-keyboard-tip.png" id="2_0hgup"]
+[ext_resource type="Texture2D" uid="uid://d4htd148htn2x" path="res://sprites/room1.png" id="2_bkcnd"]
+[ext_resource type="Texture2D" uid="uid://bu1wxyd8lirvn" path="res://sprites/room1-controller-tip.png" id="3_cnw1s"]
+[ext_resource type="PackedScene" uid="uid://c8b7r642fn2vm" path="res://scenes/nested/willow/willow.tscn" id="5_16sch"]
+[ext_resource type="Texture2D" uid="uid://dtrmcafagdvpf" path="res://sprites/wall1.png" id="6_or0d7"]
+[ext_resource type="PackedScene" uid="uid://cc6b7s5bx5li2" path="res://scenes/nested/next_screen/next_screen.tscn" id="7_lvibv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0dxmq"]
+size = Vector2(1339.8093, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6wcjf"]
+size = Vector2(20, 728.5716)
 
 [sub_resource type="Animation" id="Animation_empih"]
 length = 0.001
@@ -31,7 +44,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:modulate")
+tracks/2/path = NodePath("Skyline:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -43,7 +56,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_bkcnd"]
 resource_name = "Zoom"
-length = 5.5
+length = 7.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -51,7 +64,7 @@ tracks/0/path = NodePath("Camera2D:zoom")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 5),
+"times": PackedFloat32Array(0, 5.9666667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0.5, 0.5), Vector2(1.5, 1.5)]
@@ -71,11 +84,11 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:modulate")
+tracks/2/path = NodePath("Skyline:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(4.4232593, 5.5),
+"times": PackedFloat32Array(6.1666665, 6.9666667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -88,8 +101,50 @@ _data = {
 }
 
 [node name="OpeningMenu" type="Node2D" unique_id=1714466535]
+script = ExtResource("1_cnw1s")
+track_name = "Somber"
+next_scene_name = "opening_screen_2"
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2107795430]
+[node name="Rooom" type="Sprite2D" parent="." unique_id=553848907]
+position = Vector2(579.00006, 226)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("2_bkcnd")
+
+[node name="Keyboard" type="Sprite2D" parent="Rooom" unique_id=879668834]
+position = Vector2(-5.3333335, -78.66667)
+texture = ExtResource("2_0hgup")
+
+[node name="Joypad" type="Sprite2D" parent="Rooom" unique_id=878066832]
+visible = false
+position = Vector2(-24.000002, -82.666664)
+texture = ExtResource("3_cnw1s")
+
+[node name="Willow" parent="Rooom" unique_id=1438157277 instance=ExtResource("5_16sch")]
+position = Vector2(-394.76184, 85.33334)
+starting_direction = 1
+is_transformed = false
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Rooom" unique_id=985614583]
+position = Vector2(-109.33334, 230.66667)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rooom/StaticBody2D" unique_id=893948339]
+position = Vector2(156.57141, 0)
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("RectangleShape2D_0dxmq")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Rooom/StaticBody2D" unique_id=1662556141]
+position = Vector2(-454.95224, -276.38098)
+scale = Vector2(0.99999976, 0.99999976)
+shape = SubResource("RectangleShape2D_6wcjf")
+
+[node name="Sprite2D" type="Sprite2D" parent="Rooom" unique_id=526887947]
+position = Vector2(-564.28577, -38.571426)
+texture = ExtResource("6_or0d7")
+
+[node name="NextScreen" parent="Rooom" unique_id=1275666114 instance=ExtResource("7_lvibv")]
+position = Vector2(695.7143, 67.142845)
+
+[node name="Skyline" type="Sprite2D" parent="." unique_id=2107795430]
 position = Vector2(559, 4)
 texture = ExtResource("1_empih")
 

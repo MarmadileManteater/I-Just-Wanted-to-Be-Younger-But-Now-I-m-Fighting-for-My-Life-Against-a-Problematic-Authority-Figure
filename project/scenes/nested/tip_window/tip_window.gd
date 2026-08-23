@@ -3,17 +3,21 @@ extends Node2D
 class_name DialogWindow
 
 signal done
+signal next_line
 
 enum Direction { Left, Right, Neither }
+enum Head { Mascot, Willow }
 
 @export var autostart: bool = false
 @export var text: PackedStringArray
 @export var direction: Direction = Direction.Left
+@export var talking_head: Head = Head.Mascot
 var text_index: int = 0
 
 var head: Sprite2D
 var head_player: AnimationPlayer
 var arrow_player: AnimationPlayer
+var head_chooser: AnimationPlayer
 var text_box: AnimatedSprite2D
 var label: RichTextLabel
 var current_text: String = ""
@@ -89,12 +93,17 @@ func typewriter(text: String, on_finished: Callable = func (): pass):
 func _ready() -> void:
 	head = find_child("MascotHead")
 	head_player = find_child("HeadPlayer")
-	
 	arrow_player = find_child("ArrowPlayer")
+	head_chooser = find_child("HeadChooser")
 	
 	label = find_child("Label")
 	
 	text_box = find_child("TextBox")
+	
+	if talking_head == Head.Willow:
+		head_chooser.play("Willow")
+	if talking_head == Head.Mascot:
+		head_chooser.play("Mascot")
 	
 	if autostart:
 		start()
@@ -116,6 +125,7 @@ func _input(event: InputEvent) -> void:
 			arrow_player.play("Reset")
 			text_index += 1
 			if text.size() > text_index:
+				emit_signal("next_line", text_index)
 				typewriter(text[text_index],
 					func ():
 						if direction == Direction.Left:

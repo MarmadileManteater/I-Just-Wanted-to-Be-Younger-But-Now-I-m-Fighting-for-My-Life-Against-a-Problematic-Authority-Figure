@@ -5,12 +5,16 @@ class_name DefaultScene
 signal next_screen
 signal play_music
 
+enum ControllerType { Joypad, Keyboard }
+
 @export var character_name: String = "Willow"
 @export var track_name: String = ""
 @export var dolly_axis: Dolly.Axis = Dolly.Axis.X
 @export var dolly_offset: int = 0
 @export var dolly_starts_locked: bool = true
 @export var next_scene_name: String
+
+var controller_type: ControllerType
 
 var willow: Willow
 var dolly: Dolly
@@ -42,5 +46,9 @@ func lock_dolly():
 	dolly.lock(willow, dolly_axis)
 
 func _on_next_screen(info: SceneInfo) -> void:
-	info.health = hearts.health
+	if hearts != null:
+		info.health = hearts.health
 	emit_signal("next_screen", info)
+	
+func _on_controller_type_changed(new_type: ControllerType):
+	controller_type = new_type

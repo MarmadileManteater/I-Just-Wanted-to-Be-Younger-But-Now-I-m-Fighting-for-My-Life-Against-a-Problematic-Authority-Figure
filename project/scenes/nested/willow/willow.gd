@@ -5,12 +5,14 @@ class_name Willow
 const SPEED = 450.0
 const RUNNING_MULTIPLIER = 1.35
 const JUMP_VELOCITY = -600.0
+const OLD_MULTIPLIER = 0.5
 
 enum DIRECTION { LEFT, RIGHT }
 @export var starting_direction: DIRECTION
 @export var wand_enabled: bool = false
 @export var invulnerable: bool = false
 @export var controls_locked: bool = false
+@export var is_transformed: bool = true
 
 var is_running: bool = false
 var is_dying: bool = false
@@ -36,7 +38,10 @@ func disable_wand() -> void:
 	wand.hide()
 
 func change_animation(name: String) -> void:
-	sprite.change_animation(name)
+	if is_transformed:
+		sprite.change_animation(name)
+	else:
+		sprite.change_animation("old_" + name)
 	
 func play(name: String) -> void:
 	sprite.play(name)
@@ -103,6 +108,11 @@ func _input(event: InputEvent) -> void:
 		is_running = event.is_pressed()
 
 func _physics_process(delta: float) -> void:
+	scale.x = 1.0
+	scale.y = 1.0
+	if not is_transformed:
+		scale.x = 1.05
+		scale.y = 1.05
 	if is_dying:
 		return
 		
@@ -122,31 +132,39 @@ func _physics_process(delta: float) -> void:
 
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor() and not controls_locked:
-		velocity.y = JUMP_VELOCITY
+		velocity.y = JUMP_VELOCITY 
+		if not is_transformed:
+			velocity.y *= OLD_MULTIPLIER
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("ui_left", "ui_right")
 	if direction and not controls_locked:
+		var running = is_running
+		var abs_direction = abs(direction)
 		velocity.x = direction * SPEED
-		if is_running:
+		if running or not is_transformed:
 			velocity.x *= RUNNING_MULTIPLIER
+		if not is_transformed:
+			velocity.x *= OLD_MULTIPLIER
 		if direction > 0:
 			sprite.scale.x = -1
 		else:
 			sprite.scale.x = 1
 		if is_on_floor():
-			sprite.change_animation("walk")
-			if is_running:
+			change_animation("walk")
+			if running and is_transformed:
 				sprite.speed_scale = RUNNING_MULTIPLIER
+			elif not is_transformed:
+				sprite.speed_scale = 1.15
 			else:
 				sprite.speed_scale = 1
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		if is_on_floor():
-			sprite.change_animation("default")
+			change_animation("default")
 
 	if not is_on_floor():
-		sprite.change_animation("jump")
+		change_animation("jump")
 
 	move_and_slide()
