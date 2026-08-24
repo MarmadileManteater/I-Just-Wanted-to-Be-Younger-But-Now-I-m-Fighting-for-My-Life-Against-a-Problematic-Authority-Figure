@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://rwlg6psrqm37" path="res://sprites/floor.png" id="4_0jlee"]
 [ext_resource type="Texture2D" uid="uid://cwf3gnpotkgy3" path="res://sprites/shooting_star.png" id="4_jbeqt"]
 [ext_resource type="PackedScene" uid="uid://k17lgk7i63ex" path="res://scenes/nested/tip_window/tip_window.tscn" id="6_obk76"]
+[ext_resource type="Texture2D" uid="uid://bhrsegy7g40r8" path="res://sprites/mascot_stretch.png" id="9_2i5bp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2i5bp"]
 atlas = ExtResource("4_jbeqt")
@@ -194,6 +195,235 @@ _data = {
 &"Reveal": SubResource("Animation_jbeqt")
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_fwy2k"]
+atlas = ExtResource("9_2i5bp")
+region = Rect2(0, 0, 400, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_78jub"]
+atlas = ExtResource("9_2i5bp")
+region = Rect2(0, 0, 400, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ew1uh"]
+atlas = ExtResource("9_2i5bp")
+region = Rect2(0, 400, 400, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_isuh3"]
+atlas = ExtResource("9_2i5bp")
+region = Rect2(0, 800, 400, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uinpv"]
+atlas = ExtResource("9_2i5bp")
+region = Rect2(0, 1200, 400, 400)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6wcjf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fwy2k")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_78jub")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ew1uh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_isuh3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uinpv")
+}],
+"loop": 0,
+"name": &"stretch",
+"speed": 10.0
+}]
+
+[sub_resource type="Animation" id="Animation_qc7hs"]
+resource_name = "MascotLand"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mascot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(3.9333668, 3.9666667, 4.233367),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(163, 422), Vector2(158, 420), Vector2(298, 550)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Mascot:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3.9333668),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Mascot:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(3.9333668, 3.9667, 4.233948),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.01, 0.01), Vector2(0.0775, 0.0775), Vector2(0.5, 0.5)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ShootingStar:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(3.901082, 3.934382),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Mascot:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(3.901082, 3.9344153, 4.001082, 4.0344152),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Mascot:animation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(3.901082),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"stretch"]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("ShootingStar:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.3010851, 0.5747989, 0.8621983, 1.1495978, 1.3822544, 1.5191113, 1.7517679, 3.666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(282, 310), Vector2(292, 327), Vector2(304, 332), Vector2(311, 331), Vector2(320, 329), Vector2(311, 331), Vector2(320, 329), Vector2(311, 331), Vector2(266, 310)]
+}
+
+[sub_resource type="Animation" id="Animation_2i5bp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mascot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(163, 422)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Mascot:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Mascot:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.01, 0.01)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ShootingStar:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Mascot:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Mascot:animation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"stretch"]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("ShootingStar:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(282, 310)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eb25h"]
+_data = {
+&"MascotLand": SubResource("Animation_qc7hs"),
+&"RESET": SubResource("Animation_2i5bp")
+}
+
 [node name="OpeningScreen2" type="Node2D" unique_id=10098326]
 script = ExtResource("1_kk1yq")
 
@@ -210,7 +440,10 @@ texture = ExtResource("1_ggxnu")
 [node name="ShootingStar" type="AnimatedSprite2D" parent="." unique_id=1054447861]
 position = Vector2(282, 310)
 sprite_frames = SubResource("SpriteFrames_0dxmq")
+animation = &"shoot"
 autoplay = "default"
+frame = 7
+frame_progress = 1.0
 
 [node name="Polygon2D" type="Polygon2D" parent="." unique_id=472249842]
 position = Vector2(576, 533)
@@ -275,5 +508,22 @@ talking_head = 1
 
 [node name="SpaceAnimationPlayer" type="AnimationPlayer" parent="." unique_id=1920045219]
 libraries/ = SubResource("AnimationLibrary_2i5bp")
+
+[node name="Mascot" type="AnimatedSprite2D" parent="." unique_id=463249430]
+visible = false
+position = Vector2(163, 422)
+scale = Vector2(0.01, 0.01)
+sprite_frames = SubResource("SpriteFrames_6wcjf")
+animation = &"stretch"
+autoplay = "default"
+
+[node name="MascotAnimationPlayer" type="AnimationPlayer" parent="." unique_id=724710805]
+libraries/ = SubResource("AnimationLibrary_eb25h")
+autoplay = &"RESET"
+
+[node name="MascotDialog1" parent="." unique_id=886941129 instance=ExtResource("6_obk76")]
+position = Vector2(425, 110)
+text = PackedStringArray("Why hello there~!\\nLooks like I\'ve got fresh meat!", ". . .", "Well, perhaps, not [b]fresh[/b] [i]per se[/i], but new [b][i]to me[/i][/b] meat!", "[i][color=#8c8c8c]Wow, she\'s like way older than my usual clientelle.\\nIs this really all they could get me?[/color][/i]", ". . . ", "She\'s really not waking up. Is she?", "[font_size=56]HEYY!!!\\nWAKE UP!![/font_size]")
+direction = 1
 
 [connection signal="body_entered" from="Area2D" to="." method="_bed_animation_body_entered"]

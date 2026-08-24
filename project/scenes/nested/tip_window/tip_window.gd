@@ -29,6 +29,16 @@ func start():
 	is_done = false
 	head_player.play("Scale")
 	head_player.animation_finished.connect(head_done_growing)
+	if direction == Direction.Right:
+		head.position.x -= 800
+		text_box.scale.x = -1
+		text_box.position.x += 150
+		label.position.x += 190
+		
+	if direction == Direction.Neither:
+		head.hide()
+		text_box.position.x += 80
+		label.position.x += 100
 
 func head_done_growing(_name: String):
 	head_player.animation_finished.disconnect(head_done_growing)
@@ -102,22 +112,14 @@ func _ready() -> void:
 	
 	if talking_head == Head.Willow:
 		head_chooser.play("Willow")
+		head_chooser.stop()
 	if talking_head == Head.Mascot:
 		head_chooser.play("Mascot")
+		head_chooser.stop()
 	
 	if autostart:
 		start()
-	
-	if direction == Direction.Right:
-		head.position.x -= 800
-		text_box.scale.x = -1
-		text_box.position.x += 150
-		label.position.x += 190
-		
-	if direction == Direction.Neither:
-		head.hide()
-		text_box.position.x += 80
-		label.position.x += 100
+
 
 func _input(event: InputEvent) -> void:
 	if is_active:
