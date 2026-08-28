@@ -4,6 +4,8 @@ class_name DefaultScene
 
 signal next_screen
 signal play_music
+signal stop_music_with_reverb
+signal play_sound_effect
 
 enum ControllerType { Joypad, Keyboard }
 
@@ -52,3 +54,28 @@ func _on_next_screen(info: SceneInfo) -> void:
 	
 func _on_controller_type_changed(new_type: ControllerType):
 	controller_type = new_type
+	
+func die(method: String = ""):
+	if willow.die(method):
+		hearts.health = 0
+		emit_signal("stop_music_with_reverb")
+		var timer = Timer.new()
+		timer.one_shot = true
+		timer.timeout.connect(
+			func ():
+				var gameover = new_gameover_scene()
+				if dolly != null:
+					dolly.add_child(gameover)
+				else:
+					printerr("No dolly found for game over screen!")
+				gameover.animation_player.play("FloatIn")
+				emit_signal("play_sound_effect", "GameOver")
+				remove_child(timer)
+				timer.queue_free()
+		)
+		add_child(timer)
+		timer.start(1.5)
+		
+func new_gameover_scene() -> GameOverScreen:
+	var game_over = preload("res://scenes/nested/game_over/game_over.tscn")
+	return game_over.instantiate()

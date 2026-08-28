@@ -29,6 +29,7 @@ var drop_animation_player: AnimationPlayer
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	super()
+	emit_signal("stop_music_with_reverb")
 	boss_top = find_child("BossTop")
 	boss_bottom = find_child("BossBottom")
 	boss_middle = boss_top.find_child("Middle")
@@ -128,13 +129,13 @@ func _process(delta: float) -> void:
 func _on_crushed(position: Vector2) -> void:
 	hearts.health = 0
 	willow.position.y = position.y + 300 # magic number
-	willow.die("crushed")
+	die("crushed")
 
 func _on_projectiles_damage() -> void:
 	if not willow.invulnerable:
 		hearts.health -= 1
 		if hearts.health <= 0:
-			willow.die("disintegrate")
+			die("disintegrate")
 		else:
 			willow.flash()
 
@@ -149,8 +150,7 @@ func _on_damage_boss() -> void:
 
 func _on_death_zone_entered(body: Node2D) -> void:
 	if body == willow:
-		willow.die()
-		hearts.health = 0
+		die()
 
 func _on_tip_window_done() -> void:
 	willow.controls_locked = false
@@ -161,7 +161,7 @@ func _on_pickup_window_entered(body: Node2D) -> void:
 		willow.activate_wand() 
 		remove_child(wand_pickup)
 		willow.controls_locked = true
-		wand_tip.start()
+		wand_tip.start()   
 		wand_tip.done.connect(
 			func ():
 				willow.controls_locked = false

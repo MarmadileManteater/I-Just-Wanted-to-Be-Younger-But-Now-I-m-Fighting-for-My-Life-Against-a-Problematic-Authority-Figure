@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://c8b7r642fn2vm" path="res://scenes/nested/willow/willow.tscn" id="7_17xyv"]
 [ext_resource type="PackedScene" uid="uid://eihccgfb2yif" path="res://scenes/nested/health_display/health_display.tscn" id="8_iqmjp"]
 [ext_resource type="PackedScene" uid="uid://cc6b7s5bx5li2" path="res://scenes/nested/next_screen/next_screen.tscn" id="9_7kmdm"]
+[ext_resource type="PackedScene" uid="uid://be0maisut5gpu" path="res://scenes/nested/dolly/dolly.tscn" id="10_ytpdb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0dxmq"]
 size = Vector2(354, 67)
@@ -34,6 +35,7 @@ size = Vector2(20, 587)
 [node name="Boss1Scene1" type="Node2D" unique_id=907328611]
 script = ExtResource("1_80wie")
 track_name = "Gameplay"
+dolly_starts_locked = false
 next_scene_name = "boss_1_screen_2"
 metadata/_custom_type_script = "uid://ca8s831sikpya"
 
@@ -112,5 +114,8 @@ shape = SubResource("RectangleShape2D_6wcjf")
 
 [node name="NextScreen" parent="." unique_id=1275666114 instance=ExtResource("9_7kmdm")]
 position = Vector2(1306, 432)
+
+[node name="Dolly" parent="." unique_id=1452481412 instance=ExtResource("10_ytpdb")]
+position = Vector2(576, 324)
 
 [connection signal="damage" from="Bench/Spikes" to="." method="_on_spikes_damage"]

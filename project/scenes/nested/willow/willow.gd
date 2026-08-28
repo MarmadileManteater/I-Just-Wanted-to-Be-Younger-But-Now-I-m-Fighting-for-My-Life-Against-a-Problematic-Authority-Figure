@@ -52,7 +52,7 @@ func bounce(multiplier: float = 1) -> void:
 func flash() -> void:
 	animation_player.play("Flash")
 	
-func die(method: String = "") -> void:
+func die(method: String = "") -> bool:
 	if not is_dying:
 		is_dying = true
 		shape.disabled = true
@@ -63,6 +63,8 @@ func die(method: String = "") -> void:
 			sprite.connect("animation_finished", hide)
 		else:
 			hide()
+		return true
+	return false
 
 func fire():
 	var projectile = wand_projectile.duplicate()

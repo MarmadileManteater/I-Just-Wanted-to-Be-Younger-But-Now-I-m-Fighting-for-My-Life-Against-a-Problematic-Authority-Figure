@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bo1blt6l15tce" path="res://sprites/willow_old_jump_animation.png" id="7_pgkli"]
 [ext_resource type="Texture2D" uid="uid://gd3uja2542mo" path="res://sprites/willow_old_walk_animation.png" id="7_wdgmt"]
 [ext_resource type="Texture2D" uid="uid://crnr1aga3xnxv" path="res://sprites/wand.png" id="8_6js4h"]
+[ext_resource type="Texture2D" uid="uid://2w4cm5e2rpqg" path="res://sprites/willow_old_sit_animation_1.png" id="8_pgkli"]
 [ext_resource type="Texture2D" uid="uid://bn0g5xecjbyjf" path="res://sprites/lightning_bolt.png" id="9_65i1c"]
 [ext_resource type="Script" uid="uid://ckglf2s2dppa8" path="res://scenes/nested/willow/zap_projectile.gd" id="9_acr3p"]
 
@@ -84,6 +85,18 @@ region = Rect2(200, 0, 200, 300)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hafsq"]
 atlas = ExtResource("7_pgkli")
+region = Rect2(400, 0, 200, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rp4um"]
+atlas = ExtResource("8_pgkli")
+region = Rect2(0, 0, 200, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y3ovw"]
+atlas = ExtResource("8_pgkli")
+region = Rect2(200, 0, 200, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b6050"]
+atlas = ExtResource("8_pgkli")
 region = Rect2(400, 0, 200, 300)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5pelu"]
@@ -200,6 +213,20 @@ animations = [{
 }],
 "loop": 1,
 "name": &"old_jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rp4um")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y3ovw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b6050")
+}],
+"loop": 1,
+"name": &"old_sit",
 "speed": 5.0
 }, {
 "frames": [{
@@ -399,9 +426,9 @@ script = ExtResource("1_nwiua")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=187946079]
 sprite_frames = SubResource("SpriteFrames_kds0v")
-animation = &"old_jump"
+animation = &"old_sit"
 autoplay = "default"
-frame_progress = 0.6001367
+frame_progress = 0.59565663
 script = ExtResource("5_bxhn5")
 
 [node name="Wand" type="Sprite2D" parent="Sprite" unique_id=1819063030]

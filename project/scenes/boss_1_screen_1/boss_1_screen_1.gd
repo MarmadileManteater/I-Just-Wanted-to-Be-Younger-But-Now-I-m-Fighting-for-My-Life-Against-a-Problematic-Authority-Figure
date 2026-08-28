@@ -8,7 +8,7 @@ func _on_spikes_damage(damage: int) -> void:
 	if not willow.invulnerable:
 		hearts.health -= damage
 		if hearts.health <= 0:
-			willow.die("disintegrate")
+			die("disintegrate")
 		else:
 			willow.flash()
 		willow.bounce()

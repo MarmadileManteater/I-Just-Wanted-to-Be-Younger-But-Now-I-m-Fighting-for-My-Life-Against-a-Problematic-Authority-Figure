@@ -1,0 +1,108 @@
+[gd_scene format=3 uid="uid://demb0r8ptjfvj"]
+
+[ext_resource type="Script" uid="uid://cqlttkx3fa087" path="res://scenes/nested/game_over/game_over.gd" id="1_vcsth"]
+[ext_resource type="Texture2D" uid="uid://b3jt4lisbfs0g" path="res://sprites/game_over.png" id="1_vj5x8"]
+
+[sub_resource type="Animation" id="Animation_vj5x8"]
+resource_name = "FloatIn"
+length = 8.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Polygon2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.8333334, 4.0666666),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.88235295)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Text:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.09, 0.17666666, 0.34666666, 0.46666667, 0.5966667, 0.74333334, 0.87666667, 0.9766667, 1.1433334, 1.3100002, 1.4433334, 2.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -540), Vector2(0, -501), Vector2(-34, -349), Vector2(-83, -293), Vector2(-146, -274), Vector2(-224, -287), Vector2(-243, -295), Vector2(-211, -223), Vector2(-142, -196), Vector2(-54, -159), Vector2(55, -133), Vector2(100, -164), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_khk47"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Polygon2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Text:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-335, -780)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vcsth"]
+_data = {
+&"FloatIn": SubResource("Animation_vj5x8"),
+&"RESET": SubResource("Animation_khk47")
+}
+
+[sub_resource type="Curve2D" id="Curve2D_vcsth"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -402, 260, 0, 0, 0, 0, -408, 372, 0, 0, 0, 0, -422, 432, 0, 0, 0, 0, -478, 512, 0, 0, 0, 0, -568, 536, 0, 0, 0, 0, -677, 506)
+}
+point_count = 6
+
+[sub_resource type="Curve2D" id="Curve2D_khk47"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -227, -299, 0, 0, 0, 0, -165, -222, 0, 0, 0, 0, -73, -172, 0, 0, 0, 0, 40, -136, 0, 0, 0, 0, 98, -132, 0, 0, 0, 0, 135, -153)
+}
+point_count = 6
+
+[node name="GameOver" type="Node2D" unique_id=893970809]
+script = ExtResource("1_vcsth")
+
+[node name="Polygon2D2" type="Polygon2D" parent="." unique_id=869386419]
+visible = false
+color = Color(1, 0, 0, 1)
+polygon = PackedVector2Array(-33, -1200, 1110, -810, 1741, 1034, -1221, 1048, -1618, -1169)
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=66130888]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(-16, 30)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(1015, -495, 1037, 606, -900, 556, -935, -540)
+
+[node name="Text" type="Sprite2D" parent="." unique_id=603128503]
+position = Vector2(-335, -780)
+texture = ExtResource("1_vj5x8")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=714658762]
+libraries/ = SubResource("AnimationLibrary_vcsth")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1552741671]
+
+[node name="Path2D" type="Path2D" parent="." unique_id=382642531]
+position = Vector2(408, -808)
+curve = SubResource("Curve2D_vcsth")
+
+[node name="Path2D2" type="Path2D" parent="." unique_id=452262774]
+position = Vector2(-26, -1)
+curve = SubResource("Curve2D_khk47")

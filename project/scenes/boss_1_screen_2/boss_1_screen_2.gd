@@ -11,5 +11,4 @@ func _ready() -> void:
 	boss_feet.animation_player.play("Stomp")
 
 func _on_crush():
-	hearts.health = 0
-	willow.die("crushed")
+	die("crushed")

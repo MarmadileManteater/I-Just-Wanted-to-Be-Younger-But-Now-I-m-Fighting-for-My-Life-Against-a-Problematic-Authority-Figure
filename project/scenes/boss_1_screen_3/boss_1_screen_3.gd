@@ -22,5 +22,4 @@ func _on_physics_off_point_body_entered(body: Node2D) -> void:
 
 func _on_death_zone_body_entered(body: Node2D) -> void:
 	if body == willow:
-		willow.die()
-		hearts.health = 0
+		die()
