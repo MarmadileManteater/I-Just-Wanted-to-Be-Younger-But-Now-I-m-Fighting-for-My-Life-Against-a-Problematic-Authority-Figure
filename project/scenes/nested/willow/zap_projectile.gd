@@ -6,11 +6,14 @@ signal destroy
 
 var is_active: bool = false
 var speed: float = 10
-var notifier: VisibleOnScreenNotifier2D
 var was_on_screen: bool = false
+
+var notifier: VisibleOnScreenNotifier2D
+var audio_stream_player: AudioStreamPlayer2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	audio_stream_player = get_child(get_child_count() - 2)
 	notifier = get_child(get_child_count() - 1)
 	body_entered.connect(_on_body_entered)
 	area_entered.connect(_on_body_entered)
@@ -27,6 +30,7 @@ func _process(delta: float) -> void:
 
 func fire() -> void:
 	is_active = true
+	audio_stream_player.play()
 	
 func destroy_self() -> void:
 	emit_signal("destroy")

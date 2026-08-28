@@ -14,6 +14,8 @@
 [ext_resource type="Texture2D" uid="uid://2w4cm5e2rpqg" path="res://sprites/willow_old_sit_animation_1.png" id="8_pgkli"]
 [ext_resource type="Texture2D" uid="uid://bn0g5xecjbyjf" path="res://sprites/lightning_bolt.png" id="9_65i1c"]
 [ext_resource type="Script" uid="uid://ckglf2s2dppa8" path="res://scenes/nested/willow/zap_projectile.gd" id="9_acr3p"]
+[ext_resource type="AudioStream" uid="uid://cdafkxdqfipnq" path="res://music/Projectile.ogg" id="15_dw8b0"]
+[ext_resource type="AudioStream" uid="uid://cyk616sm15v5q" path="res://music/Jump_test.ogg" id="16_1sf2h"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fce71"]
 atlas = ExtResource("2_1gub3")
@@ -455,6 +457,9 @@ shape = SubResource("RectangleShape2D_acr3p")
 [node name="Sprite2D" type="Sprite2D" parent="Sprite/Wand/Projectile" unique_id=1192330803]
 texture = ExtResource("9_65i1c")
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Sprite/Wand/Projectile" unique_id=542206855]
+stream = ExtResource("15_dw8b0")
+
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Sprite/Wand/Projectile" unique_id=1321786515]
 position = Vector2(-0.059407473, 49.71692)
 rotation = 0.07679449
@@ -467,3 +472,6 @@ shape = SubResource("RectangleShape2D_eg7ul")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1812485073]
 libraries/ = SubResource("AnimationLibrary_65i1c")
+
+[node name="JumpSound" type="AudioStreamPlayer2D" parent="." unique_id=1844970702]
+stream = ExtResource("16_1sf2h")

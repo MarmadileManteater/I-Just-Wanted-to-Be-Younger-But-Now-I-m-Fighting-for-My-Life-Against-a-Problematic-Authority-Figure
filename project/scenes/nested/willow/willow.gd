@@ -24,6 +24,7 @@ var animation_player: AnimationPlayer
 var wand_animation_player: AnimationPlayer
 var wand: Sprite2D
 var wand_projectile: ZapProjectile
+var jump_sound: AudioStreamPlayer2D
 
 func run(lambda: Callable) -> void:
 	lambda.call()
@@ -66,6 +67,7 @@ func die(method: String = "") -> bool:
 		return true
 	return false
 
+
 func fire():
 	var projectile = wand_projectile.duplicate()
 	projectile.show()
@@ -98,6 +100,7 @@ func _ready() -> void:
 	wand_animation_player = find_child("WandAnimationPlayer", true)
 	wand = sprite.find_child("Wand")
 	wand_projectile = wand.find_child("Projectile")
+	jump_sound = find_child("JumpSound")
 	if starting_direction == DIRECTION.RIGHT:
 		sprite.scale.x = -1
 	else:
@@ -134,6 +137,7 @@ func _physics_process(delta: float) -> void:
 
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor() and not controls_locked:
+		jump_sound.play()
 		velocity.y = JUMP_VELOCITY 
 		if not is_transformed:
 			velocity.y *= OLD_MULTIPLIER
