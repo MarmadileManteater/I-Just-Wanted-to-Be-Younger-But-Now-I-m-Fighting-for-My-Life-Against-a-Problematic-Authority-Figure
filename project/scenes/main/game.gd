@@ -52,15 +52,17 @@ func _play_sound_effect(track_title: String) -> void:
 
 func _play_music(track_title: String) -> void:
 	if jukebox_controls.last_animation != track_title:
+		jukebox_effects.play("Playing")
 		jukebox_controls.play_with_memory(track_title)
 
-func _stop_music_with_reverb(callback: String = "") -> void:
+func _stop_music_with_reverb(callback: String = "", animation_speed: float = 1) -> void:
 	audio_effect_callback = callback
+	jukebox_effects.speed_scale = animation_speed
 	jukebox_effects.play("ReverbFadeOut")
 	jukebox_effects.animation_finished.connect(_on_reverb_fade_out)
 	
 func _on_reverb_fade_out(_name: String) -> void:
-	jukebox_effects.play("Default")
+	jukebox_effects.play("Stopped")
 	jukebox_effects.animation_finished.disconnect(_on_reverb_fade_out)
 	jukebox_controls.last_animation = ""
 	jukebox_controls.stop()

@@ -26,10 +26,16 @@ var slam_animation_player: AnimationPlayerExtended
 var bob_animation_player: AnimationPlayer
 var drop_animation_player: AnimationPlayer
 
+func last_track_stopped() -> void:
+	emit_signal("play_music", "Tutorial")
+
+func start_boss_music() -> void:
+	emit_signal("play_music", "Boss1")
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	super()
-	emit_signal("stop_music_with_reverb")
+	emit_signal("stop_music_with_reverb", "last_track_stopped", 4)
 	boss_top = find_child("BossTop")
 	boss_bottom = find_child("BossBottom")
 	boss_middle = boss_top.find_child("Middle")
@@ -167,7 +173,7 @@ func _on_pickup_window_entered(body: Node2D) -> void:
 				willow.controls_locked = false
 				lock_dolly()
 				boss_started = true
-				emit_signal("play_music", "Boss1")
+				emit_signal("stop_music_with_reverb", "start_boss_music", 4)
 		)
 		
 func boss_death() -> void:

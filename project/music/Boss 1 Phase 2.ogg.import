@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://hws22786emut"
+path="res://.godot/imported/Boss 1 Phase 2.ogg-c42e22a648db7e170d9a112b0d1dd4fa.oggvorbisstr"
+
+[deps]
+
+source_file="res://music/Boss 1 Phase 2.ogg"
+dest_files=["res://.godot/imported/Boss 1 Phase 2.ogg-c42e22a648db7e170d9a112b0d1dd4fa.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

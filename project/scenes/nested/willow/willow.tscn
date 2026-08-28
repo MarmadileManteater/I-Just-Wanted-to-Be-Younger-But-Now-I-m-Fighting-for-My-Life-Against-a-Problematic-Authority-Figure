@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://bn0g5xecjbyjf" path="res://sprites/lightning_bolt.png" id="9_65i1c"]
 [ext_resource type="Script" uid="uid://ckglf2s2dppa8" path="res://scenes/nested/willow/zap_projectile.gd" id="9_acr3p"]
 [ext_resource type="AudioStream" uid="uid://cdafkxdqfipnq" path="res://music/Projectile.ogg" id="15_dw8b0"]
-[ext_resource type="AudioStream" uid="uid://cyk616sm15v5q" path="res://music/Jump_test.ogg" id="16_1sf2h"]
+[ext_resource type="AudioStream" uid="uid://bl88pprauw34t" path="res://music/Jump.ogg" id="16_1sf2h"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fce71"]
 atlas = ExtResource("2_1gub3")
