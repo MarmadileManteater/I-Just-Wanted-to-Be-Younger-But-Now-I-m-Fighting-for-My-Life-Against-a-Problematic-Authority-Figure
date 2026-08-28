@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://cm5b65fv1vogr" path="res://sprites/arrow_down.png" id="4_7ohul"]
 [ext_resource type="Texture2D" uid="uid://dulr0iom8vt1m" path="res://sprites/tip_bubble_middle_grow.png" id="4_kqk3n"]
 [ext_resource type="Texture2D" uid="uid://jwashgnpdl31" path="res://sprites/willow_old_head.png" id="5_4vtr2"]
+[ext_resource type="AudioStream" uid="uid://7nyv1l4v6qvp" path="res://music/Mascot Speech.ogg" id="6_kqk3n"]
+[ext_resource type="AudioStream" uid="uid://cciab7ive8hb7" path="res://music/Willow Speech.ogg" id="7_smcer"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kqk3n"]
 load_path = "res://.godot/imported/tip_mascot_face.png-ca96b57ecd89adad736671d08fcc7a7e.ctex"
@@ -14,7 +16,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MascotHead:rotation")
+tracks/0/path = NodePath("HeadScaler/MascotHead:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -26,7 +28,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MascotHead:scale")
+tracks/1/path = NodePath("HeadScaler/MascotHead:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -43,7 +45,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MascotHead:rotation")
+tracks/0/path = NodePath("HeadScaler/MascotHead:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -59,7 +61,7 @@ length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MascotHead:scale")
+tracks/0/path = NodePath("HeadScaler/MascotHead:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -312,7 +314,7 @@ length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MascotHead:texture")
+tracks/0/path = NodePath("HeadScaler/MascotHead:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -324,7 +326,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MascotHead:position")
+tracks/1/path = NodePath("HeadScaler/MascotHead:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -343,7 +345,7 @@ length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MascotHead:texture")
+tracks/0/path = NodePath("HeadScaler/MascotHead:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -355,7 +357,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MascotHead:position")
+tracks/1/path = NodePath("HeadScaler/MascotHead:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -372,12 +374,69 @@ _data = {
 &"Willow": SubResource("Animation_ski2u")
 }
 
+[sub_resource type="Animation" id="Animation_tr3m5"]
+resource_name = "Mascot"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer:stream")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_kqk3n")]
+}
+
+[sub_resource type="Animation" id="Animation_obt3m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer:stream")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_kqk3n")]
+}
+
+[sub_resource type="Animation" id="Animation_dmmkr"]
+resource_name = "Willow"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer:stream")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("7_smcer")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pn5kl"]
+_data = {
+&"Mascot": SubResource("Animation_tr3m5"),
+&"RESET": SubResource("Animation_obt3m"),
+&"Willow": SubResource("Animation_dmmkr")
+}
+
 [node name="TipWindow" type="Node2D" unique_id=1832516139]
 z_index = 10
 script = ExtResource("1_kflep")
 
-[node name="MascotHead" type="Sprite2D" parent="." unique_id=676532328]
+[node name="HeadScaler" type="Node2D" parent="." unique_id=1564393326]
 position = Vector2(480, 0)
+scale = Vector2(1e-05, 1e-05)
+
+[node name="MascotHead" type="Sprite2D" parent="HeadScaler" unique_id=676532328]
 scale = Vector2(1e-05, 1e-05)
 texture = SubResource("CompressedTexture2D_kqk3n")
 
@@ -417,3 +476,9 @@ texture = ExtResource("4_7ohul")
 
 [node name="HeadChooser" type="AnimationPlayer" parent="." unique_id=574052602]
 libraries/ = SubResource("AnimationLibrary_tr3m5")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=694740373]
+stream = ExtResource("6_kqk3n")
+
+[node name="VoiceChooser" type="AnimationPlayer" parent="." unique_id=1028318159]
+libraries/ = SubResource("AnimationLibrary_pn5kl")

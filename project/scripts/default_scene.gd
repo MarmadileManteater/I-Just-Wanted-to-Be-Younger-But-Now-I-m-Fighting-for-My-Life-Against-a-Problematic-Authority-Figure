@@ -4,6 +4,7 @@ class_name DefaultScene
 
 signal next_screen
 signal play_music
+signal play_music_with_fade_in
 signal stop_music_with_reverb
 signal play_sound_effect
 

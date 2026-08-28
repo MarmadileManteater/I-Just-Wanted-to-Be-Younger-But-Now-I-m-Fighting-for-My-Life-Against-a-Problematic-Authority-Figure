@@ -11,6 +11,7 @@ collision_mask = 2
 script = ExtResource("1_flos5")
 
 [node name="Dolly" type="Camera2D" parent="." unique_id=695931943]
+zoom = Vector2(1.5, 1.5)
 
 [node name="Shape" type="CollisionShape2D" parent="." unique_id=2003357925]
 position = Vector2(2, 0)

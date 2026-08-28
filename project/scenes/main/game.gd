@@ -41,6 +41,7 @@ func next_screen_deferred(info: SceneInfo) -> void:
 	scene = next_scene
 	scene.connect("next_screen", _next_screen)
 	scene.connect("play_music", _play_music)
+	scene.connect("play_music_with_fade_in", _play_music_with_fade_in)
 	scene.connect("stop_music_with_reverb", _stop_music_with_reverb)
 	scene.connect("play_sound_effect", _play_sound_effect)
 	add_child(scene)
@@ -53,6 +54,12 @@ func _play_sound_effect(track_title: String) -> void:
 func _play_music(track_title: String) -> void:
 	if jukebox_controls.last_animation != track_title:
 		jukebox_effects.play("Playing")
+		jukebox_controls.play_with_memory(track_title)
+		
+func _play_music_with_fade_in(track_title: String, seconds: float = 1.0) -> void:
+	if jukebox_controls.last_animation != track_title:
+		jukebox_effects.speed_scale = 1 / seconds
+		jukebox_effects.play("PlayWithFadeIn")
 		jukebox_controls.play_with_memory(track_title)
 
 func _stop_music_with_reverb(callback: String = "", animation_speed: float = 1) -> void:

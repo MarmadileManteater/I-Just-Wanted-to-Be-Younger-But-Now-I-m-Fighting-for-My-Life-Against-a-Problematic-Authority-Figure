@@ -7,8 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://c8b7r642fn2vm" path="res://scenes/nested/willow/willow.tscn" id="2_vn55n"]
 [ext_resource type="Texture2D" uid="uid://rwlg6psrqm37" path="res://sprites/floor.png" id="4_0jlee"]
 [ext_resource type="Texture2D" uid="uid://cwf3gnpotkgy3" path="res://sprites/shooting_star.png" id="4_jbeqt"]
+[ext_resource type="AudioStream" uid="uid://bsq75uxqsmjsh" path="res://music/Shooting Star.ogg" id="5_35qil"]
 [ext_resource type="PackedScene" uid="uid://k17lgk7i63ex" path="res://scenes/nested/tip_window/tip_window.tscn" id="6_obk76"]
+[ext_resource type="Texture2D" uid="uid://d4h0gq6gv42re" path="res://sprites/exclamation.png" id="8_6i82o"]
 [ext_resource type="Texture2D" uid="uid://bhrsegy7g40r8" path="res://sprites/mascot_stretch.png" id="9_2i5bp"]
+[ext_resource type="AudioStream" uid="uid://w05ma1mpdfgv" path="res://music/Mascot Morph.ogg" id="10_ejo1f"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2i5bp"]
 atlas = ExtResource("4_jbeqt")
@@ -94,6 +97,54 @@ size = Vector2(1339.8093, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vn55n"]
 size = Vector2(20, 728.5716)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_qc7hs"]
+atlas = ExtResource("8_6i82o")
+region = Rect2(900, 0, 300, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eb25h"]
+atlas = ExtResource("8_6i82o")
+region = Rect2(900, 0, 300, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n6pc4"]
+atlas = ExtResource("8_6i82o")
+region = Rect2(600, 0, 300, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_egqpp"]
+atlas = ExtResource("8_6i82o")
+region = Rect2(300, 0, 300, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gf10e"]
+atlas = ExtResource("8_6i82o")
+region = Rect2(0, 0, 300, 300)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u4npt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qc7hs")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eb25h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n6pc4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_egqpp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gf10e")
+}],
+"loop": 0,
+"name": &"exclaim",
+"speed": 12.0
+}]
+
 [sub_resource type="Animation" id="Animation_cwbgn"]
 resource_name = "JumpIntoBed"
 length = 0.5
@@ -148,11 +199,177 @@ tracks/1/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node2D/AnimatedSprite2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Node2D/AnimatedSprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Node2D/AnimatedSprite2D:animation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Node2D/AnimatedSprite2D:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(409.99994, -171.99998)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Node2D/AnimatedSprite2D:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_35qil"]
+resource_name = "SitUp"
+length = 1.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/Willow:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.17366979),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(398, 107), Vector2(398, 48)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/Willow:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.17366979),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.3613569, 0.13962634]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node2D/AnimatedSprite2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.17366979, 0.37102333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Node2D/AnimatedSprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.17770861, 0.26666668, 0.28103295, 0.2950844),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Node2D/AnimatedSprite2D:animation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.17770861),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"default", &"exclaim"]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Node2D/AnimatedSprite2D:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(-0.033333335, 0.16666667, 0.43333334, 1.3952252),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(440, -100), Vector2(440, -160), Vector2(440, -175), Vector2(440, -190)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Node2D/AnimatedSprite2D:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+
+[sub_resource type="Animation" id="Animation_31m3t"]
+resource_name = "SitUpDone"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/AnimatedSprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0jlee"]
 _data = {
 &"JumpIntoBed": SubResource("Animation_cwbgn"),
-&"RESET": SubResource("Animation_obk76")
+&"RESET": SubResource("Animation_obk76"),
+&"SitUp": SubResource("Animation_35qil"),
+&"SitUpDone": SubResource("Animation_31m3t")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6wcjf"]
@@ -245,7 +462,7 @@ animations = [{
 
 [sub_resource type="Animation" id="Animation_qc7hs"]
 resource_name = "MascotLand"
-length = 5.0
+length = 6.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -329,6 +546,18 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(282, 310), Vector2(292, 327), Vector2(304, 332), Vector2(311, 331), Vector2(320, 329), Vector2(311, 331), Vector2(320, 329), Vector2(311, 331), Vector2(266, 310)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Mascot/AudioStreamPlayer2D:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_2i5bp"]
@@ -417,6 +646,18 @@ tracks/6/keys = {
 "update": 0,
 "values": [Vector2(282, 310)]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Mascot/AudioStreamPlayer2D:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_eb25h"]
 _data = {
@@ -426,6 +667,7 @@ _data = {
 
 [node name="OpeningScreen2" type="Node2D" unique_id=10098326]
 script = ExtResource("1_kk1yq")
+track_name = "Somber"
 
 [node name="Space" type="Polygon2D" parent="." unique_id=6024057]
 texture_repeat = 2
@@ -444,6 +686,10 @@ animation = &"shoot"
 autoplay = "default"
 frame = 7
 frame_progress = 1.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="ShootingStar" unique_id=310538641]
+stream = ExtResource("5_35qil")
+volume_db = -21.283
 
 [node name="Polygon2D" type="Polygon2D" parent="." unique_id=472249842]
 position = Vector2(576, 533)
@@ -490,6 +736,13 @@ position = Vector2(-530, 89)
 starting_direction = 1
 is_transformed = false
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D" unique_id=2055114967]
+visible = false
+position = Vector2(409.99994, -171.99998)
+scale = Vector2(0.5233333, 0.5233333)
+sprite_frames = SubResource("SpriteFrames_u4npt")
+autoplay = "default"
+
 [node name="JumpIntoBedAnimationPlayer" type="AnimationPlayer" parent="." unique_id=1884051769]
 libraries/ = SubResource("AnimationLibrary_0jlee")
 autoplay = &"RESET"
@@ -517,13 +770,20 @@ sprite_frames = SubResource("SpriteFrames_6wcjf")
 animation = &"stretch"
 autoplay = "default"
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Mascot" unique_id=737962144]
+stream = ExtResource("10_ejo1f")
+
 [node name="MascotAnimationPlayer" type="AnimationPlayer" parent="." unique_id=724710805]
 libraries/ = SubResource("AnimationLibrary_eb25h")
 autoplay = &"RESET"
 
 [node name="MascotDialog1" parent="." unique_id=886941129 instance=ExtResource("6_obk76")]
 position = Vector2(425, 110)
-text = PackedStringArray("Why hello there~!\\nLooks like I\'ve got fresh meat!", ". . .", "Well, perhaps, not [b]fresh[/b] [i]per se[/i], but new [b][i]to me[/i][/b] meat!", "[i][color=#8c8c8c]Wow, she\'s like way older than my usual clientelle.\\nIs this really all they could get me?[/color][/i]", ". . . ", "She\'s really not waking up. Is she?", "[font_size=56]HEYY!!!\\nWAKE UP!![/font_size]")
+text = PackedStringArray("Why hello there~!\\nLooks like I\'ve got fresh meat!", ". . .", "Well, perhaps, not [b]fresh[/b] [i]per se[/i], but new [b][i]to me[/i][/b] meat!", "[i][color=#8c8c8c]Wow, she\'s like way older than my usual clientelle.\\nIs this really all they could get me?[/color][/i]", ". . . ", "She\'s really not waking up. Is she?", "[font_size=56]HEYY!!!\\nWAKE UP!![/font_size]", "!?!?!?!", "What? Huh!?\\nHow did you get into my home?", "That is immaterial.\\nYou made a wish just now, correct?", "Uh . . . ", "You mean, that thing I said offhandidly to myself?", "Correct.", "I am pleased to inform you that your wish has been selected for the [b][i]Priestess Volley[/i][/b].", "What the heck is the [b][i]Priestess Volley[/i][/b]?", "You really don\'t know?", "Tsk. Tsk.", "It is a [b][i]competition[/i][/b], of sorts, where our brand of magical girls compete for the title of [b][i]Priestess of Victory[/i][/b]!", "[b][i]Priestess of Victory[/i][/b]? [i]Magical girls?[/i]", "Why does this sound like something out of a light novel?", "Because it might as well be, my dear.")
 direction = 1
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1613387054]
+position = Vector2(576, 324)
+zoom = Vector2(1.5, 1.5)
 
 [connection signal="body_entered" from="Area2D" to="." method="_bed_animation_body_entered"]

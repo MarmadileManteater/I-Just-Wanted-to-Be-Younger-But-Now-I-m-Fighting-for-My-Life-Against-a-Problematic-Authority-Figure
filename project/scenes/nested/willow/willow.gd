@@ -12,6 +12,7 @@ enum DIRECTION { LEFT, RIGHT }
 @export var wand_enabled: bool = false
 @export var invulnerable: bool = false
 @export var controls_locked: bool = false
+@export var animation_locked: bool = false
 @export var is_transformed: bool = true
 
 var is_running: bool = false
@@ -93,6 +94,12 @@ func fire():
 	)
 	projectile.fire()
 
+func face(direction: DIRECTION) -> void:
+	if direction == DIRECTION.RIGHT:
+		sprite.scale.x = -1
+	else:
+		sprite.scale.x = 1
+
 func _ready() -> void:
 	sprite = find_child("Sprite")
 	shape = find_child("Shape")
@@ -107,6 +114,8 @@ func _ready() -> void:
 		sprite.scale.x = 1
 	if wand_enabled:
 		activate_wand()
+	if not is_transformed:
+		jump_sound.volume_linear = 0.25
 
 func _input(event: InputEvent) -> void:
 	if event.is_action("ui_shift"):
@@ -119,6 +128,8 @@ func _physics_process(delta: float) -> void:
 		scale.x = 1.05
 		scale.y = 1.05
 	if is_dying:
+		return
+	if animation_locked:
 		return
 		
 	if wand.visible:
@@ -151,7 +162,7 @@ func _physics_process(delta: float) -> void:
 		if running or not is_transformed:
 			velocity.x *= RUNNING_MULTIPLIER
 		if not is_transformed:
-			velocity.x *= OLD_MULTIPLIER
+			velocity.x *= OLD_MULTIPLIER - 0.05
 		if direction > 0:
 			sprite.scale.x = -1
 		else:

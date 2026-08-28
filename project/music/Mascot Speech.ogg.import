@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://7nyv1l4v6qvp"
+path="res://.godot/imported/Mascot Speech.ogg-579f5350fba9d72b36573752bf93402d.oggvorbisstr"
+
+[deps]
+
+source_file="res://music/Mascot Speech.ogg"
+dest_files=["res://.godot/imported/Mascot Speech.ogg-579f5350fba9d72b36573752bf93402d.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

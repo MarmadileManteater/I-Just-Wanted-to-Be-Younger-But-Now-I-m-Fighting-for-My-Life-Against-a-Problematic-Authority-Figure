@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://w05ma1mpdfgv"
+path="res://.godot/imported/Mascot Morph.ogg-f442bf04a30c1d25440cde11d6524586.oggvorbisstr"
+
+[deps]
+
+source_file="res://music/Mascot Morph.ogg"
+dest_files=["res://.godot/imported/Mascot Morph.ogg-f442bf04a30c1d25440cde11d6524586.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

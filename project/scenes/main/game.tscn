@@ -7,8 +7,8 @@
 [ext_resource type="AudioStream" uid="uid://cdiha5mkyb14e" path="res://music/Game Over.ogg" id="4_kjrfb"]
 [ext_resource type="AudioStream" uid="uid://cbi5d3qpb8cn4" path="res://music/Boss 1 Phase 1.ogg" id="4_se30j"]
 [ext_resource type="AudioStream" uid="uid://cqgktmd3cbao4" path="res://music/News Reel.ogg" id="5_em1bs"]
-[ext_resource type="AudioStream" uid="uid://dg6wqkydmdlsh" path="res://music/Somber Scene.ogg" id="6_0rn35"]
 [ext_resource type="Script" uid="uid://cqmvyq8jn4svt" path="res://scripts/AnimationPlayerExtensions.gd" id="7_0rn35"]
+[ext_resource type="AudioStream" uid="uid://bj6aernuk1fba" path="res://music/Somber Scene Loop.ogg" id="7_ktwa8"]
 [ext_resource type="AudioStream" uid="uid://rq0nioain6b" path="res://music/Tutorial.ogg" id="8_ktwa8"]
 
 [sub_resource type="Animation" id="Animation_gf1f2"]
@@ -191,7 +191,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("6_0rn35")]
+"values": [ExtResource("7_ktwa8")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -283,6 +283,45 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_6lv7u"]
+resource_name = "PlayWithFadeIn"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Jukebox:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-80.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Jukebox:bus")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Master"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Jukebox:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_obhq2"]
@@ -447,6 +486,7 @@ tracks/2/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5j5yt"]
 _data = {
 &"Default": SubResource("Animation_kb4no"),
+&"PlayWithFadeIn": SubResource("Animation_6lv7u"),
 &"Playing": SubResource("Animation_obhq2"),
 &"RESET": SubResource("Animation_157ky"),
 &"ReverbFadeOut": SubResource("Animation_y58yt"),
@@ -516,7 +556,7 @@ _data = {
 
 [node name="Game" type="Node2D" unique_id=1279552812]
 script = ExtResource("1_ma5rq")
-start_scene = "boss_1_screen_3"
+start_scene = "opening_screen_2"
 
 [node name="Jukebox" type="AudioStreamPlayer" parent="." unique_id=1118706098]
 stream = ExtResource("2_e3dby")
