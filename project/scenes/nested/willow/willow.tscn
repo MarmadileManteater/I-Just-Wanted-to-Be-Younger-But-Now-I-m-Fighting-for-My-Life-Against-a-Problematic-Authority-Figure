@@ -14,12 +14,14 @@
 [ext_resource type="Texture2D" uid="uid://2w4cm5e2rpqg" path="res://sprites/willow_old_sit_animation_1.png" id="8_pgkli"]
 [ext_resource type="Texture2D" uid="uid://bn0g5xecjbyjf" path="res://sprites/lightning_bolt.png" id="9_65i1c"]
 [ext_resource type="Script" uid="uid://ckglf2s2dppa8" path="res://scenes/nested/willow/zap_projectile.gd" id="9_acr3p"]
+[ext_resource type="Texture2D" uid="uid://b6d8jcokkipth" path="res://sprites/willow_mg_isit_animation_1.png" id="10_pnqgk"]
 [ext_resource type="AudioStream" uid="uid://cdafkxdqfipnq" path="res://music/Projectile.ogg" id="15_dw8b0"]
 [ext_resource type="AudioStream" uid="uid://bl88pprauw34t" path="res://music/Jump.ogg" id="16_1sf2h"]
 [ext_resource type="Texture2D" uid="uid://seg7ln2askyf" path="res://sprites/dress_transform.png" id="17_5pelu"]
 [ext_resource type="Texture2D" uid="uid://t6ts8024bj8c" path="res://sprites/poof.png" id="17_bi586"]
 [ext_resource type="Texture2D" uid="uid://cbasxx6yyex8c" path="res://sprites/gem.png" id="19_kgs5u"]
 [ext_resource type="Texture2D" uid="uid://cu18jbrwyf7ou" path="res://sprites/gem_monochromne.png" id="20_pnqgk"]
+[ext_resource type="AudioStream" uid="uid://cko4bmrxlstu" path="res://music/Transformation.ogg" id="22_hafsq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fce71"]
 atlas = ExtResource("2_1gub3")
@@ -115,6 +117,18 @@ region = Rect2(200, 0, 200, 300)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h58fq"]
 atlas = ExtResource("7_wdgmt")
+region = Rect2(400, 0, 200, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p3qbi"]
+atlas = ExtResource("10_pnqgk")
+region = Rect2(0, 0, 200, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s0hfn"]
+atlas = ExtResource("10_pnqgk")
+region = Rect2(200, 0, 200, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v3edn"]
+atlas = ExtResource("10_pnqgk")
 region = Rect2(400, 0, 200, 300)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q2air"]
@@ -251,6 +265,20 @@ animations = [{
 "loop": 1,
 "name": &"old_walk",
 "speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p3qbi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s0hfn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v3edn")
+}],
+"loop": 1,
+"name": &"sit",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -596,7 +624,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -721,26 +749,26 @@ tracks/10/keys = {
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("Sprite:sprite_frames")
+tracks/11/path = NodePath("Sprite:animation")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [SubResource("SpriteFrames_kds0v")]
+"values": [&"default"]
 }
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("Sprite:animation")
+tracks/12/path = NodePath("TransformationSound:playing")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"default"]
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_s0hfn"]
@@ -849,7 +877,7 @@ tracks/8/path = NodePath(".:is_transformed")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0, 2.1679),
+"times": PackedFloat32Array(0, 1.6666666),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -861,10 +889,10 @@ tracks/9/path = NodePath("Zap:modulate")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(2.2532148),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(2.2532148, 3),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
@@ -881,26 +909,26 @@ tracks/10/keys = {
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("Sprite:sprite_frames")
+tracks/11/path = NodePath("Sprite:animation")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 2.1679),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [SubResource("SpriteFrames_kds0v")]
+"values": [&"old_sit", &"sit"]
 }
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("Sprite:animation")
+tracks/12/path = NodePath("TransformationSound:playing")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
-"times": PackedFloat32Array(0, 2.1679),
+"times": PackedFloat32Array(0, 0.023256795),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [&"old_default", &"default"]
+"values": [false, true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_v3edn"]
@@ -910,7 +938,6 @@ _data = {
 }
 
 [node name="Willow" type="CharacterBody2D" unique_id=1438157277]
-texture_filter = 1
 script = ExtResource("1_nwiua")
 is_transformed = false
 
@@ -963,6 +990,7 @@ libraries/ = SubResource("AnimationLibrary_65i1c")
 stream = ExtResource("16_1sf2h")
 
 [node name="Poof" type="AnimatedSprite2D" parent="." unique_id=814664209]
+visible = false
 texture_filter = 1
 position = Vector2(-1, -26)
 sprite_frames = SubResource("SpriteFrames_6wcjf")
@@ -986,5 +1014,8 @@ texture = ExtResource("19_kgs5u")
 texture_filter = 1
 texture = ExtResource("20_pnqgk")
 
-[node name="TransformationSequece" type="AnimationPlayer" parent="." unique_id=521866126]
+[node name="TransformationSequence" type="AnimationPlayer" parent="." unique_id=521866126]
 libraries/ = SubResource("AnimationLibrary_v3edn")
+
+[node name="TransformationSound" type="AudioStreamPlayer" parent="." unique_id=885535775]
+stream = ExtResource("22_hafsq")

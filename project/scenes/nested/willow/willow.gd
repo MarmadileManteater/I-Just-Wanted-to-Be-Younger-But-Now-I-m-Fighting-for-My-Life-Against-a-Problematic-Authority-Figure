@@ -26,12 +26,16 @@ var wand_animation_player: AnimationPlayer
 var wand: Sprite2D
 var wand_projectile: ZapProjectile
 var jump_sound: AudioStreamPlayer2D
+var transformation_sequence: AnimationPlayer
 
 func run(lambda: Callable) -> void:
 	lambda.call()
 
 func run_deferred(lambda: Callable) -> void:
 	call_deferred("run", lambda)
+
+func transform() -> void:
+	transformation_sequence.play("Transform")
 
 func activate_wand() -> void:
 	wand.show()
@@ -101,13 +105,15 @@ func face(direction: DIRECTION) -> void:
 		sprite.scale.x = 1
 
 func _ready() -> void:
-	sprite = find_child("Sprite")
+	sprite = find_child("Sprite", true)
 	shape = find_child("Shape")
 	animation_player = find_child("AnimationPlayer")
 	wand_animation_player = find_child("WandAnimationPlayer", true)
 	wand = sprite.find_child("Wand")
 	wand_projectile = wand.find_child("Projectile")
 	jump_sound = find_child("JumpSound")
+	transformation_sequence = find_child("TransformationSequence")
+	
 	if starting_direction == DIRECTION.RIGHT:
 		sprite.scale.x = -1
 	else:
@@ -122,11 +128,6 @@ func _input(event: InputEvent) -> void:
 		is_running = event.is_pressed()
 
 func _physics_process(delta: float) -> void:
-	scale.x = 1.0
-	scale.y = 1.0
-	if not is_transformed:
-		scale.x = 1.05
-		scale.y = 1.05
 	if is_dying:
 		return
 	if animation_locked:

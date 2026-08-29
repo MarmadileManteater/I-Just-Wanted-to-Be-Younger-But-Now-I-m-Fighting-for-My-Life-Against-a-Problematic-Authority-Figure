@@ -125,6 +125,8 @@ func _on_mascot_dialog_1_line(index: int):
 		mascot_dialog_1.set_head(DialogWindow.Head.Mascot)
 		mascot_dialog_1.set_direction(DialogWindow.Direction.Right)
 		mascot_dialog_1.position.x = 425.0
+		emit_signal("stop_music")
+		willow.transform()
 
 func on_track_stopped(is_queue_empty: bool) -> void:
 	if is_queue_empty:

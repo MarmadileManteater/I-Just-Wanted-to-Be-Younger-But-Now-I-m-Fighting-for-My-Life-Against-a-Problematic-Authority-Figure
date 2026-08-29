@@ -667,9 +667,14 @@ _data = {
 
 [node name="OpeningScreen2" type="Node2D" unique_id=10098326]
 script = ExtResource("1_kk1yq")
+character_name = null
 track_name = "Somber2"
 queue_track = true
 loop_track = false
+dolly_axis = null
+dolly_offset = null
+dolly_starts_locked = null
+next_scene_name = null
 
 [node name="Space" type="Polygon2D" parent="." unique_id=6024057]
 texture_repeat = 2
@@ -736,7 +741,6 @@ position = Vector2(576, 324)
 [node name="Willow" parent="Node2D" unique_id=1438157277 instance=ExtResource("2_vn55n")]
 position = Vector2(-530, 89)
 starting_direction = 1
-is_transformed = false
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D" unique_id=2055114967]
 visible = false
