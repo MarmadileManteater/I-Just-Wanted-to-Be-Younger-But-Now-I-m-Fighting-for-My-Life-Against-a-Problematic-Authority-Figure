@@ -12,6 +12,7 @@ enum Head { Mascot, Willow }
 @export var text: PackedStringArray
 @export var direction: Direction = Direction.Left
 @export var talking_head: Head = Head.Mascot
+@export var talking_speed: float = 1
 var text_index: int = 0
 
 var default_head_position: Vector2
@@ -32,6 +33,15 @@ var voice_chooser: AnimationPlayer
 var current_text: String = ""
 var is_active = false
 var is_done = false
+
+func set_voice(voice_number: int = 1):
+	var voice_text = ""
+	if voice_number > 1:
+		voice_text = "%s" % voice_number
+	if talking_head == Head.Willow:
+		voice_chooser.play("Willow%s" % voice_text)
+	if talking_head == Head.Mascot:
+		voice_chooser.play("Mascot%s" % voice_text)
 
 func set_head(given: Head):
 	talking_head = given
@@ -134,7 +144,7 @@ func typewriter(given_text: String, on_finished: Callable = func (): pass):
 				timer.queue_free()
 				on_finished.call()
 	)
-	timer.start(0.01)
+	timer.start(1 / (talking_speed * 100))
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

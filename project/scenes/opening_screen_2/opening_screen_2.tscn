@@ -689,7 +689,7 @@ frame_progress = 1.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="ShootingStar" unique_id=310538641]
 stream = ExtResource("5_35qil")
-volume_db = -21.283
+volume_db = -10.0
 
 [node name="Polygon2D" type="Polygon2D" parent="." unique_id=472249842]
 position = Vector2(576, 533)

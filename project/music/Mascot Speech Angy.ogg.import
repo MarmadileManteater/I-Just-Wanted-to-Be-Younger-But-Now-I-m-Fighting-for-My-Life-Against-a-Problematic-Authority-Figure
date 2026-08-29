@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dok0jrsleor1k"
+path="res://.godot/imported/Mascot Speech Angy.ogg-c7b18a1c2419ea10617cb67e3ae2c96e.oggvorbisstr"
+
+[deps]
+
+source_file="res://music/Mascot Speech Angy.ogg"
+dest_files=["res://.godot/imported/Mascot Speech Angy.ogg-c7b18a1c2419ea10617cb67e3ae2c96e.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

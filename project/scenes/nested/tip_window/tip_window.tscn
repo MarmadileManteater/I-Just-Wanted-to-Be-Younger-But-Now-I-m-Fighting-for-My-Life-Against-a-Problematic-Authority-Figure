@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dulr0iom8vt1m" path="res://sprites/tip_bubble_middle_grow.png" id="4_kqk3n"]
 [ext_resource type="Texture2D" uid="uid://jwashgnpdl31" path="res://sprites/willow_old_head.png" id="5_4vtr2"]
 [ext_resource type="AudioStream" uid="uid://7nyv1l4v6qvp" path="res://music/Mascot Speech.ogg" id="6_kqk3n"]
+[ext_resource type="AudioStream" uid="uid://dok0jrsleor1k" path="res://music/Mascot Speech Angy.ogg" id="7_84e0e"]
 [ext_resource type="AudioStream" uid="uid://cciab7ive8hb7" path="res://music/Willow Speech.ogg" id="7_smcer"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kqk3n"]
@@ -390,6 +391,22 @@ tracks/0/keys = {
 "values": [ExtResource("6_kqk3n")]
 }
 
+[sub_resource type="Animation" id="Animation_pn5kl"]
+resource_name = "Mascot2"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer:stream")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("7_84e0e")]
+}
+
 [sub_resource type="Animation" id="Animation_obt3m"]
 length = 0.001
 tracks/0/type = "value"
@@ -424,6 +441,7 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pn5kl"]
 _data = {
 &"Mascot": SubResource("Animation_tr3m5"),
+&"Mascot2": SubResource("Animation_pn5kl"),
 &"RESET": SubResource("Animation_obt3m"),
 &"Willow": SubResource("Animation_dmmkr")
 }

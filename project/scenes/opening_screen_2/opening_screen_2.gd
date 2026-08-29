@@ -64,6 +64,8 @@ func _on_mascot_dialog_1_line(index: int):
 	if index == 4:
 		mascot.flip_h = false
 	if index == 6:
+		mascot_dialog_1.talking_speed = 0.25
+		mascot_dialog_1.set_voice(2)
 		mascot.flip_h = false
 		var timer = Timer.new()
 		timer.one_shot = true
@@ -79,6 +81,8 @@ func _on_mascot_dialog_1_line(index: int):
 		add_child(timer)
 		timer.start(0.5)
 	if index == 7:
+		mascot_dialog_1.talking_speed = 1
+		mascot_dialog_1.set_voice(1)
 		mascot_dialog_1.set_head(DialogWindow.Head.Willow)
 		mascot_dialog_1.set_direction(DialogWindow.Direction.Left)
 		mascot_dialog_1.position.x = 556.0
