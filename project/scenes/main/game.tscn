@@ -8,7 +8,8 @@
 [ext_resource type="AudioStream" uid="uid://cbi5d3qpb8cn4" path="res://music/Boss 1 Phase 1.ogg" id="4_se30j"]
 [ext_resource type="AudioStream" uid="uid://cqgktmd3cbao4" path="res://music/News Reel.ogg" id="5_em1bs"]
 [ext_resource type="Script" uid="uid://cqmvyq8jn4svt" path="res://scripts/AnimationPlayerExtensions.gd" id="7_0rn35"]
-[ext_resource type="AudioStream" uid="uid://bj6aernuk1fba" path="res://music/Somber Scene Loop.ogg" id="7_ktwa8"]
+[ext_resource type="AudioStream" uid="uid://cfgngv7bx1l2f" path="res://music/Somber Scene Loop Short.ogg" id="7_157ky"]
+[ext_resource type="AudioStream" uid="uid://cajyq7j6by0cc" path="res://music/Somber Scene End.ogg" id="8_157ky"]
 [ext_resource type="AudioStream" uid="uid://rq0nioain6b" path="res://music/Tutorial.ogg" id="8_ktwa8"]
 
 [sub_resource type="Animation" id="Animation_gf1f2"]
@@ -191,7 +192,35 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("7_ktwa8")]
+"values": [ExtResource("7_157ky")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Jukebox:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_8k4wh"]
+resource_name = "Somber2"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Jukebox:stream")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("8_157ky")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -242,6 +271,7 @@ _data = {
 &"NewsReel": SubResource("Animation_se30j"),
 &"RESET": SubResource("Animation_0rn35"),
 &"Somber": SubResource("Animation_ktwa8"),
+&"Somber2": SubResource("Animation_8k4wh"),
 &"Tutorial": SubResource("Animation_oxcik")
 }
 
@@ -554,9 +584,63 @@ _data = {
 &"RESET": SubResource("Animation_cgagh")
 }
 
+[sub_resource type="Animation" id="Animation_mg4hm"]
+resource_name = "Loop"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Jukebox:parameters/looping")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_4b4yl"]
+resource_name = "NoLoop"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Jukebox:parameters/looping")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_fyutr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Jukebox:parameters/looping")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_d8gmq"]
+_data = {
+&"Loop": SubResource("Animation_mg4hm"),
+&"NoLoop": SubResource("Animation_4b4yl"),
+&"RESET": SubResource("Animation_fyutr")
+}
+
 [node name="Game" type="Node2D" unique_id=1279552812]
 script = ExtResource("1_ma5rq")
-start_scene = "opening_screen_2"
+start_scene = "opening_menu"
 
 [node name="Jukebox" type="AudioStreamPlayer" parent="." unique_id=1118706098]
 stream = ExtResource("2_e3dby")
@@ -575,3 +659,7 @@ stream = ExtResource("4_kjrfb")
 [node name="SoundboxControls" type="AnimationPlayer" parent="." unique_id=1857995441]
 libraries/ = SubResource("AnimationLibrary_c8nfc")
 autoplay = &"RESET"
+
+[node name="LoopControls" type="AnimationPlayer" parent="." unique_id=779149741]
+libraries/ = SubResource("AnimationLibrary_d8gmq")
+autoplay = &"Loop"

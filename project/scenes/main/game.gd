@@ -2,19 +2,35 @@ extends Node2D
 
 @export var start_scene: String = "boss_1_screen_1"
 
+var jukebox: AudioStreamPlayer
 var jukebox_controls: AnimationPlayerExtended
+var loop_controls: AnimationPlayer
 var jukebox_effects: AnimationPlayer
 var soundbox_controls: AnimationPlayer
 var scene: DefaultScene = null
 var controller_type: DefaultScene.ControllerType =  DefaultScene.ControllerType.Keyboard
+var music_queue: Array = []
 
 var audio_effect_callback: String = ""
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	jukebox = find_child("Jukebox")
+	
+	jukebox.finished.connect(
+		func ():
+			scene.on_track_stopped(music_queue.size() == 0)
+			if music_queue.size() > 0:
+				var music: TrackInfo = music_queue.pop_front()
+				_play_music(music.name, true)
+				_change_loop_status(music.loop)
+	)
+	
 	jukebox_controls = find_child("JukeboxControls")
+	loop_controls = find_child("LoopControls")
 	jukebox_effects = find_child("JukeboxEffects")
 	soundbox_controls = find_child("SoundboxControls")
+	
 	next_screen_deferred(SceneInfo.from_name(start_scene))
 	
 func _input(event: InputEvent) -> void:
@@ -40,19 +56,35 @@ func next_screen_deferred(info: SceneInfo) -> void:
 		remove_child(scene)
 	scene = next_scene
 	scene.connect("next_screen", _next_screen)
+	scene.connect("queue_music", _queue_music)
 	scene.connect("play_music", _play_music)
 	scene.connect("play_music_with_fade_in", _play_music_with_fade_in)
 	scene.connect("stop_music_with_reverb", _stop_music_with_reverb)
 	scene.connect("play_sound_effect", _play_sound_effect)
+	scene.connect("change_loop_status", _change_loop_status)
 	add_child(scene)
 	if scene.hearts != null:
 		scene.hearts.health = info.health
 
+func _change_loop_status(is_looping: bool):
+	if is_looping:
+		loop_controls.play("Loop")
+	else:
+		loop_controls.play("NoLoop")
+
 func _play_sound_effect(track_title: String) -> void:
 	soundbox_controls.play(track_title)
 
-func _play_music(track_title: String) -> void:
-	if jukebox_controls.last_animation != track_title:
+func _queue_music(track: TrackInfo) -> void:
+	if jukebox.playing:
+		_change_loop_status(false)
+		music_queue.push_back(track)
+	else:
+		_change_loop_status(track.loop)
+		_play_music(track.name, true)
+	
+func _play_music(track_title: String, bypass: bool = false) -> void:
+	if jukebox_controls.last_animation != track_title or bypass:
 		jukebox_effects.play("Playing")
 		jukebox_controls.play_with_memory(track_title)
 		

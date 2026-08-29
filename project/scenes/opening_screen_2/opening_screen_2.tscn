@@ -667,7 +667,9 @@ _data = {
 
 [node name="OpeningScreen2" type="Node2D" unique_id=10098326]
 script = ExtResource("1_kk1yq")
-track_name = "Somber"
+track_name = "Somber2"
+queue_track = true
+loop_track = false
 
 [node name="Space" type="Polygon2D" parent="." unique_id=6024057]
 texture_repeat = 2
@@ -779,7 +781,7 @@ autoplay = &"RESET"
 
 [node name="MascotDialog1" parent="." unique_id=886941129 instance=ExtResource("6_obk76")]
 position = Vector2(425, 110)
-text = PackedStringArray("Why hello there~!\\nLooks like I\'ve got fresh meat!", ". . .", "Well, perhaps, not [b]fresh[/b] [i]per se[/i], but new [b][i]to me[/i][/b] meat!", "[i][color=#8c8c8c]Wow, she\'s like way older than my usual clientelle.\\nIs this really all they could get me?[/color][/i]", ". . . ", "She\'s really not waking up. Is she?", "[font_size=56]HEYY!!!\\nWAKE UP!![/font_size]", "!?!?!?!", "What? Huh!?\\nHow did you get into my home?", "That is immaterial.\\nYou made a wish just now, correct?", "Uh . . . ", "You mean, that thing I said offhandidly to myself?", "Correct.", "I am pleased to inform you that your wish has been selected for the [b][i]Priestess Volley[/i][/b].", "What the heck is the [b][i]Priestess Volley[/i][/b]?", "You really don\'t know?", "Tsk. Tsk.", "It is a [b][i]competition[/i][/b], of sorts, where our brand of magical girls compete for the title of [b][i]Priestess of Victory[/i][/b]!", "[b][i]Priestess of Victory[/i][/b]? [i]Magical girls?[/i]", "Why does this sound like something out of a light novel?", "Because it might as well be, my dear.")
+text = PackedStringArray("Why hello there~!\\nLooks like I\'ve got fresh meat!", ". . .", "Well, perhaps, not [b]fresh[/b] [i]per se[/i], but new [b][i]to me[/i][/b] meat!", "[i][color=#8c8c8c]Wow, she\'s like way older than my usual clientelle.\\nIs this really all they could get me?[/color][/i]", ". . . ", "She\'s really not waking up. Is she?", "[font_size=56]HEYY!!!\\nWAKE UP!![/font_size]", "!?!?!?!", "What? Huh!?\\nHow did you get into my home?", "That is immaterial.\\nYou made a wish just now, correct?", "Uh . . . ", "You mean, that thing I said offhandedly to myself?", "Correct.", "I am pleased to inform you that your wish has been selected for the [b][i]Priestess Volley[/i][/b].", "What the heck is the [b][i]Priestess Volley[/i][/b]?", "You really don\'t know?", "Tsk. Tsk.", "It is a [b][i]competition[/i][/b], of sorts, where our brand of magical girls compete for the title of [b][i]Priestess of Victory[/i][/b]!", "[b][i]Priestess of Victory[/i][/b]? [i]Magical girls?[/i]", "Why does this sound like something out of a light novel?", "Because it might as well be, my dear.")
 direction = 1
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1613387054]

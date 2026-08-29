@@ -12,6 +12,9 @@ var mascot: AnimatedSprite2D
 
 var animate_space_speed: float = 0
 
+var music_done: bool = false
+var bed_dialog_done: bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	super()
@@ -49,13 +52,20 @@ func _on_bed_dialog_line(index: int):
 		shooting_star_sound.play()
 		
 func _on_bed_dialog_done():
+	if music_done:
+		after_bed_dialog()
+	else:
+		bed_dialog_done = true
+
+func after_bed_dialog():
 	mascot_animation_player.play("MascotLand")
 	mascot_animation_player.animation_finished.connect(_on_mascot_land)
-	
+		
 func _on_mascot_land(_name: String):
 	mascot_dialog_1.start()
 	mascot_dialog_1.next_line.connect(_on_mascot_dialog_1_line)
 	animate_space_speed = 10
+	emit_signal("change_loop_status", true)
 	emit_signal("play_music", "Introduction")
 	
 func _on_mascot_dialog_1_line(index: int):
@@ -115,3 +125,10 @@ func _on_mascot_dialog_1_line(index: int):
 		mascot_dialog_1.set_head(DialogWindow.Head.Mascot)
 		mascot_dialog_1.set_direction(DialogWindow.Direction.Right)
 		mascot_dialog_1.position.x = 425.0
+
+func on_track_stopped(is_queue_empty: bool) -> void:
+	if is_queue_empty:
+		if bed_dialog_done:
+			after_bed_dialog()
+		else:
+			music_done = true
