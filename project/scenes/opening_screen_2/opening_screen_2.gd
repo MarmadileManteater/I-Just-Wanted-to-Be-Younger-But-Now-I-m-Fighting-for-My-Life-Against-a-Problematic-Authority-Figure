@@ -35,7 +35,7 @@ func _ready() -> void:
 	tv = find_child("TV")
 	tv_static = tv.find_child("Static")
 	news_window = tv.find_child("NewsWindow")
-
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	space.texture_offset.y -= animate_space_speed * delta
@@ -240,7 +240,7 @@ func _on_news_window_next_line(index: int):
 				emit_signal("next_screen", SceneInfo.from_name("boss_1_screen_1"))
 		)
 		add_child(timer)
-		timer.start(5.6)
+		timer.start(6.62)
 
 func _on_news_window_done():
 	pass
