@@ -9,9 +9,67 @@
 [ext_resource type="Texture2D" uid="uid://cwf3gnpotkgy3" path="res://sprites/shooting_star.png" id="4_jbeqt"]
 [ext_resource type="AudioStream" uid="uid://bsq75uxqsmjsh" path="res://music/Shooting Star.ogg" id="5_35qil"]
 [ext_resource type="PackedScene" uid="uid://k17lgk7i63ex" path="res://scenes/nested/tip_window/tip_window.tscn" id="6_obk76"]
+[ext_resource type="Texture2D" uid="uid://c0vo128h4ad58" path="res://sprites/podium.png" id="7_32ti0"]
 [ext_resource type="Texture2D" uid="uid://d4h0gq6gv42re" path="res://sprites/exclamation.png" id="8_6i82o"]
 [ext_resource type="Texture2D" uid="uid://bhrsegy7g40r8" path="res://sprites/mascot_stretch.png" id="9_2i5bp"]
 [ext_resource type="AudioStream" uid="uid://w05ma1mpdfgv" path="res://music/Mascot Morph.ogg" id="10_ejo1f"]
+[ext_resource type="Texture2D" uid="uid://cr7rimpnpg4po" path="res://sprites/tv.png" id="14_3d1es"]
+[ext_resource type="Texture2D" uid="uid://cu81h3ovwynly" path="res://sprites/tv_screen_1.png" id="15_24w8b"]
+[ext_resource type="Texture2D" uid="uid://bqea16md2wydl" path="res://sprites/static.png" id="16_3wuyp"]
+
+[sub_resource type="Animation" id="Animation_32ti0"]
+resource_name = "FadeIn"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Podium:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3d1es"]
+resource_name = "FadeOut"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Podium:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_24w8b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Podium:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3wuyp"]
+_data = {
+&"FadeIn": SubResource("Animation_32ti0"),
+&"FadeOut": SubResource("Animation_3d1es"),
+&"RESET": SubResource("Animation_24w8b")
+}
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2i5bp"]
 atlas = ExtResource("4_jbeqt")
@@ -665,16 +723,33 @@ _data = {
 &"RESET": SubResource("Animation_2i5bp")
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_31m3t"]
+atlas = ExtResource("16_3wuyp")
+region = Rect2(0, 0, 1258, 527)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ryvi0"]
+atlas = ExtResource("16_3wuyp")
+region = Rect2(0, 527, 1258, 527)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fcxea"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_31m3t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ryvi0")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 9.0
+}]
+
 [node name="OpeningScreen2" type="Node2D" unique_id=10098326]
 script = ExtResource("1_kk1yq")
-character_name = null
 track_name = "Somber2"
 queue_track = true
 loop_track = false
-dolly_axis = null
-dolly_offset = null
-dolly_starts_locked = null
-next_scene_name = null
 
 [node name="Space" type="Polygon2D" parent="." unique_id=6024057]
 texture_repeat = 2
@@ -685,6 +760,15 @@ polygon = PackedVector2Array(2, 0, 1154, 0, 1154, 648, 3, 648)
 [node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1791437530]
 position = Vector2(576, 324)
 texture = ExtResource("1_ggxnu")
+
+[node name="Podium" type="Sprite2D" parent="." unique_id=2078073575]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(532.00006, 375)
+scale = Vector2(0.48250002, 0.48250002)
+texture = ExtResource("7_32ti0")
+
+[node name="PodiumPlayer" type="AnimationPlayer" parent="." unique_id=1373277330]
+libraries/ = SubResource("AnimationLibrary_3wuyp")
 
 [node name="ShootingStar" type="AnimatedSprite2D" parent="." unique_id=1054447861]
 position = Vector2(282, 310)
@@ -785,11 +869,47 @@ autoplay = &"RESET"
 
 [node name="MascotDialog1" parent="." unique_id=886941129 instance=ExtResource("6_obk76")]
 position = Vector2(425, 110)
-text = PackedStringArray("Why hello there~!\\nLooks like I\'ve got fresh meat!", ". . .", "Well, perhaps, not [b]fresh[/b] [i]per se[/i], but new [b][i]to me[/i][/b] meat!", "[i][color=#8c8c8c]Wow, she\'s like way older than my usual clientelle.\\nIs this really all they could get me?[/color][/i]", ". . . ", "She\'s really not waking up. Is she?", "[font_size=56]HEYY!!!\\nWAKE UP!![/font_size]", "!?!?!?!", "What? Huh!?\\nHow did you get into my home?", "That is immaterial.\\nYou made a wish just now, correct?", "Uh . . . ", "You mean, that thing I said offhandedly to myself?", "Correct.", "I am pleased to inform you that your wish has been selected for the [b][i]Priestess Volley[/i][/b].", "What the heck is the [b][i]Priestess Volley[/i][/b]?", "You really don\'t know?", "Tsk. Tsk.", "It is a [b][i]competition[/i][/b], of sorts, where our brand of magical girls compete for the title of [b][i]Priestess of Victory[/i][/b]!", "[b][i]Priestess of Victory[/i][/b]? [i]Magical girls?[/i]", "Why does this sound like something out of a light novel?", "Because it might as well be, my dear.")
+text = PackedStringArray("Why hello there~!\\nLooks like I\'ve got fresh meat!", ". . .", "Well, perhaps, not [b]fresh[/b] [i]per se[/i], but new [b][i]to me[/i][/b] meat!", "[i][color=#8c8c8c]Wow, she\'s like way older than my usual clientelle.\\nIs this really all they could get me?[/color][/i]", ". . . ", "She\'s really not waking up. Is she?", "[font_size=56]HEYY!!!\\nWAKE UP!![/font_size]", "!?!?!?!", "What? Huh!?\\nHow did you get into my home?", "That is immaterial.\\nYou made a wish just now, correct?", "Uh . . . ", "You mean, that thing I said offhandedly to myself?", "Correct.", "I am pleased to inform you that your wish has been selected for the [b][i]Priestess Volley[/i][/b].", "What the heck is the [b][i]Priestess Volley[/i][/b]?", "You really don\'t know?", "Tsk. Tsk.", "It is a [b][i]competition[/i][/b], of sorts, where our brand of magical girls compete for the title of [b][i]Priestess of Victory[/i][/b]!", "[b][i]Priestess of Victory[/i][/b]? [i]Magical girls?[/i]", "Why does this sound like something out of a light novel?", "Those words mean nothing to me.", "Anywho~!", "I will grant your wish as long as you agree to participate.", "Really?", "Yes.", "WOAH~", "Where did these clothes-", "How did you-", "You have been de-aged to the average age of the other competitors.", "If you wish to stay this way, you should do your best to win.", "Woah, I feel like I can bend over without throwing out my back.", "Yeah . . .\\nThat\'s not an age thing.\\nYou just don\'t work out enough.", "Oh . . .", "The de-aging process reverted your body to roughly the condition it was when you were 14.", "So . . .\\nWhat do I have to do?", "Huh?")
 direction = 1
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1613387054]
 position = Vector2(576, 324)
 zoom = Vector2(1.5, 1.5)
+
+[node name="TV" type="Sprite2D" parent="." unique_id=947825528]
+visible = false
+z_index = 1
+position = Vector2(566, 300)
+scale = Vector2(0.68029827, 0.6802983)
+texture = ExtResource("14_3d1es")
+
+[node name="Polygon2D" type="Polygon2D" parent="TV" unique_id=550893654]
+z_index = -1
+position = Vector2(-8.81958, 2.9398804)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(164.6336, 379.24533, 739.38153, 386.59506, 752.611, -357.1963, -721.7423, -367.4859, -712.92267, 374.83554, 11.75946, 388.06503)
+
+[node name="News" type="Sprite2D" parent="TV" unique_id=835268468]
+z_index = -1
+position = Vector2(19.109177, -8.81971)
+texture = ExtResource("15_24w8b")
+
+[node name="Static" type="Polygon2D" parent="TV" unique_id=1853414497]
+z_index = -1
+position = Vector2(-8.81958, 2.9398804)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(164.6336, 379.24533, 739.38153, 386.59506, 752.611, -357.1963, -721.7423, -367.4859, -712.92267, 374.83554, 11.75946, 388.06503)
+
+[node name="Static" type="AnimatedSprite2D" parent="TV/Static" unique_id=2004507218]
+position = Vector2(8.81958, -2.9398804)
+sprite_frames = SubResource("SpriteFrames_fcxea")
+autoplay = "default"
+frame_progress = 0.8825726
+
+[node name="NewsWindow" parent="TV" unique_id=1059588760 instance=ExtResource("6_obk76")]
+position = Vector2(-98.48619, 330.7372)
+scale = Vector2(1.476, 1.476)
+text = PackedStringArray("This just in-\\nA gigantic man is attacking the city.", "Wait . . .", "Is that my boss?", "Sources say the man is agitated that some of his workers went home only 6 hours after end of business.", "Allegedly, he was heard asserting that no one should be allowed to leave until the deadline is met.", ". . . ", "Yeah . . .", "Well, it looks like you\'ll be pulling some unpaid overtime.")
+direction = 2
 
 [connection signal="body_entered" from="Area2D" to="." method="_bed_animation_body_entered"]

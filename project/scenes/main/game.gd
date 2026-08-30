@@ -12,6 +12,7 @@ var controller_type: DefaultScene.ControllerType =  DefaultScene.ControllerType.
 var music_queue: Array = []
 
 var audio_effect_callback: String = ""
+var paused_position: float = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -61,6 +62,8 @@ func next_screen_deferred(info: SceneInfo) -> void:
 	scene.connect("play_music_with_fade_in", _play_music_with_fade_in)
 	scene.connect("stop_music_with_reverb", _stop_music_with_reverb)
 	scene.connect("stop_music", _stop_music)
+	scene.connect("pause_music", _pause_music)
+	scene.connect("unpause_music", _unpause_music)
 	scene.connect("play_sound_effect", _play_sound_effect)
 	scene.connect("change_loop_status", _change_loop_status)
 	add_child(scene)
@@ -85,11 +88,13 @@ func _queue_music(track: TrackInfo) -> void:
 		_play_music(track.name, true)
 	
 func _play_music(track_title: String, bypass: bool = false) -> void:
+	paused_position = 0
 	if jukebox_controls.last_animation != track_title or bypass:
 		jukebox_effects.play("Playing")
 		jukebox_controls.play_with_memory(track_title)
 		
 func _play_music_with_fade_in(track_title: String, seconds: float = 1.0) -> void:
+	paused_position = 0
 	if jukebox_controls.last_animation != track_title:
 		jukebox_effects.speed_scale = 1 / seconds
 		jukebox_effects.play("PlayWithFadeIn")
@@ -97,6 +102,17 @@ func _play_music_with_fade_in(track_title: String, seconds: float = 1.0) -> void
 
 func _stop_music() -> void:
 	jukebox.stop()
+	paused_position = 0
+
+func _pause_music() -> void:
+	paused_position = jukebox.get_playback_position()
+	jukebox.stop()
+	
+func _unpause_music() -> void:
+	jukebox.volume_db = -80
+	jukebox.play(paused_position)
+	jukebox_effects.play("PlayWithFadeIn")
+	paused_position = 0
 
 func _stop_music_with_reverb(callback: String = "", animation_speed: float = 1) -> void:
 	audio_effect_callback = callback

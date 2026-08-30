@@ -6,7 +6,7 @@ signal done
 signal next_line
 
 enum Direction { Left, Right, Neither }
-enum Head { Mascot, Willow }
+enum Head { Mascot, Willow, WillowTF }
 
 @export var autostart: bool = false
 @export var text: PackedStringArray
@@ -34,6 +34,9 @@ var current_text: String = ""
 var is_active = false
 var is_done = false
 
+func set_voice_by_name(voice_name: String):
+	voice_chooser.play(voice_name)
+
 func set_voice(voice_number: int = 1):
 	var voice_text = ""
 	if voice_number > 1:
@@ -48,6 +51,11 @@ func set_head(given: Head):
 	if talking_head == Head.Willow:
 		head_scaler.scale = Vector2(0.8, 0.8)
 		head_chooser.play("Willow")
+		head_chooser.stop()
+		voice_chooser.play("Willow")
+	if talking_head == Head.WillowTF:
+		head_scaler.scale = Vector2(0.8, 0.8)
+		head_chooser.play("Willow_2")
 		head_chooser.stop()
 		voice_chooser.play("Willow")
 	if talking_head == Head.Mascot:
@@ -65,6 +73,8 @@ func set_direction(given: Direction):
 	label.position = default_label_position 
 	
 	head.show()
+	text_box.play_backwards("grow")
+	text_box.pause()
 	
 	if direction == Direction.Right:
 		head.position.x -= 800
@@ -76,6 +86,8 @@ func set_direction(given: Direction):
 		head.hide()
 		text_box.position.x += 80
 		label.position.x += 100
+		text_box.play_backwards("grow_middle")
+		text_box.pause()
 
 func start():
 	is_active = true

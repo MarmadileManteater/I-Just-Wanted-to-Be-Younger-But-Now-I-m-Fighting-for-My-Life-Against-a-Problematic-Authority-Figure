@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bqjwdkds6x6x1"
+path="res://.godot/imported/Other Speech.ogg-244d769b743c4166a82a43d9c03bfa8f.oggvorbisstr"
+
+[deps]
+
+source_file="res://music/Other Speech.ogg"
+dest_files=["res://.godot/imported/Other Speech.ogg-244d769b743c4166a82a43d9c03bfa8f.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

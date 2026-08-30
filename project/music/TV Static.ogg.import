@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://vemyp3abv7je"
+path="res://.godot/imported/TV Static.ogg-cd5b948f67153d22b5c9783a8a0a1930.oggvorbisstr"
+
+[deps]
+
+source_file="res://music/TV Static.ogg"
+dest_files=["res://.godot/imported/TV Static.ogg-cd5b948f67153d22b5c9783a8a0a1930.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

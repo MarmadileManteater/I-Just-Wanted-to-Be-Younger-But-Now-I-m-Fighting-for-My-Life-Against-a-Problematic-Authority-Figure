@@ -8,6 +8,8 @@ signal play_music_with_fade_in
 signal queue_music
 signal stop_music_with_reverb
 signal stop_music
+signal pause_music
+signal unpause_music
 signal play_sound_effect
 signal change_loop_status
 
