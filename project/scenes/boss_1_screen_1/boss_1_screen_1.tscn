@@ -30,7 +30,7 @@ size = Vector2(52, 27.5)
 size = Vector2(3058, 18)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6wcjf"]
-size = Vector2(20, 587)
+size = Vector2(50, 913)
 
 [node name="Boss1Scene1" type="Node2D" unique_id=907328611]
 script = ExtResource("1_80wie")
@@ -89,7 +89,7 @@ position = Vector2(136, 3.75)
 shape = SubResource("RectangleShape2D_mc3rn")
 
 [node name="Willow" parent="." unique_id=1438157277 instance=ExtResource("7_17xyv")]
-position = Vector2(87, 434)
+position = Vector2(86, -149)
 starting_direction = 1
 
 [node name="Floor" type="StaticBody2D" parent="." unique_id=2125406527]
@@ -109,7 +109,7 @@ shape = SubResource("RectangleShape2D_0evvt")
 position = Vector2(39, 348)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftBoundary" unique_id=1930039593]
-position = Vector2(0, -58.5)
+position = Vector2(-15, -221.5)
 shape = SubResource("RectangleShape2D_6wcjf")
 
 [node name="NextScreen" parent="." unique_id=1275666114 instance=ExtResource("9_7kmdm")]

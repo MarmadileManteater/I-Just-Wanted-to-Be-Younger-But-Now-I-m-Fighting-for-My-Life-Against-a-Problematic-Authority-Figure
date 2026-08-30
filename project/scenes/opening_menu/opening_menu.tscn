@@ -126,6 +126,7 @@ _data = {
 
 [node name="OpeningMenu" type="Node2D" unique_id=1714466535]
 script = ExtResource("1_cnw1s")
+starts_transformed = false
 track_name = "Somber"
 next_scene_name = "opening_screen_2"
 
@@ -147,7 +148,6 @@ texture = ExtResource("3_cnw1s")
 position = Vector2(-394.76184, 85.33334)
 starting_direction = 1
 controls_locked = true
-is_transformed = false
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Rooom" unique_id=985614583]
 position = Vector2(-109.33334, 230.66667)

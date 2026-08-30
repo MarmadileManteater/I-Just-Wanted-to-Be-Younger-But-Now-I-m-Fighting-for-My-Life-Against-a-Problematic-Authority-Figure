@@ -747,6 +747,7 @@ animations = [{
 
 [node name="OpeningScreen2" type="Node2D" unique_id=10098326]
 script = ExtResource("1_kk1yq")
+starts_transformed = false
 track_name = "Somber2"
 queue_track = true
 loop_track = false

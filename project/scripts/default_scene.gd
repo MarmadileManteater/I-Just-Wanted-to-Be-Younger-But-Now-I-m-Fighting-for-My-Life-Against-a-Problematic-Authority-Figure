@@ -16,6 +16,7 @@ signal change_loop_status
 enum ControllerType { Joypad, Keyboard }
 
 @export var character_name: String = "Willow"
+@export var starts_transformed: bool = true
 @export var track_name: String = ""
 @export var queue_track: bool = false
 @export var loop_track: bool = true
@@ -34,6 +35,7 @@ var next_screen_area: NextScreenArea
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	willow = find_child(character_name, true, false)
+	willow.is_transformed = starts_transformed
 	if willow == null:
 		printerr(character_name + " not found!")
 	dolly = find_child("Dolly", true, false)

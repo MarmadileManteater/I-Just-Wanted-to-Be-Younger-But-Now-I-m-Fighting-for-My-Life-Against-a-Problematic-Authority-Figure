@@ -682,7 +682,7 @@ _data = {
 
 [node name="Game" type="Node2D" unique_id=1279552812]
 script = ExtResource("1_ma5rq")
-start_scene = "opening_screen_2"
+start_scene = "opening_menu"
 
 [node name="Jukebox" type="AudioStreamPlayer" parent="." unique_id=1118706098]
 stream = ExtResource("2_y58yt")

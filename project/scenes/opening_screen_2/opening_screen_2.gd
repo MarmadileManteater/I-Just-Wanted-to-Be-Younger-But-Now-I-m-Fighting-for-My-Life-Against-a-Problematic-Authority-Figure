@@ -206,6 +206,7 @@ func _on_mascot_dialog_1_done():
 	timer.timeout.connect(
 		func ():
 			news_window.next_line.connect(_on_news_window_next_line)
+			news_window.done.connect(_on_news_window_done)
 			news_window.start()
 			news_window.set_voice_by_name("Other")
 			remove_child(timer)
@@ -231,6 +232,18 @@ func _on_news_window_next_line(index: int):
 		news_window.set_head(DialogWindow.Head.Mascot)
 		news_window.set_direction(DialogWindow.Direction.Right)
 		news_window.position.x = -217
+		emit_signal("play_music", "Gameplay")
+		var timer = Timer.new()
+		timer.one_shot = true
+		timer.timeout.connect(
+			func ():
+				emit_signal("next_screen", SceneInfo.from_name("boss_1_screen_1"))
+		)
+		add_child(timer)
+		timer.start(5.6)
+
+func _on_news_window_done():
+	pass
 
 func on_track_stopped(is_queue_empty: bool) -> void:
 	if is_queue_empty:
