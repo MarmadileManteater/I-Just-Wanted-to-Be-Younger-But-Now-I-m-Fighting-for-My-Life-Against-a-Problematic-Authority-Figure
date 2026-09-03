@@ -140,4 +140,9 @@ func _save_checkpoint(scene_name: String) -> void:
 	checkpoint_scene = scene_name
 	
 func _restore_checkpoint() -> void:
+	
+	jukebox_effects.stop()
+	soundbox_controls.play("Reset")
+	jukebox_effects.animation_finished.disconnect(_on_reverb_fade_out)
+	jukebox_effects.play("Playing")
 	next_screen_deferred(SceneInfo.checkpoint(checkpoint_scene))

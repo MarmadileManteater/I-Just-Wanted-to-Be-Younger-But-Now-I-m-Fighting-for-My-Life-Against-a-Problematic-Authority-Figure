@@ -180,6 +180,33 @@ tracks/1/keys = {
 "values": [ExtResource("2_e3dby")]
 }
 
+[sub_resource type="Animation" id="Animation_0u50o"]
+resource_name = "Reset"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Jukebox:stream")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Jukebox:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="Animation" id="Animation_ktwa8"]
 resource_name = "Somber"
 length = 0.001
@@ -299,6 +326,7 @@ _data = {
 &"Introduction": SubResource("Animation_kjrfb"),
 &"NewsReel": SubResource("Animation_se30j"),
 &"RESET": SubResource("Animation_0rn35"),
+&"Reset": SubResource("Animation_0u50o"),
 &"Somber": SubResource("Animation_ktwa8"),
 &"Somber2": SubResource("Animation_8k4wh"),
 &"TVStatic": SubResource("Animation_d8gmq"),
@@ -620,10 +648,38 @@ tracks/1/keys = {
 "values": [false]
 }
 
+[sub_resource type="Animation" id="Animation_swbjq"]
+resource_name = "Reset"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Soundbox:stream")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Soundbox:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_c8nfc"]
 _data = {
 &"GameOver": SubResource("Animation_5j5yt"),
-&"RESET": SubResource("Animation_cgagh")
+&"RESET": SubResource("Animation_cgagh"),
+&"Reset": SubResource("Animation_swbjq")
 }
 
 [sub_resource type="Animation" id="Animation_mg4hm"]
@@ -682,7 +738,6 @@ _data = {
 
 [node name="Game" type="Node2D" unique_id=1279552812]
 script = ExtResource("1_ma5rq")
-start_scene = "opening_menu"
 
 [node name="Jukebox" type="AudioStreamPlayer" parent="." unique_id=1118706098]
 stream = ExtResource("2_y58yt")
