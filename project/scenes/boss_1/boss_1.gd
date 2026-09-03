@@ -85,7 +85,12 @@ func slam_hand(animation_name: String):
 	slam_animation_player.play_with_memory(animation_name.replace("Raise", "Slam"))
 	slam_animation_player.animation_finished.disconnect(slam_hand)
 	# note: can change this timeout based on stage to boost difficulty
-	timeout_to_reset_animation(2)
+	if boss_stage == 1:
+		timeout_to_reset_animation(1)
+	if boss_stage == 2:
+		timeout_to_reset_animation(3)
+	if boss_stage == 3:
+		timeout_to_reset_animation(4)
 
 func timeout_to_reset_animation(seconds: float = 1):
 	var timeout = Timer.new()
