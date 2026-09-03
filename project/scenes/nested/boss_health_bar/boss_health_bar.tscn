@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://cikt1lmik1o0u"]
+
+[ext_resource type="Script" uid="uid://cxwy44476utnc" path="res://scenes/nested/boss_health_bar/boss_health_bar.gd" id="1_lxpt4"]
+[ext_resource type="Texture2D" uid="uid://d2fi7d4nfljoo" path="res://sprites/boss-health-bar.png" id="1_sdraa"]
+
+[node name="BossHealthBar" type="Node2D" unique_id=1039325899]
+z_index = 10
+script = ExtResource("1_lxpt4")
+color = Color(0.99607843, 0.42352942, 0.42352942, 1)
+
+[node name="Background" type="Polygon2D" parent="." unique_id=489184303]
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(0, -34, 273, -31, 277, 30, -273, 32, -266, -33)
+
+[node name="Health" type="Polygon2D" parent="." unique_id=1025277737]
+position = Vector2(-268, -32)
+color = Color(1, 1, 1, 0)
+polygon = PackedVector2Array(0, -2, 543, -2, 543, 63, -2, 63)
+
+[node name="Border" type="Sprite2D" parent="." unique_id=1390228820]
+texture = ExtResource("1_sdraa")

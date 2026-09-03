@@ -9,6 +9,7 @@ var speech_start: AnimatedSprite2D
 var selected_target: Node2D
 var head_animation_player: AnimationPlayer
 var mouth_animation_player: AnimationPlayer
+var hurt_sound_effect: AudioStreamPlayer
 
 var can_fire: bool = true
 
@@ -18,6 +19,7 @@ func _ready() -> void:
 	speech_start = find_child("SpeechStart", true)
 	head_animation_player = find_child("AnimationPlayer", true)
 	mouth_animation_player = find_child("MouthAnimationPlayer", true)
+	hurt_sound_effect = find_child("HurtSoundEffect")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

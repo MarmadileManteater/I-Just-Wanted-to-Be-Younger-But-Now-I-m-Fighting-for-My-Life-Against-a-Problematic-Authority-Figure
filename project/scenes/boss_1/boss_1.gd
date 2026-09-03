@@ -18,6 +18,7 @@ var boss_right: Node2D
 var wand_pickup: RigidBody2D
 var wand_tip: DialogWindow
 var post_battle_dialog: DialogWindow
+var boss_health_bar: BossHealthBar
 
 var left_hand_limit: Node2D
 var right_hand_limit: Node2D
@@ -25,6 +26,7 @@ var right_hand_limit: Node2D
 var slam_animation_player: AnimationPlayerExtended
 var bob_animation_player: AnimationPlayer
 var drop_animation_player: AnimationPlayer
+var boss_health_bar_animation_player: AnimationPlayer
 
 func last_track_stopped() -> void:
 	emit_signal("play_music", "Tutorial")
@@ -44,6 +46,8 @@ func _ready() -> void:
 	
 	wand_tip = dolly.find_child("TipWindow2")
 	post_battle_dialog = dolly.find_child("TipWindow3")
+	boss_health_bar = dolly.find_child("BossHealthBar")
+	boss_health_bar_animation_player = dolly.find_child("BossHealthBarAnimationPlayer")
 	
 	left_hand_limit = find_child("LeftHandLimit")
 	right_hand_limit = find_child("RightHandLimit")
@@ -147,13 +151,24 @@ func _on_projectiles_damage() -> void:
 			willow.hurt()
 
 func _on_damage_boss() -> void:
+	boss_top.hurt_sound_effect.play()
 	boss_health -= 1
-	if boss_health < 75:
+	var health_percentage = 1.0
+	if boss_health > 75:
+		health_percentage = ( boss_health - 75 ) / 25.0
+	elif boss_health > 25:
+		health_percentage = ( boss_health - 25 ) / 50.0
+		boss_health_bar.set_color(Color(0.922, 0.522, 0.0))
 		stage_change(2)
-	if boss_health < 25:
+	elif boss_health > 0:
+		health_percentage = boss_health / 25.0
+		boss_health_bar.set_color(Color(0.955, 0.0, 0.209))
 		stage_change(3)
-	if boss_health < 0:
+	elif boss_health <= 0:
 		boss_death()
+		health_percentage = 0
+	if not boss_top.head_animation_player.current_animation == "Stage Change":
+		boss_health_bar.set_percentage(health_percentage)
 
 func _on_death_zone_entered(body: Node2D) -> void:
 	if body == willow:
@@ -171,6 +186,7 @@ func _on_pickup_window_entered(body: Node2D) -> void:
 		wand_tip.start()   
 		wand_tip.done.connect(
 			func ():
+				boss_health_bar_animation_player.play("LoadIn")
 				willow.controls_locked = false
 				lock_dolly()
 				boss_started = true
