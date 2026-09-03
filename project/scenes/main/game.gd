@@ -13,6 +13,7 @@ var music_queue: Array = []
 
 var audio_effect_callback: String = ""
 var paused_position: float = 0
+var checkpoint_scene = ""
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -66,6 +67,11 @@ func next_screen_deferred(info: SceneInfo) -> void:
 	scene.connect("unpause_music", _unpause_music)
 	scene.connect("play_sound_effect", _play_sound_effect)
 	scene.connect("change_loop_status", _change_loop_status)
+	scene.connect("save_checkpoint", 
+		func ():
+			_save_checkpoint(info.next_scene)
+	)
+	scene.connect("load_checkpoint", _restore_checkpoint)
 	add_child(scene)
 	if scene.hearts != null:
 		scene.hearts.health = info.health
@@ -129,3 +135,9 @@ func _on_reverb_fade_out(_name: String) -> void:
 		var method: Callable = scene[audio_effect_callback]
 		method.call()
 		audio_effect_callback = ""
+		
+func _save_checkpoint(scene_name: String) -> void:
+	checkpoint_scene = scene_name
+	
+func _restore_checkpoint() -> void:
+	next_screen_deferred(SceneInfo.checkpoint(checkpoint_scene))

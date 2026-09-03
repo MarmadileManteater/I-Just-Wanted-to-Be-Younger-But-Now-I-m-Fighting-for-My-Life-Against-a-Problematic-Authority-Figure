@@ -12,6 +12,8 @@ signal pause_music
 signal unpause_music
 signal play_sound_effect
 signal change_loop_status
+signal save_checkpoint
+signal load_checkpoint
 
 enum ControllerType { Joypad, Keyboard }
 
@@ -24,6 +26,7 @@ enum ControllerType { Joypad, Keyboard }
 @export var dolly_offset: int = 0
 @export var dolly_starts_locked: bool = true
 @export var next_scene_name: String
+@export var is_checkpoint: bool = false
 
 var controller_type: ControllerType
 
@@ -57,6 +60,8 @@ func _ready() -> void:
 			emit_signal("change_loop_status", loop_track)
 		else:
 			emit_signal("queue_music", TrackInfo.from(track_name, loop_track))
+	if is_checkpoint:
+		emit_signal("save_checkpoint")
 
 func lock_dolly():
 	dolly.lock(willow, dolly_axis)
@@ -92,7 +97,13 @@ func die(method: String = ""):
 		
 func new_gameover_scene() -> GameOverScreen:
 	var game_over = preload("res://scenes/nested/game_over/game_over.tscn")
-	return game_over.instantiate()
+	var instance: GameOverScreen = game_over.instantiate()
+	instance.load_checkpoint.connect(
+		func ():
+			emit_signal("load_checkpoint")
+	)
+	return instance
 	
+# overrided my children classes
 func on_track_stopped(is_queue_empty: bool) -> void:
 	pass

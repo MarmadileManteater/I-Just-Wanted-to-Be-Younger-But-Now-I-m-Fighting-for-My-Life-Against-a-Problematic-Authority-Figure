@@ -37,6 +37,7 @@ script = ExtResource("1_80wie")
 track_name = "Gameplay"
 dolly_starts_locked = false
 next_scene_name = "boss_1_screen_2"
+is_checkpoint = true
 metadata/_custom_type_script = "uid://ca8s831sikpya"
 
 [node name="Building2" type="Sprite2D" parent="." unique_id=1252269711]
