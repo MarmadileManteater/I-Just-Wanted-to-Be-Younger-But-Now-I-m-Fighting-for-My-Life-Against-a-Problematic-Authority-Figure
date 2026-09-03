@@ -167,7 +167,8 @@ func _on_damage_boss() -> void:
 	elif boss_health <= 0:
 		boss_death()
 		health_percentage = 0
-	if not boss_top.head_animation_player.current_animation == "Stage Change":
+		boss_health_bar_animation_player.play("LoadOut")
+	if not boss_top.head_animation_player.current_animation == "Stage Change" and not boss_health_bar_animation_player.current_animation == "LoadIn":
 		boss_health_bar.set_percentage(health_percentage)
 
 func _on_death_zone_entered(body: Node2D) -> void:
