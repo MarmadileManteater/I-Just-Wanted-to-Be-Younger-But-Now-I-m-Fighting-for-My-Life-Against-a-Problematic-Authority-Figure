@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://cbasxx6yyex8c" path="res://sprites/gem.png" id="19_kgs5u"]
 [ext_resource type="Texture2D" uid="uid://cu18jbrwyf7ou" path="res://sprites/gem_monochromne.png" id="20_pnqgk"]
 [ext_resource type="AudioStream" uid="uid://cko4bmrxlstu" path="res://music/Transformation.ogg" id="22_hafsq"]
+[ext_resource type="AudioStream" uid="uid://d4ewha06uxr35" path="res://music/Damage.ogg" id="23_rp4um"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fce71"]
 atlas = ExtResource("2_1gub3")
@@ -1019,3 +1020,6 @@ libraries/ = SubResource("AnimationLibrary_v3edn")
 
 [node name="TransformationSound" type="AudioStreamPlayer" parent="." unique_id=885535775]
 stream = ExtResource("22_hafsq")
+
+[node name="HurtSound" type="AudioStreamPlayer" parent="." unique_id=409595938]
+stream = ExtResource("23_rp4um")

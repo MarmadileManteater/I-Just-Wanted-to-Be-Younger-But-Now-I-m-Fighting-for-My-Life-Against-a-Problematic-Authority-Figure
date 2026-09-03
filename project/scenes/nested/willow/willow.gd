@@ -15,7 +15,7 @@ enum DIRECTION { LEFT, RIGHT }
 @export var animation_locked: bool = false
 @export var is_transformed: bool = true
 
-var is_running: bool = false
+var is_running: bool = true
 var is_dying: bool = false
 var gravity_enabled: bool = true
 
@@ -27,6 +27,7 @@ var wand: Sprite2D
 var wand_projectile: ZapProjectile
 var jump_sound: AudioStreamPlayer2D
 var transformation_sequence: AnimationPlayer
+var hurt_sound: AudioStreamPlayer
 
 func run(lambda: Callable) -> void:
 	lambda.call()
@@ -35,6 +36,7 @@ func run_deferred(lambda: Callable) -> void:
 	call_deferred("run", lambda)
 
 func transform() -> void:
+	jump_sound.volume_linear = 1
 	transformation_sequence.play("Transform")
 
 func activate_wand() -> void:
@@ -55,11 +57,15 @@ func play(animation_name: String) -> void:
 func bounce(multiplier: float = 1) -> void:
 	velocity.y = JUMP_VELOCITY * multiplier
 
+func hurt() -> void:
+	hurt_sound.play()
+
 func flash() -> void:
 	animation_player.play("Flash")
 	
 func die(method: String = "") -> bool:
 	if not is_dying:
+		hurt()
 		is_dying = true
 		shape.disabled = true
 		gravity_enabled = false
@@ -113,6 +119,7 @@ func _ready() -> void:
 	wand_projectile = wand.find_child("Projectile")
 	jump_sound = find_child("JumpSound")
 	transformation_sequence = find_child("TransformationSequence")
+	hurt_sound = find_child("HurtSound")
 	
 	if starting_direction == DIRECTION.RIGHT:
 		sprite.scale.x = -1
@@ -120,14 +127,13 @@ func _ready() -> void:
 		sprite.scale.x = 1
 	if wand_enabled:
 		activate_wand()
-	if not is_transformed:
-		jump_sound.volume_linear = 0.25
-
-func _input(event: InputEvent) -> void:
-	if event.is_action("ui_shift"):
-		is_running = event.is_pressed()
 
 func _physics_process(delta: float) -> void:
+	
+	if not is_transformed:
+		jump_sound.volume_linear = 0.25
+	else:
+		jump_sound.volume_linear = 1
 	if is_dying:
 		return
 	if animation_locked:
@@ -154,6 +160,7 @@ func _physics_process(delta: float) -> void:
 		if not is_transformed:
 			velocity.y *= OLD_MULTIPLIER
 
+	sprite.speed_scale = 1
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("ui_left", "ui_right")

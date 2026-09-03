@@ -144,6 +144,7 @@ func _on_projectiles_damage() -> void:
 			die("disintegrate")
 		else:
 			willow.flash()
+			willow.hurt()
 
 func _on_damage_boss() -> void:
 	boss_health -= 1

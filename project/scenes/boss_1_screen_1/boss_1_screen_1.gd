@@ -11,4 +11,5 @@ func _on_spikes_damage(damage: int) -> void:
 			die("disintegrate")
 		else:
 			willow.flash()
+			willow.hurt()
 		willow.bounce()
