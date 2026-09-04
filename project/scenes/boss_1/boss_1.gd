@@ -218,3 +218,9 @@ func _on_boss_death_area_area_entered(area: Area2D) -> void:
 		willow.controls_locked = true
 		post_battle_dialog.start()
 		
+	
+func _on_controller_type_changed(new_type: ControllerType):
+	if new_type == ControllerType.Joypad:
+		wand_tip.text[0] = "You have obtained [i][b]a wand![/b][/i]\nPress [i][b][img width=50 height=50]res://sprites/left_face_button_white.png[/img][/b][/i] to shoot thunderbolts!\nPress [i][b]UP[/b][/i] to aim!"
+	if new_type == ControllerType.Keyboard:
+		wand_tip.text[0] = "You have obtained [i][b]a wand![/b][/i]\nPress [i][b]F[/b][/i] to shoot thunderbolts!\nPress [i][b]UP[/b][/i] to aim!"

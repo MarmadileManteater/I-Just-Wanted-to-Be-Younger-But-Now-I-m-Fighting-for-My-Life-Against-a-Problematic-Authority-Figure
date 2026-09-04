@@ -141,9 +141,14 @@ func typewriter(given_text: String, on_finished: Callable = func (): pass):
 			var string = ""
 			if current_text.begins_with("["):
 				var index = 0
-				while not string.ends_with("]"):
+				var keep_going = true
+				while keep_going:
 					string += current_text[index]
 					index += 1
+					if string.ends_with("]") and not string.begins_with("[img"):
+						keep_going = false
+					if string.begins_with("[img") and string.ends_with("/img]"):
+						keep_going = false
 			elif current_text.length() > 0:
 				string = current_text[0]
 			if string.length() == 1 and string != " ":
@@ -168,6 +173,7 @@ func _ready() -> void:
 	head_chooser = find_child("HeadChooser")
 	
 	label = find_child("Label")
+	#label.add_image(preload(""), 100, 84, Color(1, 1, 1, 1), 0, Rect2(), "left_face_buttona")
 	
 	text_box = find_child("TextBox")
 	
@@ -209,4 +215,3 @@ func _input(event: InputEvent) -> void:
 					text_box.play_backwards("grow")
 				text_box.animation_finished.connect(text_box_done_shrinking)
 				is_done = true
-	pass
