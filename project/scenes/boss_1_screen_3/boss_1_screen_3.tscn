@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dmb38ayso1jkf" path="res://sprites/dumpster_1.png" id="3_6xt62"]
 [ext_resource type="Texture2D" uid="uid://xgy32qthpajl" path="res://sprites/building_topper_3.png" id="3_16an1"]
 [ext_resource type="PackedScene" uid="uid://be0maisut5gpu" path="res://scenes/nested/dolly/dolly.tscn" id="3_crohq"]
+[ext_resource type="Texture2D" uid="uid://dfw0myvvrn6bm" path="res://sprites/roof_top_bar_sign.png" id="3_kbp86"]
 [ext_resource type="PackedScene" uid="uid://eihccgfb2yif" path="res://scenes/nested/health_display/health_display.tscn" id="4_6xt62"]
 [ext_resource type="PackedScene" uid="uid://ccefv3p8wirpa" path="res://scenes/nested/awning/awning.tscn" id="6_6xt62"]
 [ext_resource type="PackedScene" uid="uid://cc6b7s5bx5li2" path="res://scenes/nested/next_screen/next_screen.tscn" id="10_78dhj"]
@@ -48,6 +49,10 @@ next_scene_name = "boss_1"
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=716458830]
 position = Vector2(278, -567)
 texture = ExtResource("2_iu0xd")
+
+[node name="Sprite2D3" type="Sprite2D" parent="." unique_id=735405199]
+position = Vector2(749, -1224)
+texture = ExtResource("3_kbp86")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=598760243]
 position = Vector2(1149, 324)
