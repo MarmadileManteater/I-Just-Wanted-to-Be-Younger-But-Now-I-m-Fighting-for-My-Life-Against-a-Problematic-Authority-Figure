@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://2qhqvq6u3vw6"]
 
 [ext_resource type="Script" uid="uid://badrsoy56kcd8" path="res://scenes/boss_1/boss_1.gd" id="1_nepas"]
+[ext_resource type="Script" uid="uid://bav7majufvvbm" path="res://scripts/parallax.gd" id="2_5da30"]
 [ext_resource type="Script" uid="uid://bw780oec06aj" path="res://scenes/boss_1/boss_top.gd" id="2_74ww5"]
+[ext_resource type="Texture2D" uid="uid://tjlu3pwdjdvt" path="res://sprites/bg_building.png" id="2_bj665"]
 [ext_resource type="Texture2D" uid="uid://c13g2vuyqnbau" path="res://sprites/shoulders_1_left_arm_animation.png" id="2_rcy0q"]
 [ext_resource type="PackedScene" uid="uid://be0maisut5gpu" path="res://scenes/nested/dolly/dolly.tscn" id="4_arhcc"]
 [ext_resource type="Texture2D" uid="uid://dqf86xi4r4ak2" path="res://sprites/speech_bubble_1.png" id="4_c8b3l"]
@@ -1093,6 +1095,30 @@ tracks/9/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("BossTop/Inner/CenterPoly:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("BossTop/Inner/RightPoly:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_5ksyy"]
 resource_name = "LeftArmRaise"
@@ -1128,7 +1154,7 @@ tracks/2/path = NodePath("BossBottom/Inner/LeftHand:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.20783632, 0.3, 0.30913317, 0.4972696, 0.5007421, 0.7650855, 0.7667971),
+"times": PackedFloat32Array(0, 0.19216369, 0.2, 0.29086685, 0.3, 0.4972696, 0.5007421, 0.7650855, 0.7667971),
 "transitions": PackedFloat32Array(1, 1e-05, 1e-05, 1e-05, 1e-05, 1e-05, 1e-05, 1e-05, 1e-05),
 "update": 0,
 "values": [Vector2(50, 731), Vector2(50, 731), Vector2(221, 629), Vector2(221, 629), Vector2(96, 465), Vector2(96, 465), Vector2(91, 379), Vector2(91, 379), Vector2(199, 207)]
@@ -1140,7 +1166,7 @@ tracks/3/path = NodePath("BossBottom/Inner/LeftHand:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.2, 0.20783632, 0.3, 0.30833337, 0.4964698, 0.5007421, 0.7650855, 0.76666665),
+"times": PackedFloat32Array(0.19216369, 0.2, 0.29086685, 0.2992002, 0.4964698, 0.5007421, 0.7650855, 0.76666665),
 "transitions": PackedFloat32Array(1e-05, 1e-05, 1e-05, 1e-05, 1e-05, 1e-05, 1e-05, 1e-05),
 "update": 0,
 "values": [0.0, -1.6057029118347832, -1.6057029118347832, -0.4363323129985824, -0.4363323129985824, -0.05235987755982989, -0.05235987755982989, 0.994837673636768]
@@ -1264,6 +1290,42 @@ tracks/13/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("BossTop/Inner/CenterPoly:visible")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("BossTop/Inner/LeftPoly:visible")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("BossTop/Inner/RightPoly:visible")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_fp75s"]
@@ -1644,6 +1706,42 @@ tracks/17/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("BossTop/Inner/CenterPoly:visible")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("BossTop/Inner/RightPoly:visible")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("BossTop/Inner/LeftPoly:visible")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_0mk2c"]
 resource_name = "RightArmRaise"
@@ -1816,6 +1914,42 @@ tracks/13/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("BossTop/Inner/CenterPoly:visible")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0, 0.16),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("BossTop/Inner/RightPoly:visible")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0.16),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("BossTop/Inner/LeftPoly:visible")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_74ww5"]
 resource_name = "RightArmSlam"
@@ -1975,6 +2109,30 @@ tracks/12/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("BossTop/Inner/RightPoly:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("BossTop/Inner/CenterPoly:visible")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fp75s"]
@@ -2176,11 +2334,60 @@ script = ExtResource("1_nepas")
 dolly_starts_locked = false
 is_checkpoint = true
 
+[node name="bg" type="Node2D" parent="." unique_id=670337267 node_paths=PackedStringArray("camera")]
+z_index = -4096
+script = ExtResource("2_5da30")
+camera = NodePath("../Dolly")
+
+[node name="building3" type="Sprite2D" parent="bg" unique_id=160870912]
+position = Vector2(550.99994, 579)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("2_bj665")
+
+[node name="building1" type="Sprite2D" parent="bg" unique_id=973086810]
+position = Vector2(1415.5, 637.1999)
+scale = Vector2(0.782, 0.78200006)
+texture = ExtResource("2_bj665")
+
+[node name="building2" type="Sprite2D" parent="bg" unique_id=1516258693]
+position = Vector2(989.0001, 400.00006)
+scale = Vector2(0.611524, 0.6115241)
+texture = ExtResource("2_bj665")
+
+[node name="building4" type="Sprite2D" parent="bg" unique_id=2032300651]
+position = Vector2(86.38086, 695.80945)
+scale = Vector2(0.782, 0.78200006)
+texture = ExtResource("2_bj665")
+
+[node name="building5" type="Sprite2D" parent="bg" unique_id=2043766743]
+position = Vector2(-340.11902, 458.60965)
+scale = Vector2(0.611524, 0.6115241)
+texture = ExtResource("2_bj665")
+
 [node name="BossTop" type="Node2D" parent="." unique_id=944834287]
 position = Vector2(-51, -1)
 script = ExtResource("2_74ww5")
 
 [node name="Inner" type="Node2D" parent="BossTop" unique_id=551231782]
+
+[node name="RightPoly" type="Polygon2D" parent="BossTop/Inner" unique_id=1203548045]
+z_index = -6
+position = Vector2(522, 410)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-69, 74, 151, 84, 152, 158, 152, 256, -266, 249, -264, 159, -143, 71)
+
+[node name="CenterPoly" type="Polygon2D" parent="BossTop/Inner" unique_id=1386683250]
+z_index = -6
+position = Vector2(522, 410)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-69, 74, 248, 90, 276, 160, 274, 256, -264, 249, -263, 160, -143, 71)
+
+[node name="LeftPoly" type="Polygon2D" parent="BossTop/Inner" unique_id=1782479864]
+visible = false
+z_index = -6
+position = Vector2(522, 410)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-69, 74, 248, 90, 276, 159, 277, 256, -160, 242, -160, 149, -143, 71)
 
 [node name="Shoulders" type="AnimatedSprite2D" parent="BossTop/Inner" unique_id=237130465]
 z_index = -5

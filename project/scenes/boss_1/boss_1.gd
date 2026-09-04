@@ -91,7 +91,7 @@ func slam_hand(animation_name: String):
 	slam_animation_player.animation_finished.disconnect(slam_hand)
 	# note: can change this timeout based on stage to boost difficulty
 	if boss_stage == 1:
-		timeout_to_reset_animation(1)
+		timeout_to_reset_animation(2)
 	if boss_stage == 2:
 		timeout_to_reset_animation(3)
 	if boss_stage == 3:
