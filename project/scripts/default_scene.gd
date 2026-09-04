@@ -28,6 +28,7 @@ enum ControllerType { Joypad, Keyboard }
 @export var next_scene_name: String
 @export var is_checkpoint: bool = false
 @export var starting_health: int = 3
+var checkpoint_flags: Array = []
 
 var controller_type: ControllerType
 
@@ -64,7 +65,7 @@ func _ready() -> void:
 		else:
 			emit_signal("queue_music", TrackInfo.from(track_name, loop_track))
 	if is_checkpoint:
-		emit_signal("save_checkpoint", CheckPointData.from_health(hearts.health))
+		emit_signal("save_checkpoint", SceneInfo.from_hearts(hearts.health))
 
 func lock_dolly():
 	dolly.lock(willow, dolly_axis)

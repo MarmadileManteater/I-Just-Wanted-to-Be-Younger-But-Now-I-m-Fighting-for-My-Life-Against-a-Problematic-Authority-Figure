@@ -2339,7 +2339,6 @@ shape = SubResource("RectangleShape2D_v3oh7")
 
 [node name="TipWindow" parent="Dolly" unique_id=1832516139 instance=ExtResource("15_nohon")]
 position = Vector2(-84, -175)
-autostart = true
 text = PackedStringArray("Alright, hot shot.\\nDon\'t get too cocky \'cause the next part\\nis the hardest. ", "While your suffering IS enjoyable\\nto me, I figure it is only fair you actually\\nhave a chance here.", "Anywho~!\\nHere\'s something that should help.")
 
 [node name="TipWindow2" parent="Dolly" unique_id=1154525434 instance=ExtResource("15_nohon")]

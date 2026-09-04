@@ -56,6 +56,11 @@ func _ready() -> void:
 	bob_animation_player = find_child("BobbingAnimationPlayer")
 	drop_animation_player = find_child("DropPlayer", true)
 	
+	if checkpoint_flags.size() == 0:
+		dolly.find_child("TipWindow").start()
+	elif checkpoint_flags[0] == true:
+		_on_tip_window_done()
+	
 	willow.bounce(1.5)
 
 func move_boss_towards(point: Node2D, arm: String = ""):
@@ -128,8 +133,10 @@ func _process(delta: float) -> void:
 		return
 	if stage_changing:
 		return
-	if boss_stage >= 3:
-		boss_speed = 4
+	if boss_stage >= 2:
+		boss_speed = 3
+	if boss_stage >= 2:
+		boss_speed = 3.5
 	if hearts.health > 0:
 		if willow.global_position.x < left_hand_limit.global_position.x:
 			move_boss_towards(boss_top, "Left")
@@ -181,6 +188,7 @@ func _on_death_zone_entered(body: Node2D) -> void:
 		die()
 
 func _on_tip_window_done() -> void:
+	emit_signal("save_checkpoint", SceneInfo.checkpoint(hearts.health, [true]))
 	willow.controls_locked = false
 	drop_animation_player.play("Drop")
 
