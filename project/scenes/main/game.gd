@@ -75,6 +75,7 @@ func next_screen_deferred(info: SceneInfo) -> void:
 	scene.connect("load_checkpoint", _restore_checkpoint)
 	scene.starting_health = info.health
 	scene.checkpoint_flags = info.checkpoint_flags
+	scene.controller_type = controller_type
 	add_child(scene)
 
 func _change_loop_status(is_looping: bool):

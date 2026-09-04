@@ -539,6 +539,7 @@ libraries/ = SubResource("AnimationLibrary_kqk3n")
 
 [node name="TextBox" type="AnimatedSprite2D" parent="." unique_id=904648831]
 visible = false
+texture_filter = 1
 position = Vector2(16, 24)
 sprite_frames = SubResource("SpriteFrames_0dxmq")
 animation = &"grow_middle"

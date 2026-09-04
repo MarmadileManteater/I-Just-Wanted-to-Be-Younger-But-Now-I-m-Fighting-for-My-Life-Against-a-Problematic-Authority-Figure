@@ -2,6 +2,11 @@
 
 [ext_resource type="Script" uid="uid://cqlttkx3fa087" path="res://scenes/nested/game_over/game_over.gd" id="1_vcsth"]
 [ext_resource type="Texture2D" uid="uid://b3jt4lisbfs0g" path="res://sprites/game_over.png" id="1_vj5x8"]
+[ext_resource type="AudioStream" uid="uid://4j4bxcccd5i4" path="res://music/Confirm.ogg" id="2_r6ppq"]
+[ext_resource type="AudioStream" uid="uid://cs8fx4ksq0x01" path="res://music/Menu.ogg" id="3_1nr20"]
+[ext_resource type="Texture2D" uid="uid://dsxoies533jo" path="res://sprites/return_to_last_checkpoint.png" id="3_4olaq"]
+[ext_resource type="Texture2D" uid="uid://2s0ixi7rjqvk" path="res://sprites/select.png" id="4_0325a"]
+[ext_resource type="Texture2D" uid="uid://bm4a4i1h4q30j" path="res://sprites/reset_level.png" id="5_r6ppq"]
 
 [sub_resource type="Animation" id="Animation_vj5x8"]
 resource_name = "FloatIn"
@@ -30,6 +35,30 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(0, -540), Vector2(0, -501), Vector2(-34, -349), Vector2(-83, -293), Vector2(-146, -274), Vector2(-224, -287), Vector2(-243, -295), Vector2(-211, -223), Vector2(-142, -196), Vector2(-54, -159), Vector2(55, -133), Vector2(100, -164), Vector2(0, 0)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ReturnToLastCheckPoint:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ResetLevel:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
 
 [sub_resource type="Animation" id="Animation_khk47"]
 length = 0.001
@@ -57,6 +86,30 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(-335, -780)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ReturnToLastCheckPoint:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ResetLevel:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vcsth"]
 _data = {
@@ -76,9 +129,52 @@ _data = {
 }
 point_count = 6
 
+[sub_resource type="Animation" id="Animation_r6ppq"]
+resource_name = "Flash"
+length = 0.872
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_1nr20"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nxnua"]
+_data = {
+&"Flash": SubResource("Animation_r6ppq"),
+&"RESET": SubResource("Animation_1nr20")
+}
+
 [node name="GameOver" type="Node2D" unique_id=893970809]
 z_index = 100
 script = ExtResource("1_vcsth")
+
+[node name="Select" type="AudioStreamPlayer" parent="." unique_id=2100773796]
+stream = ExtResource("2_r6ppq")
+
+[node name="Move" type="AudioStreamPlayer" parent="." unique_id=1896978930]
+stream = ExtResource("3_1nr20")
 
 [node name="Polygon2D2" type="Polygon2D" parent="." unique_id=869386419]
 visible = false
@@ -107,3 +203,29 @@ curve = SubResource("Curve2D_vcsth")
 [node name="Path2D2" type="Path2D" parent="." unique_id=452262774]
 position = Vector2(-26, -1)
 curve = SubResource("Curve2D_khk47")
+
+[node name="ReturnToLastCheckPoint" type="Sprite2D" parent="." unique_id=1316894534]
+visible = false
+texture_filter = 1
+position = Vector2(-271, 230)
+texture = ExtResource("3_4olaq")
+
+[node name="Select" type="Sprite2D" parent="ReturnToLastCheckPoint" unique_id=1693904626]
+position = Vector2(-186, 2)
+texture = ExtResource("4_0325a")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ReturnToLastCheckPoint" unique_id=1010195406]
+libraries/ = SubResource("AnimationLibrary_nxnua")
+
+[node name="ResetLevel" type="Sprite2D" parent="." unique_id=1106605914]
+visible = false
+position = Vector2(345, 230)
+texture = ExtResource("5_r6ppq")
+
+[node name="Select" type="Sprite2D" parent="ResetLevel" unique_id=1143996110]
+visible = false
+position = Vector2(-222, 3)
+texture = ExtResource("4_0325a")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ResetLevel" unique_id=593532734]
+libraries/ = SubResource("AnimationLibrary_nxnua")
