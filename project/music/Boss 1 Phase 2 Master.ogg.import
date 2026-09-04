@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bll2s3rvcsmka"
+path="res://.godot/imported/Boss 1 Phase 2 Master.ogg-ab73af6af1a3def86e0986b741e8264f.oggvorbisstr"
+
+[deps]
+
+source_file="res://music/Boss 1 Phase 2 Master.ogg"
+dest_files=["res://.godot/imported/Boss 1 Phase 2 Master.ogg-ab73af6af1a3def86e0986b741e8264f.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

@@ -32,7 +32,13 @@ func last_track_stopped() -> void:
 	emit_signal("play_music", "Tutorial")
 
 func start_boss_music() -> void:
-	emit_signal("play_music", "Boss1")
+	emit_signal("play_music", "Boss1Phase1")
+
+func start_boss_music_2() -> void:
+	emit_signal("play_music", "Boss1Phase2")
+	
+func start_boss_music_3() -> void:
+	emit_signal("play_music", "Boss1Phase3")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -111,6 +117,10 @@ func timeout_to_reset_animation(seconds: float = 1):
 
 func stage_change(stage: int):
 	if not stage_changing and stage > boss_stage:
+		if stage == 2:
+			emit_signal("stop_music_with_reverb", "start_boss_music_2", 15)
+		if stage == 3:
+			emit_signal("stop_music_with_reverb", "start_boss_music_3", 15)
 		boss_stage = stage
 		stage_changing = true
 		slam_animation_player.pause()

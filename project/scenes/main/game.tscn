@@ -6,8 +6,10 @@
 [ext_resource type="AudioStream" uid="uid://c4f3682mw0kk1" path="res://music/Boss 1.ogg" id="3_gsayk"]
 [ext_resource type="AudioStream" uid="uid://4vwu6ip2id55" path="res://music/Introduction.ogg" id="4_gsayk"]
 [ext_resource type="AudioStream" uid="uid://cdiha5mkyb14e" path="res://music/Game Over.ogg" id="4_kjrfb"]
-[ext_resource type="AudioStream" uid="uid://cbi5d3qpb8cn4" path="res://music/Boss 1 Phase 1.ogg" id="4_se30j"]
+[ext_resource type="AudioStream" uid="uid://4t2a0olld81g" path="res://music/Boss 1 Phase 1 Master.ogg" id="4_y58yt"]
 [ext_resource type="AudioStream" uid="uid://cqgktmd3cbao4" path="res://music/News Reel.ogg" id="5_em1bs"]
+[ext_resource type="AudioStream" uid="uid://bll2s3rvcsmka" path="res://music/Boss 1 Phase 2 Master.ogg" id="5_kb4no"]
+[ext_resource type="AudioStream" uid="uid://cu4il2x6pgh5a" path="res://music/Boss 1 Phase 3 Master.ogg" id="6_cgagh"]
 [ext_resource type="Script" uid="uid://cqmvyq8jn4svt" path="res://scripts/AnimationPlayerExtensions.gd" id="7_0rn35"]
 [ext_resource type="AudioStream" uid="uid://cfgngv7bx1l2f" path="res://music/Somber Scene Loop Short.ogg" id="7_157ky"]
 [ext_resource type="AudioStream" uid="uid://cajyq7j6by0cc" path="res://music/Somber Scene End.ogg" id="8_157ky"]
@@ -54,7 +56,63 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("4_se30j")]
+"values": [ExtResource("4_y58yt")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Jukebox:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_uuwcm"]
+resource_name = "Boss1Phase2"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Jukebox:stream")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_kb4no")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Jukebox:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_g8xql"]
+resource_name = "Boss1Phase3"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Jukebox:stream")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_cgagh")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -322,6 +380,8 @@ tracks/1/keys = {
 _data = {
 &"Boss1": SubResource("Animation_gf1f2"),
 &"Boss1Phase1": SubResource("Animation_c8nfc"),
+&"Boss1Phase2": SubResource("Animation_uuwcm"),
+&"Boss1Phase3": SubResource("Animation_g8xql"),
 &"Gameplay": SubResource("Animation_em1bs"),
 &"Introduction": SubResource("Animation_kjrfb"),
 &"NewsReel": SubResource("Animation_se30j"),
@@ -738,7 +798,6 @@ _data = {
 
 [node name="Game" type="Node2D" unique_id=1279552812]
 script = ExtResource("1_ma5rq")
-start_scene = "boss_1"
 
 [node name="Jukebox" type="AudioStreamPlayer" parent="." unique_id=1118706098]
 stream = ExtResource("2_y58yt")
