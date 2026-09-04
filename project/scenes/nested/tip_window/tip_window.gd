@@ -90,6 +90,7 @@ func set_direction(given: Direction):
 		text_box.pause()
 
 func start():
+	current_text = "Loading . . . "
 	is_active = true
 	is_done = false
 	head_player.play("Scale")
