@@ -51,6 +51,7 @@ position = Vector2(278, -567)
 texture = ExtResource("2_iu0xd")
 
 [node name="Sprite2D3" type="Sprite2D" parent="." unique_id=735405199]
+texture_filter = 1
 position = Vector2(749, -1224)
 texture = ExtResource("3_kbp86")
 
