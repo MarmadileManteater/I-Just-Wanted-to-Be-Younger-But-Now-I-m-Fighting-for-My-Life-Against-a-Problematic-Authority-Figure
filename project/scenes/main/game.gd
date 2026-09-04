@@ -43,7 +43,6 @@ func _input(event: InputEvent) -> void:
 		pass# ignore mouse input
 	else:
 		new_type =  DefaultScene.ControllerType.Joypad
-	print(new_type)
 	if new_type != controller_type:
 		controller_type = new_type
 		scene._on_controller_type_changed(controller_type)
