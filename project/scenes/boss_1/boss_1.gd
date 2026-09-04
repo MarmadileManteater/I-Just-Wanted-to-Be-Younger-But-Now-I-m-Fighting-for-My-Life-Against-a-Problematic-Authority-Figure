@@ -60,9 +60,9 @@ func _ready() -> void:
 		dolly.find_child("TipWindow").start()
 	elif checkpoint_flags[0] == true:
 		_on_tip_window_done()
+		_on_controller_type_changed(controller_type)
 	
 	willow.bounce(1.5)
-	_on_controller_type_changed(controller_type)
 
 func move_boss_towards(point: Node2D, arm: String = ""):
 	if (not slam_animation_player.last_animation.begins_with(arm) or arm == "") or (boss_stage >= 2 and slam_animation_player.last_animation.ends_with("Slam")):
@@ -214,13 +214,15 @@ func boss_death() -> void:
 	slam_animation_player.pause()
 
 func _on_boss_death_area_area_entered(area: Area2D) -> void:
-	if area.name == "HeadArea":
+	if area.name == "HeadArea":	
 		boss_gone = true
 		willow.controls_locked = true
 		post_battle_dialog.start()
 		
 	
 func _on_controller_type_changed(new_type: ControllerType):
+	super(new_type)
+	print(new_type)
 	if new_type == ControllerType.Joypad:
 		wand_tip.text[0] = "You have obtained [i][b]a wand![/b][/i]\nPress [i][b][img width=50 height=50]res://sprites/left_face_button_white.png[/img][/b][/i] to shoot thunderbolts!\nPress [i][b][img width=100 height=50]res://sprites/bumpers.png[/img][/b][/i] to aim!"
 	if new_type == ControllerType.Keyboard:
