@@ -2,35 +2,18 @@ extends Node2D
 
 @export var start_scene: String = "boss_1_screen_1"
 
-var jukebox: AudioStreamPlayer
-var jukebox_controls: AnimationPlayerExtended
-var loop_controls: AnimationPlayer
-var jukebox_effects: AnimationPlayer
+var jukebox: JukeBox
 var soundbox_controls: AnimationPlayer
 var scene: DefaultScene = null
 var controller_type: DefaultScene.ControllerType =  DefaultScene.ControllerType.Keyboard
-var music_queue: Array = []
 
 var audio_effect_callback: String = ""
-var paused_position: float = 0
 var checkpoint_data: SceneInfo
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	jukebox = find_child("Jukebox")
-	
-	jukebox.finished.connect(
-		func ():
-			scene.on_track_stopped(music_queue.size() == 0)
-			if music_queue.size() > 0:
-				var music: TrackInfo = music_queue.pop_front()
-				_play_music(music.name, true)
-				_change_loop_status(music.loop)
-	)
-	
-	jukebox_controls = find_child("JukeboxControls")
-	loop_controls = find_child("LoopControls")
-	jukebox_effects = find_child("JukeboxEffects")
+	jukebox = generate_jukebox()
+	add_child(jukebox)
 	soundbox_controls = find_child("SoundboxControls")
 	
 	next_screen_deferred(SceneInfo.from_name(start_scene))
@@ -79,71 +62,53 @@ func next_screen_deferred(info: SceneInfo) -> void:
 	add_child(scene)
 
 func _change_loop_status(is_looping: bool):
-	if is_looping:
-		loop_controls.play("Loop")
-	else:
-		loop_controls.play("NoLoop")
+	jukebox.change_loop_status(is_looping)
 
 func _play_sound_effect(track_title: String) -> void:
 	soundbox_controls.play(track_title)
 
 func _queue_music(track: TrackInfo) -> void:
-	if jukebox.playing:
-		_change_loop_status(false)
-		music_queue.push_back(track)
-	else:
-		_change_loop_status(track.loop)
-		_play_music(track.name, true)
+	jukebox.queue_music(track)
 	
 func _play_music(track_title: String, bypass: bool = false) -> void:
-	paused_position = 0
-	if jukebox_controls.last_animation != track_title or bypass:
-		jukebox_effects.play("Playing")
-		jukebox_controls.play_with_memory(track_title)
+	jukebox.play_music(track_title, bypass)
 		
 func _play_music_with_fade_in(track_title: String, seconds: float = 1.0) -> void:
-	paused_position = 0
-	if jukebox_controls.last_animation != track_title:
-		jukebox_effects.speed_scale = 1 / seconds
-		jukebox_effects.play("PlayWithFadeIn")
-		jukebox_controls.play_with_memory(track_title)
+	jukebox.play_music_with_fade_in(track_title, seconds)
 
 func _stop_music() -> void:
-	jukebox.stop()
-	paused_position = 0
+	jukebox.stop_music()
 
 func _pause_music() -> void:
-	paused_position = jukebox.get_playback_position()
-	jukebox.stop()
+	jukebox.pause_music()
 	
 func _unpause_music() -> void:
-	jukebox.volume_db = -80
-	jukebox.play(paused_position)
-	jukebox_effects.play("PlayWithFadeIn")
-	paused_position = 0
+	jukebox.unpause_music()
 
 func _stop_music_with_reverb(callback: String = "", animation_speed: float = 1) -> void:
 	audio_effect_callback = callback
-	jukebox_effects.speed_scale = animation_speed
-	jukebox_effects.play("ReverbFadeOut")
-	jukebox_effects.animation_finished.connect(_on_reverb_fade_out)
-	
-func _on_reverb_fade_out(_name: String) -> void:
-	jukebox_effects.play("Stopped")
-	jukebox_effects.animation_finished.disconnect(_on_reverb_fade_out)
-	jukebox_controls.last_animation = ""
-	jukebox_controls.stop()
-	if scene.has_method(audio_effect_callback):
-		var method: Callable = scene[audio_effect_callback]
-		method.call()
-		audio_effect_callback = ""
-		
+	jukebox.stop_music_with_reverb(
+		func ():
+			if scene.has_method(audio_effect_callback):
+				var method: Callable = scene[audio_effect_callback]
+				method.call()
+				audio_effect_callback = ""
+	,
+	animation_speed)
+
+func generate_jukebox() -> JukeBox:
+	var jukebox = preload("res://scenes/nested/jukebox/jukebox.tscn").instantiate()
+	jukebox.on_track_stopped = func(is_true):
+		scene.on_track_stopped(is_true)
+	return jukebox
+
 func _save_checkpoint(given: SceneInfo) -> void:
 	checkpoint_data = given
 	
 func _restore_checkpoint() -> void:
-	jukebox_effects.stop()
 	soundbox_controls.play("Reset")
-	jukebox_effects.animation_finished.disconnect(_on_reverb_fade_out)
-	jukebox_effects.play("Playing")
+	remove_child(jukebox)
+	jukebox.queue_free()
+	jukebox = generate_jukebox()
+	add_child(jukebox)
 	next_screen_deferred(checkpoint_data)
