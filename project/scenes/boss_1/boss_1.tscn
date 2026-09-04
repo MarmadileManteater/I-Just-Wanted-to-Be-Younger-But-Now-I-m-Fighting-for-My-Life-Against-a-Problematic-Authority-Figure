@@ -2329,6 +2329,9 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fcxea"]
 size = Vector2(4538, 58)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5da30"]
+size = Vector2(44, 585)
+
 [node name="Boss1" type="Node2D" unique_id=337002591]
 script = ExtResource("1_nepas")
 dolly_starts_locked = false
@@ -2733,6 +2736,24 @@ position = Vector2(537, 1176)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BossDeathArea" unique_id=1244181068]
 position = Vector2(551, 19)
 shape = SubResource("RectangleShape2D_fcxea")
+
+[node name="RightCameraBoundary" type="StaticBody2D" parent="." unique_id=114702132]
+position = Vector2(2078, 27)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightCameraBoundary" unique_id=1185600093]
+position = Vector2(-23, 291.5)
+shape = SubResource("RectangleShape2D_5da30")
+
+[node name="LeftCameraBoundary" type="StaticBody2D" parent="." unique_id=1890901728]
+position = Vector2(-677, 27)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftCameraBoundary" unique_id=1551904694]
+position = Vector2(-23, 291.5)
+shape = SubResource("RectangleShape2D_5da30")
 
 [connection signal="damage_boss" from="BossTop/Inner/Head/HeadArea" to="." method="_on_damage_boss"]
 [connection signal="damage" from="BossTop/Inner/Projectiles" to="." method="_on_projectiles_damage"]
