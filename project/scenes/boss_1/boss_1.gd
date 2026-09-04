@@ -222,7 +222,6 @@ func _on_boss_death_area_area_entered(area: Area2D) -> void:
 	
 func _on_controller_type_changed(new_type: ControllerType):
 	super(new_type)
-	print(new_type)
 	if new_type == ControllerType.Joypad:
 		wand_tip.text[0] = "You have obtained [i][b]a wand![/b][/i]\nPress [i][b][img width=50 height=50]res://sprites/left_face_button_white.png[/img][/b][/i] to shoot thunderbolts!\nPress [i][b][img width=100 height=50]res://sprites/bumpers.png[/img][/b][/i] to aim!"
 	if new_type == ControllerType.Keyboard:
