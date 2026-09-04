@@ -85,6 +85,7 @@ shape = SubResource("CapsuleShape2D_u4npt")
 [node name="Awning12" parent="." unique_id=2073388634 instance=ExtResource("6_6xt62")]
 position = Vector2(488, -1503)
 seconds_to_fallthrough = 0.25
+type = 2
 
 [node name="Awning13" parent="." unique_id=1752135219 instance=ExtResource("6_6xt62")]
 position = Vector2(225, -1611)
@@ -101,6 +102,7 @@ seconds_to_fallthrough = 1.0
 [node name="Awning10" parent="." unique_id=1867236339 instance=ExtResource("6_6xt62")]
 position = Vector2(298, -836)
 seconds_to_fallthrough = 0.5
+type = 2
 
 [node name="Awning" parent="." unique_id=1980164177 instance=ExtResource("6_6xt62")]
 position = Vector2(473, 199)
@@ -113,6 +115,7 @@ seconds_to_fallthrough = 1.0
 [node name="Awning3" parent="." unique_id=1571682451 instance=ExtResource("6_6xt62")]
 position = Vector2(469, -52)
 seconds_to_fallthrough = 0.25
+type = 2
 
 [node name="Awning4" parent="." unique_id=1991286529 instance=ExtResource("6_6xt62")]
 position = Vector2(298, -333)
@@ -125,10 +128,12 @@ seconds_to_fallthrough = 1.0
 [node name="Awning8" parent="." unique_id=1776797754 instance=ExtResource("6_6xt62")]
 position = Vector2(98, -1325)
 seconds_to_fallthrough = 0.4
+type = 2
 
 [node name="Awning6" parent="." unique_id=1530009218 instance=ExtResource("6_6xt62")]
 position = Vector2(484, -648)
 seconds_to_fallthrough = 0.25
+type = 2
 
 [node name="Willow" parent="." unique_id=1438157277 instance=ExtResource("2_mchix")]
 position = Vector2(57, 453)

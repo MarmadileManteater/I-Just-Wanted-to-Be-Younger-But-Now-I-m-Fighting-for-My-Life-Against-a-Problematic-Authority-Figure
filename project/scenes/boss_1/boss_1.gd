@@ -93,7 +93,7 @@ func slam_hand(animation_name: String):
 	if boss_stage == 1:
 		timeout_to_reset_animation(2)
 	if boss_stage == 2:
-		timeout_to_reset_animation(3)
+		timeout_to_reset_animation(2)
 	if boss_stage == 3:
 		timeout_to_reset_animation(4)
 
@@ -134,7 +134,7 @@ func _process(delta: float) -> void:
 	if stage_changing:
 		return
 	if boss_stage >= 2:
-		boss_speed = 3
+		boss_speed = 2.5
 	if boss_stage >= 2:
 		boss_speed = 3.5
 	if hearts.health > 0:
