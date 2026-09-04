@@ -215,7 +215,7 @@ func _on_pickup_window_entered(body: Node2D) -> void:
 				willow.controls_locked = false
 				lock_dolly()
 				boss_started = true
-				emit_signal("stop_music_with_reverb", "start_boss_music", 4)
+				emit_signal("stop_music_with_reverb", "start_boss_music", 100)
 		)
 		
 func boss_death() -> void:
