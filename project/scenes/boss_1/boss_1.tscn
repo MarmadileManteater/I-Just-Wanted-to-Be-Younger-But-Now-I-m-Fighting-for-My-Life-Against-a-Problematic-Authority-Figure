@@ -2258,7 +2258,6 @@ script = ExtResource("5_0mk2c")
 visible = false
 position = Vector2(224, 223)
 script = ExtResource("5_ywren")
-health = 3.0
 
 [node name="Label" type="Label" parent="BossTop/Inner/Projectiles/Projectile3" unique_id=1131551234]
 anchors_preset = 4
@@ -2288,7 +2287,6 @@ libraries/ = SubResource("AnimationLibrary_v3oh7")
 visible = false
 position = Vector2(224, 223)
 script = ExtResource("5_ywren")
-health = 3.0
 
 [node name="Label" type="Label" parent="BossTop/Inner/Projectiles/Projectile4" unique_id=1854964136]
 anchors_preset = 4
