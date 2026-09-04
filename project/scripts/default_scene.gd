@@ -27,6 +27,7 @@ enum ControllerType { Joypad, Keyboard }
 @export var dolly_starts_locked: bool = true
 @export var next_scene_name: String
 @export var is_checkpoint: bool = false
+@export var starting_health: int = 3
 
 var controller_type: ControllerType
 
@@ -49,6 +50,8 @@ func _ready() -> void:
 	hearts = find_child("HealthDisplay", true, false)
 	if hearts == null:
 		printerr("Health display not found!")
+	else:
+		hearts.health = starting_health
 	next_screen_area = find_child("NextScreen", true, false)
 	if next_screen_area != null:
 		next_screen_area.character_name = character_name
@@ -61,7 +64,7 @@ func _ready() -> void:
 		else:
 			emit_signal("queue_music", TrackInfo.from(track_name, loop_track))
 	if is_checkpoint:
-		emit_signal("save_checkpoint")
+		emit_signal("save_checkpoint", CheckPointData.from_health(hearts.health))
 
 func lock_dolly():
 	dolly.lock(willow, dolly_axis)

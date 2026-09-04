@@ -10,7 +10,8 @@ static func from_name(scene_name: String) -> SceneInfo:
 	info.next_scene = scene_name
 	return info
 
-static func checkpoint(scene_name: String) -> SceneInfo:
-	var info = from_name(scene_name)
+static func checkpoint(check_point_data: CheckPointData) -> SceneInfo:
+	var info = from_name(check_point_data.scene_name)
+	info.health = check_point_data.health
 	info.is_checkpoint = true
 	return info

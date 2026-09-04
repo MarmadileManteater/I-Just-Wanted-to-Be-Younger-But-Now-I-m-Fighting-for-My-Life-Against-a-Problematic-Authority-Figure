@@ -13,7 +13,7 @@ var music_queue: Array = []
 
 var audio_effect_callback: String = ""
 var paused_position: float = 0
-var checkpoint_scene = ""
+var checkpoint_data: CheckPointData
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -68,13 +68,14 @@ func next_screen_deferred(info: SceneInfo) -> void:
 	scene.connect("play_sound_effect", _play_sound_effect)
 	scene.connect("change_loop_status", _change_loop_status)
 	scene.connect("save_checkpoint", 
-		func ():
-			_save_checkpoint(info.next_scene)
+		func (checkpoint_data: CheckPointData = CheckPointData.new()):
+			if checkpoint_data.scene_name == "":
+				checkpoint_data.scene_name = info.next_scene
+			_save_checkpoint(checkpoint_data)
 	)
 	scene.connect("load_checkpoint", _restore_checkpoint)
+	scene.starting_health = info.health
 	add_child(scene)
-	if scene.hearts != null:
-		scene.hearts.health = info.health
 
 func _change_loop_status(is_looping: bool):
 	if is_looping:
@@ -136,12 +137,12 @@ func _on_reverb_fade_out(_name: String) -> void:
 		method.call()
 		audio_effect_callback = ""
 		
-func _save_checkpoint(scene_name: String) -> void:
-	checkpoint_scene = scene_name
+func _save_checkpoint(given: CheckPointData) -> void:
+	checkpoint_data = given
 	
 func _restore_checkpoint() -> void:
 	jukebox_effects.stop()
 	soundbox_controls.play("Reset")
 	jukebox_effects.animation_finished.disconnect(_on_reverb_fade_out)
 	jukebox_effects.play("Playing")
-	next_screen_deferred(SceneInfo.checkpoint(checkpoint_scene))
+	next_screen_deferred(SceneInfo.checkpoint(checkpoint_data))
