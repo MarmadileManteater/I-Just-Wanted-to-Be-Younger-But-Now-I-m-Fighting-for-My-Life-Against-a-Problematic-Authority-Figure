@@ -10,10 +10,13 @@ config_version=5
 
 [application]
 
-config/name="MGGJ14"
+config/name="I Just Wanted to Be Younger! But Now, I'm Fighting for My Life Against A Problematic Authority Figure"
 run/main_scene="uid://d3hlqoj5tnitw"
 config/features=PackedStringArray("4.7", "GL Compatibility")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/stretch_mode=0
+boot_splash/image="uid://bw5rlrv3cjicq"
+config/icon="uid://bw5rlrv3cjicq"
 
 [audio]
 

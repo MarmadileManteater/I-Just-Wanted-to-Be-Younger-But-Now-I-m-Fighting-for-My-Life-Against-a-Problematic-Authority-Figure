@@ -152,7 +152,7 @@ func _restore_checkpoint() -> void:
 func _reset() -> void:
 	_stop_timer(false)
 	deaths = -1
-	checkpoint_data = SceneInfo.from_name(start_scene)
+	checkpoint_data = SceneInfo.from_name("boss_1_screen_1")
 	_restore_checkpoint()
 	
 func _start_timer() -> void:
