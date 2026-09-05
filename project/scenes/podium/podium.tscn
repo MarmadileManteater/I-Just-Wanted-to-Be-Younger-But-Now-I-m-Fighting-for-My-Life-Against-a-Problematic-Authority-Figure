@@ -103,6 +103,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_yr3wh"]
 resource_name = "EndScene"
+length = 3.0000000000000004
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -110,7 +111,7 @@ tracks/0/path = NodePath("Cover:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 2.6333334),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
@@ -183,7 +184,7 @@ libraries/ = SubResource("AnimationLibrary_yr3wh")
 
 [node name="TipWindow" parent="Dolly" unique_id=1832516139 instance=ExtResource("3_cf5g0")]
 position = Vector2(0, 195)
-text = PackedStringArray("Now, all of our contestants did a wonderful job dispatching their personal demons!", "That being said, some did do a [b][i]less[/i][/b] wonderful job than others!", "Here are the losers~!", "In third place, we have [NAME] with a measely [POINTS] points!~", "In second place, we have [NAME] with a mediocre [POINTS] points~!", "And, finally, our winner . . . ", "[NAME] with a slightly less disappointing [POINTS] points!~", "Let\'s hear it for this year\'s,\\n[b][i]Priestess of Victory[/i][/b], [NAME]~!", "For her prize, she gets to keep her wish . . .", "And, she scores a brand deal with us~!", "That\'s right ladies and gents she gets to keep fighting the baddies~", "~so long as she agrees to give 99% of her merchandising profits to our organization!", "Everyone wins!\\n[color=#8c8c8c]Especially us![/color]")
+text = PackedStringArray("Now, all of our contestants did a wonderful job dispatching their personal demons!", "That being said, some did do a [b][i]less[/i][/b] wonderful job than others!", "Without further ado, here are the losers~!", "In third place, we have [NAME] with a measely [POINTS] points!~", "In second place, we have [NAME] with a mediocre [POINTS] points~!", "And, finally, our winner . . . ", "[NAME] with a slightly less disappointing [POINTS] points!~", "Let\'s hear it for this year\'s,\\n[b][i]Priestess of Victory[/i][/b], [NAME]~!", "For her prize, she gets to keep her wish . . .", "And, she scores a brand deal with us~!", "That\'s right ladies and gents she gets to keep fighting the baddies~", "~so long as she agrees to give 99% of her merchandising profits to our organization!", "Everyone wins!\\n[color=#8c8c8c]Especially us![/color]")
 
 [node name="Cover" type="Polygon2D" parent="Dolly" unique_id=1516420455]
 color = Color(0, 0, 0, 0)

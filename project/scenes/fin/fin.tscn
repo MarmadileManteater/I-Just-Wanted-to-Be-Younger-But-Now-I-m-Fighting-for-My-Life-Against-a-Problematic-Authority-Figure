@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://bbxh3qmb2kcpm"]
+
+[ext_resource type="Texture2D" uid="uid://c4sxqsu4kruqa" path="res://sprites/fin.png" id="1_5ta74"]
+[ext_resource type="Script" uid="uid://bnu5jpnvgge0t" path="res://scenes/fin/fin.gd" id="1_7gdal"]
+[ext_resource type="PackedScene" uid="uid://be0maisut5gpu" path="res://scenes/nested/dolly/dolly.tscn" id="2_7gdal"]
+
+[node name="Fin" type="Node2D" unique_id=827703904]
+script = ExtResource("1_7gdal")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=956937680]
+texture = ExtResource("1_5ta74")
+
+[node name="Dolly" parent="." unique_id=1452481412 instance=ExtResource("2_7gdal")]

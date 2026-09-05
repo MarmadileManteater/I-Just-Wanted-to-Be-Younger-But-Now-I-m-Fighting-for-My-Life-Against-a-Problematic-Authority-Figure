@@ -13,7 +13,7 @@ var girl3rd: Girl
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	super()
-	var health_score = hearts.health * 10
+	var health_score = (hearts.health - 1) * 10
 	var deaths_score = 0
 	if deaths == 0:
 		deaths_score = 21
@@ -25,11 +25,11 @@ func _ready() -> void:
 	tip_window = dolly.find_child("TipWindow")
 	tip_window.next_line.connect(
 		func (index: int):
-			if index == 3:
-				girl3rd.fade_in()
-			if index == 4:
-				girl2nd.fade_in()
 			if index == 6:
+				girl3rd.fade_in()
+			if index == 7:
+				girl2nd.fade_in()
+			if index == 9:
 				girl1st.fade_in()
 	)
 	tip_window.done.connect(
@@ -74,6 +74,9 @@ func _ready() -> void:
 	tip_window.text[4] = tip_window.text[4].replace("[NAME]", girl2nd.get_girl_name()).replace("[POINTS]", "%d" %  girl2nd.points)
 	tip_window.text[6] = tip_window.text[6].replace("[NAME]", girl1st.get_girl_name()).replace("[POINTS]", "%d" % girl1st.points)
 	tip_window.text[7] = tip_window.text[7].replace("[NAME]", girl1st.get_girl_name())
+	tip_window.text.insert(2, "21 points are awarded to competitors who [b][i]didn't die[/i][/b] during the compeition.")
+	tip_window.text.insert(2, "Every point of remaining health beyond 1 gives you 10 points.")
+	tip_window.text.insert(2, "Scores are based on multiple factors.")
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
