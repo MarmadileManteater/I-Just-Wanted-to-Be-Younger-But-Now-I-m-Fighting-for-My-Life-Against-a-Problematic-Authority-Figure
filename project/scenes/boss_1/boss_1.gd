@@ -152,7 +152,6 @@ func after_stage_change(name: String):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	var time_var = Helpers.get_time_var(delta) * 2
-	print(time_var)
 	if not boss_started:
 		return
 	if boss_gone:
