@@ -988,7 +988,7 @@ shape = SubResource("RectangleShape2D_eg7ul")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1812485073]
 libraries/ = SubResource("AnimationLibrary_65i1c")
 
-[node name="JumpSound" type="AudioStreamPlayer2D" parent="." unique_id=1844970702]
+[node name="JumpSound" type="AudioStreamPlayer" parent="." unique_id=459696114]
 stream = ExtResource("16_1sf2h")
 
 [node name="Poof" type="AnimatedSprite2D" parent="." unique_id=814664209]

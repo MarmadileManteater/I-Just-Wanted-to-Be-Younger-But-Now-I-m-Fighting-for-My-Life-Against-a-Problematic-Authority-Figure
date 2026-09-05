@@ -25,7 +25,7 @@ var animation_player: AnimationPlayer
 var wand_animation_player: AnimationPlayer
 var wand: Sprite2D
 var wand_projectile: ZapProjectile
-var jump_sound: AudioStreamPlayer2D
+var jump_sound: AudioStreamPlayer
 var transformation_sequence: AnimationPlayer
 var hurt_sound: AudioStreamPlayer
 

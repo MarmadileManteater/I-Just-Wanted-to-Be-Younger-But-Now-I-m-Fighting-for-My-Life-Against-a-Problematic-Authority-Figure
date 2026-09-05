@@ -84,7 +84,8 @@ func _ready() -> void:
 		emit_signal("save_checkpoint", SceneInfo.from_hearts(hearts.health))
 	elif checkpoint_flags[0] == true:
 		_on_tip_window_done()
-		_on_controller_type_changed(controller_type)
+	
+	_on_controller_type_changed(controller_type)
 
 func move_boss_towards(point: Node2D, arm: String = ""):
 	if (not slam_animation_player.last_animation.begins_with(arm) or arm == "") or (boss_stage >= 2 and slam_animation_player.last_animation.ends_with("Slam")):
