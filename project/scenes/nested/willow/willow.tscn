@@ -939,6 +939,7 @@ _data = {
 }
 
 [node name="Willow" type="CharacterBody2D" unique_id=1438157277]
+z_index = 2
 script = ExtResource("1_nwiua")
 is_transformed = false
 

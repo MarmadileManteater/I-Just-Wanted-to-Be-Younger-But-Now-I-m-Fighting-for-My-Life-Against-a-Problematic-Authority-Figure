@@ -28,6 +28,8 @@ var bob_animation_player: AnimationPlayer
 var drop_animation_player: AnimationPlayer
 var boss_health_bar_animation_player: AnimationPlayer
 
+var boss_number = 1
+
 func last_track_stopped() -> void:
 	emit_signal("play_music", "Tutorial")
 
@@ -67,6 +69,8 @@ func _ready() -> void:
 	elif checkpoint_flags[0] == true:
 		_on_tip_window_done()
 		_on_controller_type_changed(controller_type)
+	
+	#start_second_boss()
 	
 	willow.bounce(1.5)
 
@@ -134,6 +138,8 @@ func after_stage_change(name: String):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if boss_number == 2:
+		return
 	if boss_gone:
 		return
 	if boss_dead:
@@ -228,7 +234,17 @@ func _on_boss_death_area_area_entered(area: Area2D) -> void:
 		boss_gone = true
 		willow.controls_locked = true
 		post_battle_dialog.start()
-		
+
+func start_second_boss() -> void:
+	remove_child(boss_top)
+	remove_child(boss_bottom)
+	var second_boss = preload("res://scenes/boss_2/boss_2.tscn").instantiate()
+	second_boss.willow = willow
+	second_boss.hearts = hearts
+	second_boss.dolly = dolly
+	add_child(second_boss)
+	
+
 	
 func _on_controller_type_changed(new_type: ControllerType):
 	super(new_type)

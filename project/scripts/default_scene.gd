@@ -40,16 +40,19 @@ var next_screen_area: NextScreenArea
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	willow = find_child(character_name, true, false)
+	if willow == null:
+		willow = find_child(character_name, true, false)
 	willow.is_transformed = starts_transformed
 	if willow == null:
 		printerr(character_name + " not found!")
-	dolly = find_child("Dolly", true, false)
+	if dolly == null:
+		dolly = find_child("Dolly", true, false)
 	if dolly != null:
 		if dolly_starts_locked:
 			dolly.lock(willow, dolly_axis)
 		dolly.locked_offset = dolly_offset
-	hearts = find_child("HealthDisplay", true, false)
+	if hearts == null:
+		hearts = find_child("HealthDisplay", true, false)
 	if hearts == null:
 		printerr("Health display not found!")
 	else:
