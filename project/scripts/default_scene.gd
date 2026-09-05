@@ -14,6 +14,7 @@ signal play_sound_effect
 signal change_loop_status
 signal save_checkpoint
 signal load_checkpoint
+signal reset
 
 enum ControllerType { Joypad, Keyboard }
 
@@ -105,6 +106,10 @@ func new_gameover_scene() -> GameOverScreen:
 	instance.load_checkpoint.connect(
 		func ():
 			emit_signal("load_checkpoint")
+	)
+	instance.reset.connect(
+		func ():
+			emit_signal("reset")
 	)
 	return instance
 	

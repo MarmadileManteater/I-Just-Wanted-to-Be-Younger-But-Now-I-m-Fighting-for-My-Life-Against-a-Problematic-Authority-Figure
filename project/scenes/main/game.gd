@@ -56,6 +56,7 @@ func next_screen_deferred(info: SceneInfo) -> void:
 			_save_checkpoint(checkpoint_data)
 	)
 	scene.connect("load_checkpoint", _restore_checkpoint)
+	scene.connect("reset", _reset)
 	scene.starting_health = info.health
 	scene.checkpoint_flags = info.checkpoint_flags
 	scene.controller_type = controller_type
@@ -112,3 +113,7 @@ func _restore_checkpoint() -> void:
 	jukebox = generate_jukebox()
 	add_child(jukebox)
 	next_screen_deferred(checkpoint_data)
+	
+func _reset() -> void:
+	checkpoint_data = SceneInfo.from_name(start_scene)
+	_restore_checkpoint()
