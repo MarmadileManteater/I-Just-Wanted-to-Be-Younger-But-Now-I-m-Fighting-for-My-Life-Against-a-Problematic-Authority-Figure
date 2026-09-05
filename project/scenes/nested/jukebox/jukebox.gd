@@ -2,6 +2,8 @@ extends Node2D
 
 class_name JukeBox
 
+signal play
+
 var player: AudioStreamPlayer
 var controls: AnimationPlayer
 var loop_controls: AnimationPlayer
@@ -21,7 +23,7 @@ func _ready() -> void:
 			on_track_stopped.call(music_queue.size() == 0)
 			if music_queue.size() > 0: 
 				var music: TrackInfo = music_queue.pop_front()
-				play_music(music.name, true)
+				emit_signal("play", music.name)
 				change_loop_status(music.loop)
 	)
 	controls = find_child("JukeboxControls")

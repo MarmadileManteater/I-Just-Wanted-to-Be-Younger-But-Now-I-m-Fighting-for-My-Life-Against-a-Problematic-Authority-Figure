@@ -86,10 +86,23 @@ func _queue_music(track: TrackInfo) -> void:
 	jukebox.queue_music(track)
 	
 func _play_music(track_title: String, bypass: bool = false) -> void:
-	jukebox.play_music(track_title, bypass)
+	if jukebox.controls.last_animation != track_title or bypass:
+		remove_child(jukebox)
+		jukebox.queue_free()
+		jukebox = generate_jukebox()
+		add_child(jukebox)
+		jukebox.play_music(track_title, bypass)
 		
 func _play_music_with_fade_in(track_title: String, seconds: float = 1.0) -> void:
-	jukebox.play_music_with_fade_in(track_title, seconds)
+	if OS.has_feature("web"):
+		_play_music(track_title)
+		return
+	if jukebox.controls.controls.last_animation != track_title:
+		remove_child(jukebox)
+		jukebox.queue_free()
+		jukebox = generate_jukebox()
+		add_child(jukebox)
+		jukebox.play_music_with_fade_in(track_title, seconds)
 
 func _stop_music() -> void:
 	jukebox.stop_music()
@@ -118,6 +131,7 @@ func generate_jukebox() -> JukeBox:
 	var jukebox = preload("res://scenes/nested/jukebox/jukebox.tscn").instantiate()
 	jukebox.on_track_stopped = func(is_true):
 		scene.on_track_stopped(is_true)
+	jukebox.play.connect(_play_music)
 	return jukebox
 
 func _save_checkpoint(given: SceneInfo) -> void:
