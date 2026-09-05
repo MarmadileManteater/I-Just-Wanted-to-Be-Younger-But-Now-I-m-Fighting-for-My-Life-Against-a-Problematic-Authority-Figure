@@ -21,8 +21,8 @@ var on_screen_notifier: VisibleOnScreenNotifier2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	letter = find_child("Letter")
-	on_screen_notifier = find_child("VisibleOnScreenNotifier2D")
+	letter = find_child("Mount").find_child("Letter")
+	on_screen_notifier = find_child("Mount").find_child("VisibleOnScreenNotifier2D")
 
 func set_letter(given: String) -> void:
 	var character = given[0].to_upper()

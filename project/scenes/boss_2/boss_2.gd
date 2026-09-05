@@ -16,7 +16,7 @@ func _ready() -> void:
 	projectile_start = find_child("ProjectileStart")
 	glasses = find_child("Glasses")
 	glasses_animation_player = glasses.find_child("AnimationPlayer")
-
+	fire_word("TESSSSTTTTT", 2)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -35,12 +35,13 @@ func fire_word(word: String, rate: float):
 	timer.start(rate)
 
 func fire(letter: String):
+	var parent = get_parent()
 	var letter_projectile: LetterProjectile = projectile_seed.instantiate()
 	letter_projectile.position = projectile_start.position
 	letter_projectile.direction = (willow.position - letter_projectile.position).normalized()
 	letter_projectile.destroy.connect(
 		func ():
-			remove_child(letter_projectile)
+			parent.remove_child(letter_projectile)
 			letter_projectile.queue_free()
 	)
 	letter_projectile.collide.connect(
@@ -53,10 +54,10 @@ func fire(letter: String):
 				hearts.health = 0
 				die("disintegrate")
 				
-			remove_child(letter_projectile)
+			parent.remove_child(letter_projectile)
 			letter_projectile.queue_free()
 	)
-	add_child(letter_projectile)
+	parent.add_child(letter_projectile)
 	letter_projectile.set_letter(letter)
 
 func _on_glasses_damage() -> void:

@@ -402,38 +402,82 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0dxmq"]
-size = Vector2(46, 97)
+size = Vector2(46, 69)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qltq5"]
-size = Vector2(71, 97)
+size = Vector2(71, 71)
+
+[sub_resource type="Animation" id="Animation_qltq5"]
+resource_name = "Bob"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mount:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -300), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_uy43r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mount:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qo8y7"]
+_data = {
+&"Bob": SubResource("Animation_qltq5"),
+&"RESET": SubResource("Animation_uy43r")
+}
 
 [node name="LetterProjectile" type="Node2D" unique_id=923767861]
+z_index = 1
 script = ExtResource("1_qltq5")
 speed = 2.0
 direction = Vector2(0.5, 0.5)
 
-[node name="Letter" type="AnimatedSprite2D" parent="." unique_id=2110674903]
+[node name="Mount" type="Node2D" parent="." unique_id=885833889]
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Mount" unique_id=727860669]
+position = Vector2(-2, 101)
+rect = Rect2(-52, -60, 109, 116)
+
+[node name="Letter" type="AnimatedSprite2D" parent="Mount" unique_id=2110674903]
+position = Vector2(0, 100)
 scale = Vector2(0.35, 0.35)
 sprite_frames = SubResource("SpriteFrames_6wcjf")
 animation = &"Z"
 
-[node name="Size1" type="Area2D" parent="." unique_id=1427172120]
-visible = false
+[node name="Size1" type="Area2D" parent="Mount" unique_id=1427172120]
+position = Vector2(0, 100)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Size1" unique_id=564958160]
-position = Vector2(4, 0.5)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mount/Size1" unique_id=564958160]
+position = Vector2(4, 2.5)
 shape = SubResource("RectangleShape2D_0dxmq")
 
-[node name="Size2" type="Area2D" parent="." unique_id=653330906]
-visible = false
+[node name="Size2" type="Area2D" parent="Mount" unique_id=653330906]
+position = Vector2(0, 100)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Size2" unique_id=245783986]
-position = Vector2(-2.5, 0.5)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mount/Size2" unique_id=245783986]
+position = Vector2(-2.5, 2.5)
 shape = SubResource("RectangleShape2D_qltq5")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=727860669]
-position = Vector2(-2, 1)
-rect = Rect2(-52, -60, 109, 116)
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1192579364]
+libraries/ = SubResource("AnimationLibrary_qo8y7")
 
-[connection signal="body_entered" from="Size1" to="." method="_on_size_1_body_entered"]
-[connection signal="body_entered" from="Size2" to="." method="_on_size_2_body_entered"]
+[connection signal="body_entered" from="Mount/Size1" to="." method="_on_size_1_body_entered"]
+[connection signal="body_entered" from="Mount/Size2" to="." method="_on_size_2_body_entered"]

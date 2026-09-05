@@ -29,6 +29,7 @@ enum ControllerType { Joypad, Keyboard }
 @export var next_scene_name: String
 @export var is_checkpoint: bool = false
 @export var starting_health: int = 3
+var current_score: int = 0
 var checkpoint_flags: Array = []
 
 var controller_type: ControllerType
@@ -42,7 +43,8 @@ var next_screen_area: NextScreenArea
 func _ready() -> void:
 	if willow == null:
 		willow = find_child(character_name, true, false)
-	willow.is_transformed = starts_transformed
+	if willow != null:
+		willow.is_transformed = starts_transformed
 	if willow == null:
 		printerr(character_name + " not found!")
 	if dolly == null:

@@ -32,6 +32,7 @@ animations = [{
 }]
 
 [node name="HealthDisplay" type="Node2D" unique_id=336033771]
+z_index = 10
 position = Vector2(150, 50)
 script = ExtResource("1_k3p77")
 

@@ -153,20 +153,21 @@ script = ExtResource("1_vs1qv")
 [node name="Polygon2D" type="Polygon2D" parent="." unique_id=1965826987]
 z_index = -2
 position = Vector2(720, 544)
+scale = Vector2(0.25, 0.25)
 color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(-398, -115, -431, -388, -339, -501, 167, -542, 407, -507, 512, -123, 473, -36, 479, 442, -458, 430, -374, 304, -404, 261)
 
 [node name="Hair" type="Sprite2D" parent="." unique_id=1733668214]
 z_index = -2
 position = Vector2(744, 190)
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.25, 0.25)
 texture = ExtResource("5_wcl0i")
 
 [node name="Glasses" type="AnimatedSprite2D" parent="." unique_id=549535694]
 z_index = 1
 texture_filter = 1
 position = Vector2(737, 320)
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_u4npt")
 animation = &"0"
 
@@ -190,13 +191,13 @@ shape = SubResource("CapsuleShape2D_6wcjf")
 [node name="Mouth" type="AnimatedSprite2D" parent="." unique_id=911219682]
 z_index = -2
 texture_filter = 1
-position = Vector2(729, 552)
-scale = Vector2(0.5, 0.5)
+position = Vector2(739, 374)
+scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_0dxmq")
 frame = 2
 frame_progress = 1.0
 
 [node name="ProjectileStart" type="Node2D" parent="." unique_id=1556436031]
-position = Vector2(720, 544)
+position = Vector2(748, 367)
 
 [connection signal="damage" from="Glasses/GlassesHitBox" to="." method="_on_glasses_damage"]
