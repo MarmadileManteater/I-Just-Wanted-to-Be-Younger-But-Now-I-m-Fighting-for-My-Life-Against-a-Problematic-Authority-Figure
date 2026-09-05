@@ -8,8 +8,8 @@
 [ext_resource type="AudioStream" uid="uid://cu4il2x6pgh5a" path="res://music/Boss 1 Phase 3 Master.ogg" id="6_b1tct"]
 [ext_resource type="AudioStream" uid="uid://0d6b4rxdl36a" path="res://music/Ceremony.ogg" id="7_66e3p"]
 [ext_resource type="AudioStream" uid="uid://bla2rof7ne12j" path="res://music/Gameplay.ogg" id="7_p33qo"]
-[ext_resource type="AudioStream" uid="uid://4vwu6ip2id55" path="res://music/Introduction.ogg" id="8_pkjx6"]
 [ext_resource type="AudioStream" uid="uid://cqgktmd3cbao4" path="res://music/News Reel.ogg" id="9_4woso"]
+[ext_resource type="AudioStream" uid="uid://y22ii8i7xsu0" path="res://music/Introduction Master.ogg" id="9_lsl2i"]
 [ext_resource type="AudioStream" uid="uid://cfgngv7bx1l2f" path="res://music/Somber Scene Loop Short.ogg" id="10_dnyxf"]
 [ext_resource type="AudioStream" uid="uid://cajyq7j6by0cc" path="res://music/Somber Scene End.ogg" id="11_ewfvs"]
 [ext_resource type="AudioStream" uid="uid://bgx5ncjbboq6s" path="res://music/Tutorial Master.ogg" id="12_3gw1s"]
@@ -123,7 +123,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("8_pkjx6")]
+"values": [ExtResource("9_lsl2i")]
 }
 
 [sub_resource type="Animation" id="Animation_se30j"]

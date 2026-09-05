@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://ei3kg4ymf7m0"
+path="res://.godot/imported/Gameplay Master.ogg-cd13034b3b35b03c021de32656efb9ed.oggvorbisstr"
+
+[deps]
+
+source_file="res://music/Gameplay Master.ogg"
+dest_files=["res://.godot/imported/Gameplay Master.ogg-cd13034b3b35b03c021de32656efb9ed.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
