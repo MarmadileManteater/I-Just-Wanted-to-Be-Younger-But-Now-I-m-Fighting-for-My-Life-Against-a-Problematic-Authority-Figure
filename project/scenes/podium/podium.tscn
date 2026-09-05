@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://c0tmkqbox6woc" path="res://sprites/other-girl-2.png" id="5_n1vqj"]
 [ext_resource type="Texture2D" uid="uid://bkh1vwc63yiky" path="res://sprites/willow_mg_idle_animation_1.png" id="6_yr3wh"]
 [ext_resource type="Script" uid="uid://8c77vq1m2xf1" path="res://scenes/podium/girl.gd" id="7_4kd40"]
+[ext_resource type="PackedScene" uid="uid://eihccgfb2yif" path="res://scenes/nested/health_display/health_display.tscn" id="9_n1vqj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ohfux"]
 atlas = ExtResource("4_imtko")
@@ -191,3 +192,6 @@ polygon = PackedVector2Array(-690, -383, 793, -376, 746, 472, -773, 454)
 [node name="CoverAnimationPlayer" type="AnimationPlayer" parent="Dolly" unique_id=1410930078]
 libraries/ = SubResource("AnimationLibrary_pxvti")
 autoplay = &"BeginScene"
+
+[node name="HealthDisplay" parent="Dolly" unique_id=336033771 instance=ExtResource("9_n1vqj")]
+visible = false

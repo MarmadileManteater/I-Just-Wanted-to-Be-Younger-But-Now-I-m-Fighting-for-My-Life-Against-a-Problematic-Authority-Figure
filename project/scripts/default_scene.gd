@@ -15,6 +15,8 @@ signal change_loop_status
 signal save_checkpoint
 signal load_checkpoint
 signal reset
+signal start_timer
+signal stop_timer
 
 enum ControllerType { Joypad, Keyboard }
 
@@ -30,6 +32,7 @@ enum ControllerType { Joypad, Keyboard }
 @export var is_checkpoint: bool = false
 @export var starting_health: int = 3
 var current_score: int = 0
+var deaths: int = 0
 var checkpoint_flags: Array = []
 
 var controller_type: ControllerType

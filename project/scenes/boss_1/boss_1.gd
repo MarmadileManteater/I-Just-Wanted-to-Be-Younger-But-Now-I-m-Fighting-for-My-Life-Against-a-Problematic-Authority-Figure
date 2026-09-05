@@ -16,6 +16,7 @@ var boss_bottom: Node2D
 var boss_middle: Node2D
 var boss_right: Node2D
 var wand_pickup: RigidBody2D
+var first_tip: DialogWindow
 var wand_tip: DialogWindow
 var post_battle_dialog: DialogWindow
 var boss_health_bar: BossHealthBar
@@ -46,6 +47,7 @@ func start_boss_music_3() -> void:
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	super()
+	
 	emit_signal("stop_music_with_reverb", "last_track_stopped", 4)
 	boss_top = find_child("BossTop")
 	boss_bottom = find_child("BossBottom")
@@ -53,6 +55,7 @@ func _ready() -> void:
 	boss_right = boss_top.find_child("Right")
 	wand_pickup = find_child("WandPickup")
 	
+	first_tip = dolly.find_child("TipWindow")
 	wand_tip = dolly.find_child("TipWindow2")
 	post_battle_dialog = dolly.find_child("TipWindow3")
 	boss_health_bar = dolly.find_child("BossHealthBar")
@@ -66,14 +69,19 @@ func _ready() -> void:
 	bob_animation_player = find_child("BobbingAnimationPlayer")
 	drop_animation_player = find_child("DropPlayer", true)
 	
-	boss_gone = true
-	
 	willow.bounce(1.5)
-
 	
 	if checkpoint_flags.size() == 0:
+		emit_signal("stop_timer")
+		if current_score == 30:
+			first_tip.text.insert(0, "That's a perfect score!")
+		if current_score > 0:
+			first_tip.text.insert(0, "You scored %d on the agility and dexterity section." % current_score)
+		else:
+			first_tip.text.insert(0, "You didn't score any points in the agility section???")
+			first_tip.text[1] = "Wow, that's going to be tough to come back from."
 		dolly.find_child("TipWindow").start()
-		pass
+		emit_signal("save_checkpoint", SceneInfo.from_hearts(hearts.health))
 	elif checkpoint_flags[0] == true:
 		_on_tip_window_done()
 		_on_controller_type_changed(controller_type)
@@ -110,7 +118,7 @@ func slam_hand(animation_name: String):
 	if boss_stage == 2:
 		timeout_to_reset_animation(2)
 	if boss_stage == 3:
-		timeout_to_reset_animation(4)
+		timeout_to_reset_animation(2)
 
 func timeout_to_reset_animation(seconds: float = 1):
 	var timeout = Timer.new()
@@ -142,7 +150,7 @@ func after_stage_change(name: String):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if boss_number == 2:
+	if not boss_started:
 		return
 	if boss_gone:
 		return
@@ -150,13 +158,11 @@ func _process(delta: float) -> void:
 		boss_top.position.y += 2
 		boss_bottom.position.y += 2
 		return
-	if not boss_started:
-		return
 	if stage_changing:
 		return
 	if boss_stage >= 2:
 		boss_speed = 2.5
-	if boss_stage >= 2:
+	if boss_stage >= 3:
 		boss_speed = 3.5
 	if hearts.health > 0:
 		if willow.global_position.x < left_hand_limit.global_position.x:
@@ -236,16 +242,22 @@ func boss_death() -> void:
 func _on_boss_death_area_area_entered(area: Area2D) -> void:
 	if area.name == "HeadArea":	
 		boss_gone = true
-		willow.controls_locked = true
-		post_battle_dialog.start()
-		post_battle_dialog.done.connect(
-			func ():
-				cover_animation_player.play("EndScene")
-				cover_animation_player.animation_finished.connect(
-					func (name: String):
-						emit_signal("next_screen", SceneInfo.from_name("Podium"))
-				)
-		)
+		emit_signal("stop_music_with_reverb", "", 20)
+		end_game()
+		
+func end_game():
+	willow.controls_locked = true
+	post_battle_dialog.start()
+	post_battle_dialog.done.connect(
+		func ():
+			cover_animation_player.play("EndScene")
+			cover_animation_player.animation_finished.connect(
+				func (name: String):
+					var info = SceneInfo.from_name("podium")
+					info.health = hearts.health
+					emit_signal("next_screen", info)
+			)
+	)
 	
 func _on_controller_type_changed(new_type: ControllerType):
 	super(new_type)

@@ -5,6 +5,7 @@ var health: int = 3
 var next_scene: String
 var is_checkpoint: bool = false
 var checkpoint_flags: Array = []
+var score: int = 0
 
 static func from_name(scene_name: String) -> SceneInfo:
 	var info = SceneInfo.new()

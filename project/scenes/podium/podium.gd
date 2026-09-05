@@ -13,7 +13,15 @@ var girl3rd: Girl
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	super()
-	current_score = 30
+	var health_score = hearts.health * 10
+	var deaths_score = 0
+	if deaths == 0:
+		deaths_score = 21
+	if deaths == 1:
+		deaths_score = 11
+	var score = current_score
+	score += health_score
+	score += deaths_score
 	tip_window = dolly.find_child("TipWindow")
 	tip_window.next_line.connect(
 		func (index: int):
@@ -34,31 +42,31 @@ func _ready() -> void:
 			if name == "BeginScene":
 				tip_window.start()
 			if name == "EndScene":
-				emit_signal("next_scene", SceneInfo.from_name("fin"))
+				emit_signal("next_screen", SceneInfo.from_name("fin"))
 	)
 	girl1st = dolly.find_child("Girl1st")
 	girl2nd = dolly.find_child("Girl2nd")
 	girl3rd = dolly.find_child("Girl3rd")
 	girls = [girl1st, girl2nd, girl3rd]
-	if current_score < second_score:
+	if score < second_score:
 		girl3rd.set_girl(3)
-		girl3rd.points = current_score
+		girl3rd.points = score
 		girl1st.set_girl(1)
 		girl1st.points = first_score
 		girl2nd.set_girl(2)
 		girl2nd.points = second_score
-	elif current_score < first_score:
+	elif score < first_score:
 		girl3rd.set_girl(2)
 		girl3rd.points = second_score
 		girl1st.set_girl(1)
 		girl1st.points = first_score
 		girl2nd.set_girl(3)
-		girl2nd.points = current_score
-	elif current_score >= first_score:
+		girl2nd.points = score
+	elif score >= first_score:
 		girl3rd.set_girl(2)
 		girl3rd.points = second_score
 		girl1st.set_girl(3)
-		girl1st.points = current_score
+		girl1st.points = score
 		girl2nd.set_girl(1)
 		girl2nd.points = first_score
 		

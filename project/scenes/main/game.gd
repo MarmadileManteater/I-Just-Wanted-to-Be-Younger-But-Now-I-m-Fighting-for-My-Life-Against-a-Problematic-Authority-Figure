@@ -4,11 +4,16 @@ extends Node2D
 
 var jukebox: JukeBox
 var soundbox_controls: AnimationPlayer
+var game_timer: Timer
 var scene: DefaultScene = null
 var controller_type: DefaultScene.ControllerType =  DefaultScene.ControllerType.Keyboard
 
 var audio_effect_callback: String = ""
 var checkpoint_data: SceneInfo
+var stopwatch: float = 0.0
+
+var score: int = 0
+var deaths: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -57,9 +62,13 @@ func next_screen_deferred(info: SceneInfo) -> void:
 	)
 	scene.connect("load_checkpoint", _restore_checkpoint)
 	scene.connect("reset", _reset)
+	scene.connect("start_timer", _start_timer)
+	scene.connect("stop_timer", _stop_timer)
 	scene.starting_health = info.health
 	scene.checkpoint_flags = info.checkpoint_flags
 	scene.controller_type = controller_type
+	scene.current_score = score
+	scene.deaths = deaths
 	add_child(scene)
 
 func _change_loop_status(is_looping: bool):
@@ -104,9 +113,12 @@ func generate_jukebox() -> JukeBox:
 	return jukebox
 
 func _save_checkpoint(given: SceneInfo) -> void:
+	given.score = score
 	checkpoint_data = given
 	
 func _restore_checkpoint() -> void:
+	deaths += 1
+	score = checkpoint_data.score
 	soundbox_controls.play("Reset")
 	remove_child(jukebox)
 	jukebox.queue_free()
@@ -115,5 +127,27 @@ func _restore_checkpoint() -> void:
 	next_screen_deferred(checkpoint_data)
 	
 func _reset() -> void:
+	deaths = -1
 	checkpoint_data = SceneInfo.from_name(start_scene)
 	_restore_checkpoint()
+	
+func _start_timer() -> void:
+	game_timer = Timer.new()
+	game_timer.timeout.connect(
+		func ():
+			stopwatch += 0.1
+	)
+	add_child(game_timer)
+	game_timer.start(0.1)
+	
+func _stop_timer() -> void:
+	if stopwatch < 25:
+		score += 30
+	else:
+		var value = 30 - ((stopwatch - 25) / 2)
+		if value > 0:
+			score += value
+	game_timer.stop()
+	remove_child(game_timer)
+	game_timer.free()
+	scene.current_score = score

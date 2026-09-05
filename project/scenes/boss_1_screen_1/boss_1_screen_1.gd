@@ -3,6 +3,7 @@ extends DefaultScene
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	super()
+	emit_signal("start_timer")
 
 func _on_spikes_damage(damage: int) -> void:
 	if not willow.invulnerable:
