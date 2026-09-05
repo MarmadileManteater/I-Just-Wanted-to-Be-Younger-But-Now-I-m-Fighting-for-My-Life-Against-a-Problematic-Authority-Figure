@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://4t2a0olld81g" path="res://music/Boss 1 Phase 1 Master.ogg" id="4_ftqgo"]
 [ext_resource type="AudioStream" uid="uid://bll2s3rvcsmka" path="res://music/Boss 1 Phase 2 Master.ogg" id="5_lsl2i"]
 [ext_resource type="AudioStream" uid="uid://cu4il2x6pgh5a" path="res://music/Boss 1 Phase 3 Master.ogg" id="6_b1tct"]
+[ext_resource type="AudioStream" uid="uid://0d6b4rxdl36a" path="res://music/Ceremony.ogg" id="7_66e3p"]
 [ext_resource type="AudioStream" uid="uid://bla2rof7ne12j" path="res://music/Gameplay.ogg" id="7_p33qo"]
 [ext_resource type="AudioStream" uid="uid://4vwu6ip2id55" path="res://music/Introduction.ogg" id="8_pkjx6"]
 [ext_resource type="AudioStream" uid="uid://cqgktmd3cbao4" path="res://music/News Reel.ogg" id="9_4woso"]
@@ -112,6 +113,33 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [ExtResource("6_b1tct")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Jukebox:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_e5aoi"]
+resource_name = "Ceremony"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Jukebox:stream")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("7_66e3p")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -381,6 +409,7 @@ _data = {
 &"Boss1Phase1": SubResource("Animation_c8nfc"),
 &"Boss1Phase2": SubResource("Animation_uuwcm"),
 &"Boss1Phase3": SubResource("Animation_g8xql"),
+&"Ceremony": SubResource("Animation_e5aoi"),
 &"Gameplay": SubResource("Animation_em1bs"),
 &"Introduction": SubResource("Animation_kjrfb"),
 &"NewsReel": SubResource("Animation_se30j"),
@@ -427,6 +456,46 @@ tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_66e3p"]
+resource_name = "FadeOut"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Jukebox:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -80.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Jukebox:bus")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Master"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Jukebox:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(3.9333334),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
@@ -645,6 +714,7 @@ tracks/2/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_n2rx6"]
 _data = {
 &"Default": SubResource("Animation_kb4no"),
+&"FadeOut": SubResource("Animation_66e3p"),
 &"PlayWithFadeIn": SubResource("Animation_6lv7u"),
 &"Playing": SubResource("Animation_obhq2"),
 &"RESET": SubResource("Animation_157ky"),

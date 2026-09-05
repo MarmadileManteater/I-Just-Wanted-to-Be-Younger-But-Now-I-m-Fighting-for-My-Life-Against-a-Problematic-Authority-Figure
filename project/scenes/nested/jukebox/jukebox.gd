@@ -59,6 +59,9 @@ func stop_music_with_reverb(callback: Callable = func (): pass, animation_speed:
 	effects.speed_scale = animation_speed
 	effects.play("ReverbFadeOut")
 	effects.animation_finished.connect(_on_reverb_fade_out)
+
+func fade_out_music(animation_speed: float = 1) -> void:
+	effects.play("FadeOut")
 	
 func change_loop_status(is_looping: bool):
 	if is_looping:

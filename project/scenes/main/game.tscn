@@ -95,6 +95,7 @@ _data = {
 
 [node name="Game" type="Node2D" unique_id=1279552812]
 script = ExtResource("1_ma5rq")
+start_scene = "opening_menu"
 
 [node name="Soundbox" type="AudioStreamPlayer" parent="." unique_id=1921619715]
 stream = ExtResource("4_kjrfb")

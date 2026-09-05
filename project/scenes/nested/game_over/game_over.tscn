@@ -172,9 +172,11 @@ script = ExtResource("1_vcsth")
 
 [node name="Select" type="AudioStreamPlayer" parent="." unique_id=2100773796]
 stream = ExtResource("2_r6ppq")
+volume_db = -10.0
 
 [node name="Move" type="AudioStreamPlayer" parent="." unique_id=1896978930]
 stream = ExtResource("3_1nr20")
+volume_db = -10.0
 
 [node name="Polygon2D2" type="Polygon2D" parent="." unique_id=869386419]
 visible = false

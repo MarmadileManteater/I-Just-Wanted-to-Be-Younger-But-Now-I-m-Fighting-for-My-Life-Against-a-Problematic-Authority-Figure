@@ -35,6 +35,7 @@ func _ready() -> void:
 	tip_window.done.connect(
 		func():
 			cover_animation_player.play("EndScene")
+			emit_signal("fade_out_music")
 	)
 	cover_animation_player = dolly.find_child("CoverAnimationPlayer")
 	cover_animation_player.animation_finished.connect(

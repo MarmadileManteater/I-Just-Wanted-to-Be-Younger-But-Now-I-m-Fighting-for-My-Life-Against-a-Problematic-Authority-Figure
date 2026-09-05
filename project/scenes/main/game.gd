@@ -64,6 +64,11 @@ func next_screen_deferred(info: SceneInfo) -> void:
 	scene.connect("reset", _reset)
 	scene.connect("start_timer", _start_timer)
 	scene.connect("stop_timer", _stop_timer)
+	scene.connect("restart_game", 
+		func ():
+			get_tree().reload_current_scene()
+	)
+	scene.connect("fade_out_music", _fade_out_music)
 	scene.starting_health = info.health
 	scene.checkpoint_flags = info.checkpoint_flags
 	scene.controller_type = controller_type
@@ -94,6 +99,9 @@ func _pause_music() -> void:
 	
 func _unpause_music() -> void:
 	jukebox.unpause_music()
+
+func _fade_out_music(speed: float = 1) -> void:
+	jukebox.fade_out_music(speed)
 
 func _stop_music_with_reverb(callback: String = "", animation_speed: float = 1) -> void:
 	audio_effect_callback = callback

@@ -1,16 +1,14 @@
 extends DefaultScene
 
-var enter_unpressed = false
+var unpressed = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
-
-func _input(event: InputEvent) -> void:
-	if event.is_action("ui_accept") and enter_unpressed:
-		emit_signal("next_screen", SceneInfo.from_name("credits"))
-
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("ui_accept") && unpressed:
+		emit_signal("restart_game")
 	if not Input.is_action_pressed("ui_accept"):
-		enter_unpressed = true
+		unpressed = true

@@ -266,6 +266,10 @@ texture = ExtResource("10_qhvse")
 
 [node name="MenuNoise" type="AudioStreamPlayer" parent="." unique_id=407598508]
 stream = ExtResource("13_jmktf")
+volume_db = -10.0
 
 [node name="SelectNoise" type="AudioStreamPlayer" parent="." unique_id=619458686]
 stream = ExtResource("14_gdjcl")
+volume_db = -10.0
+
+[connection signal="finished" from="SelectNoise" to="." method="_on_select_noise_finished"]

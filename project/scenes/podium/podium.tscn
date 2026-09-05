@@ -141,6 +141,7 @@ _data = {
 
 [node name="Podium" type="Node2D" unique_id=1119049008]
 script = ExtResource("1_0gj5w")
+track_name = "Ceremony"
 
 [node name="Dolly" parent="." unique_id=1452481412 instance=ExtResource("2_cf5g0")]
 

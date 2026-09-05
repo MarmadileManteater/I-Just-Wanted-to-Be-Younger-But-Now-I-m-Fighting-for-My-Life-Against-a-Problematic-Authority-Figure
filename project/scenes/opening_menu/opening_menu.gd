@@ -8,6 +8,7 @@ var menu_noise: AudioStreamPlayer
 var select_noise: AudioStreamPlayer
 var selected: int = 0
 var menu_selects = []
+var enter_unpressed = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -40,12 +41,13 @@ func _input(event: InputEvent) -> void:
 				selected = 0
 				menu_selects[selected].show()
 				menu_noise.play()
-		if event.is_action("ui_accept"):
+		if event.is_action("ui_accept") and enter_unpressed:
 			if selected == 0:
 				menu.hide()
 				select_noise.play()
-				emit_signal("play_music", "Somber")
 				animation_player.play("Zoom")
+			if selected == 1:
+				emit_signal("next_screen", SceneInfo.from_name("credits"))
 	
 func _on_controller_type_changed(new_type: ControllerType):
 	super(new_type)
@@ -55,3 +57,11 @@ func _on_controller_type_changed(new_type: ControllerType):
 	if new_type == ControllerType.Keyboard:
 		keyboard_tip.show()
 		joypad_tip.hide()
+
+func _physics_process(delta: float) -> void:
+	if not Input.is_action_pressed("ui_accept"):
+		enter_unpressed = true
+
+
+func _on_select_noise_finished() -> void:
+	emit_signal("play_music", "Somber")

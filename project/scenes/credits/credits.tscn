@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://cmdworh8j0ci5"]
+
+[ext_resource type="Texture2D" uid="uid://b64r3cvj5wga0" path="res://sprites/yara_zoi.png" id="1_huu5m"]
+[ext_resource type="Script" uid="uid://ls4gfh4cm2t3" path="res://scenes/credits/credits.gd" id="1_icb2l"]
+[ext_resource type="Texture2D" uid="uid://dcwg1ylb6quyt" path="res://sprites/music_design.png" id="2_icb2l"]
+[ext_resource type="Texture2D" uid="uid://bv3f54tj6r8d2" path="res://sprites/xentombentx.png" id="3_17l06"]
+[ext_resource type="Texture2D" uid="uid://bo5jdkv4vkfxq" path="res://sprites/art_programming.png" id="4_t15ab"]
+[ext_resource type="Texture2D" uid="uid://erhkn0rdwph4" path="res://sprites/emma_manteater.png" id="5_lwbe5"]
+
+[node name="Credits" type="Node2D" unique_id=1223819073]
+script = ExtResource("1_icb2l")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1858744184]
+position = Vector2(200, 0)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(1572, -85, -230, -83, -272, 1012, 1720, 1023)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1859601517]
+position = Vector2(431.5, 532)
+texture = ExtResource("1_huu5m")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Sprite2D" unique_id=1365110934]
+position = Vector2(30, -116)
+texture = ExtResource("2_icb2l")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D" unique_id=357065826]
+position = Vector2(6, 115)
+texture = ExtResource("3_17l06")
+
+[node name="Sprite2D3" type="Sprite2D" parent="." unique_id=335253223]
+position = Vector2(1260.5, 560)
+texture = ExtResource("5_lwbe5")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D3" unique_id=1290138243]
+position = Vector2(11, -119)
+texture = ExtResource("4_t15ab")

@@ -10,6 +10,7 @@ signal stop_music_with_reverb
 signal stop_music
 signal pause_music
 signal unpause_music
+signal fade_out_music
 signal play_sound_effect
 signal change_loop_status
 signal save_checkpoint
@@ -17,6 +18,7 @@ signal load_checkpoint
 signal reset
 signal start_timer
 signal stop_timer
+signal restart_game
 
 enum ControllerType { Joypad, Keyboard }
 
