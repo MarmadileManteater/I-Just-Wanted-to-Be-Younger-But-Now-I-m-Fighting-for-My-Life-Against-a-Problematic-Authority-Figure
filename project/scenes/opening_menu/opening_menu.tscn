@@ -8,12 +8,64 @@
 [ext_resource type="PackedScene" uid="uid://c8b7r642fn2vm" path="res://scenes/nested/willow/willow.tscn" id="5_16sch"]
 [ext_resource type="Texture2D" uid="uid://dtrmcafagdvpf" path="res://sprites/wall1.png" id="6_or0d7"]
 [ext_resource type="PackedScene" uid="uid://cc6b7s5bx5li2" path="res://scenes/nested/next_screen/next_screen.tscn" id="7_lvibv"]
+[ext_resource type="Texture2D" uid="uid://fopu7r5fr0hb" path="res://sprites/start.png" id="9_qaq8r"]
+[ext_resource type="Texture2D" uid="uid://2s0ixi7rjqvk" path="res://sprites/select.png" id="10_qhvse"]
+[ext_resource type="Texture2D" uid="uid://dvn6hhjndd36k" path="res://sprites/menu.png" id="11_4tfji"]
+[ext_resource type="Texture2D" uid="uid://cpcjpbnlpha8a" path="res://sprites/credits.png" id="12_4tfji"]
+[ext_resource type="AudioStream" uid="uid://cs8fx4ksq0x01" path="res://music/Menu.ogg" id="13_jmktf"]
+[ext_resource type="AudioStream" uid="uid://4j4bxcccd5i4" path="res://music/Confirm.ogg" id="14_gdjcl"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0dxmq"]
-size = Vector2(1339.8093, 20)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6wcjf"]
-size = Vector2(20, 728.5716)
+[sub_resource type="Animation" id="Animation_gdjcl"]
+resource_name = "New"
+length = 7.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5.9666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.75, 0.75), Vector2(2.25, 2.25)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(410, 5), Vector2(567, 207)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Skyline:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(6.1666665, 6.9666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Rooom/Willow:controls_locked")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 6.9333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="Animation" id="Animation_empih"]
 length = 0.001
@@ -27,7 +79,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.5, 0.5)]
+"values": [Vector2(0.75, 0.75)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -120,15 +172,24 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_icpug"]
 _data = {
+&"New": SubResource("Animation_gdjcl"),
 &"RESET": SubResource("Animation_empih"),
 &"Zoom": SubResource("Animation_bkcnd")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0dxmq"]
+size = Vector2(1339.8093, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6wcjf"]
+size = Vector2(20, 728.5716)
+
 [node name="OpeningMenu" type="Node2D" unique_id=1714466535]
 script = ExtResource("1_cnw1s")
 starts_transformed = false
-track_name = "Somber"
 next_scene_name = "opening_screen_2"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1162420988]
+libraries/ = SubResource("AnimationLibrary_icpug")
 
 [node name="Rooom" type="Sprite2D" parent="." unique_id=553848907]
 position = Vector2(579.00006, 226)
@@ -170,13 +231,41 @@ texture = ExtResource("6_or0d7")
 position = Vector2(695.7143, 67.142845)
 
 [node name="Skyline" type="Sprite2D" parent="." unique_id=2107795430]
+z_index = 10
 position = Vector2(559, 4)
 texture = ExtResource("1_empih")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=377339698]
 position = Vector2(410, 5)
-zoom = Vector2(0.5, 0.5)
+zoom = Vector2(0.75, 0.75)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1162420988]
-libraries/ = SubResource("AnimationLibrary_icpug")
-autoplay = &"Zoom"
+[node name="Menu" type="Sprite2D" parent="." unique_id=430350783]
+z_index = 10
+position = Vector2(461, 74)
+texture = ExtResource("11_4tfji")
+
+[node name="Start" type="Sprite2D" parent="Menu" unique_id=249050400]
+z_index = 100
+position = Vector2(-36, -133)
+texture = ExtResource("9_qaq8r")
+
+[node name="Select" type="Sprite2D" parent="Menu/Start" unique_id=1270795532]
+position = Vector2(-255, 4)
+scale = Vector2(2, 2)
+texture = ExtResource("10_qhvse")
+
+[node name="Credits" type="Sprite2D" parent="Menu" unique_id=2005940101]
+position = Vector2(41, 124)
+texture = ExtResource("12_4tfji")
+
+[node name="Select" type="Sprite2D" parent="Menu/Credits" unique_id=2129973296]
+visible = false
+position = Vector2(-327, 4)
+scale = Vector2(2, 2)
+texture = ExtResource("10_qhvse")
+
+[node name="MenuNoise" type="AudioStreamPlayer" parent="." unique_id=407598508]
+stream = ExtResource("13_jmktf")
+
+[node name="SelectNoise" type="AudioStreamPlayer" parent="." unique_id=619458686]
+stream = ExtResource("14_gdjcl")

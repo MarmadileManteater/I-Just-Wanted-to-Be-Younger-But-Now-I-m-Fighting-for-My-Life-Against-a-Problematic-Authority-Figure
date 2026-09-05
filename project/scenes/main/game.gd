@@ -117,6 +117,7 @@ func _save_checkpoint(given: SceneInfo) -> void:
 	checkpoint_data = given
 	
 func _restore_checkpoint() -> void:
+	_stop_timer(false)
 	deaths += 1
 	score = checkpoint_data.score
 	soundbox_controls.play("Reset")
@@ -127,11 +128,13 @@ func _restore_checkpoint() -> void:
 	next_screen_deferred(checkpoint_data)
 	
 func _reset() -> void:
+	_stop_timer(false)
 	deaths = -1
 	checkpoint_data = SceneInfo.from_name(start_scene)
 	_restore_checkpoint()
 	
 func _start_timer() -> void:
+	stopwatch = 0
 	game_timer = Timer.new()
 	game_timer.timeout.connect(
 		func ():
@@ -140,14 +143,18 @@ func _start_timer() -> void:
 	add_child(game_timer)
 	game_timer.start(0.1)
 	
-func _stop_timer() -> void:
-	if stopwatch < 25:
-		score += 30
-	else:
-		var value = 30 - ((stopwatch - 25) / 2)
-		if value > 0:
-			score += value
-	game_timer.stop()
-	remove_child(game_timer)
-	game_timer.free()
-	scene.current_score = score
+func _stop_timer(rate = true) -> void:
+	if rate:
+		if stopwatch < 25:
+			score += 30
+		else:
+			var value = 30 - ((stopwatch - 25) / 2)
+			if value > 0:
+				score += value
+	if game_timer != null:
+		game_timer.stop()
+		remove_child(game_timer)
+		game_timer.free()
+		game_timer = null
+	if rate:
+		scene.current_score = score

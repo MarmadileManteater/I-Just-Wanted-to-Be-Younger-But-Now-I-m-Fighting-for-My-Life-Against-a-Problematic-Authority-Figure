@@ -879,7 +879,7 @@ zoom = Vector2(1.5, 1.5)
 
 [node name="TV" type="Sprite2D" parent="." unique_id=947825528]
 visible = false
-z_index = 1
+z_index = 4
 position = Vector2(566, 300)
 scale = Vector2(0.68029827, 0.6802983)
 texture = ExtResource("14_3d1es")
