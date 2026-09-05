@@ -129,7 +129,7 @@ func _ready() -> void:
 		activate_wand()
 
 func _physics_process(delta: float) -> void:
-	
+	var time_var = Helpers.get_time_var(delta)
 	if not is_transformed:
 		jump_sound.volume_linear = 0.25
 	else:
@@ -156,7 +156,7 @@ func _physics_process(delta: float) -> void:
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor() and not controls_locked:
 		jump_sound.play()
-		velocity.y = JUMP_VELOCITY 
+		velocity.y = JUMP_VELOCITY * time_var
 		if not is_transformed:
 			velocity.y *= OLD_MULTIPLIER
 
@@ -166,7 +166,7 @@ func _physics_process(delta: float) -> void:
 	var direction := Input.get_axis("ui_left", "ui_right")
 	if direction and not controls_locked:
 		var running = is_running
-		velocity.x = direction * SPEED
+		velocity.x = direction * SPEED * time_var
 		if running or not is_transformed:
 			velocity.x *= RUNNING_MULTIPLIER
 		if not is_transformed:

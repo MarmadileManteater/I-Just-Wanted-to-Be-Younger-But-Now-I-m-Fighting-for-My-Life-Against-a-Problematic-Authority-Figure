@@ -20,8 +20,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	var time_var = Helpers.get_time_var(delta)
 	if is_active:
-		position.y -= speed
+		position.y -= speed * time_var
 		if notifier.is_on_screen():
 			was_on_screen = true
 			

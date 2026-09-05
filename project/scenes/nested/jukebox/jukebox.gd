@@ -11,6 +11,7 @@ var paused_position: int = 0
 var audio_effect_callback: Callable
 var music_queue: Array = []
 var on_track_stopped: Callable = func(is_true: bool): pass
+var playback_timer: Timer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -18,7 +19,7 @@ func _ready() -> void:
 	player.finished.connect(
 		func ():
 			on_track_stopped.call(music_queue.size() == 0)
-			if music_queue.size() > 0:
+			if music_queue.size() > 0: 
 				var music: TrackInfo = music_queue.pop_front()
 				play_music(music.name, true)
 				change_loop_status(music.loop)
@@ -26,12 +27,14 @@ func _ready() -> void:
 	controls = find_child("JukeboxControls")
 	effects = find_child("JukeboxEffects")
 	loop_controls = find_child("LoopControls")
+	playback_timer = find_child("PlaybackTimer")
 
 func play_music(track_title: String, bypass: bool = false) -> void:
 	paused_position = 0
 	if controls.last_animation != track_title or bypass:
 		effects.play("Playing")
 		controls.play_with_memory(track_title)
+		playback_timer.start(player.stream.get_length())
 
 func play_music_with_fade_in(track_title: String, seconds: float = 1.0) -> void:
 	paused_position = 0
@@ -39,10 +42,12 @@ func play_music_with_fade_in(track_title: String, seconds: float = 1.0) -> void:
 		effects.speed_scale = 1 / seconds
 		effects.play("PlayWithFadeIn")
 		controls.play_with_memory(track_title)
+		playback_timer.start(player.stream.get_length())
 
 func stop_music() -> void:
 	player.stop()
 	paused_position = 0
+	playback_timer.stop()
 
 func pause_music() -> void:
 	paused_position = player.get_playback_position()
@@ -55,6 +60,10 @@ func unpause_music() -> void:
 	paused_position = 0
 
 func stop_music_with_reverb(callback: Callable = func (): pass, animation_speed: float = 1) -> void:
+	if OS.has_feature("web"):
+		stop_music()
+		callback.call()
+		return
 	audio_effect_callback = callback
 	effects.speed_scale = animation_speed
 	effects.play("ReverbFadeOut")

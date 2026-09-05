@@ -259,7 +259,7 @@ tracks/1/path = NodePath("Jukebox:stream")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.033333335),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [ExtResource("7_p33qo")]
@@ -468,7 +468,7 @@ tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("Jukebox:volume_db")
-tracks/0/interp = 1
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 4),
@@ -792,4 +792,6 @@ libraries/ = SubResource("AnimationLibrary_n2rx6")
 
 [node name="LoopControls" type="AnimationPlayer" parent="." unique_id=581886225]
 libraries/ = SubResource("AnimationLibrary_3gw1s")
-autoplay = &"Loop"
+autoplay = &"RESET"
+
+[node name="PlaybackTimer" type="Timer" parent="." unique_id=2008047494]

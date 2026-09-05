@@ -18,7 +18,7 @@ var animate_space_speed: float = 0
 
 var music_done: bool = false
 var bed_dialog_done: bool = false
-
+var after_bed_dialog_done: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	super()
@@ -60,16 +60,20 @@ func _on_bed_dialog_line(index: int):
 		shooting_star_sound.play()
 		
 func _on_bed_dialog_done():
+	bed_dialog.done.disconnect(_on_bed_dialog_done)
 	if music_done:
 		after_bed_dialog()
 	else:
 		bed_dialog_done = true
 
 func after_bed_dialog():
-	mascot_animation_player.play("MascotLand")
-	mascot_animation_player.animation_finished.connect(_on_mascot_land)
+	if not after_bed_dialog_done:
+		after_bed_dialog_done = true
+		mascot_animation_player.play("MascotLand")
+		mascot_animation_player.animation_finished.connect(_on_mascot_land)
 		
 func _on_mascot_land(_name: String):
+	mascot_animation_player.animation_finished.disconnect(_on_mascot_land)
 	mascot_dialog_1.start()
 	mascot_dialog_1.next_line.connect(_on_mascot_dialog_1_line)
 	mascot_dialog_1.done.connect(_on_mascot_dialog_1_done)

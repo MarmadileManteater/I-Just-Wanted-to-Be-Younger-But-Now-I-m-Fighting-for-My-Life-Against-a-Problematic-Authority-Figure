@@ -4,7 +4,7 @@ extends DefaultScene
 @export var boss_stage: int = 1
 
 @export var player_threshold: int = 10
-@export var boss_speed: int = 2
+@export var boss_speed: float = 2
 
 var stage_changing: bool = false
 var boss_started: bool = false
@@ -150,20 +150,24 @@ func after_stage_change(name: String):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	var time_var = Helpers.get_time_var(delta) * 2
+	print(time_var)
 	if not boss_started:
 		return
 	if boss_gone:
 		return
 	if boss_dead:
-		boss_top.position.y += 2
-		boss_bottom.position.y += 2
+		boss_top.position.y += 2 * time_var
+		boss_bottom.position.y += 2 * time_var
 		return
 	if stage_changing:
 		return
+	if boss_stage == 1:
+		boss_speed = 2 * time_var
 	if boss_stage >= 2:
-		boss_speed = 2.5
+		boss_speed = 2.5 * time_var
 	if boss_stage >= 3:
-		boss_speed = 3.5
+		boss_speed = 3.5 * time_var
 	if hearts.health > 0:
 		if willow.global_position.x < left_hand_limit.global_position.x:
 			move_boss_towards(boss_top, "Left")
