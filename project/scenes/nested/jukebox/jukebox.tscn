@@ -11,7 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://cqgktmd3cbao4" path="res://music/News Reel.ogg" id="9_4woso"]
 [ext_resource type="AudioStream" uid="uid://cfgngv7bx1l2f" path="res://music/Somber Scene Loop Short.ogg" id="10_dnyxf"]
 [ext_resource type="AudioStream" uid="uid://cajyq7j6by0cc" path="res://music/Somber Scene End.ogg" id="11_ewfvs"]
-[ext_resource type="AudioStream" uid="uid://rq0nioain6b" path="res://music/Tutorial.ogg" id="12_i412t"]
+[ext_resource type="AudioStream" uid="uid://bgx5ncjbboq6s" path="res://music/Tutorial Master.ogg" id="12_3gw1s"]
 [ext_resource type="Script" uid="uid://cqmvyq8jn4svt" path="res://scripts/AnimationPlayerExtensions.gd" id="13_358rs"]
 
 [sub_resource type="Animation" id="Animation_gf1f2"]
@@ -360,7 +360,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("12_i412t")]
+"values": [ExtResource("12_3gw1s")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
