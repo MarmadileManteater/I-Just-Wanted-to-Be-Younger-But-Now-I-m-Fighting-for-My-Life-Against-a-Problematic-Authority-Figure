@@ -5,7 +5,7 @@ on: push
 
 env:
   GODOT_VERSION: 4.7.1
-  EXPORT_NAME: i-just-wanted-to-be-youner
+  EXPORT_NAME: i-just-wanted-to-be-younger
   PROJECT_PATH: project
 
 jobs:
