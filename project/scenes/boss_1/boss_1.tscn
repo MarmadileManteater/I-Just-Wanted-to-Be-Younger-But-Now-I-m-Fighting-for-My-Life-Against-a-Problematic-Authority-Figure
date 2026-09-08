@@ -991,7 +991,7 @@ height = 241.09113
 size = Vector2(117.48494, 404.99915)
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_m0mga"]
-points = PackedVector2Array(114.96295, 72.923065, -81.83215, 68.71396, -65.51788, 29.143173, -42.87195, 5.4754944, 94.6734, 20.384125, 111.200745, 51.15506)
+points = PackedVector2Array(114.96295, 72.923065, -81.83215, 68.71396, -65.51788, 29.143173, -42.87195, 5.4754944, 31.259094, -57.869446, 94.6734, 20.384125, 111.200745, 51.15506)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0dxmq"]
 radius = 97.0
