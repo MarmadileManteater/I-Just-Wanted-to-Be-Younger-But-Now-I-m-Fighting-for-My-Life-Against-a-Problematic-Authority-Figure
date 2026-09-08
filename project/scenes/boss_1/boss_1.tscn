@@ -17,7 +17,6 @@
 [ext_resource type="Texture2D" uid="uid://djarbpclvx3n0" path="res://sprites/wind.png" id="6_u4d0x"]
 [ext_resource type="Texture2D" uid="uid://cekyllahod40u" path="res://sprites/building_3.png" id="7_jr0hl"]
 [ext_resource type="Texture2D" uid="uid://xgy32qthpajl" path="res://sprites/building_topper_3.png" id="8_5ksyy"]
-[ext_resource type="Texture2D" uid="uid://bkjkngjkbe6vs" path="res://sprites/right_hand.png" id="8_4475d"]
 [ext_resource type="Script" uid="uid://bpsuqi2evmbe" path="res://scenes/boss_1/hand.gd" id="8_l2vqj"]
 [ext_resource type="Texture2D" uid="uid://bjvvuhf3tq2jg" path="res://sprites/bottom_mouth_1.png" id="8_v3oh7"]
 [ext_resource type="Texture2D" uid="uid://dgci1bftb5314" path="res://sprites/death_face_1.png" id="9_avt3k"]
@@ -26,6 +25,7 @@
 [ext_resource type="AudioStream" uid="uid://cnguecpbbmu87" path="res://music/Enemy Damage.ogg" id="13_nt7mg"]
 [ext_resource type="PackedScene" uid="uid://k17lgk7i63ex" path="res://scenes/nested/tip_window/tip_window.tscn" id="15_nohon"]
 [ext_resource type="PackedScene" uid="uid://cikt1lmik1o0u" path="res://scenes/nested/boss_health_bar/boss_health_bar.tscn" id="17_5e884"]
+[ext_resource type="Texture2D" uid="uid://bdnba3q1hnbj6" path="res://sprites/right_hand_taller.png" id="22_scamq"]
 [ext_resource type="Texture2D" uid="uid://crnr1aga3xnxv" path="res://sprites/wand.png" id="23_avt3k"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5ksyy"]
@@ -984,24 +984,24 @@ _data = {
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6wcjf"]
-radius = 92.19891
-height = 218.79565
+radius = 95.84839
+height = 241.09113
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fp75s"]
 size = Vector2(117.48494, 404.99915)
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_m0mga"]
-points = PackedVector2Array(84.43213, 74.89212, -62.753967, 78.09581, 12.218018, -36.203003)
+points = PackedVector2Array(114.96295, 72.923065, -81.83215, 68.71396, -65.51788, 29.143173, -42.87195, 5.4754944, 94.6734, 20.384125, 111.200745, 51.15506)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0dxmq"]
 radius = 97.0
-height = 214.0
+height = 238.92032
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6wcjf"]
 size = Vector2(102.91751, 473.87155)
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_u4d0x"]
-points = PackedVector2Array(82.90939, 96.12363, 3.292694, -19.967651, -86.6261, 90.95398)
+points = PackedVector2Array(91.18933, 46.651985, 17.583557, -30.95723, -64.599884, 31.331451, -88.42378, 102.90254, -6.5914, 103.581116, 103.418335, 117.78883)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4475d"]
 size = Vector2(294.32678, 93.06253)
@@ -1128,7 +1128,7 @@ tracks/9/loop_wrap = true
 tracks/9/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [true]
 }
 tracks/10/type = "value"
@@ -1298,10 +1298,10 @@ tracks/11/path = NodePath("BossBottom/Inner/LeftHand/CollisionShape2D:disabled")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"times": PackedFloat32Array(0, 0.76666665),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.65666664, 0.76666665),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [true, false]
+"values": [true, true, false]
 }
 tracks/12/type = "value"
 tracks/12/imported = false
@@ -1322,10 +1322,10 @@ tracks/13/path = NodePath("BossBottom/Inner/LeftHand/StaticBody2D/CollisionShape
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
-"times": PackedFloat32Array(0, 0.76666665),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
+"times": PackedFloat32Array(-0.033333335, 0.6666666, 0.76666665),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [true, true, false]
 }
 tracks/14/type = "value"
 tracks/14/imported = false
@@ -1520,7 +1520,7 @@ tracks/12/loop_wrap = true
 tracks/12/keys = {
 "times": PackedFloat32Array(0, 1.0333333),
 "transitions": PackedFloat32Array(1, 1),
-"update": 1,
+"update": 0,
 "values": [true, false]
 }
 
@@ -1727,7 +1727,7 @@ tracks/16/loop_wrap = true
 tracks/16/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [true]
 }
 tracks/17/type = "value"
@@ -1739,7 +1739,7 @@ tracks/17/loop_wrap = true
 tracks/17/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [true]
 }
 tracks/18/type = "value"
@@ -1947,7 +1947,7 @@ tracks/13/loop_wrap = true
 tracks/13/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [true]
 }
 tracks/14/type = "value"
@@ -2143,7 +2143,7 @@ tracks/12/loop_wrap = true
 tracks/12/keys = {
 "times": PackedFloat32Array(0, 0.4031372),
 "transitions": PackedFloat32Array(1, 1),
-"update": 1,
+"update": 0,
 "values": [true, false]
 }
 tracks/13/type = "value"
@@ -2677,13 +2677,14 @@ position = Vector2(1001, 757)
 script = ExtResource("8_l2vqj")
 
 [node name="Sprite" type="Sprite2D" parent="BossBottom/Inner/RightHand" unique_id=1637545783]
+position = Vector2(3.346061, -21.177015)
 rotation = -3.1415925
 scale = Vector2(1, -1)
-texture = ExtResource("8_4475d")
+texture = ExtResource("22_scamq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BossBottom/Inner/RightHand" unique_id=1548701122]
-position = Vector2(14, 4)
-rotation = -0.33161256
+position = Vector2(16.041782, 1.913269)
+rotation = -0.017453292
 shape = SubResource("CapsuleShape2D_6wcjf")
 disabled = true
 
@@ -2713,7 +2714,7 @@ script = ExtResource("8_l2vqj")
 
 [node name="Sprite" type="Sprite2D" parent="BossBottom/Inner/LeftHand" unique_id=1126435705]
 rotation = 0.23561946
-texture = ExtResource("8_4475d")
+texture = ExtResource("22_scamq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BossBottom/Inner/LeftHand" unique_id=1551791951]
 position = Vector2(-10, 4)

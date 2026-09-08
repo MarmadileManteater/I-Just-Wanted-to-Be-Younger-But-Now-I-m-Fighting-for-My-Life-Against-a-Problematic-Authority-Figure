@@ -250,6 +250,9 @@ func _on_boss_death_area_area_entered(area: Area2D) -> void:
 		end_game()
 		
 func end_game():
+	if hearts.health == 0:
+		# game already over
+		return
 	willow.controls_locked = true
 	post_battle_dialog.start()
 	post_battle_dialog.done.connect(
