@@ -31,6 +31,7 @@ jobs:
           EXPORT_DIR="$(readlink -f build)"
           cd $PROJECT_PATH
           godot --headless --verbose --export-release "Windows Desktop" "$EXPORT_DIR/windows/$EXPORT_NAME.exe"
+          cp GODOT_LICENSE.txt $EXPORT_DIR/web/GODOT_LICENSE.txt
       - name: Upload Artifact
         uses: actions/upload-artifact@v7
         with:
@@ -57,6 +58,7 @@ jobs:
           EXPORT_DIR="$(readlink -f build)"
           cd $PROJECT_PATH
           godot --headless --verbose --export-release "Linux" "$EXPORT_DIR/linux/$EXPORT_NAME.x86_64"
+          cp GODOT_LICENSE.txt $EXPORT_DIR/web/GODOT_LICENSE.txt
       - name: Upload Artifact
         uses: actions/upload-artifact@v7
         with:
@@ -83,6 +85,7 @@ jobs:
           EXPORT_DIR="$(readlink -f build)"
           cd $PROJECT_PATH
           godot --headless --verbose --export-release "Web" "$EXPORT_DIR/web/index.html"
+          cp GODOT_LICENSE.txt $EXPORT_DIR/web/GODOT_LICENSE.txt
       - name: Upload Artifact
         uses: actions/upload-artifact@v7
         with:
