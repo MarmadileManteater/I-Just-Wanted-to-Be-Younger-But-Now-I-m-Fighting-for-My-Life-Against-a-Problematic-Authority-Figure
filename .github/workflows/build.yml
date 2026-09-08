@@ -4,7 +4,7 @@ on: push
 # NOTE: If your `project.godot` is at the repository root, set `PROJECT_PATH` below to ".".
 
 env:
-  GODOT_VERSION: 4.7.1
+  GODOT_VERSION: 4.7
   EXPORT_NAME: i-just-wanted-to-be-youner
   PROJECT_PATH: project
 
