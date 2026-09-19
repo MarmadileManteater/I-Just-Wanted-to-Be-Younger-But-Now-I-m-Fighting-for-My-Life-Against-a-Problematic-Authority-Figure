@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://d3hlqoj5tnitw"]
 
 [ext_resource type="Script" uid="uid://d2aj66r05vvh5" path="res://scenes/main/game.gd" id="1_ma5rq"]
-[ext_resource type="PackedScene" uid="uid://buaq8bv6ok7lr" path="res://scenes/nested/jukebox/jukebox.tscn" id="3_e3dby"]
 [ext_resource type="AudioStream" uid="uid://cdiha5mkyb14e" path="res://music/Game Over.ogg" id="4_kjrfb"]
 
 [sub_resource type="Animation" id="Animation_5j5yt"]
@@ -103,5 +102,3 @@ stream = ExtResource("4_kjrfb")
 [node name="SoundboxControls" type="AnimationPlayer" parent="." unique_id=1857995441]
 libraries/ = SubResource("AnimationLibrary_c8nfc")
 autoplay = &"RESET"
-
-[node name="Jukebox" parent="." unique_id=61097146 instance=ExtResource("3_e3dby")]

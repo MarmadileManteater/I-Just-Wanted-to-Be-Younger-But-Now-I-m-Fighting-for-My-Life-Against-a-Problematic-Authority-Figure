@@ -34,7 +34,8 @@ func _ready() -> void:
 func play_music(track_title: String, bypass: bool = false) -> void:
 	paused_position = 0
 	if controls.last_animation != track_title or bypass:
-		effects.play("Playing")
+		if track_title != "Gameplay":
+			effects.play("Playing")
 		controls.play_with_memory(track_title)
 		playback_timer.start(player.stream.get_length())
 

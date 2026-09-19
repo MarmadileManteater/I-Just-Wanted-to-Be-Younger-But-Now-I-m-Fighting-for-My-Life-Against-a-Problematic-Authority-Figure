@@ -2,13 +2,14 @@
 
 [ext_resource type="Script" uid="uid://b6kvdx652f05t" path="res://scenes/nested/jukebox/jukebox.gd" id="1_3gw1s"]
 [ext_resource type="AudioStream" uid="uid://vemyp3abv7je" path="res://music/TV Static.ogg" id="2_66e3p"]
+[ext_resource type="AudioStream" uid="uid://dac3t2bhgcwr6" path="res://music/Gameplay Master-Start.ogg" id="2_ftqgo"]
 [ext_resource type="AudioStream" uid="uid://c4f3682mw0kk1" path="res://music/Boss 1.ogg" id="3_e5aoi"]
 [ext_resource type="AudioStream" uid="uid://4t2a0olld81g" path="res://music/Boss 1 Phase 1 Master.ogg" id="4_ftqgo"]
 [ext_resource type="AudioStream" uid="uid://bll2s3rvcsmka" path="res://music/Boss 1 Phase 2 Master.ogg" id="5_lsl2i"]
 [ext_resource type="AudioStream" uid="uid://cu4il2x6pgh5a" path="res://music/Boss 1 Phase 3 Master.ogg" id="6_b1tct"]
 [ext_resource type="AudioStream" uid="uid://0d6b4rxdl36a" path="res://music/Ceremony.ogg" id="7_66e3p"]
 [ext_resource type="AudioStream" uid="uid://bla2rof7ne12j" path="res://music/Gameplay.ogg" id="7_p33qo"]
-[ext_resource type="AudioStream" uid="uid://ei3kg4ymf7m0" path="res://music/Gameplay Master.ogg" id="8_ftqgo"]
+[ext_resource type="AudioStream" uid="uid://bf24tgu1351c2" path="res://music/Gameplay Master-Loop.ogg" id="8_ftqgo"]
 [ext_resource type="AudioStream" uid="uid://cqgktmd3cbao4" path="res://music/News Reel.ogg" id="9_4woso"]
 [ext_resource type="AudioStream" uid="uid://y22ii8i7xsu0" path="res://music/Introduction Master.ogg" id="9_lsl2i"]
 [ext_resource type="AudioStream" uid="uid://cfgngv7bx1l2f" path="res://music/Somber Scene Loop Short.ogg" id="10_dnyxf"]
@@ -97,7 +98,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_em1bs"]
 resource_name = "Gameplay"
-length = 0.001
+length = 6.6499999999999995
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -109,6 +110,42 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1.0000001),
 "update": 1,
 "values": [ExtResource("8_ftqgo")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Jukebox2:stream")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_ftqgo")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Jukebox2:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 6.62),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Jukebox:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.03333333, 0.06666666, 0.100004226, 0.13333756, 0.16667089, 0.20233412, 0.23566745, 0.26900077, 6.625),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, false, false, false, false, false, false, false, false, true]
 }
 
 [sub_resource type="Animation" id="Animation_kjrfb"]
@@ -156,6 +193,42 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [ExtResource("7_p33qo")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Jukebox2:stream")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_ftqgo")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Jukebox2:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Jukebox:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_0u50o"]
@@ -629,3 +702,7 @@ libraries/ = SubResource("AnimationLibrary_3gw1s")
 autoplay = &"RESET"
 
 [node name="PlaybackTimer" type="Timer" parent="." unique_id=2008047494]
+
+[node name="Jukebox2" type="AudioStreamPlayer" parent="." unique_id=505345752]
+stream = ExtResource("2_ftqgo")
+bus = &"Music"
