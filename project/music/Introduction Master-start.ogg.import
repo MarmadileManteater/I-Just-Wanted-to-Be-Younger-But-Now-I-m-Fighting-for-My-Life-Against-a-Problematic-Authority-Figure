@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cqgdhjpvt8ol5"
+path="res://.godot/imported/Introduction Master-start.ogg-faa4caf83f7c0f4ab50c5f49b4d2b3c3.oggvorbisstr"
+
+[deps]
+
+source_file="res://music/Introduction Master-start.ogg"
+dest_files=["res://.godot/imported/Introduction Master-start.ogg-faa4caf83f7c0f4ab50c5f49b4d2b3c3.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
