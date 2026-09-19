@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://jsk3tslm17pt"
+path="res://.godot/imported/Tutorial Master-loop.ogg-9efa8069f3b5c80fbfa6c9bf4960ee5d.oggvorbisstr"
+
+[deps]
+
+source_file="res://music/Tutorial Master-loop.ogg"
+dest_files=["res://.godot/imported/Tutorial Master-loop.ogg-9efa8069f3b5c80fbfa6c9bf4960ee5d.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

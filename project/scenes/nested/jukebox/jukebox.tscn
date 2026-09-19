@@ -14,8 +14,9 @@
 [ext_resource type="AudioStream" uid="uid://y22ii8i7xsu0" path="res://music/Introduction Master.ogg" id="9_lsl2i"]
 [ext_resource type="AudioStream" uid="uid://cfgngv7bx1l2f" path="res://music/Somber Scene Loop Short.ogg" id="10_dnyxf"]
 [ext_resource type="AudioStream" uid="uid://cajyq7j6by0cc" path="res://music/Somber Scene End.ogg" id="11_ewfvs"]
-[ext_resource type="AudioStream" uid="uid://bgx5ncjbboq6s" path="res://music/Tutorial Master.ogg" id="12_3gw1s"]
 [ext_resource type="Script" uid="uid://cqmvyq8jn4svt" path="res://scripts/AnimationPlayerExtensions.gd" id="13_358rs"]
+[ext_resource type="AudioStream" uid="uid://jsk3tslm17pt" path="res://music/Tutorial Master-loop.ogg" id="15_lsl2i"]
+[ext_resource type="AudioStream" uid="uid://3oek2q434ch6" path="res://music/Tutorial Master-start.ogg" id="16_b1tct"]
 
 [sub_resource type="Animation" id="Animation_gf1f2"]
 resource_name = "Boss1"
@@ -142,7 +143,7 @@ tracks/3/path = NodePath("Jukebox:playing")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.03333333, 0.06666666, 0.100004226, 0.13333756, 0.16667089, 0.20233412, 0.23566745, 0.26900077, 6.625),
+"times": PackedFloat32Array(0, 0.03333333, 0.06666666, 0.100004226, 0.13333756, 0.16667089, 0.20233412, 0.23566745, 0.26900077, 6.622),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [false, false, false, false, false, false, false, false, false, true]
@@ -296,6 +297,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_oxcik"]
 resource_name = "Tutorial"
+length = 11.66
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -306,7 +308,43 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("12_3gw1s")]
+"values": [ExtResource("15_lsl2i")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Jukebox:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 11.64),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Jukebox2:stream")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("16_b1tct")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Jukebox2:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_153ln"]
