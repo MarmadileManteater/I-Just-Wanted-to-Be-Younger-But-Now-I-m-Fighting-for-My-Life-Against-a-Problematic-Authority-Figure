@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://2s0ixi7rjqvk" path="res://sprites/select.png" id="10_qhvse"]
 [ext_resource type="Texture2D" uid="uid://dvn6hhjndd36k" path="res://sprites/menu.png" id="11_4tfji"]
 [ext_resource type="Texture2D" uid="uid://cpcjpbnlpha8a" path="res://sprites/credits.png" id="12_4tfji"]
-[ext_resource type="Texture2D" uid="uid://cf3p3oh7hluh7" path="res://sprites/v11.png" id="13_41tky"]
+[ext_resource type="Texture2D" uid="uid://c0r13pkn4x4ww" path="res://sprites/v12.png" id="13_41tky"]
 [ext_resource type="AudioStream" uid="uid://cs8fx4ksq0x01" path="res://music/Menu.ogg" id="13_jmktf"]
 [ext_resource type="AudioStream" uid="uid://4j4bxcccd5i4" path="res://music/Confirm.ogg" id="14_gdjcl"]
 
