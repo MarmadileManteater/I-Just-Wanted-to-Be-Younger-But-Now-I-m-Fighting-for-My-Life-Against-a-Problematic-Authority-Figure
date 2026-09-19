@@ -7,7 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://4t2a0olld81g" path="res://music/Boss 1 Phase 1 Master.ogg" id="4_ftqgo"]
 [ext_resource type="AudioStream" uid="uid://bll2s3rvcsmka" path="res://music/Boss 1 Phase 2 Master.ogg" id="5_lsl2i"]
 [ext_resource type="AudioStream" uid="uid://cu4il2x6pgh5a" path="res://music/Boss 1 Phase 3 Master.ogg" id="6_b1tct"]
-[ext_resource type="AudioStream" uid="uid://0d6b4rxdl36a" path="res://music/Ceremony.ogg" id="7_66e3p"]
+[ext_resource type="AudioStream" uid="uid://bgcnf16twx345" path="res://music/Ceremony Master.ogg" id="7_b1tct"]
 [ext_resource type="AudioStream" uid="uid://bla2rof7ne12j" path="res://music/Gameplay.ogg" id="7_p33qo"]
 [ext_resource type="AudioStream" uid="uid://bf24tgu1351c2" path="res://music/Gameplay Master-Loop.ogg" id="8_ftqgo"]
 [ext_resource type="AudioStream" uid="uid://cqgktmd3cbao4" path="res://music/News Reel.ogg" id="9_4woso"]
@@ -95,7 +95,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("7_66e3p")]
+"values": [ExtResource("7_b1tct")]
 }
 
 [sub_resource type="Animation" id="Animation_em1bs"]

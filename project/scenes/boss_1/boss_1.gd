@@ -122,9 +122,15 @@ func slam_hand(animation_name: String):
 	if boss_stage == 1:
 		timeout_to_reset_animation(2)
 	if boss_stage == 2:
-		timeout_to_reset_animation(2)
+		if difficulty == Difficulty.Hard:
+			timeout_to_reset_animation(2)
+		else:
+			timeout_to_reset_animation(1.5)
 	if boss_stage == 3:
-		timeout_to_reset_animation(2)
+		if difficulty == Difficulty.Hard:
+			timeout_to_reset_animation(2)
+		else:
+			timeout_to_reset_animation(1.9)
 
 func timeout_to_reset_animation(seconds: float = 1):
 	var timeout = Timer.new()
@@ -137,7 +143,7 @@ func timeout_to_reset_animation(seconds: float = 1):
 	add_child(timeout)
 	timeout.start(seconds)
 
-func stage_change(stage: int):
+func stage_change(stage: int, play_animation: bool = true):
 	if not stage_changing and stage > boss_stage:
 		if stage == 2:
 			emit_signal("stop_music_with_reverb", "start_boss_music_2", 15)
@@ -147,7 +153,8 @@ func stage_change(stage: int):
 		stage_changing = true
 		slam_animation_player.pause()
 		boss_top.head_animation_player.animation_finished.connect(after_stage_change)
-		boss_top.head_animation_player.play("Stage Change")
+		if play_animation:
+			boss_top.head_animation_player.play("Stage Change")
 
 func after_stage_change(name: String):
 	stage_changing = false
@@ -275,11 +282,11 @@ func _on_pickup_window_entered(body: Node2D) -> void:
 					if stage == 3:
 						boss_health = 24
 						boss_health_bar.set_color(Color(0.955, 0.0, 0.209))
-						stage_change(3)
+						stage_change(3, false)
 					elif stage == 2:
 						boss_health = 74
 						boss_health_bar.set_color(Color(0.922, 0.522, 0.0))
-						stage_change(2)
+						stage_change(2, false)
 					else:
 						emit_signal("stop_music_with_reverb", "start_boss_music", 100)
 				else:
