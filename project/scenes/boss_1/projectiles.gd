@@ -7,6 +7,7 @@ signal projectile_destroyed
 signal projectile_moving
 
 var projectiles: Array
+var default_health: int = 10
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,6 +20,7 @@ func _process(delta: float) -> void:
 func fire(target: Node2D) -> void:
 	var projectile: TextProjectile = projectiles.pick_random()
 	var duplicate = projectile.duplicate()
+	duplicate.health = default_health
 	projectile.flash_player.play("Default")
 	duplicate.damage.connect(
 		func ():

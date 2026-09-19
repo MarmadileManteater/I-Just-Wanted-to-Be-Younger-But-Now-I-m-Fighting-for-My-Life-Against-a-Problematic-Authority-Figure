@@ -10,7 +10,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-
 func _on_physics_off_point_body_entered(body: Node2D) -> void:
 	if body == willow:
 		dolly.unlock()

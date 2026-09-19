@@ -10,6 +10,7 @@ var stage_changing: bool = false
 var boss_started: bool = false
 var boss_dead: bool = false
 var boss_gone: bool = false
+var being_crushed: bool = false
 
 var boss_top: Boss1Top
 var boss_bottom: Node2D
@@ -55,6 +56,9 @@ func _ready() -> void:
 	boss_right = boss_top.find_child("Right")
 	wand_pickup = find_child("WandPickup")
 	
+	if difficulty == Difficulty.Normal:
+		boss_top.projectiles.default_health = 3
+	
 	first_tip = dolly.find_child("TipWindow")
 	wand_tip = dolly.find_child("TipWindow2")
 	post_battle_dialog = dolly.find_child("TipWindow3")
@@ -82,8 +86,9 @@ func _ready() -> void:
 			first_tip.text[1] = "Wow, that's going to be tough to come back from."
 		dolly.find_child("TipWindow").start()
 		emit_signal("save_checkpoint", SceneInfo.from_hearts(hearts.health))
-	elif checkpoint_flags[0] == true:
-		_on_tip_window_done()
+	else:
+		if checkpoint_flags[0] == true:
+			_on_tip_window_done()
 	
 	_on_controller_type_changed(controller_type)
 
@@ -180,15 +185,43 @@ func _process(delta: float) -> void:
 			dolly.locked_offset = -400
 
 func _on_crushed(position: Vector2) -> void:
-	hearts.health = 0
+	if being_crushed:
+		return
 	willow.position.y = position.y + 300 # magic number
-	die("crushed")
+	if difficulty == Difficulty.Hard or hearts.health == 1:
+		hearts.health = 0
+		save_checkpoint_and_die("crushed")
+	else:
+		willow.position.y = position.y + 400 # magic number
+		being_crushed = true
+		willow.animation_locked = true
+		hearts.health -= 1
+		willow.hurt()
+		willow.hide()
+		var timer = Timer.new()
+		timer.timeout.connect(
+			func ():
+				willow.wand_animation_player.play("point")
+				willow.flash()
+				willow.show()
+				being_crushed = false
+				willow.animation_locked = false
+				if dolly.locked_offset == -400:
+					willow.bounce(1)
+				else:
+					willow.bounce(1.5)
+				remove_child(timer)
+				timer.queue_free()
+		)
+		add_child(timer)
+		timer.start(1.6)
+		
 
 func _on_projectiles_damage() -> void:
 	if not willow.invulnerable:
 		hearts.health -= 1
 		if hearts.health <= 0:
-			die("disintegrate")
+			save_checkpoint_and_die("disintegrate")
 		else:
 			willow.flash()
 			willow.hurt()
@@ -216,7 +249,9 @@ func _on_damage_boss() -> void:
 
 func _on_death_zone_entered(body: Node2D) -> void:
 	if body == willow:
-		die()
+		if being_crushed:
+			return
+		save_checkpoint_and_die()
 
 func _on_tip_window_done() -> void:
 	emit_signal("save_checkpoint", SceneInfo.checkpoint(hearts.health, [true]))
@@ -235,7 +270,20 @@ func _on_pickup_window_entered(body: Node2D) -> void:
 				willow.controls_locked = false
 				lock_dolly()
 				boss_started = true
-				emit_signal("stop_music_with_reverb", "start_boss_music", 100)
+				if checkpoint_flags.size() > 1:
+					var stage = checkpoint_flags[1]
+					if stage == 3:
+						boss_health = 24
+						boss_health_bar.set_color(Color(0.955, 0.0, 0.209))
+						stage_change(3)
+					elif stage == 2:
+						boss_health = 74
+						boss_health_bar.set_color(Color(0.922, 0.522, 0.0))
+						stage_change(2)
+					else:
+						emit_signal("stop_music_with_reverb", "start_boss_music", 100)
+				else:
+					emit_signal("stop_music_with_reverb", "start_boss_music", 100)
 		)
 		
 func boss_death() -> void:
@@ -272,3 +320,8 @@ func _on_controller_type_changed(new_type: ControllerType):
 		wand_tip.text[0] = "You have obtained [i][b]a wand![/b][/i]\nPress [i][b][img width=50 height=50]res://sprites/left_face_button_white.png[/img][/b][/i] to shoot thunderbolts!\nPress [i][b][img width=100 height=50]res://sprites/bumpers.png[/img][/b][/i] to aim!"
 	if new_type == ControllerType.Keyboard:
 		wand_tip.text[0] = "You have obtained [i][b]a wand![/b][/i]\nPress [i][b]F[/b][/i] to shoot thunderbolts!\nPress [i][b]UP[/b][/i] to aim!"
+
+func save_checkpoint_and_die(type: String = ""):
+	if difficulty == Difficulty.Normal:
+		emit_signal("save_checkpoint", SceneInfo.checkpoint(3, [true, boss_stage]))
+	die(type)

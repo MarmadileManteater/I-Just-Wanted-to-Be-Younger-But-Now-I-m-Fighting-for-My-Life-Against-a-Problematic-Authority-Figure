@@ -19,7 +19,9 @@ signal reset
 signal start_timer
 signal stop_timer
 signal restart_game
+signal set_difficulty
 
+enum Difficulty { Normal, Hard }
 enum ControllerType { Joypad, Keyboard }
 
 @export var character_name: String = "Willow"
@@ -33,6 +35,7 @@ enum ControllerType { Joypad, Keyboard }
 @export var next_scene_name: String
 @export var is_checkpoint: bool = false
 @export var starting_health: int = 3
+var difficulty: Difficulty
 var current_score: int = 0
 var deaths: int = 0
 var checkpoint_flags: Array = []

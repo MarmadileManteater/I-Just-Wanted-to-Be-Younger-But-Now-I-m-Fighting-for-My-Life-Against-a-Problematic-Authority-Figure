@@ -14,6 +14,7 @@ var stopwatch: float = 0.0
 
 var score: int = 0
 var deaths: int = 0
+var difficulty_setting: DefaultScene.Difficulty = DefaultScene.Difficulty.Normal
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -69,11 +70,19 @@ func next_screen_deferred(info: SceneInfo) -> void:
 			get_tree().reload_current_scene()
 	)
 	scene.connect("fade_out_music", _fade_out_music)
+	scene.connect("set_difficulty", 
+		func (difficulty):
+			if difficulty == 0:
+				difficulty_setting = DefaultScene.Difficulty.Normal
+			if difficulty == 1:
+				difficulty_setting = DefaultScene.Difficulty.Hard
+	)
 	scene.starting_health = info.health
 	scene.checkpoint_flags = info.checkpoint_flags
 	scene.controller_type = controller_type
 	scene.current_score = score
 	scene.deaths = deaths
+	scene.difficulty = difficulty_setting
 	add_child(scene)
 
 func _change_loop_status(is_looping: bool):

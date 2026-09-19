@@ -12,9 +12,12 @@
 [ext_resource type="Texture2D" uid="uid://2s0ixi7rjqvk" path="res://sprites/select.png" id="10_qhvse"]
 [ext_resource type="Texture2D" uid="uid://dvn6hhjndd36k" path="res://sprites/menu.png" id="11_4tfji"]
 [ext_resource type="Texture2D" uid="uid://cpcjpbnlpha8a" path="res://sprites/credits.png" id="12_4tfji"]
-[ext_resource type="Texture2D" uid="uid://c0r13pkn4x4ww" path="res://sprites/v12.png" id="13_41tky"]
+[ext_resource type="Texture2D" uid="uid://v3eqtwdi8lqo" path="res://sprites/v13.png" id="13_41tky"]
 [ext_resource type="AudioStream" uid="uid://cs8fx4ksq0x01" path="res://music/Menu.ogg" id="13_jmktf"]
 [ext_resource type="AudioStream" uid="uid://4j4bxcccd5i4" path="res://music/Confirm.ogg" id="14_gdjcl"]
+[ext_resource type="Texture2D" uid="uid://die0q4muf537u" path="res://sprites/hard.png" id="14_lqf1w"]
+[ext_resource type="Texture2D" uid="uid://blxi8vt86lc5q" path="res://sprites/normal.png" id="15_p5d66"]
+[ext_resource type="Texture2D" uid="uid://bo5y21if8gmi3" path="res://sprites/difficulty.png" id="16_o6hrh"]
 
 [sub_resource type="Animation" id="Animation_gdjcl"]
 resource_name = "New"
@@ -245,29 +248,57 @@ z_index = 10
 position = Vector2(461, 74)
 texture = ExtResource("11_4tfji")
 
-[node name="Start" type="Sprite2D" parent="Menu" unique_id=249050400]
+[node name="MainMenu" type="Node2D" parent="Menu" unique_id=1103061829]
+
+[node name="Credits" type="Sprite2D" parent="Menu/MainMenu" unique_id=2005940101]
+position = Vector2(41, 124)
+texture = ExtResource("12_4tfji")
+
+[node name="Select" type="Sprite2D" parent="Menu/MainMenu/Credits" unique_id=2129973296]
+visible = false
+position = Vector2(-327, 4)
+scale = Vector2(2, 2)
+texture = ExtResource("10_qhvse")
+
+[node name="Start" type="Sprite2D" parent="Menu/MainMenu" unique_id=249050400]
 z_index = 100
 position = Vector2(-36, -133)
 texture = ExtResource("9_qaq8r")
 
-[node name="Select" type="Sprite2D" parent="Menu/Start" unique_id=1270795532]
+[node name="Select" type="Sprite2D" parent="Menu/MainMenu/Start" unique_id=1270795532]
 position = Vector2(-255, 4)
-scale = Vector2(2, 2)
-texture = ExtResource("10_qhvse")
-
-[node name="Credits" type="Sprite2D" parent="Menu" unique_id=2005940101]
-position = Vector2(41, 124)
-texture = ExtResource("12_4tfji")
-
-[node name="Select" type="Sprite2D" parent="Menu/Credits" unique_id=2129973296]
-visible = false
-position = Vector2(-327, 4)
 scale = Vector2(2, 2)
 texture = ExtResource("10_qhvse")
 
 [node name="version" type="Sprite2D" parent="Menu" unique_id=1320485856]
 position = Vector2(988, 527)
 texture = ExtResource("13_41tky")
+
+[node name="DifficultyMenu" type="Node2D" parent="Menu" unique_id=1478796304]
+visible = false
+
+[node name="Hard" type="Sprite2D" parent="Menu/DifficultyMenu" unique_id=857988562]
+position = Vector2(-18, 142)
+texture = ExtResource("14_lqf1w")
+
+[node name="Select" type="Sprite2D" parent="Menu/DifficultyMenu/Hard" unique_id=264883538]
+visible = false
+position = Vector2(-217, 5)
+scale = Vector2(2, 2)
+texture = ExtResource("10_qhvse")
+
+[node name="Normal" type="Sprite2D" parent="Menu/DifficultyMenu" unique_id=1924735328]
+position = Vector2(18, -43)
+texture = ExtResource("15_p5d66")
+
+[node name="Select" type="Sprite2D" parent="Menu/DifficultyMenu/Normal" unique_id=363740277]
+position = Vector2(-256, 4)
+scale = Vector2(2, 2)
+texture = ExtResource("10_qhvse")
+
+[node name="Difficulty" type="Sprite2D" parent="Menu/DifficultyMenu" unique_id=422549738]
+position = Vector2(8, -189)
+texture = ExtResource("16_o6hrh")
 
 [node name="MenuNoise" type="AudioStreamPlayer" parent="." unique_id=407598508]
 stream = ExtResource("13_jmktf")
