@@ -53,14 +53,19 @@ func stop_music() -> void:
 	playback_timer.stop()
 
 func pause_music() -> void:
-	paused_position = player.get_playback_position()
-	player.stop()
+	player.volume_db = -80
+	pass
+	#paused_position = player.get_playback_position()
+	#player.stop()
 
 func unpause_music() -> void:
-	player.volume_db = -80
-	player.play(paused_position)
-	effects.play("PlayWithFadeIn")
-	paused_position = 0
+	player.volume_db = 0
+	pass
+	
+	#player.volume_db = -80
+	#player.play(paused_position)
+	#effects.play("PlayWithFadeIn")
+	#paused_position = 0
 
 func stop_music_with_reverb(callback: Callable = func (): pass, animation_speed: float = 1) -> void:
 	if OS.has_feature("web"):
