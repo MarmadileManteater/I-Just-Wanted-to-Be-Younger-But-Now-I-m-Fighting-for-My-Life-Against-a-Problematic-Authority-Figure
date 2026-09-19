@@ -18,13 +18,13 @@ size = Vector2(354, 67)
 size = Vector2(52, 33)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f0cvc"]
-size = Vector2(52, 21.5)
+size = Vector2(37, 21.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vnauw"]
-size = Vector2(52, 20.5)
+size = Vector2(36, 20.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mc3rn"]
-size = Vector2(52, 27.5)
+size = Vector2(36, 27.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0evvt"]
 size = Vector2(3058, 18)
@@ -78,16 +78,22 @@ shape = SubResource("RectangleShape2D_u4npt")
 script = ExtResource("6_lj2n1")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Bench/Spikes" unique_id=535082091]
-position = Vector2(-6, 6.75)
+position = Vector2(-5.5, 6.75)
 shape = SubResource("RectangleShape2D_f0cvc")
+one_way_collision = true
+one_way_collision_direction = Vector2(-0.63605493, 0.7716437)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Bench/Spikes" unique_id=702572395]
 position = Vector2(-147, 7.25)
 shape = SubResource("RectangleShape2D_vnauw")
+one_way_collision = true
+one_way_collision_direction = Vector2(-0.70710677, 0.70710677)
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Bench/Spikes" unique_id=714202940]
-position = Vector2(136, 3.75)
+position = Vector2(133, 3.75)
 shape = SubResource("RectangleShape2D_mc3rn")
+one_way_collision = true
+one_way_collision_direction = Vector2(-0.6173563, 0.7866837)
 
 [node name="Willow" parent="." unique_id=1438157277 instance=ExtResource("7_17xyv")]
 position = Vector2(87, 453)
