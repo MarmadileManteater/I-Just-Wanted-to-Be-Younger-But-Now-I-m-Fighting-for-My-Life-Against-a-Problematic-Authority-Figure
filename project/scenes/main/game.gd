@@ -15,12 +15,14 @@ var stopwatch: float = 0.0
 var score: int = 0
 var deaths: int = 0
 var difficulty_setting: DefaultScene.Difficulty = DefaultScene.Difficulty.Normal
+var has_played: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	jukebox = generate_jukebox()
 	add_child(jukebox)
 	soundbox_controls = find_child("SoundboxControls")
+	has_played = get_has_played_before()
 	
 	next_screen_deferred(SceneInfo.from_name(start_scene))
 	
@@ -77,12 +79,14 @@ func next_screen_deferred(info: SceneInfo) -> void:
 			if difficulty == 1:
 				difficulty_setting = DefaultScene.Difficulty.Hard
 	)
+	scene.connect("save_game", set_has_played_before)
 	scene.starting_health = info.health
 	scene.checkpoint_flags = info.checkpoint_flags
 	scene.controller_type = controller_type
 	scene.current_score = score
 	scene.deaths = deaths
 	scene.difficulty = difficulty_setting
+	scene.has_played = has_played
 	add_child(scene)
 
 func _change_loop_status(is_looping: bool):
@@ -189,3 +193,14 @@ func _stop_timer(rate = true) -> void:
 		game_timer = null
 	if rate:
 		scene.current_score = score
+
+func get_has_played_before() -> bool:
+	if not FileAccess.file_exists("user://has_played"):
+		return false
+	var file = FileAccess.open("user://has_played", FileAccess.READ)
+	return file.get_line() == "true"
+
+func set_has_played_before():
+	var file = FileAccess.open("user://has_played", FileAccess.WRITE)
+	file.store_line("true")
+	file.close()

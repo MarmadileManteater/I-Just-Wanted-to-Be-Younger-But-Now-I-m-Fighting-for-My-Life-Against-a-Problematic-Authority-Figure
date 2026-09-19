@@ -18,6 +18,9 @@
 [ext_resource type="Texture2D" uid="uid://die0q4muf537u" path="res://sprites/hard.png" id="14_lqf1w"]
 [ext_resource type="Texture2D" uid="uid://blxi8vt86lc5q" path="res://sprites/normal.png" id="15_p5d66"]
 [ext_resource type="Texture2D" uid="uid://bo5y21if8gmi3" path="res://sprites/difficulty.png" id="16_o6hrh"]
+[ext_resource type="Texture2D" uid="uid://botslkpre7ngq" path="res://sprites/no.png" id="17_j5rt2"]
+[ext_resource type="Texture2D" uid="uid://dm212uxx75t1f" path="res://sprites/yes.png" id="18_du3e4"]
+[ext_resource type="Texture2D" uid="uid://cjc7qtijeje3l" path="res://sprites/skip_intro.png" id="19_p7h6i"]
 
 [sub_resource type="Animation" id="Animation_gdjcl"]
 resource_name = "New"
@@ -300,6 +303,32 @@ texture = ExtResource("10_qhvse")
 position = Vector2(8, -189)
 texture = ExtResource("16_o6hrh")
 
+[node name="IntroMenu" type="Node2D" parent="Menu" unique_id=1090512947]
+visible = false
+
+[node name="No" type="Sprite2D" parent="Menu/IntroMenu" unique_id=1614808215]
+position = Vector2(-23, 165)
+texture = ExtResource("17_j5rt2")
+
+[node name="Select" type="Sprite2D" parent="Menu/IntroMenu/No" unique_id=603407648]
+visible = false
+position = Vector2(-119, 5)
+scale = Vector2(2, 2)
+texture = ExtResource("10_qhvse")
+
+[node name="Yes" type="Sprite2D" parent="Menu/IntroMenu" unique_id=1481202262]
+position = Vector2(6, 2)
+texture = ExtResource("18_du3e4")
+
+[node name="Select" type="Sprite2D" parent="Menu/IntroMenu/Yes" unique_id=1352885786]
+position = Vector2(-151, 5)
+scale = Vector2(2, 2)
+texture = ExtResource("10_qhvse")
+
+[node name="SkipIntro" type="Sprite2D" parent="Menu/IntroMenu" unique_id=1975110589]
+position = Vector2(12, -163)
+texture = ExtResource("19_p7h6i")
+
 [node name="MenuNoise" type="AudioStreamPlayer" parent="." unique_id=407598508]
 stream = ExtResource("13_jmktf")
 volume_db = -10.0
@@ -307,5 +336,3 @@ volume_db = -10.0
 [node name="SelectNoise" type="AudioStreamPlayer" parent="." unique_id=619458686]
 stream = ExtResource("14_gdjcl")
 volume_db = -10.0
-
-[connection signal="finished" from="SelectNoise" to="." method="_on_select_noise_finished"]

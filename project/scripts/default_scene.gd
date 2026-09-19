@@ -20,6 +20,7 @@ signal start_timer
 signal stop_timer
 signal restart_game
 signal set_difficulty
+signal save_game
 
 enum Difficulty { Normal, Hard }
 enum ControllerType { Joypad, Keyboard }
@@ -35,10 +36,12 @@ enum ControllerType { Joypad, Keyboard }
 @export var next_scene_name: String
 @export var is_checkpoint: bool = false
 @export var starting_health: int = 3
+@export var should_save_game: bool = false
 var difficulty: Difficulty
 var current_score: int = 0
 var deaths: int = 0
 var checkpoint_flags: Array = []
+var has_played: bool = false
 
 var controller_type: ControllerType
 
@@ -80,6 +83,8 @@ func _ready() -> void:
 			emit_signal("queue_music", TrackInfo.from(track_name, loop_track))
 	if is_checkpoint:
 		emit_signal("save_checkpoint", SceneInfo.from_hearts(hearts.health))
+	if should_save_game:
+		emit_signal("save_game")
 
 func lock_dolly():
 	dolly.lock(willow, dolly_axis)

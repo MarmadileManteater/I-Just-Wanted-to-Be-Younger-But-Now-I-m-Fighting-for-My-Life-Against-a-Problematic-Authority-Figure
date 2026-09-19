@@ -8,10 +8,12 @@ var menu_noise: AudioStreamPlayer
 var select_noise: AudioStreamPlayer
 var selected: int = 0
 var menu_selects = []
-var enter_unpressed = false
 var difficulty_selects = []
+var intro_selects = []
+var enter_unpressed = false
 var difficulty_header: Sprite2D
 var main_menu: Node2D
+var intro_menu: Node2D
 var difficulty_menu: Node2D
 
 # Called when the node enters the scene tree for the first time.
@@ -24,9 +26,12 @@ func _ready() -> void:
 	menu = find_child("Menu")
 	main_menu = menu.find_child("MainMenu")
 	difficulty_menu = menu.find_child("DifficultyMenu")
+	intro_menu = menu.find_child("IntroMenu")
 	menu_selects = [main_menu.find_child("Start").find_child("Select"), main_menu.find_child("Credits").find_child("Select")]
 	
 	difficulty_selects =  [difficulty_menu.find_child("Normal").find_child("Select"), difficulty_menu.find_child("Hard").find_child("Select")]
+	
+	intro_selects = [intro_menu.find_child("Yes").find_child("Select"), intro_menu.find_child("No").find_child("Select")]
 	
 	menu_noise = find_child("MenuNoise")
 	select_noise = find_child("SelectNoise")
@@ -42,6 +47,8 @@ func _input(event: InputEvent) -> void:
 			selects = menu_selects
 		if difficulty_menu.visible:
 			selects = difficulty_selects
+		if intro_menu.visible:
+			selects = intro_selects
 		if event.get_action_strength("ui_down") > 0.7:
 			if selected == 0:
 				selects[selected].hide()
@@ -65,10 +72,26 @@ func _input(event: InputEvent) -> void:
 					emit_signal("next_screen", SceneInfo.from_name("credits"))
 			elif difficulty_menu.visible:
 				emit_signal("set_difficulty", selected)
-				menu.hide()
-				select_noise.play()
-				animation_player.play("Zoom")
-	
+				if has_played:
+					difficulty_menu.hide()
+					intro_menu.show()
+					enter_unpressed = false
+					select_noise.play()
+					selected = 0
+				else:
+					start_game()
+			elif intro_menu.visible:
+				if selected == 0:
+					emit_signal("next_screen", SceneInfo.from_name("boss_1_screen_1"))
+				else:
+					start_game()
+
+func start_game():
+	select_noise.finished.connect(_on_select_noise_finished)
+	menu.hide()
+	select_noise.play()
+	animation_player.play("Zoom")
+	6
 func _on_controller_type_changed(new_type: ControllerType):
 	super(new_type)
 	if new_type == ControllerType.Joypad:
