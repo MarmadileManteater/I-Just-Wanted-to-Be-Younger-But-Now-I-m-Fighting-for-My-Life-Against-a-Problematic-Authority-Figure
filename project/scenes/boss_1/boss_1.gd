@@ -150,7 +150,8 @@ func stage_change(stage: int, play_animation: bool = true):
 		if stage == 3:
 			emit_signal("stop_music_with_reverb", "start_boss_music_3", 15)
 		boss_stage = stage
-		stage_changing = true
+		if play_animation:
+			stage_changing = true
 		slam_animation_player.pause()
 		boss_top.head_animation_player.animation_finished.connect(after_stage_change)
 		if play_animation:
