@@ -53,13 +53,11 @@ func stop_music() -> void:
 	playback_timer.stop()
 
 func pause_music() -> void:
-	player.volume_db = -80
 	pass
 	#paused_position = player.get_playback_position()
 	#player.stop()
 
 func unpause_music() -> void:
-	player.volume_db = 0
 	pass
 	
 	#player.volume_db = -80
